@@ -1,0 +1,113 @@
+/* universal selector
+ * {
+    text-decoration: underline magenta wavy;
+    border: 2px solid cyan;
+}
+*/
+
+/* element selector */
+img {
+    width: 500px;
+}
+h1 {
+    color: purple;
+}
+h2 {
+    color: teal;
+}
+
+/* ID selector */
+#logo {
+    width: 75px;
+}
+
+/* Class selector */
+.poem {
+    width: 500px;
+    color: gray;
+    font-style: italic;
+}
+/* .nav_link {
+    text-decoration: none;
+} */
+
+/* descendant selector */
+nav a {
+    text-decoration: none;
+}
+#poem2 p {
+ color: orangered;
+}
+
+/* adjacent sbling selector , it will apply only 'h3' which is after 'p' tag*/ 
+p + h3 {
+    color: orange;
+}
+
+.poem + img {
+    width: 700px;
+}
+
+/* direct children selector */
+#works > li {
+    font-size: 1.5em;
+}
+.poem > p {
+    color: black;
+    font-style: normal;
+}
+
+/* multiple selector */
+h1, a {
+    color: purple;
+}
+
+/* pseudo class selector  */
+.poem section p:first-of-type {
+    color: magenta;
+}
+/* li:last-of-type {
+    color: cyan;
+} */
+li:nth-of-type(2n) {
+    background-color: lavender;
+}
+p:hover {
+    color:lightpink;
+} 
+
+/* psudo class , some part of the selected element */
+.poem section p:first-of-type::first-letter {
+    color: red;
+    font-weight: bold;
+    font-size: 2em;
+}
+input:focus::placeholder {
+    color:blue;
+}
+
+/* attribute selector */
+input[type="password"] {
+    background-color: lightblue;
+}
+/* value begins with value */
+img[src^="box-"] {
+    width: 600px;
+}
+/* value ends with value */
+img[src$="-box"] {
+    width: 600px;
+}
+/* value contain with value */
+img[src*="box"]{
+    width: 600px;
+}
+
+/* specificity
+
+1. element : h1
+2. class : .class
+3. id : #id
+4. inline : X recommand for not use.
+
+*/

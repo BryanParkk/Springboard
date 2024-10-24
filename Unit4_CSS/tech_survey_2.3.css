@@ -1,0 +1,216 @@
+/* import font */
+.raleway {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+}  
+
+/* apply font */
+* {
+    font-family: "Raleway";
+    font-weight: 400;
+    line-height: 1.6;
+    box-sizing: border-box;
+}
+
+/* setting border line and radius*/
+html {
+    background-color: #006b44;
+}
+
+body {
+    border: 2px solid #005141;
+    border-radius: 30px;
+    background-color: #f8fffd;
+}
+
+/* hover effect */
+h1:hover, h2:hover, h4:hover, p:hover, li:hover, ul:hover, table:hover{
+    text-shadow: 3px 3px 3px #04aa6d;
+}
+
+/* headings */
+h1 {
+    font-weight: 700;
+    text-shadow: 3px 3px #04aa6d;
+    margin-top: 0.2em;
+}
+
+h2 {
+    font-weight: 500;
+    text-shadow: 2px 2px 2px grey;
+    margin: 1em 30% 0 1%;
+    text-transform: uppercase;
+}
+
+h4 {
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0 0 0 2em;
+}
+
+/* anchor tag */
+a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* table */
+th {
+    font-weight: bold;
+}
+
+td {
+    padding-left: 2em;
+}
+
+/* text (p, textarea, fieldset, legend */
+p {
+    line-height: 1.5;
+    text-indent: 10px;
+    text-align: justify;
+    margin: 1em 2em 0 2em;
+}
+
+textarea {
+    padding: 12px 20px;
+    resize: none;
+    background-color: #f8f8f8f8
+}
+
+fieldset {
+    background-color: #ecf7f0;
+    border: 2px groove;
+    color: #04aa6d;
+    width: 600px;
+    line-height: 1.5;
+    margin: 0 0 0 1em;
+}
+
+legend {
+    background-color: #d1eedc;
+    margin: 1em;
+    font-weight: bold;
+}
+
+div {
+    margin: 20px;
+}
+
+/* input element */
+input {
+    outline: 1px solid #096e2b;
+    color: #096e2b;
+}
+input::placeholder {
+    color: #b7b7b7;
+}
+
+
+/* classes */
+
+/* Head, profile content */
+.profileImage {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: #b3dec4;
+    border: 1px solid #04aa6d;
+}
+.profileImage img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    margin: 0;
+}
+.profileName {
+    position: absolute;
+    top: 100px;
+    left: 50%; 
+    transform: translateX(-50%);
+}
+.profileInfo div{
+    display: flex;
+    justify-content: right;
+    margin: 0;
+    font-weight: bold;
+}
+/* Cert div */
+#cert div {
+    margin-top: 0;
+    margin-left: 32px;
+}
+
+/* buttons */
+.clear {
+    background-color: #04aa6d;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    transition-duration: 0.4s;
+}
+
+.clear:hover {
+    background-color: #07e594;
+    color: black;
+}
+
+.submit {
+    background-color: #008cba;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    transition-duration: 0.4s;
+}
+
+.submit:hover {
+    background-color: #04b3ee;
+    color: black;
+}
+
+/* Tools table design */
+.tools_table {
+    border-collapse: collapse;
+    margin: 15px 0 0 2em;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.tools_table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+}
+.tools_table th, .tools_table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+.tools_table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+.tools_table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+.tools_table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+/* contact design */
+.contactForm {
+    position: relative;
+    left: 20%;
+}
+
+.contact_table td{
+    height: 40px;
+}
+
+.contact_table select {
+    color: #096e2b;
+    outline: 1px solid #096e2b;
+    padding: 3px 0;
+    width: 120px;
+}

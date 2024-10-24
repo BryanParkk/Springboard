@@ -1,0 +1,108 @@
+/* import font */
+.raleway {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+}  
+
+/* apply font */
+* {
+    font-family: "Raleway";
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* headings */
+h1 {
+    font-weight: 700;
+    text-shadow: 3px 3px 3px #f1da0f;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+h2 {
+    font-weight: 500;
+    text-shadow: 2px 2px 2px grey;
+}
+
+h4 {
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* anchor tag */
+a {
+    text-decoration: none;
+}
+
+/* table */
+th {
+    font-weight: bold;
+}
+
+td {
+    padding-left: 10px;
+}
+
+/* text (p, textarea, fieldset, legend */
+p {
+    line-height: 1.5;
+    text-indent: 10px;
+    text-align: justify;
+}
+
+textarea {
+    padding: 12px 20px;
+    resize: none;
+    background-color: #f8f8f8f8
+}
+
+fieldset {
+    background-color: #eaf4fc;
+    border: 2px groove;
+    color: rgba(0, 0, 97, 0.711);
+    width: 600px;
+    line-height: 1.5;
+}
+
+legend {
+    background-color: rgb(179, 202, 222);
+}
+
+/* classes */
+.img {
+    background-image: url("https://i.pinimg.com/736x/47/61/37/47613709a6b7b449302f86685a415c29.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+}
+
+.clear {
+    background-color: #04aa6d;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    transition-duration: 0.4s;
+}
+
+.clear:hover {
+    background-color: #07e594;
+    color: black;
+}
+
+.submit {
+    background-color: #008cba;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    transition-duration: 0.4s;
+}
+
+.submit:hover {
+    background-color: #04b3ee;
+    color: black;
+}

@@ -1,0 +1,46 @@
+/* h1 {
+    font-size: 100%;
+} */
+
+body {
+    background: linear-gradient(to right,cyan, purple)
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 2rem;
+    font-family: "Sixtyfour Convergence";
+    /* text-decoration: line-through; */
+    text-decoration: underline;
+    /* text-decoration-line: overline; */
+    text-decoration-color: red;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 2px;
+}
+
+section {
+    font-size: 2rem;
+}
+
+p {
+    text-decoration: underline overline dashed pink;
+}
+
+h3 {
+    font-size: 7rem;
+    /* text-transform: lowercase; */
+    /* text-transform: uppercase;  */
+    /* text-transform: capitalize;  */
+    text-transform: capitalize; 
+    font-weight: 400;
+    /* text-shadow: 5px 5px 3px red; */
+    color: hsl(0, 100%, 50%, 0.5);
+    text-shadow: 5px 5px hsl(180, 100%, 50%, 0.5), 2px 2px hsl(60, 100%, 50%, 0.5);
+}

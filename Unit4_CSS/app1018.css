@@ -1,0 +1,101 @@
+h1 {
+    background-color: lightgreen;
+    width: 50%;
+    height: 100px;
+    font-size: 5rem;
+    border-bottom: 10px solid blue;
+    text-align: center;
+    margin: 1em auto;
+
+}
+
+h2 {
+    background-color: lavender;
+    width: 50%;
+    margin: 0;
+}
+
+img {
+    /* width: 300px;
+    height: 300px; */
+    width: 40%;
+    max-width: 300px;
+    /* border-color: purple red blue yellow;
+    border-width: 1em;
+    /* top right bottom left */
+    /* border-style: groove solid dotted dashed; */
+    border: 10px solid pink;
+    border-left-width: 5px;
+}
+
+p {
+    width: 50%;
+    min-width: 500px;
+}
+
+button {
+    background-color: blue;
+    font-size: 2rem;
+    color: white;
+    border-radius: 10px;
+    padding: 0.2em 0.7em;
+    outline: 10px solid red;
+}
+
+#box {
+    width: 200px;
+    height: 200px;
+    background-color: magenta;
+    border-radius: 50%;
+    border: 6px solid cyan;
+    outline: 10px solid yellow;
+}
+
+section {
+    font-size: 40px;
+    width: 200px;
+    border: 1px solid black;
+    padding: 1em;
+}
+
+#container {
+    border: 1px solid black;
+    width: 500px;
+    margin: 0 auto;
+}
+
+#container .item {
+    height: 100px;
+    border: 10px solid orangered;
+    margin: 1em 2em 3em 4em;
+    box-sizing: border-box; /* border-box, content-box */
+}
+
+#container .item:hover {
+    border: 15px solid olive;
+    outline: 10px solid lightblue;
+}
+/* #container .item:nth-of-type(2) {
+    margin-left: 2em;
+} */
+
+p a{
+    color: olive;
+    font-size: 1.5em;
+    margin: 1em;
+}
+
+input {
+    /* outline: 10px solid red; */
+    outline: none;
+}
+
+p {
+    font-size: 1.5em;
+    background-image:url("https://www.christmascentral.com/product_images/uploaded_images/sunny-winter-scene-lars-eberhardt-bcg-yva8tha-unsplash-960x600.jpg");
+    background-color: lightblue;
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* background-repeat: cover; */
+    /* background-position: center; */
+}

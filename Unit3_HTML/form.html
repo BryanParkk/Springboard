@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms Demo</title>
+</head>
+<body>
+    <h1>Forms Demo!</h1>
+    <form>
+            <input
+                type="text"
+                name="city"
+                placeholder="Enter a city"
+                minlength="2" 
+                maxlength="10" 
+                required>
+    </form>
+    <button>Our <b>First</b> Button!</button> 
+    <h2>Register</h2>
+    <form>
+        <button type="button">Click me</button>
+        <input type="email" placeholder="Email" name="email">
+        <input type="password" placeholder="Password" name="password">
+        <input type="checkbox" name="tos-agree">I agree to the terms of service
+        <p>Select Shirt Size</p>
+        <input type="radio" name="shirt-size" value="xs"> XS <br>
+        <input type="radio" name="shirt-size" value="s"> S <br>
+        <input type="radio" name="shirt-size" value="m"> M <br>
+        <input type="radio" name="shirt-size" value="l"> L <br>
+        <button type="submit">Submit Form</button>
+        <!-- <input type="submit" value="GO!"> -->
+    </form>
+
+    <h2>Other input types</h2>
+    <form>
+        Pick a color: <input type="color" name="color">
+        Enter your birthday: <input type="date" name="birthday">
+        Enter how happy are you: <input type="range" name="range" main="1" max="5000" step="100">
+
+        <br>
+        Select a state
+        <select name="state">
+            <option value="">-- Choose Your State --</option>
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+        </select>
+
+        <br>
+        Please Draft an Exquisite Essay:
+        <textarea name="essay" id="" cols="50" rows="8" minlength="10" maxlength="1000">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate cum aspernatur facere distinctio reprehenderit expedita exercitationem est obcaecati a aliquid facilis, commodi odit consectetur quidem, quis aliquam numquam ratione dignissimos.</textarea>
+        <button type="submit">Submit Form</button>
+    </form>
+
+    <h2>Reddit Search:</h2>
+    <form action="https://www.reddit.com/search" method="get">
+        <input type="text" name="q" placeholder="Search Term">
+        <br>
+        Sort by: <select name="sort">
+            <option value="top">Top</option>
+            <option value="new">New</option>
+            <option value="comments">Comments</option>
+        </select>
+        <button type="submit">Search!</button>
+    </form>
+
+    <input type="file">
+    <br>
+    <form method="post" enctype="multipart/form-data">
+        <label>
+            This won't actually work, but go ahead and pick a file.
+            <input type="file" name="my-file">
+            <button type="submit">Upload File</button>
+        </label>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+h1 {
+    background-color: lightgreen;
+    width: 25%;
+    position: absolute;
+    /* top: 100px;
+    left: 100px; */
+}
+
+div {
+    width: 50%;
+    height: 500px;
+    border: 2px solid red;
+    margin: 0 auto;
+    position: relative;
+    top: 100px;
+}
+
+nav { 
+    background-color: olive;
+    color: white;
+    height: 80px;   
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+nav a {
+    color: white;
+    font-size: 2em;
+}
+
+img {
+    position: absolute;
+}
+
+#deer {
+    left: 330px;
+    top: 180px;
+}
+
+body {
+    background-color: lightpink;
+}
+
+section#essay {
+    width: 50%;
+    margin: 0 auto;
+}
+/* 
+@media (max-width: 1000px) {
+    body {
+        background-color: lightblue;
+    }
+    nav {
+        background-color: orangered;
+    }
+    section#essay {
+        width: 80%;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        background-color: lightsalmon;
+    }
+    nav {
+        background-color: yellow;
+    }
+    section#essay {
+        width: 90%;
+    }
+}
+ */
+
+ secction#essay {
+    width:90%;
+    margin: 0 auto;
+ }
+ @media (min-width: 600px) {
+    section#essay {
+    width:80%;
+    }
+ }
+ @media (min-width: 1000px) {
+    section#essay {
+    width:50%;
+    }
+ }
+
+ h2 {
+    font-size: 2em;
+    color: cyan;
+    transition: font-size 1s, color 3s;
+ }
+
+ h2:hover {
+    color:magenta;
+    font-size: 4em;
+ }
+
+ button:hover{
+    transform: translateX(800px);
+    transition: transform 2s linear 1s;
+}
+a {
+    display: inline-block;
+    font-size: 1.5em;
+    text-decoration: none;
+    padding: 1em;
+    border: 3px solid rebeccapurple;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rebeccapurple;
+    transition: color 0.3s ease-in, background-color 0.3s ease-in;
+}
+
+a:hover {
+    background-color: rebeccapurple;
+    color: white; 
+}

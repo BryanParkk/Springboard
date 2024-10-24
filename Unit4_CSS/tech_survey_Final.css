@@ -1,0 +1,267 @@
+/* import font */
+.raleway {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+}  
+
+/* apply font */
+* {
+    font-family: "Raleway";
+    font-weight: 400;
+    line-height: 1.6;
+    box-sizing: border-box;
+}
+
+/* setting border line and radius*/
+html {
+    background-color: #006b44;
+}
+
+body {
+    border: 2px solid #005141;
+    border-radius: 30px;
+    box-shadow: 0px 0px 8px;
+    background-color: #f8fffd;
+    margin: 10px;
+    min-width: 430px;
+}
+
+b {
+    font-weight: bold;
+}
+
+/* hover effect */
+h2:hover, h3:hover, h4:hover, p:hover, li:hover, ul:hover, table:hover{
+    text-shadow: 3px 3px 3px #04aa6d;
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+/* headings */
+h1 {
+    font-weight: 700;
+    margin-top: 0.2em;
+}
+h2{
+    display: flex;
+    justify-content: right;
+    margin: 0 2em;
+    font-weight: bold;
+    font-size: 15px;
+}
+h3 {
+    font-weight: 500;
+    text-shadow: 2px 2px 2px grey;
+    margin: 2em 30% 0 1em;
+    text-transform: uppercase;
+}
+h4 {
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0 0 0 2em;
+}
+
+/* anchor tag */
+a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* table */
+th {
+    font-weight: bold;
+}
+
+td {
+    padding-left: 2em;
+}
+
+/* text (p, textarea, fieldset, legend */
+p {
+    line-height: 1.5;
+    text-indent: 10px;
+    text-align: justify;
+    margin: 1em 2em 0 2em;
+}
+
+legend {
+    background-color: #d1eedc;
+    margin: 1em;
+    font-weight: bold;
+}
+
+div {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* input element */
+input {
+    outline: 1px solid #096e2b;
+    color: #096e2b;
+}
+input::placeholder {
+    color: #b7b7b7;
+}
+
+
+/* --------------------------------classes -------------------------------- */
+/* Head, profile content */
+.profileImage {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: #b3dec4;
+    border: 1px solid #04aa6d;
+    margin: 20px;
+}
+.profileImage img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    margin: 0;
+    object-fit: cover;
+}
+.profileName {
+    position: absolute;
+    top: 100px;
+    left: 40%; 
+    text-align: center;
+    width: 200px;
+}
+
+/* ul align content */
+.skill, .mil, .lang {
+    display: flex;
+}
+.skill ul, .mil ul, .lang ul {
+    margin-bottom: 0;
+}
+
+/* buttons */
+.btnClear {
+    background-color: #04aa6d;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    transition-duration: 0.4s;
+}
+
+.btnClear:hover {
+    background-color: #07e594;
+    color: black;
+}
+
+.btnSubmit {
+    background-color: #008cba;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    transition-duration: 0.4s;
+}
+
+.btnSubmit:hover {
+    background-color: #04b3ee;
+    color: black;
+}
+
+/* Tools table design */
+.toolsTable {
+    border-collapse: collapse;
+    margin: 15px 0 0 2em;
+    font-size: 0.9em;
+    min-width: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.toolsTable thead tr {
+    background-color: #009879;
+    color: #ffffff;
+}
+.toolsTable th, .toolsTable td {
+    padding: 12px 15px;
+    text-align: left;
+}
+.toolsTable tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+.toolsTable tbody tr:nth-of-type(1) {
+    background-color: #ffffff;
+}
+.toolsTable tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+.toolsTable tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+/* contact design */
+.contactForm {
+    position: relative;
+}
+.contactTable td{
+    height: 40px;
+}
+.contactTable select {
+    color: #096e2b;
+    outline: 1px solid #096e2b;
+    padding: 3px 0;
+    width: 120px;
+}
+.contactField {
+    background-color: #ecf7f0;
+    border: 2px groove;
+    color: #04aa6d;
+    width: 600px;
+    line-height: 1.5;
+    margin: 0 0 0 1em;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.contactTextarea {
+    padding: 12px 20px;
+    resize: none;
+}
+.contactMessage {
+    display: flex;
+    margin-top: 20px;
+}
+.contactMessage textarea {
+    width: 300px;
+    height: 150px;
+}
+.contactLabel {
+    margin: 0 20px 0 0;
+}
+.contactButton {
+    display: flex;
+    justify-content:space-around;
+    padding: 20px;
+    width: 250px;
+}
+/* footer content */
+.foot {
+    margin: 0 0 30px 0;
+}
+.reference li {
+    font-size: 12px;
+    font-style:italic;
+}
+
+/* Responsive content */
+@media (max-width:480px) {
+    .contactField {
+        width: 350px;
+    }
+    .contactMessage textarea {
+        width: 250px;
+    }
+    .contactTable tr {
+        display: flex;
+        flex-direction: column;
+    }
+}

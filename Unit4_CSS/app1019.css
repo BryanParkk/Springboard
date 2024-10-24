@@ -1,0 +1,51 @@
+h1 {
+    background-color: lightcoral;
+    width: 50%;
+    height: 100px;
+    margin: 2em;
+    display: inline;
+}
+
+/* a {
+    background-color: lightseagreen;
+    width: 300px;
+    height: 300px;
+    margin: 2em;
+    display: block;
+} */
+
+#container {
+    border: 1px solid black;
+    width: 50%;
+    margin: 0 auto;
+}
+
+#container section {
+    box-sizing: border-box;
+    width: 50%;
+    border: 1px solid red;
+    display: inline-block;
+    text-align: center;
+}
+
+body {
+    margin: 0;
+}
+
+nav {
+    height: 80px;
+    background-color: #eee;
+    display: flex;  /* 1 */
+    flex-direction: row; /* 2 */
+    justify-content: space-between; /* 3 */
+    align-items: center; /* 4 */
+    /* flex-wrap: nowrap; */ /* 5 */
+    /* flex-flow: column wrap; */ /* 6 */
+}
+
+nav a { 
+    font-size: 2em;
+    margin: 0 1em;
+    
+}
+ 

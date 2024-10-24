@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labels Demo</title>
+</head>
+<body>
+    <h2>Register</h2>
+    <form>
+        <!-- Label using for & ID -->
+        <label for="email">Enter Email</label>
+        <input type="email" placeholder="Email" name="email" id="email">
+        <!-- Label using Nesting -->
+        <br>
+        <label>
+            Enter Password
+            <input type="password" placeholder="Password" name="password">
+        </label>
+        <br>
+        <label>
+        <input type="checkbox" name="tos-agree">I agree to the terms of service
+        </label>
+        <p>Select Shirt Size</p>
+        <br>
+        <label>
+            <input type="radio" name="shirt-size" value="xs"> XS <br>
+        </label>
+        <label>
+            <input type="radio" name="shirt-size" value="s"> S <br>
+        </label>
+        <label>
+            <input type="radio" name="shirt-size" value="m"> M <br>
+        </label>
+        <label>
+            <input type="radio" name="shirt-size" value="l"> L <br>
+        </label>
+        <button type="submit">Submit Form</button>
+        <!-- <input type="submit" value="GO!"> -->
+    </form>
+
+</body>
+</html>
