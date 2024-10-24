@@ -8,9 +8,6 @@
 
 /* apply font */
 * {
-    font-family: "Raleway";
-    font-weight: 400;
-    line-height: 1.6;
     box-sizing: border-box;
 }
 
@@ -26,17 +23,20 @@ body {
     background-color: #f8fffd;
     margin: 10px;
     min-width: 430px;
+    font-family: "Raleway";
+    font-weight: 400;
+    line-height: 1.6;
 }
 
 b {
     font-weight: bold;
 }
 
-/* hover effect */
+/* hover effect
 h2:hover, h3:hover, h4:hover, p:hover, li:hover, ul:hover, table:hover{
     text-shadow: 3px 3px 3px #04aa6d;
     transition: text-shadow 0.3s ease-in-out;
-}
+} */
 
 /* headings */
 h1 {
