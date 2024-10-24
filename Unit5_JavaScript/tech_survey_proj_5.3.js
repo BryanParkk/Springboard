@@ -24,4 +24,4 @@ const cipherShift = 3; // Number
 let encMsg = ""; // This will change when we encode the message with the original party location.
 let decMsg = ""; // This will change when we decode the encrypted message to reveal the party location.
 
-Number.isInteger(cipherShift)
+Number.isInteger(cipherShift);
