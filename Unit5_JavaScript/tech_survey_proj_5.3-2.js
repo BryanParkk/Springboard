@@ -30,4 +30,3 @@ const encFirstMsg = alphabet[step5];
 //Step 6
 const encMsg = 'EUXWXV';
 const send = encMsg.slice(0, 3);
-console.log(step5, encFirstMsg);
