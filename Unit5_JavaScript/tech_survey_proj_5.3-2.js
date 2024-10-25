@@ -25,8 +25,9 @@ const alphabetLength = alphabet.length;
 
 //Step 5
 const step5 = (step2+shiftValue)%alphabetLength;
+const encFirstMsg = alphabet[step5];
 
 //Step 6
 const encMsg = 'EUXWXV';
 const send = encMsg.slice(0, 3);
-console.log(send);
+console.log(step5, encFirstMsg);
