@@ -1,7 +1,6 @@
 
 let hello = "      Hello, World!      ";
 
-
 // thing.method()
 console.log( hello.length );
 console.log( Number.isInteger(hello) );
@@ -15,7 +14,51 @@ console.log( hello.trim().toUpperCase() );
 console.log( hello.indexOf('Hello') ); // not exist is representatio -1
 console.log( "Hello World".slice(0,2) );
 console.log( hello.replace('World','JavaScript') );
-console.log(  );
-console.log(  );
-console.log(  );
 
+// ESCAPES
+console.log( 'I\'m happy');
+console.log( "I\"m happy");
+console.log( 'I\'m\n Happy');
+console.log( 'I\'m happy\\');
+
+//Template literals
+console.log( `${hello}` );  // Back-tick -> `
+console.log( ` Hello, 'World'! `)
+
+//NULL and undefined
+let hello2 = null;
+console.log( hello2 );
+let hello3 = undefined;
+console.log( hello3 );
+
+//Math object
+console.log( Math.PI );
+console.log( Math.E );
+console.log( Math.round(4.9) ); // 5
+console.log( Math.abs(-456) ); // 456
+console.log( Math.pow(2, 5) ); // 32
+console.log( Math.floor(3.9999) ); // 3 
+console.log( Math.random() );
+
+// Random integer
+const step1 = Math.random();
+const step2 = step1 * 10;
+const step3 = Math.floor(step2);
+const step4 = step3 + 1;
+Math.floor(Math.random() * 10) + 1;
+console.log( Math.floor(Math.random() * 10) + 1);
+
+// TYPE OF
+console.log( typeof(hello) );
+console.log( typeof(33) );
+console.log( typeof(true) );
+console.log( typeof(null) ); // Bug
+console.log( typeof hello );
+
+// ParseInt & ParseFloat
+console.log( parseInt('24') );
+console.log( parseFloat('24.987') );
+console.log( parseInt('2.345') );
+console.log( parseFloat('2') );
+console.log( parseInt('Hello 3rd World') ); // NaN
+console.log( parseInt('3rd Hello World') ); // 3
