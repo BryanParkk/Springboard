@@ -9,7 +9,7 @@ const max = 33;
 //I have to include max value
 
 //Step 3
-const ranValue = ranDecimal * 30;
+const ranValue = ranDecimal * (max - min) + min;
 
 //Question 2
 //I didn't use range variable.
@@ -21,7 +21,9 @@ const adjValue = Math.floor(ranValue);
 //Because I have to round down that value.
 
 //Step 5
-const shiftValue = adjValue + 3;
+const shiftValue = adjValue;
 
+//Question 4
+//I can make 3 to 33 for random number.
 
 console.log(shiftValue);
