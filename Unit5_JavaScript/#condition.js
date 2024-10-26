@@ -1,6 +1,6 @@
 // Conditional Logic
 
-//if condition
+//if statement
 if(true) {
     console.log("Hello World");
 }else {
