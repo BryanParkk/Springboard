@@ -9,7 +9,7 @@ const max = 33;
 //I have to include max value
 
 //Step 3
-const ranValue = ranDecimal * 30 + 3 + 1;
+const ranValue = ranDecimal * 30;
 
 //Question 2
 //I didn't use range variable.
@@ -17,5 +17,11 @@ const ranValue = ranDecimal * 30 + 3 + 1;
 //Step 4
 const adjValue = Math.floor(ranValue);
 
+//Question 3
+//Because I have to round down that value.
 
-console.log(adjValue);
+//Step 5
+const shiftValue = adjValue + 3;
+
+
+console.log(shiftValue);
