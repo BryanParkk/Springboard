@@ -62,3 +62,6 @@ console.log( parseInt('2.345') );
 console.log( parseFloat('2') );
 console.log( parseInt('Hello 3rd World') ); // NaN
 console.log( parseInt('3rd Hello World') ); // 3
+
+// Array
+// push, pop, unshift, shift, concat, join, indexOf, Includes, reverse, splice, sort, slice, Nested Arrays
