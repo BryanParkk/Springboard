@@ -67,3 +67,4 @@ guess > answer ? console.log('too high') : console.log('too low');
 let guess = 15;
 let wasCorrect = (guess === 15) ? 'Your correct!' : 'Incorrect';
 console.log(wasCorrect) // => 'Your correct!'
+
