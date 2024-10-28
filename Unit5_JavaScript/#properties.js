@@ -65,3 +65,6 @@ console.log( parseInt('3rd Hello World') ); // 3
 
 // Array
 // push, pop, unshift, shift, concat, join, indexOf, Includes, reverse, splice, sort, slice, Nested Arrays
+let arrayName1 = [];
+let arrayName2 = [ 'ice', 'cheese', 'soda', 'serial'];
+let nameB = "bryan";na
