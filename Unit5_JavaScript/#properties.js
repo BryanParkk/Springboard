@@ -65,10 +65,14 @@ console.log( parseInt('3rd Hello World') ); // 3
 
 // Array related methods
 // push, pop, unshift, shift, concat, join, indexOf, Includes, reverse, splice, sort, slice, Nested Arrays
-let arrayName1 = [];
-let arrayName2 = [ 'ice', 'cheese', 'soda', 'serial'];
-let arrayName3 = [ 43, 20, 10, 30, 63 ];
-let arrayName4 = [ 'google', 23, 'naver', 60, 'DAUM', 51];
+const arrayName1 = []; // Usually use const
+const arrayName2 = [ 'ice', 'cheese', 'soda', 'serial'];
+const arrayName3 = [ 43, 20, 10, 30, 63 ];
+const arrayName4 = [ 'google', 23, 'naver', 60, 'DAUM', 51];
+const arrayName5 = [
+    [ 'apple', 'grape', 'orange' ],
+    [ 'red', 'purple', 'pink' ]
+]; // Nested Array
 arrayName2[1] = 'cheddar cheese';
 arrayName2[arrayName2.length] = 'Tomatoes';
 arrayName2.push('Fish'); // last push
@@ -76,11 +80,12 @@ arrayName2.pop(); // last pop (delete)
 arrayName2.unshift('pork', 'beef'); // first push
 arrayName2.shift(); // first pop (delete)
 arrayName2.concat(arrayName3);
-let arrayALL = arrayName2.concat(arrayName3, arrayName4); // 2 to concat 3, 4
+const arrayALL = arrayName2.concat(arrayName3, arrayName4); // 2 to concat 3, 4
 arrayName2.includes('pork', 2); // ('value', place) -> if that value is placed it results 'ture'
 arrayName2.indexOf('pork');
 arrayName2.reverse();
 arrayName2.join(); // Doesn't effect original array
-let sliceName = arrayName2.slice(0, 2); // (start, end -1) // Doesn't effect original array
+const sliceName = arrayName2.slice(0, 2); // (start, end -1) // Doesn't effect original array
 arrayName2.splice(1, 0, 'Name'); // (start, how many, 'value')
 arrayName2.sort() // sorting alphabetically
+arrayName5[1][1];
