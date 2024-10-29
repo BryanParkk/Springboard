@@ -63,7 +63,7 @@ console.log( parseFloat('2') );
 console.log( parseInt('Hello 3rd World') ); // NaN
 console.log( parseInt('3rd Hello World') ); // 3
 
-// Array
+// Array related methods
 // push, pop, unshift, shift, concat, join, indexOf, Includes, reverse, splice, sort, slice, Nested Arrays
 let arrayName1 = [];
 let arrayName2 = [ 'ice', 'cheese', 'soda', 'serial'];
@@ -71,14 +71,16 @@ let arrayName3 = [ 43, 20, 10, 30, 63 ];
 let arrayName4 = [ 'google', 23, 'naver', 60, 'DAUM', 51];
 arrayName2[1] = 'cheddar cheese';
 arrayName2[arrayName2.length] = 'Tomatoes';
-arrayName2.push('Fish');
-arrayName2.pop();
-arrayName2.unshift();
-arrayName2.shift('pork', 'beef');
+arrayName2.push('Fish'); // last push
+arrayName2.pop(); // last pop (delete)
+arrayName2.unshift('pork', 'beef'); // first push
+arrayName2.shift(); // first pop (delete)
 arrayName2.concat(arrayName3);
-let arrayALL = arrayName2.concat(arrayName3, arrayName4);
-arrayName2.includes('pork', 2);
+let arrayALL = arrayName2.concat(arrayName3, arrayName4); // 2 to concat 3, 4
+arrayName2.includes('pork', 2); // ('value', place) -> if that value is placed it results 'ture'
 arrayName2.indexOf('pork');
 arrayName2.reverse();
 arrayName2.join(); // Doesn't effect original array
-let sliceName = arrayName2.slice(0, 2) // Doesn't effect original array
+let sliceName = arrayName2.slice(0, 2); // (start, end -1) // Doesn't effect original array
+arrayName2.splice(1, 0, 'Name'); // (start, how many, 'value')
+arrayName2.sort() // sorting alphabetically
