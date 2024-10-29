@@ -77,3 +77,5 @@ arrayName2.unshift();
 arrayName2.shift('pork', 'beef');
 arrayName2.concat(arrayName3);
 let arrayALL = arrayName2.concat(arrayName3, arrayName4);
+arrayName2.includes('pork', 2);
+arrayName2.indexOf('pork');
