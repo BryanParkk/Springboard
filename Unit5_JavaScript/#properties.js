@@ -79,3 +79,6 @@ arrayName2.concat(arrayName3);
 let arrayALL = arrayName2.concat(arrayName3, arrayName4);
 arrayName2.includes('pork', 2);
 arrayName2.indexOf('pork');
+arrayName2.reverse();
+arrayName2.join(); // Doesn't effect original array
+let sliceName = arrayName2.slice(0, 2) // Doesn't effect original array
