@@ -1,8 +1,22 @@
-let arrayName1 = [];
-let arrayName2 = [ 'ice', 'cheese', 'soda', 'serial'];
-let arrayName3 = [ 43, 20, 10, 30, 63 ];
-let arrayName4 = [ 'google', 23, 'naver', 60, 'DAUM', 51];
+// array //
+const arrayName2 = [ 'ice', 'cheese', 'soda', 'serial'];
+const arrayName1 = [];
+const arrayName3 = [ 43, 20, 10, 30, 63 ];
+const arrayName4 = [ 'google', 23, 'naver', 60, 'DAUM', 51];
 const arrayName5 = [
     [ 'apple', 'grape', 'orange' ],
     [ 'red', 'purple', 'pink' ]
 ]; // Nested Array
+
+
+// object //
+const bryan = {
+    "first_name": "Byeongil",
+    "last_name": "Park",
+    "birth_date": "05/27/86",
+    "gender": "Male",
+    "addr": "New York"
+}
+
+
+console.log(bryan.first_name);
