@@ -27,4 +27,5 @@ const objectName1objectName1 = {
 const objectName1 = {
     name: 'bryan', age: 38, birth: '05/27/86', sex: 'Male', 10601: 'zip'
 }
-console.log(objectName1.name, objectName['10601']);
+const year = 'age';
+console.log(objectName1.name, objectName1['10601'], objectName1[year]);
