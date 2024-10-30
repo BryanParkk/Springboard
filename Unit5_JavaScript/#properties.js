@@ -96,3 +96,30 @@ const objectName1 = {
 }
 const year = 'age';
 console.log(objectName1.name, objectName1['10601'], objectName1[year]);
+objectName1['money'] = '$2,000,000';
+objectName1.nationality = 'South Korea';
+objectName1['age'] += 2;
+objectName1.age++;
+const objectName2 = {
+    firstName : 'David', strengths: [ 'Music', 'Art'],
+}
+objectName2.strengths[1]; // call array in object
+const arrayName6 = [ // Declare Object in Array
+    {
+        name: 'bryan'
+    },
+    {
+        name: 'eunji'
+    }
+]
+const objectName3 ={ // nested object and array
+    name: "John", 
+    age: 30, 
+    hobbies: [
+        "reading", "painting", "cooking"
+    ], 
+    address: { 
+        street: "123 Main St", 
+        city: "Exampleville" 
+    }
+}
