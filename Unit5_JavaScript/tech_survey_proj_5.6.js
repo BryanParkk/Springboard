@@ -37,3 +37,6 @@ delete guests.CICERO;
 //Step 5
 const generalProfile = guests.ANTONY;
 generalProfile.region = 'Egypt';
+
+//Question 1
+// Original date of Antony is same as generalProfile 'Egypt'.
