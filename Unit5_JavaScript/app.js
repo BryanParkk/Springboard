@@ -16,3 +16,10 @@ const bryan = {
     "gender": "Male",
     "addr": "New York"
 }
+
+const arrayName6 = {
+    name: 'bryan',
+    age: 38,
+    birth: '05/27/86',
+    sex: 'Male'
+}

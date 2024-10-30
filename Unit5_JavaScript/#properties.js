@@ -63,7 +63,7 @@ console.log( parseFloat('2') );
 console.log( parseInt('Hello 3rd World') ); // NaN
 console.log( parseInt('3rd Hello World') ); // 3
 
-// Array related methods
+// Array related methods (ordered)
 // push, pop, unshift, shift, concat, join, indexOf, Includes, reverse, splice, sort, slice, Nested Arrays
 const arrayName1 = []; // Usually use const
 const arrayName2 = [ 'ice', 'cheese', 'soda', 'serial'];
@@ -89,3 +89,11 @@ const sliceName = arrayName2.slice(0, 2); // (start, end -1) // Doesn't effect o
 arrayName2.splice(1, 0, 'Name'); // (start, how many, 'value')
 arrayName2.sort() // sorting alphabetically
 arrayName5[1][1];
+
+// Object (unordered)
+const arrayName6 = {
+    name: 'bryan',
+    age: 38,
+    birth: '05/27/86',
+    sex: 'Male'
+}
