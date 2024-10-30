@@ -15,11 +15,16 @@ const bryan = {
     "birth_date": "05/27/86",
     "gender": "Male",
     "addr": "New York"
-}
+};
 
-const arrayName6 = {
+const objectName1objectName1 = {
     name: 'bryan',
     age: 38,
     birth: '05/27/86',
     sex: 'Male'
+};
+
+const objectName1 = {
+    name: 'bryan', age: 38, birth: '05/27/86', sex: 'Male', 10601: 'zip'
 }
+console.log(objectName1.name, objectName['10601']);

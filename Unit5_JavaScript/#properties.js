@@ -90,10 +90,8 @@ arrayName2.splice(1, 0, 'Name'); // (start, how many, 'value')
 arrayName2.sort() // sorting alphabetically
 arrayName5[1][1];
 
-// Object (unordered)
-const arrayName6 = {
-    name: 'bryan',
-    age: 38,
-    birth: '05/27/86',
-    sex: 'Male'
+// Objects (unordered) : collection of properties. Dictionary in Python.
+const objectName1 = {
+    name: 'bryan', age: 38, birth: '05/27/86', sex: 'Male', 10601: 'zip'
 }
+console.log(objectName1.name, objectName['10601']);
