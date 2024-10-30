@@ -8,7 +8,6 @@ const arrayName5 = [
     [ 'red', 'purple', 'pink' ]
 ]; // Nested Array
 
-
 // object //
 const bryan = {
     "first_name": "Byeongil",
@@ -17,6 +16,3 @@ const bryan = {
     "gender": "Male",
     "addr": "New York"
 }
-
-
-console.log(bryan.first_name);
