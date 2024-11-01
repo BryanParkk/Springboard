@@ -23,3 +23,16 @@ const students = [
 for(let i=0; i<students.length; i++) {
     console.log(i, students[i].name, students[i].score)
 }
+
+for(let i=0; i < students.length; i++) {
+    let student = students[i];
+    console.log(`${student.name} scored ${student.score}`)
+}
+
+const word = 'Stressed';
+let reversedWord = ""
+for(let i = word.length -1; i >= 0; i--) {
+    reversedWord += word[i];
+    console.log(reversedWord);
+}
+
