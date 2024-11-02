@@ -1,3 +1,4 @@
+// For loop
 const animals = [ 'lions', 'cats', 'hippos', 'aligators', 'dogs'];
 
 for (let a=0; a<animals.length; a++) {
@@ -34,5 +35,13 @@ let reversedWord = ""
 for(let i = word.length -1; i >= 0; i--) {
     reversedWord += word[i];
     console.log(reversedWord);
+}
+
+// Nested for loop
+for (let i = 1; i <= 10; i++) {
+    console.log('OUTER LOOP:', i);
+    for (let j = 10; j >= 0; j-=2) {
+        console.log('  INNER LOOP', j);
+    }
 }
 

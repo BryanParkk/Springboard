@@ -26,6 +26,3 @@ objectName1['money'] = '$2,000,000'; // add property
 objectName1.nationality = 'South Korea'; // other way to add property
 objectName1['age'] += 2; // modify age
 objectName1.age = objectName1.age + 2; // other way to modify age 
-let nums = [1, 2, 3, 4];
-let mystery = [1, 2, 3, 4];
-let nums2 = nums;     
