@@ -8,29 +8,12 @@ const shiftValue = 3;
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
 //Step 2
-var encName = "";
+
+let encName = "";
+
 for(let i = 0; i < friend.length; i++) {
-    const curChar = friend[i];
-    const curAlphabet = alphabet.indexOf(curChar.toLowerCase);
-    const newAlphabet = (curAlphabet + shiftValue) % alphabet.length;
-    encName += alphabet[newAlphabet].toUpperCase();
+    const curFriend = friend[i];
+    const curAlphabet = alphabet.indexOf(curFriend.toLowerCase());
+    const newAlphabet = (curAlphabet + 3) % alphabet.length;
+    console.log(encName += alphabet[newAlphabet].toUpperCase());
 }
-console.log(encName);
-
-
-
-// let encryptedName = "";
-
-// for (let i = 0; i < friend.length; i++)
-// {
-//   const currentLetter = friend[i];
-//   const currentIndex = alphabet.indexOf(currentLetter.toLowerCase());
-//   const newIndex = (currentIndex + shiftValue) % alphabet.length;
-//   encryptedName += alphabet[newIndex].toUpperCase();
-// }
-
-// console.log(encryptedName);
-
-
-// console.log(uppderAlphabet[0]);
-// console.log(friend[i])
