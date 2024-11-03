@@ -43,6 +43,7 @@ function counter() {
     return `${name} called ${count} times!`
 }
 count++;
+console.log(counter());
+console.log(counter());
 
-console.log(counter());
-console.log(counter());
+
