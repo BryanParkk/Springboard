@@ -34,3 +34,15 @@ function order(food) {
 }
 console.log(order("pizza"));
 console.log(order("cake"));
+
+
+let count = 0;
+function counter() {
+    let name = 'google';
+    count++;
+    return `${name} called ${count} times!`
+}
+count++;
+
+console.log(counter());
+console.log(counter());
