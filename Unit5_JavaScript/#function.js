@@ -6,25 +6,25 @@ function functionName() {
   }
 
 //start
+console.log(`------------------------------------------`);
+function greet(name, num1, num2) {
+    console.log(`Hi, ${name}`);
+    let num3 = num1 * num2;
+    console.log(num3);
+    return num3;
+}
+greet('anya', 5, 2);
+console.log(`------------------------------------------`);
+
 function rollDie() {
     let roll = Math.floor(Math.random() * 6) + 1;
     console.log(`Rolled: ${roll}`);
 }
-
-rollDie();
-
-function throwDice() {
-    rollDie();
-    rollDie();
-    rollDie();
-    rollDie();
-    rollDie();
-    rollDie();
-    rollDie();
-    rollDie();
-    rollDie();
-    rollDie();
-    rollDie();
+function throwDice(num) {
+    for(let i = 0; i < num; i++) {
+        rollDie();
+    }
 }
+throwDice(10);
+console.log(`------------------------------------------`);
 
-throwDice();
