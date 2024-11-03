@@ -29,7 +29,8 @@ objectName1.age = objectName1.age + 2; // other way to modify age
 
 
 // Function //
-function eatFood() {
-    return "nom nom nom";
-    console.log("This line will never run");
+function order(food) {
+    return `I will have the ${food}, please`;
 }
+console.log(order("pizza"));
+console.log(order("cake"));
