@@ -17,3 +17,4 @@ for(let i = 0; i < friend.length; i++) {
     const newAlphabet = (curAlphabet + 3) % alphabet.length;
     console.log(encName += alphabet[newAlphabet].toUpperCase());
 }
+
