@@ -76,8 +76,7 @@ console.log("Contraturation !");
 console.log(`${target} and ${guess}`)
 
 
-/////////////////////////////////////////////////////////////
-// FOR OF loop
+
 //       for (variable of iterable) {
 //       statement
 //       }
@@ -108,3 +107,36 @@ for(let i=0; i<magicSquare.length; i++) {
     }
     console.log(`${row} summed to ${sum}`)
 }
+console.log(`----------------------------`);
+for(let row of magicSquare) {
+    let sum = 0;
+    for(let num of row) {
+        sum += num;
+    }
+    console.log(`${row} summed to ${sum}`)
+}
+
+/////////////////////////////////////////////////////////////
+// FOR OF loop with Objects
+const movieReviews = {
+    Arrival         : 9.5,
+    Alien           : 9,
+    Amelie          : 8,
+    'In Bruges'     : 9,
+    Amadeus         : 10,
+    'Kill Bill'     : 8,
+    'Little'        : 8.5,
+    Coraline        : 7.5
+};
+
+// for (let x of movieReviews) {
+//     console.log(x);
+// }
+for(let movie of Object.keys(movieReviews)) {
+    console.log(movie, movieReviews[movie]);
+}
+
+for(let ratings of Object.values(movieReviews)) {
+    console.log(ratings);
+}
+//Objects.keys(movieReviews) . Objects.values(movieReviews)
