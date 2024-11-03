@@ -45,5 +45,7 @@ function counter() {
 count++;
 console.log(counter());
 console.log(counter());
+console.log(counter());
+
 
 
