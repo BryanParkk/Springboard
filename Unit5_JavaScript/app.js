@@ -21,8 +21,15 @@ const objectName1 = {
     name: 'bryan', age: 38, birth: '05/27/86', sex: 'Male', 10601: 'zip'
 }
 const year = 'age';
-console.log(objectName1.name, objectName1['10601'], objectName1[year]); // various way to call
+// console.log(objectName1.name, objectName1['10601'], objectName1[year]); // various way to call
 objectName1['money'] = '$2,000,000'; // add property
 objectName1.nationality = 'South Korea'; // other way to add property
 objectName1['age'] += 2; // modify age
 objectName1.age = objectName1.age + 2; // other way to modify age 
+
+
+// Function //
+function eatFood() {
+    return "nom nom nom";
+    console.log("This line will never run");
+}
