@@ -54,4 +54,7 @@ add = (x, y) => {
     return temp;
 }
 console.log(add(5,9));
+// Function 3 (anonymous function)
+((x, y) => {return x+y}) (2, 3);
+
 
