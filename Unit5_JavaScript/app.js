@@ -58,3 +58,6 @@ console.log(add(5,9));
 ((x, y) => {return x+y}) (2, 3);
 
 
+//
+const upper = 'Hello'.toUpperCase();
+console.log(upper);

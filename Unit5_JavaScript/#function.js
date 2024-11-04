@@ -27,4 +27,14 @@ function throwDice(num) {
 }
 throwDice(10);
 console.log(`------------------------------------------`);
-
+//////////
+// Fnction 2
+add = (x, y) => {
+    let temp = x * y;
+    return temp;
+}
+console.log(add(5,9));
+console.log(`------------------------------------------`);
+// Function 3 (anonymous function)
+((x, y) => {return x+y}) (2, 3);
+console.log(`------------------------------------------`);
