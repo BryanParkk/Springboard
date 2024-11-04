@@ -47,5 +47,11 @@ console.log(counter());
 console.log(counter());
 console.log(counter());
 
-
+//////////
+// Fnction 2
+add = (x, y) => {
+    let temp = x * y;
+    return temp;
+}
+console.log(add(5,9));
 
