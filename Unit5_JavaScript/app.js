@@ -72,3 +72,17 @@ function isPurple2(color) {
     return color.toLowerCase() === 'purple';
 }
 console.log(isPurple('Purple'));
+
+// Practice
+console.log('------------------------------------');
+function isValidPassword(password, username) {
+    var space = /\s/g;
+    if(password.length >= 8 && password.indexOf(' ') == -1 && password.indexOf(username) == -1) {
+        return true;
+    }else {
+        return false;
+    }
+}
+
+console.log(isValidPassword('89Fjj1nms', 'dogLuvr'));
+console.log(isValidPassword('dogLuvr123!', 'dogLuvr'));
