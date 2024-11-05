@@ -58,6 +58,17 @@ console.log(add(5,9));
 ((x, y) => {return x+y}) (2, 3);
 
 
-//
-const upper = 'Hello'.toUpperCase();
-console.log(upper);
+// Fuction 3 * There's no 'else if' or 'else' but it's working.
+function isPurple(color) {
+    if(color.toLowerCase() === 'purple') {
+        return true;
+    }
+    return false;
+}
+console.log(isPurple('Purple'));
+
+// Function 4
+function isPurple2(color) {
+    return color.toLowerCase() === 'purple';
+}
+console.log(isPurple('Purple'));
