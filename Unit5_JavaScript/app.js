@@ -73,19 +73,3 @@ function isPurple2(color) {
 }
 console.log(isPurple('Purple'));
 
-// Practice
-console.log('------------------------------------');
-function isValidPassword(password, username) {
-    if (
-        password.length >= 8 && 
-        password.indexOf(' ') == -1 && 
-        password.indexOf(username) == -1
-    ) {
-        return true;
-    }
-    return false;
-}
-console.log(isValidPassword('89Fjj1nms', 'dogLuvr')); // true
-console.log(isValidPassword('dogLuvr123!', 'dogLuvr')); // false
-console.log(isValidPassword('Hello1!', 'dogLuvr')); //f alse
- 
