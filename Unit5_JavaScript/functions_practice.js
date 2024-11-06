@@ -29,7 +29,6 @@ function avg(arr) {
 }
 console.log( avg([0, 50]) );
 console.log( avg([75, 76, 80, 95, 100]) );
-
 console.log('------------------------------------');
 
 
@@ -70,7 +69,39 @@ function isPangram(words) {
     return true;
 }
 console.log( isPangram('The quick brown fox jumps over The lazy dog') );
+console.log('------------------------------------');
+
+// let a = 'abcdefghijklmn';
+// console.log(a.indexOf('c'));
 
 
-let a = 'abcdefghijklmn';
-console.log(a.indexOf('c'));
+
+
+///////////////////////////////////////////////////////////////////////////
+
+// repeat
+// Practice 1
+console.log('#### Practice 1 ####')
+function isValidPassword(password, username) {
+    if(
+        password.length < 8 || 
+        password.indexOf(' ') !== -1 ||
+        password.indexOf(username) !== -1
+    )return false;
+    return true;
+}
+console.log( isValidPassword('asdfasds', 'parkbeng') );
+
+// Practice 2
+console.log('#### Practice 2 ####')
+function avg(arr) {
+    let total = 0;
+    for(let num of arr) {
+        total += num;
+    } return total / arr.length;
+}
+console.log( avg([0, 50]) );
+console.log( avg([75, 76, 80, 95, 100]) );
+
+// Practice 3
+console.log('#### Practice 3 ####')
