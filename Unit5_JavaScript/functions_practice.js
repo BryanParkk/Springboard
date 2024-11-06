@@ -34,13 +34,28 @@ console.log('------------------------------------');
 
 
 // practice 3 : pangram
-// 	1.	The quick brown fox jumps over the lazy dog.
-//	2.	Pack my box with five dozen liquor jugs.
-//	3.	A wizard’s job is to vex chumps quickly in fog.
-//	4.	How vexingly quick daft zebras jump!
-//	5.	Five or six big jet planes zoomed quickly by the tower.
-//	6.	The five boxing wizards jump quickly.
-//	7.	Bright vixens jump; dozy fowl quack.
-//	8.	Quick zephyrs blow, vexing daft Jim.
-//	9.	Jinxed wizards pluck ivy from the big quilt.
-//	10.	The lazy dog jumps over five quick brown oxen.
+// 	1.	The quick brown fox jumps over the lazy dog
+//	2.	Pack my box with five dozen liquor jugs
+//	3.	A wizard’s job is to vex chumps quickly in fog
+//	4.	How vexingly quick daft zebras jump
+//	5.	Five or six big jet planes zoomed quickly by the tower
+//	6.	The five boxing wizards jump quickly
+//	7.	Bright vixens jump; dozy fowl quack
+//	8.	Quick zephyrs blow, vexing daft Jim
+//	9.	Jinxed wizards pluck ivy from the big quilt
+//	10.	The lazy dog jumps over five quick brown oxen
+
+function isPangram(words) {
+    let alphabet = 'abcdefghijklmnopqrstuvxwyz';
+    let word = words.toLowerCase();
+    let res = false;
+
+    for(let i=0; i < alphabet.length; i++) {
+       if(alphabet[i] === word[i]) {
+        res = true;
+       }
+    }
+    return res;
+}
+
+console.log( isPangram('aaaaaaaaaaaaaaaaaaaaaaaaa') );
