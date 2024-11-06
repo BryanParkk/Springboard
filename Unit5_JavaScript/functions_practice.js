@@ -82,7 +82,7 @@ console.log('------------------------------------');
 // repeat
 // Practice 1
 console.log('#### Practice 1 ####')
-function isValidPassword(password, username) {
+function isValidPassword2(password, username) {
     if(
         password.length < 8 || 
         password.indexOf(' ') !== -1 ||
@@ -90,18 +90,44 @@ function isValidPassword(password, username) {
     )return false;
     return true;
 }
-console.log( isValidPassword('asdfasds', 'parkbeng') );
+console.log( isValidPassword2('asdfasds', 'parkbeng') );
 
 // Practice 2
 console.log('#### Practice 2 ####')
-function avg(arr) {
+function avg2(arr) {
     let total = 0;
     for(let num of arr) {
         total += num;
     } return total / arr.length;
 }
-console.log( avg([0, 50]) );
-console.log( avg([75, 76, 80, 95, 100]) );
+console.log( avg2([0, 50]) );
+console.log( avg2([75, 76, 80, 95, 100]) );
 
 // Practice 3
 console.log('#### Practice 3 ####')
+// function isPangram2(words) {
+//     let lowerSentence = words.toLowerCase();
+//     for(let char of 'abcdefghijklmnopqrstuvxwyz') {
+//         if(lowerSentence.indexOf(char) === -1) {
+//         return false; 
+//         }
+//     }
+//     return true;
+// }
+// console.log( isPangram('The quick brown fox jumps over the lazy dog') );
+
+function isPangram2(words) {
+    let lowerWords = words.toLowerCase();
+
+    for(let char of words) {
+        if(!lowerWords.includes(char)) {
+            return false;
+        } 
+    }
+    return true;
+}
+console.log( isPangram('The quick brown fox jumps over the lazy dog') );
+
+
+// Practice 4
+console.log('#### Practice 4 ####')
