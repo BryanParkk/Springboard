@@ -76,13 +76,16 @@ console.log(isPurple('Purple'));
 // Practice
 console.log('------------------------------------');
 function isValidPassword(password, username) {
-    var space = /\s/g;
-    if(password.length >= 8 && password.indexOf(' ') == -1 && password.indexOf(username) == -1) {
+    if (
+        password.length >= 8 && 
+        password.indexOf(' ') == -1 && 
+        password.indexOf(username) == -1
+    ) {
         return true;
-    }else {
-        return false;
     }
+    return false;
 }
-
-console.log(isValidPassword('89Fjj1nms', 'dogLuvr'));
-console.log(isValidPassword('dogLuvr123!', 'dogLuvr'));
+console.log(isValidPassword('89Fjj1nms', 'dogLuvr')); // true
+console.log(isValidPassword('dogLuvr123!', 'dogLuvr')); // false
+console.log(isValidPassword('Hello1!', 'dogLuvr')); //f alse
+ 
