@@ -45,17 +45,32 @@ console.log('------------------------------------');
 //	9.	Jinxed wizards pluck ivy from the big quilt
 //	10.	The lazy dog jumps over five quick brown oxen
 
+// function isPangram(words) {
+//     let alphabet = 'abcdefghijklmnopqrstuvxwyz';
+//     let word = words.toLowerCase();
+//     let res = false;
+
+//     for(let i=0; i < alphabet.length; i++) {
+//         res = alphabet[i] === word[i]
+//     }
+//     return res;
+// }
+
+// console.log( isPangram('abcdefghijklmnopqrstuvxwyz') );
+
 function isPangram(words) {
     let alphabet = 'abcdefghijklmnopqrstuvxwyz';
-    let word = words.toLowerCase();
-    let res = false;
+    words = words.toLowerCase();
 
-    for(let i=0; i < alphabet.length; i++) {
-       if(alphabet[i] === word[i]) {
-        res = true;
-       }
+    for(let char of alphabet) {
+        if(words.indexOf(char) === -1) {
+            return false;
+        }
     }
-    return res;
+    return true;
 }
+console.log( isPangram('The quick brown fox jumps over The lazy dog') );
 
-console.log( isPangram('aaaaaaaaaaaaaaaaaaaaaaaaa') );
+
+let a = 'abcdefghijklmn';
+console.log(a.indexOf('c'));
