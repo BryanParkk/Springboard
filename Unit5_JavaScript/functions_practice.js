@@ -115,7 +115,6 @@ console.log('#### Practice 3 ####')
 //     return true;
 // }
 // console.log( isPangram('The quick brown fox jumps over the lazy dog') );
-
 function isPangram2(words) {
     let lowerWords = words.toLowerCase();
 
@@ -133,12 +132,11 @@ console.log( isPangram('The quick brown fox jumps over the lazy dog') );
 console.log('#### Practice 4 ####')
 
 function getCard() {
-    card = [
-        randomValue = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'K', 'Q', 'J'],
-        randomSuit = ['clubs', 'spades', 'Diamonds']
-    ]   
-    
-    return card.randomValue, card.randomSuit;
+    const card = { 
+        value: ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'K', 'Q', 'J'],
+        suit: ['clubs', 'spades', 'Diamonds']
+    };
+    return card;
 }
 
-console.log( getCard() );
+console.log( getCard() ); 
