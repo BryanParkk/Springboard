@@ -138,5 +138,5 @@ function getCard() {
     };
     return card;
 }
-
+ 
 console.log( getCard() );  
