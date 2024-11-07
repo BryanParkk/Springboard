@@ -139,4 +139,4 @@ function getCard() {
     return card;
 }
 
-console.log( getCard() ); 
+console.log( getCard() );  
