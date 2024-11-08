@@ -173,24 +173,24 @@ console.log('#### Practice 4 ####')
 // }
 // console.log( getCard() );
 
-function getRandom() {
-
-}
 
 // repeat practice
+function getRandom(arr) {
+    let arrIdx = Math.floor(Math.random() * arr.length);
+    return arrIdx;
+}
+
 function getCard() {
     const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'K', 'Q', 'J'];
     const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
 
-    const valueIdx = Math.floor(Math.random() * values.length);
-    const suitIdx = Math.floor(Math.random() * suits.length);
+    //const valueIdx = Math.floor(Math.random() * values.length);
+    //const suitIdx = Math.floor(Math.random() * suits.length);
 
-    const value = values[valueIdx];
-    const suit = suits[suitIdx];
+    const value = values[getRandom(values)];
+    const suit = suits[getRandom(suits)];
 
     return console.log({ value: value, suit: suit });
-
-    console.log( value, suit );
 }
 
 getCard();
