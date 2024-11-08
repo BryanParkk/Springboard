@@ -75,8 +75,6 @@ console.log('------------------------------------');
 // console.log(a.indexOf('c'));
 
 
-
-
 ///////////////////////////////////////////////////////////////////////////
 
 // repeat
@@ -92,6 +90,7 @@ function isValidPassword2(password, username) {
 }
 console.log( isValidPassword2('asdfasds', 'parkbeng') );
 
+///////////////////////////////////////////////////////////////////////////
 // Practice 2
 console.log('#### Practice 2 ####')
 function avg2(arr) {
@@ -103,6 +102,7 @@ function avg2(arr) {
 console.log( avg2([0, 50]) );
 console.log( avg2([75, 76, 80, 95, 100]) );
 
+///////////////////////////////////////////////////////////////////////////
 // Practice 3
 console.log('#### Practice 3 ####')
 // function isPangram2(words) {
@@ -127,7 +127,7 @@ function isPangram2(words) {
 }
 console.log( isPangram('The quick brown fox jumps over the lazy dog') );
 
-
+///////////////////////////////////////////////////////////////////////////
 // Practice 4
 console.log('#### Practice 4 ####')
 // [1]
@@ -142,8 +142,8 @@ console.log('#### Practice 4 ####')
 // } 
 // console.log( getCard() );
 
-
-//[2]
+///////////////////////////////////////////////////////////////////////////
+// //[2]
 // function getCard() {
 //     const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'K', 'Q', 'J'];
 //     const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
@@ -158,7 +158,7 @@ console.log('#### Practice 4 ####')
 // }
 // console.log( getCard() );
 
-
+///////////////////////////////////////////////////////////////////////////
 //[3]
 // function pick(arr) {
 //     const idx = Math.floor(Math.random() * arr.length);
@@ -173,7 +173,7 @@ console.log('#### Practice 4 ####')
 // }
 // console.log( getCard() );
 
-
+///////////////////////////////////////////////////////////////////////////
 // repeat practice
 function getRandom(arr) {
     let arrIdx = Math.floor(Math.random() * arr.length);
