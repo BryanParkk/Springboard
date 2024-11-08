@@ -132,11 +132,16 @@ console.log( isPangram('The quick brown fox jumps over the lazy dog') );
 console.log('#### Practice 4 ####')
 
 function getCard() {
+    let ranValue, ranSuit = 0;
+    let pickCard = 0;
     const card = { 
         value: ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'K', 'Q', 'J'],
-        suit: ['clubs', 'spades', 'Diamonds']
+        suit: ['clubs', 'spades', 'hearts', 'diamonds']
     };
-    return card;
+    ranSuit = Math.floor(Math.random() * 3) + 1; 
+    ranValue = Math.floor(Math.random() * 12) + 1;
+
+    console.log(card.suit[ranSuit],card.value[ranValue]);
 }
- 
-console.log( getCard() );  
+getCard();
+
