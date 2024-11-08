@@ -160,15 +160,37 @@ console.log('#### Practice 4 ####')
 
 
 //[3]
-function pick(arr) {
-    const idx = Math.floor(Math.random() * arr.length);
-    return arr[idx];
+// function pick(arr) {
+//     const idx = Math.floor(Math.random() * arr.length);
+//     return arr[idx];
+// }
+
+// function getCard() {
+//     const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'K', 'Q', 'J'];
+//     const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
+
+//     return { value:pick(values), suit:pick(suits) };   
+// }
+// console.log( getCard() );
+
+function getRandom() {
+
 }
 
+// repeat practice
 function getCard() {
     const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'K', 'Q', 'J'];
     const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
 
-    return { value:pick(values), suit:pick(suits) };   
+    const valueIdx = Math.floor(Math.random() * values.length);
+    const suitIdx = Math.floor(Math.random() * suits.length);
+
+    const value = values[valueIdx];
+    const suit = suits[suitIdx];
+
+    return console.log({ value: value, suit: suit });
+
+    console.log( value, suit );
 }
-console.log( getCard() );
+
+getCard();
