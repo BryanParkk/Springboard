@@ -130,18 +130,45 @@ console.log( isPangram('The quick brown fox jumps over the lazy dog') );
 
 // Practice 4
 console.log('#### Practice 4 ####')
+// [1]
+// function getCard() {
+//     const value = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'K', 'Q', 'J'];
+//     const suit = ['clubs', 'spades', 'hearts', 'diamonds'];
+    
+//     const ranSuit = Math.floor(Math.random() * value.length); 
+//     const ranValue = Math.floor(Math.random() * suit.length);
+
+//     return { value:ranSuit, suit:ranValue };
+// } 
+// console.log( getCard() );
+
+
+//[2]
+// function getCard() {
+//     const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'K', 'Q', 'J'];
+//     const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
+
+//     const idxValue = Math.floor(Math.random() * values.length);
+//     const idxSuit = Math.floor(Math.random() * suits.length)
+
+//     const outValues = values[idxValue];
+//     const outSuits = suits[idxSuit];
+
+//     return { suits:outValues,values:outSuits};   
+// }
+// console.log( getCard() );
+
+
+//[3]
+function pick(arr) {
+    const idx = Math.floor(Math.random() * arr.length);
+    return arr[idx];
+}
 
 function getCard() {
-    let ranValue, ranSuit = 0;
-    let pickCard = 0;
-    const card = { 
-        value: ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'K', 'Q', 'J'],
-        suit: ['clubs', 'spades', 'hearts', 'diamonds']
-    };
-    ranSuit = Math.floor(Math.random() * 3) + 1; 
-    ranValue = Math.floor(Math.random() * 12) + 1;
+    const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'K', 'Q', 'J'];
+    const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
 
-    console.log(card.suit[ranSuit],card.value[ranValue]);
+    return { value:pick(values), suit:pick(suits) };   
 }
-getCard();
-
+console.log( getCard() );
