@@ -8,19 +8,23 @@ const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
 // Step 1
 function encryptLetter(letter, shiftValue) {
+    if (typeof(friend) !== 'string') {
+        console.log('error');
+    }
     const encLetter = alphabet[alphabet.indexOf(letter.toLowerCase()) + shiftValue % alphabet.length];
     return encLetter;
 }
-
-// console.log(encryptLetter('A', shiftValue));
-
+console.log(encryptLetter('a', shiftValue));
+console.log('---------------------------------------');
 
 // Step 2
 function encrtyptMessage(word, shiftValue) {
-    for(let i; i < word.length; i++) {
-        let encMsg = encryptLetter(word, shiftValue);
+    for(let sq of word) {
+        let encMsg = encryptLetter(sq, shiftValue);
+        console.log(encMsg);
     }
-    return console.log (encMsg);
 }
+console.log(encrtyptMessage(friend, shiftValue));
+console.log('---------------------------------------');
 
-console.log(encrtyptMessage('ABCD', shiftValue)); 
+// Step 3
