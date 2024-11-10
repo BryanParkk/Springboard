@@ -5,7 +5,6 @@ const friend = "BRUTUS";
 const shiftValue = 3;
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
-
 // Step 1
 // function encryptLetter(letter, shiftValue) {
 //     if (typeof(friend) !== 'string') {
