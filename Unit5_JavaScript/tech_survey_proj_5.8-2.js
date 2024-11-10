@@ -10,9 +10,3 @@ function encrypt (message, shiftValue)
   return encryptedMessage;
 }
 
-function decrypt (encryptedMessage, shiftValue)
-{
-  // Your decryption code here
-  return decryptedMessage;
-}
-
