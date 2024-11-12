@@ -1,9 +1,11 @@
 //Technical Survey Project - part 2 - Exercise 9
 
+/// Encrypt ////////////////////////////////////////////////////////////////////////////
 const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
 function encryptLetter(letter, shift) {
   const index = alphabet.indexOf(letter.toLowerCase());
+  if (index === -1) return letter; // if it's not alphabet, just return it
   const newIndex = (index + shift) % alphabet.length;
   return alphabet[newIndex];
 }
@@ -16,12 +18,11 @@ function encrypt (message, shiftValue)
   }
   return encryptedMessage;
 }
-///////////////////////////////////////////////////////////////////////////////
-
+/// Decrypt ////////////////////////////////////////////////////////////////////////////
 function decryptLetter(letter, shift) {
   const index = alphabet.indexOf(letter.toLowerCase());
-  if (index === -1) return letter; // 알파벳이 아닌 경우 그대로 반환
-  const newIndex = (index - (shift % alphabet.length) + alphabet.length) % alphabet.length;
+  if (index === -1) return letter; // if it's not alphabet, just return it
+  const newIndex = (index - (shift % alphabet.length) + alphabet.length) % alphabet.length; // index recalculate
   return alphabet[newIndex];
 }
 
@@ -33,8 +34,9 @@ function decrypt(encryptedMessage, shiftValue) {
   return decryptedMessage;
 }
 
-///////////////////////////////////////////////////////////////////////////////
-
+//// Result ///////////////////////////////////////////////////////////////////////////
 console.log( encrypt('GARDEN', 3) );
+console.log( encrypt('hello brutus, meet me at the high gardens.', 42))
+
 console.log( decrypt('JDUGHQ', 3) );
 console.log( decrypt('Xubbe Rhkjki, cuuj cu qj jxu xywx wqhtudi.', 42) );
