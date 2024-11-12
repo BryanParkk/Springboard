@@ -72,4 +72,3 @@ function isPurple2(color) {
     return color.toLowerCase() === 'purple';
 }
 console.log(isPurple('Purple'));
-
