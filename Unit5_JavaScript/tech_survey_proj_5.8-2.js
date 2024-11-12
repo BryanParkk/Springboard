@@ -36,4 +36,5 @@ function decrypt(encryptedMessage, shiftValue) {
 ///////////////////////////////////////////////////////////////////////////////
 
 console.log( encrypt('GARDEN', 3) );
-console.log( decrypt('Iueuan jrxuq cjythdykwxaj mixkqtaeml ebv wHenckvbkei rqdmt fHukckvi.r Jbxuihus,', 42) );
+console.log( decrypt('JDUGHQ', 3) );
+console.log( decrypt('Xubbe Rhkjki, cuuj cu qj jxu xywx wqhtudi.', 42) );
