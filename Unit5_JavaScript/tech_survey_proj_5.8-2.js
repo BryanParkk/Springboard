@@ -20,19 +20,20 @@ function encrypt (message, shiftValue)
 
 function decryptLetter(letter, shift) {
   const index = alphabet.indexOf(letter.toLowerCase());
-  const newIndex = (index - shift + alphabet.length) % alphabet.length;
+  if (index === -1) return letter; // 알파벳이 아닌 경우 그대로 반환
+  const newIndex = (index - (shift % alphabet.length) + alphabet.length) % alphabet.length;
   return alphabet[newIndex];
 }
 
-function decrypt (encryptedMessage, shiftValue)
-{
+function decrypt(encryptedMessage, shiftValue) {
   let decryptedMessage = "";
   for (let i = 0; i < encryptedMessage.length; i++) {
-      decryptedMessage += decryptLetter(encryptedMessage[i], shiftValue);
+    decryptedMessage += decryptLetter(encryptedMessage[i], shiftValue);
   }
   return decryptedMessage;
 }
+
 ///////////////////////////////////////////////////////////////////////////////
 
 console.log( encrypt('GARDEN', 3) );
-console.log( decrypt('jdughq', 3) );
+console.log( decrypt('Iueuan jrxuq cjythdykwxaj mixkqtaeml ebv wHenckvbkei rqdmt fHukckvi.r Jbxuihus,', 42) );
