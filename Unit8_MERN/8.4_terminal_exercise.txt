@@ -1,0 +1,25 @@
+// Terminal Exercises
+
+// Part I
+1. $ mkdir first
+2. $ cd first
+3. $ touch person.txt
+4. $ mv person.txt another.txt
+5. $ cp another.txt copy.txt
+6. $ rm copy.txt
+7. $ cp -r first second
+8. $ rm -rf second
+
+// Part II
+1. Man command is manual for commands. :q
+2. man ls
+ - l : detailed information(long format), a : show hidden files
+3. Option + Left, Right arrow.
+4. Control + E
+5. Control + A
+6. Control + W
+7. termial is an application, shell is command line interpreter
+8. whole path
+9. relative with current directory ( ./opt , ../tmp/app )
+10. flag is additional option for commands. (eg: ls -al, netstat -a, rm -rf, ps -ef)
+11. r is remove including files and directories, f is force delete without confirm
