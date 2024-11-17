@@ -1,0 +1,18 @@
+Branching Exercise
+
+Part I
+
+- What **_git_** command creates a branch?
+  : git branch {Branch Name}
+
+- What is the difference between a fast-forward and recursive merge?
+  : fast forward is commit last files, recursive mergis is going to make another branch
+
+- What **_git_** command changes to another branch?
+  : git branch -m {name for another branch}
+
+- What **_git_** command deletes a branch?
+  : git branch -d {name for delete branch}
+
+- How do merge conflicts happen?
+  : There are modified files, but Git cannot determine which changes are correct, so you need to manually decide and apply the appropriate changes.
