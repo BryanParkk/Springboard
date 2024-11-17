@@ -62,3 +62,14 @@ git log --oneline --reverse
 git restore --source=<commit_id> adventure.txt
 git add adventure.txt
 git commit -m "Revert adventure.txt to its initial state"
+
+
+10. new branch
+
+git branch
+git bit branch new-feature
+git checkout new-feature
+bit branch -m new-name
+git push -u origin new-feature2
+git push -u origin --delete new-feature
+
