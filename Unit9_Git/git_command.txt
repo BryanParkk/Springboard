@@ -7,6 +7,10 @@ https://git-scm.com/downloads
 
 git config --global user.name "Your Name"
 git config --global user.email "youremail@example.com"
+git config --global --get user.name
+git config --global --get user.email
+git config --global --set user.name "Byeongil Park"
+git config --global --set user.name "bryan1010110@gmail.com"
 
 3. Initialization
 
