@@ -67,8 +67,9 @@ git commit -m "Revert adventure.txt to its initial state"
 10. new branch
 
 git branch
-git bit branch new-feature
+git branch new-feature
 git checkout new-feature
+git branch -d new-feature2
 bit branch -m new-name
 git push -u origin new-feature2
 git push -u origin --delete new-feature
