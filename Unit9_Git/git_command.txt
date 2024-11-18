@@ -73,4 +73,3 @@ git branch -d new-feature2
 bit branch -m new-name
 git push -u origin new-feature2
 git push -u origin --delete new-feature
-
