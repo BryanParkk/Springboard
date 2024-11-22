@@ -15,4 +15,4 @@ for (let i = 0; i < grades.length; i++) {
 }
 let avg = sum / grades.length;
 
-console.log(avg);
+console.log(sum, avg);
