@@ -7,12 +7,10 @@
 // - do googling them
 // - googling, mentor, stack overflow
 
-let grades = [90, 98, 76, 54, 66, 90, 81];
-let sum = 0;
-debugger;
-for (let i = 0; i < grades.length; i++) {
-    sum += grades[i];
+try {
+    functionThatDoesNotExist();
+} catch (err) {
+    console.log('Somthing went wrong', err);
 }
-let avg = sum / grades.length;
 
-console.log(sum, avg);
+console.log("did we make it?");
