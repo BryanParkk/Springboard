@@ -75,15 +75,35 @@
 
 
 
-try {
-    throw new TypeError("I don't like you doing that");
-    // throw new Error('I AM THE ERROR');
-    // undefined.pop();
+// try {
+//     throw new TypeError("I don't like you doing that");
+//     // throw new Error('I AM THE ERROR');
+//     // undefined.pop();
+// }
+// catch(e) {
+//     // console.log('there was an error', e);
+//     // console.dir(e);
+//     console.log("what kind of error?", e.name);
+//     console.log("what is the message?", e.message);
+//     console.log("where did it happen?", e.stack);
+// }
+
+function DateError(message) {
+    this.message = message;
+    this.name = 'DateError';
 }
-catch(e) {
-    // console.log('there was an error', e);
-    // console.dir(e);
-    console.log("what kind of error?", e.name);
-    console.log("what is the message?", e.message);
-    console.log("where did it happen?", e.stack);
+
+function getMonthName(mo) {
+    if(typeof mo !== 'number') {
+        throw new DateError('getMonthName is must be a number');
+    }
+    mo = mo -1;
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    
+    if(months[mo]) {
+        return months[mo];
+    } else {
+        throw new DateError("Month out of bound");
+    }
 }
+
