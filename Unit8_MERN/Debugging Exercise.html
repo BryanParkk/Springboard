@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<!-- saved from url=(0083)https://lessons.springboard.com/Debugging-Exercise-8a468f37fdd14e618c2f8be14d34f67a -->
+<html class="notion-html" lang="en" style="--full-viewport-height: 824px;"><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+          
+    <script id="ci-head-js">
+      (function() {
+        'use strict';
+        localStorage.setItem("__console","true")
+      })();
+    </script>
+    <script id="ci-sotion-fetch">
+      const originalFetch = window.fetch;
+      window.requestInterceptor = (args) => {
+        // console.log("window.requestInterceptor.args: ", args)
+        if(args) {
+          let requestUrl = args[0];
+          if(requestUrl.includes("file.notion.so")) {
+            requestUrl = requestUrl.replace("file.notion.so", "lessons.springboard.com");
+            args[0] = requestUrl;
+          }
+        }
+        return args;
+      }
+      window.responseInterceptor = (response) => {
+        return response;
+      }
+      window.fetch = async (...args) => {
+        // request interceptor
+        args = requestInterceptor(args);
+        let response = await originalFetch(...args);
+        // response interceptor
+        // response = responseInterceptor(response);  
+        return response;
+      };
+    </script>
+
+    <style id="ci-head-css">
+      .ci-display-none { display: none !important; }
+      .notion-topbar div[aria-label='More actions'] { display: none !important; }
+      .notion-topbar-mobile div[aria-label='More actions'] { margin-right: 16px !important; }
+      /*[role="dialog"] [role="menuitem"]:not(:first-of-type) {
+        display: none;
+      }
+      [role="dialog"] [role="menuitem"]:first-of-type > div {
+        padding-top: 2em;
+        padding-bottom: 2em;
+      }*/
+
+
+      .toggle-off { display: none !important; }
+      .toggle-button {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          height: 24px;
+          width: 36px;
+          z-index: 100;
+      }
+
+      .dragHandle { 
+        display: none !important; 
+        cursor: default !important; 
+        background: black !important;
+      }
+      div:has(> svg.dragHandle) { display: none !important; cursor: default !important;}
+      
+      /* template duplicate button styles */
+      .reset-a, .reset-a:hover, .reset-a:visited, .reset-a:focus, .reset-a:active  {
+        text-decoration: none;
+        color: inherit;
+        outline: 0;
+        /*cursor: auto;*/
+        cursor: pointer;
+      }
+      #dupe-modal {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99;
+    }
+    .dupe-content {
+        width: 80%;
+        max-width: 425px;
+        padding: 20px;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+    .dupe-footer { display: flex; justify-content: space-between; margin-top: 20px; }
+    .dupe-title, .dupe-description { margin-bottom: 10px; }
+    .dupe-button { padding: 5px 10px; cursor: pointer; border-radius: 5px; }
+    .dupe-cancel { color: black; background: white; }
+    .dupe-continue { color: white; background: black; }
+    .dupe-open { padding: 5px 10px; }
+    
+    </style>
+    <style>
+
+.springboard-logo-container {
+   position: absolute;
+   top: 10px;
+   left: 10px;
+   z-index: 1000;
+ }
+
+.springboard-logo {
+  height: 20px;
+  width: 120px;
+}
+
+.notion-topbar .notranslate {
+  display: none !important;
+}
+
+.notion-topbar-mobile .notranslate {
+  display: none !important;
+}
+
+.notion-topbar-mobile .springboard-logo {
+  width: 144px;
+  padding: 0 16px;
+}
+
+.notion-frame {
+  flex-direction: row !important;
+}
+
+.notion-frame > .notion-table_of_contents-block {
+  color: #777478;
+  padding-bottom: 20px;
+}
+
+.notion-page-content > .notion-table_of_contents-block {
+  display: none;
+}
+
+.notion-frame > .notion-table_of_contents-block {
+  width: 15% !important;
+  overflow: auto;
+  min-width: 0;
+  margin-top: calc(96px + env(safe-area-inset-left)) !important;
+  margin-left: 10px;
+}
+
+.notion-table_of_contents-block .notranslate {
+  font-size: 16px !important;
+  white-space: normal !important;
+}
+
+@media screen and (max-width: 1280px) {
+ .notion-frame {
+   flex-direction: column !important;
+ }
+
+ .notion-page-content > .notion-table_of_contents-block {
+  display: block;
+ }
+
+ .notion-table_of_contents-block {
+   width: 100% !important;
+   overflow: none;
+   min-width: 0;
+ }
+
+ .notion-topbar-mobile {
+  justify-content: end !important;
+ }
+
+ .notion-frame > .notion-table_of_contents-block {
+   display: none !important;
+ }
+
+}
+
+@media screen and (min-width: 1280px) {
+ /* .notion-page-content {
+   padding-left: 0 !important;
+   padding-right: 0 !important;
+ } */
+}
+
+</style>
+    <script>
+
+</script>
+  
+          <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><noscript><meta http-equiv="refresh" content="0;url=https://www.notion.so/disabled-javascript.html"></noscript><script>var ua=window.navigator.userAgent,isEdgeHTML=/Windows.*Edge/i.test(ua),isChrome=!isEdgeHTML&&/Chrome/i.test(ua),isSafari=!isEdgeHTML&&!isChrome&&/Safari/i.test(ua),isFirefox=/Firefox/i.test(ua),isIE=/Trident/i.test(ua);function isUnsupportedBrowser(){var e;if(isChrome){if((e=ua.match(/Chrome\/(\d+)/i))&&e[1])return parseInt(e[1],10)<=84}else if(isSafari){if((e=ua.match(/Version\/(\d+)/i))&&e[1])return parseInt(e[1],10)<=13}else if(isFirefox){if((e=ua.match(/Firefox\/(\d+)/i))&&e[1])return parseInt(e[1],10)<=114}else{if(isEdgeHTML)return!0;if(isIE)return!0}return!1}isUnsupportedBrowser()&&window.location.replace("/unsupported-browser.html")</script><script>window.__webStartTime=performance.now(),performance.mark("__webStartTime")</script><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-itunes-app" content="app-id=1232780281"><meta name="format-detection" content="telephone=no"><meta name="msapplication-tap-highlight" content="no"><link href="./Debugging Exercise_files/print.e2ba4c31.css" rel="stylesheet" media="print"><style>body{background:#fff}body.dark{background:#191919}@keyframes startup-shimmer-animation{0%{transform:translateX(-100%) translateZ(0)}100%{transform:translateX(100%) translateZ(0)}}@keyframes startup-shimmer-fade-in{0%{opacity:0}100%{opacity:1}}@keyframes startup-spinner-rotate{0%{transform:rotate(0) translateZ(0)}100%{transform:rotate(360deg) translateZ(0)}}#initial-loading-spinner{position:fixed;height:100vh;width:100vw;z-index:-1;display:none;align-items:center;justify-content:center;opacity:.5}#initial-loading-spinner svg{height:24px;width:24px;animation:startup-spinner-rotate 1s linear infinite;transform-origin:center center;pointer-events:none}#skeleton{background:#fff;position:fixed;height:100vh;width:100vw;z-index:-1;display:none;overflow:hidden}#initial-loading-spinner.show,#skeleton.show{display:flex}body.dark #skeleton{background:#191919}.notion-front-page #skeleton,.notion-mobile #skeleton{display:none}#skeleton-sidebar{background-color:#f7f7f5;box-shadow:inset -1px 0 0 0 rgba(0,0,0,.025);display:flex;width:240px;flex-direction:column;padding:12px 14px;overflow:hidden}body.dark #skeleton-sidebar{background-color:#202020;box-shadow:inset -1px 0 0 0 rgba(255,255,255,.05)}#skeleton.isElectron #skeleton-sidebar{padding-top:46px}#skeleton .row{display:flex;margin-bottom:11px;align-items:center}#skeleton .row.fadein{animation:1s ease-in 0s 1 normal both running startup-shimmer-fade-in}#skeleton .chevron{width:12px;height:12px;display:block;margin-right:4px;fill:rgba(227,226,224,.5)}body.dark #skeleton .chevron{fill:#2f2f2f}.startup-shimmer{background:rgba(227,226,224,.5);overflow:hidden;position:relative}body.dark .startup-shimmer{background:#2f2f2f}.startup-shimmer::before{content:"";position:absolute;height:100%;width:100%;z-index:1;animation:1s linear infinite startup-shimmer-animation;background:linear-gradient(90deg,rgba(0,0,0,0) 0,rgba(0,0,0,.03) 50%,rgba(0,0,0,0) 100%)}body.dark .startup-shimmer::before{background:linear-gradient(90deg,transparent 0,rgba(86,86,86,.1) 50%,transparent 100%)}#skeleton .icon{width:20px;height:20px;border-radius:4px}#skeleton .text{height:10px;border-radius:10px}#skeleton .draggable{-webkit-app-region:drag;position:absolute;top:0;left:0;width:100%;height:36px;display:none}#skeleton.isElectron .draggable{display:block}</style><script defer="defer" src="./Debugging Exercise_files/ClientFramework-b72cca5412063c89.js"></script><script defer="defer" src="./Debugging Exercise_files/33534-4789ee55e1deb37c.js"></script><script defer="defer" src="./Debugging Exercise_files/86078-99cae62b432ec51d.js"></script><script defer="defer" src="./Debugging Exercise_files/96232-b20ec1f36608f235.js"></script><script defer="defer" src="./Debugging Exercise_files/app-7b1b75149eb0f8c8.js"></script><link href="./Debugging Exercise_files/app-23aefc6bbea30217.css" rel="stylesheet">
+  <title>Debugging Exercise</title>
+
+  <meta property="og:title" content="Springboard Course Material">
+  <meta property="og:description" content="Springboard Course Material">
+  <meta property="og:image" content="https://www.springboard.com/assets/images/new-springboard-logo-dark@2x.png">
+  <meta property="og:site_name" content="Springboard Course Material">
+  <meta property="og:url" content="https://lessons.springboard.com">
+  <meta name="description" content="Springboard Course Material">
+
+  <meta name="twitter:title" content="Springboard Course Material">
+  <meta name="twitter:description" content="Springboard Course Material">
+  <meta name="twitter:domain" content="lessons.springboard.com">
+  <meta name="twitter:image" content="https://www.springboard.com/assets/images/new-springboard-logo-dark@2x.png">
+  <meta name="twitter:site" content="@sotion_so">
+  <meta name="twitter:url" content="https://lessons.springboard.com">
+
+  <link rel="icon" type="image/png" href="https://www.springboard.com/assets/images/new-fav-icon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="https://lessons.springboard.com/images/favicon.ico">
+  <link rel="apple-touch-icon" sizes="48x48" href="https://www.springboard.com/assets/images/new-fav-icon.ico">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://www.springboard.com/assets/images/new-fav-icon.ico">
+  <link rel="apple-touch-icon" sizes="96x96" href="https://www.springboard.com/assets/images/new-fav-icon.ico">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://www.springboard.com/assets/images/new-fav-icon.ico">
+  <link rel="apple-touch-icon" sizes="192x192" href="https://www.springboard.com/assets/images/new-fav-icon.ico">
+  <link rel="apple-touch-icon" sizes="256x256" href="https://www.springboard.com/assets/images/new-fav-icon.ico">
+  <link rel="apple-touch-icon" sizes="384x384" href="https://www.springboard.com/assets/images/new-fav-icon.ico">
+  <link rel="apple-touch-icon" sizes="512x512" href="https://www.springboard.com/assets/images/new-fav-icon.ico">
+  <style>
+		
+		
+		.assistant-grouped-edit-chat-container .assistant-grouped-edit-insert {
+			background: initial !important;
+			border-bottom: initial !important;
+			color: rgba(255, 255, 255, 0.81) !important;
+		}
+
+		.assistant-grouped-edit-chat-container .assistant-grouped-edit-remove {
+			background: initial !important;
+			border-bottom: initial !important;
+			color: rgba(255, 255, 255, 0.13) !important;
+		}
+	
+	</style></head><body class="notion-body dark"><div class="springboard-logo-container"><img class="springboard-logo" src="./Debugging Exercise_files/new-springboard-logo-dark@2x.png" alt="Springboard Logo"></div><script type="application/json" id="theme-data">{"mode":"dark"}</script><script>var theme="light",localTheme=localStorage.getItem("theme");if(localTheme)try{(parsed=JSON.parse(localTheme))&&parsed.mode&&(theme=parsed.mode)}catch(e){}var themeData=document.getElementById("theme-data");if(themeData)try{var parsed;(parsed=JSON.parse(themeData.textContent))&&"<<DEFAULT_THEME>>"!==parsed.mode&&(theme=parsed.mode,window.notionTheme=theme)}catch(e){}"dark"===theme&&document.body.classList.add("dark")</script><script>(e=>{function t(t){var i=e.localStorage&&e.localStorage.getItem(t),d=i&&JSON.parse(i);if(d&&d.value)return d.value}var i=document.getElementById("skeleton"),d=document.getElementById("skeleton-sidebar"),n=document.getElementById("initial-loading-spinner"),o=t("LRU:KeyValueStore2:sidebar"),a=t("LRU:KeyValueStore2:current-user-id"),l="undefined"!=typeof global||e.__isElectron,r=/ReactNative|MobileNative|Android|iPad|iPhone|iPod|Windows Phone/.test(navigator.userAgent);!i||void 0===a||r||l?n&&n.classList.add("show"):(i.classList.add("show"),d&&o&&(!1===o.expanded&&d.remove(),o.width>0&&(d.style.width=String(o.width)+"px")))})(window)</script><style id="scroll-properties"></style><div id="notion-app"><div class="notion-app-inner notion-dark-theme " style="color: rgba(255, 255, 255, 0.81); fill: currentcolor; line-height: 1.5; font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, &quot;Segoe UI Variable Display&quot;, &quot;Segoe UI&quot;, Helvetica, &quot;Apple Color Emoji&quot;, Arial, sans-serif, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; -webkit-font-smoothing: auto; background-color: rgb(25, 25, 25); transition: height 0.1s;"><div style="height: 100%;"><div class="notion-cursor-listener" style="width: 100vw; height: 100%; position: relative; display: flex; flex: 1 1 0%; background: rgb(25, 25, 25); cursor: text;"><div class="" style="order: 3; display: flex; flex-direction: column; width: 100%; overflow: hidden; isolation: auto;"><header style="background: rgb(25, 25, 25); max-width: 100vw; z-index: 100; user-select: none;"><div class="notion-topbar" style="width: calc(100% + 0px); max-width: 100vw; height: 44px; opacity: 1; transition: opacity 700ms, color 700ms; position: relative; left: 0px; padding-right: 43px;"><div style="display: flex; justify-content: space-between; align-items: center; overflow: hidden; height: 44px; padding-left: 12px; padding-right: 10px;"><div class="notranslate shadow-cursor-breadcrumb" style="display: flex; align-items: center; line-height: 1.2; font-size: 14px; height: 100%; flex-grow: 0; margin-right: 8px; min-width: 0px;"><div data-block-id="8ee4277b-573a-4b75-bfac-61357183ca4a" class="notion-selectable notion-page-block" style="display: none; align-items: center; min-width: 0px;"><a href="https://lessons.springboard.com/Course-materials-8ee4277b573a4b75bfac61357183ca4a?pvs=18" rel="noopener noreferrer" role="link" style="display: flex; color: rgba(255, 255, 255, 0.81); text-decoration: none; user-select: none; transition: background 20ms ease-in; cursor: pointer; align-items: center; flex-shrink: 1; white-space: nowrap; height: 24px; border-radius: 6px; font-size: inherit; line-height: 1.2; min-width: 0px; padding: 2px 6px;"><div style="display: flex; align-items: center; min-width: 0px;"><div class="notranslate" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px;">Course materials</div></div></a></div><span style="margin-left: 2px; margin-right: 2px; color: rgba(255, 255, 255, 0.282); display: none;">/</span><div style="display: none; align-items: center; flex-shrink: 0;"><div role="button" tabindex="0" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; display: inline-flex; align-items: center; flex-shrink: 0; white-space: nowrap; height: 24px; border-radius: 6px; font-size: 14px; line-height: 1.2; min-width: 0px; padding-left: 6px; padding-right: 6px; color: rgba(255, 255, 255, 0.81);">...</div><span style="margin-left: 2px; margin-right: 2px; color: rgba(255, 255, 255, 0.282);">/</span></div><div data-block-id="54627d7b-55db-48f3-831d-c072c0e8f467" class="notion-selectable notion-page-block" style="display: none; align-items: center; min-width: 0px;"><a href="https://lessons.springboard.com/Exercises-54627d7b55db48f3831dc072c0e8f467?pvs=18" rel="noopener noreferrer" role="link" style="display: flex; color: rgba(255, 255, 255, 0.81); text-decoration: none; user-select: none; transition: background 20ms ease-in; cursor: pointer; align-items: center; flex-shrink: 1; white-space: nowrap; height: 24px; border-radius: 6px; font-size: inherit; line-height: 1.2; min-width: 0px; padding: 2px 6px;"><div style="display: flex; align-items: center; min-width: 0px;"><div class="notranslate" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px;">Exercises </div></div></a></div><span style="margin-left: 2px; margin-right: 2px; color: rgba(255, 255, 255, 0.282); display: none;">/</span><div role="button" tabindex="0" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; display: none; align-items: center; flex-shrink: 1; white-space: nowrap; height: 24px; border-radius: 6px; font-size: 14px; line-height: 1.2; min-width: 0px; padding-left: 6px; padding-right: 6px; color: rgba(255, 255, 255, 0.81);"><div class="notranslate" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 240px;">Debugging Exercise</div></div></div><div style="flex-grow: 1; flex-shrink: 1;"></div><div style="display: none; justify-content: space-between; padding-left: 10px;"><div aria-disabled="true" role="button" tabindex="-1" class="notion-close-sidebar" aria-label="Close panel" style="user-select: none; transition-behavior: normal; transition-duration: 200ms; transition-timing-function: ease; transition-property: opacity; cursor: default; opacity: 0; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 6px; height: 24px; width: 24px; padding: 0px; position: relative; margin-left: 10px; fill: rgba(255, 255, 255, 0.443);"><svg role="graphics-symbol" viewBox="0 0 16 16" class="doubleChevronRight" style="width: 16px; height: 16px; display: block; fill: inherit; flex-shrink: 0;"><path d="M2.25781 14.1211C2.47656 14.1211 2.66797 14.0391 2.81836 13.8887L8.14355 8.67969C8.32812 8.49512 8.41699 8.29688 8.41699 8.06445C8.41699 7.8252 8.32812 7.62012 8.14355 7.44922L2.81836 2.24023C2.66797 2.08984 2.4834 2.00781 2.25781 2.00781C1.81348 2.00781 1.46484 2.35645 1.46484 2.80078C1.46484 3.0127 1.55371 3.21777 1.7041 3.375L6.50977 8.05762L1.7041 12.7539C1.55371 12.9043 1.46484 13.1094 1.46484 13.3281C1.46484 13.7725 1.81348 14.1211 2.25781 14.1211ZM8.36914 14.1211C8.58789 14.1211 8.77246 14.0391 8.92285 13.8887L14.2549 8.67969C14.4395 8.49512 14.5283 8.29688 14.5283 8.06445C14.5283 7.8252 14.4326 7.62012 14.2549 7.44922L8.92285 2.24023C8.77246 2.08984 8.58789 2.00781 8.36914 2.00781C7.9248 2.00781 7.56934 2.35645 7.56934 2.80078C7.56934 3.0127 7.66504 3.21777 7.81543 3.375L12.6211 8.05762L7.81543 12.7539C7.66504 12.9043 7.56934 13.1094 7.56934 13.3281C7.56934 13.7725 7.9248 14.1211 8.36914 14.1211Z"></path></svg></div><div style="display: flex;"><div role="button" tabindex="0" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; display: inline-flex; align-items: center; flex-shrink: 0; white-space: nowrap; height: 28px; border-radius: 6px; font-size: 14px; line-height: 1.2; min-width: 0px; padding-left: 8px; padding-right: 8px; color: rgba(255, 255, 255, 0.81);"><svg role="graphics-symbol" viewBox="0 0 16 16" class="search" style="width: 14px; height: 14px; display: block; fill: inherit; flex-shrink: 0;"><path d="M.281 6.438c0-.875.164-1.696.492-2.461a6.484 6.484 0 011.375-2.032A6.237 6.237 0 016.64.078 6.2 6.2 0 019.11.57c.77.328 1.447.787 2.03 1.375a6.374 6.374 0 011.368 2.032c.333.765.5 1.586.5 2.46 0 .688-.107 1.342-.32 1.961a6.28 6.28 0 01-.868 1.696l3.563 3.578c.11.104.19.226.242.367.057.14.086.29.086.445 0 .22-.05.417-.149.594a1.122 1.122 0 01-1 .57c-.156 0-.307-.028-.453-.086a1.058 1.058 0 01-.382-.25l-3.586-3.585c-.5.333-1.047.596-1.641.789a6.089 6.089 0 01-1.86.28 6.237 6.237 0 01-2.468-.491 6.4 6.4 0 01-2.024-1.367A6.509 6.509 0 01.773 8.913a6.256 6.256 0 01-.492-2.476zm1.664 0c0 .65.12 1.26.36 1.828a4.775 4.775 0 001.015 1.5c.433.427.933.763 1.5 1.007a4.548 4.548 0 001.82.368c.652 0 1.261-.123 1.829-.368a4.747 4.747 0 002.508-2.507 4.567 4.567 0 00.367-1.829c0-.645-.123-1.252-.367-1.82a4.776 4.776 0 00-1.016-1.5A4.578 4.578 0 008.469 2.11a4.567 4.567 0 00-1.828-.367c-.646 0-1.253.123-1.82.367a4.667 4.667 0 00-1.5 1.008c-.433.432-.772.932-1.016 1.5a4.633 4.633 0 00-.36 1.82z"></path></svg></div><div role="button" tabindex="0" aria-label="More actions" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; display: none; align-items: center; justify-content: center; width: 32px; height: 28px; border-radius: 4px;"><svg role="graphics-symbol" viewBox="0 0 16 16" class="ellipsis" style="width: 18px; height: 18px; display: block; fill: inherit; flex-shrink: 0;"><path d="M2.887 9.014c.273 0 .52-.064.738-.192.219-.132.394-.307.526-.526.133-.219.199-.46.199-.725 0-.405-.142-.747-.424-1.025a1.41 1.41 0 00-1.04-.417c-.264 0-.505.066-.724.198a1.412 1.412 0 00-.718 1.244c0 .265.064.506.192.725.132.219.307.394.526.526.219.128.46.192.725.192zm5.113 0a1.412 1.412 0 001.244-.718c.132-.219.198-.46.198-.725 0-.405-.14-.747-.423-1.025A1.386 1.386 0 008 6.129c-.264 0-.506.066-.725.198a1.412 1.412 0 00-.718 1.244c0 .265.064.506.192.725.132.219.308.394.526.526.22.128.46.192.725.192zm5.106 0c.265 0 .506-.064.725-.192.219-.132.394-.307.526-.526.133-.219.199-.46.199-.725 0-.405-.142-.747-.424-1.025a1.394 1.394 0 00-1.026-.417 1.474 1.474 0 00-1.265.718c-.127.218-.19.46-.19.724 0 .265.063.506.19.725.133.219.308.394.527.526.223.128.47.192.738.192z"></path></svg></div><div role="button" tabindex="0" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; display: none; align-items: center; justify-content: center; white-space: nowrap; border-radius: 6px; height: 32px; padding: 0px 10px; font-size: 14px; line-height: 1.2; border: 1px solid rgba(255, 255, 255, 0.13); margin-left: 8px;">Made with<svg role="graphics-symbol" viewBox="0 0 381 396" class="notionLogoBlockMonoWhite" style="width: 14px; height: 14px; display: block; fill: inherit; flex-shrink: 0; margin-left: 6px;"><path fill-rule="evenodd" clip-rule="evenodd" d="M235.875 0.868913L42.2191 15.1299L42.0716 15.1427C29.2402 16.2539 17.5452 21.4575 9.54377 31.7056C2.00788 41.3575 0 52.6286 0 61.8081V273.61C0 290.004 6.39474 302.931 16.1515 315.934L16.2408 316.053L61.92 375.319L61.9886 375.407C67.4438 382.345 74.2617 388.53 83.9092 392.051C92.764 395.282 101.803 395.406 109.715 395.029L109.86 395.022L335.006 381.426L335.127 381.417C347.547 380.535 360.717 376.889 370.12 366.212C379.335 355.75 380.958 342.967 380.958 333.359V95.0753C380.958 86.7983 378.898 78.5009 372.39 70.965C368.595 66.5704 363.178 62.6545 359.406 59.9283C358.887 59.5528 358.398 59.1998 357.95 58.8713L357.768 58.7383L295.914 15.2639C287.833 9.40276 279.51 4.11203 268.519 1.62123C258.306 -0.693516 247.597 -0.133719 235.875 0.868913ZM44.056 38.0569L237.701 23.7967C239.187 23.6692 240.605 23.5551 241.959 23.4557C262.28 21.965 268.533 23.8019 282.545 33.9806L344.359 77.4261C344.891 77.8156 345.404 78.1905 345.899 78.5522C354.904 85.1258 357.958 87.3558 357.958 95.0753V333.359C357.958 347.359 353.177 355.996 336.907 358.134C335.822 358.277 334.687 358.391 333.498 358.475L108.619 372.055C94.3416 372.736 87.5464 370.701 80.0693 361.191L34.5487 302.131C34.0389 301.451 33.5477 300.782 33.0748 300.123C25.9812 290.237 23 282.531 23 273.61V61.8081C23 60.2816 23.085 58.7867 23.2643 57.3368C23.7339 53.5393 24.8501 50.0501 26.7789 47.1082C26.814 47.0547 26.8493 47.0014 26.8849 46.9483C26.9254 46.8879 26.9662 46.8277 27.0074 46.7677C30.2624 42.0312 35.7039 38.7802 44.056 38.0569Z" fill="white"></path><path d="M80.7599 84.2182C91.6206 93.0413 95.6948 92.3681 116.088 91.0076L308.351 79.463C312.429 79.463 309.038 75.3949 307.678 74.7188L275.747 51.6355C269.629 46.8857 261.478 41.446 245.855 42.8066L59.6871 56.3852C52.8978 57.0584 51.5415 60.453 54.2457 63.1742L80.7599 84.2182Z" fill="white"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M92.3031 331.318V129.025C92.3031 120.201 95.021 116.125 103.169 115.44L323.977 102.546C331.466 101.868 334.857 106.623 334.857 115.44V316.376C334.857 325.208 333.495 332.686 321.261 333.359L109.964 345.585C97.7361 346.257 92.3031 342.191 92.3031 331.318ZM294.768 152.79C300.894 152.102 302.249 145.992 300.894 139.876L254.001 142.606C247.206 143.279 241.778 148.708 243.135 156.184L260.804 158.213V251.899L191.501 145.995L141.221 149.384C131.703 150.068 128.311 158.886 129.672 165.002L146.654 166.363V300.099L134.424 303.489C129.67 304.848 128.308 311.631 129.67 314.35L176.538 311.631C193.54 311.631 193.54 299.418 193.54 299.418L172.467 294.662V193.514L239.06 298.057C247.206 308.234 249.929 311.631 260.804 311.631C267.596 311.631 275.747 308.915 284.586 304.164V154.818L294.768 152.79Z" fill="white"></path></svg></div></div></div></div></div><div style="width: calc(100% + 0px); user-select: none;"></div></header><main class="notion-frame" style="flex-grow: 0; flex-shrink: 1; display: flex; flex-direction: column; background: rgb(25, 25, 25); z-index: 1; height: calc(-44px + 100vh); max-height: 100%; position: relative; width: 1389px; transform: translateX(0px); transition-duration: 200ms; transition-timing-function: ease; transition-property: width, transform;"><div style="display: contents;"><div class="notion-scroller vertical" style="z-index: 1; display: flex; flex-direction: column; flex-grow: 1; position: relative; align-items: center; margin-right: 0px; margin-bottom: 0px; overflow: hidden auto;"><div class="sticky-portal-target" data-sticky-stack-name="default" style="position: sticky; z-index: 999; width: 100%; top: 0px; left: 0px; height: 0px; flex: 0 1 0%;"></div><div style="position: absolute; top: 0px; left: 0px; z-index: 99;"><div class="notion-selectable-hover-menu-item"></div></div><div role="textbox" aria-disabled="true" aria-label="Start typing to edit text" aria-multiline="true" class="whenContentEditable" data-content-editable-root="true" style="caret-color: rgba(255, 255, 255, 0.81); width: 100%; display: flex; flex-direction: column; position: relative; align-items: center; flex-grow: 1; --whenContentEditable--WebkitUserModify: read-write-plaintext-only;" data-content-editable-selecting="true"><span data-content-editable-root-tiny-selection-trap="true" style="height: 1px; width: 1px; caret-color: transparent; margin-top: -1px;"></span><div class="layout" style="padding-bottom: 30vh; transform: translateX(0px); transition-duration: 200ms; transition-timing-function: ease; transition-property: transform;"><div contenteditable="false" class="pseudoSelection" data-content-editable-void="true" style="user-select: none; --pseudoSelection--background: transparent; display: contents;"><div class="layout-margin-right" style="width: calc(100% + 0px); grid-row: 1 / -1; padding-left: 0px; position: sticky; top: 0px; right: 0px; z-index: 80; transition: opacity 0.2s; opacity: 1; visibility: visible; pointer-events: none;"><div style="width: 100%; height: 0px;"></div><div class="hide-scrollbar ignore-scrolling-container notion-floating-table-of-contents" style="position: absolute; top: 0px; width: calc(100% + 0px); height: calc(-44px + 100vh); display: flex; flex-direction: column; pointer-events: none;"><div style="display: flex;"><div contenteditable="false" data-content-editable-void="true" style="width: 100%;"><div style="max-height: 570px; margin-bottom: 60px; pointer-events: auto;"><div style="max-height: 400px; display: flex; flex-direction: row; position: absolute; top: 130px; right: 0px; overflow-y: hidden; opacity: 1;"><div style="width: 56px; display: flex; flex-direction: column; justify-content: center; padding-bottom: 12px; padding-right: 8px;"><div style="display: flex; flex-direction: column; gap: 12px; padding-left: 20px; padding-bottom: 12px; height: 100%;"><div><div style="background-color: rgb(211, 211, 211); height: 2px; width: 16px; transition: background 0.2s, box-shadow 0.2s; box-shadow: rgb(211, 211, 211) 0px 0px 3px; border-radius: 2px; margin-left: 0px;"></div></div><div><div style="background-color: rgb(90, 90, 90); height: 2px; width: 16px; transition: background 0.2s, box-shadow 0.2s; box-shadow: none; border-radius: 2px; margin-left: 0px;"></div></div></div></div></div></div></div></div></div></div></div><div class="layout-full" style="isolation: isolate;"><div contenteditable="false" class="pseudoSelection" data-content-editable-void="true" style="user-select: none; --pseudoSelection--background: transparent; width: 100%; display: flex; flex-direction: column; align-items: center; flex-shrink: 0; flex-grow: 0; z-index: 2; transform: translateX(0px); transition-duration: 200ms; transition-timing-function: ease; transition-property: transform;"></div></div><div class="layout-content" style="margin-bottom: 0px; padding-bottom: 0px;"><div style="width: 100%; display: flex; flex-direction: column; align-items: center; flex-shrink: 0; flex-grow: 0;"><div style="max-width: 100%; padding-left: calc(0px + env(safe-area-inset-left)); width: 100%;"><div contenteditable="false" class="pseudoSelection" data-content-editable-void="true" style="user-select: none; --pseudoSelection--background: transparent; pointer-events: none;"><div style="display: flow-root; pointer-events: auto;"></div><div><div class="notion-page-controls" style="display: flex; justify-content: flex-start; flex-wrap: wrap; padding-top: 80px; padding-bottom: 4px; margin-left: -1px; color: rgba(255, 255, 255, 0.282); font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, &quot;Segoe UI Variable Display&quot;, &quot;Segoe UI&quot;, Helvetica, &quot;Apple Color Emoji&quot;, Arial, sans-serif, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; pointer-events: auto;"></div></div></div><div style="padding-right: calc(0px + env(safe-area-inset-right));"><div><div data-block-id="8a468f37-fdd1-4e61-8c2f-8be14d34f67a" class="notion-selectable notion-page-block" style="color: rgba(255, 255, 255, 0.81); font-weight: 700; line-height: 1.2; font-size: 40px; font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, &quot;Segoe UI Variable Display&quot;, &quot;Segoe UI&quot;, Helvetica, &quot;Apple Color Emoji&quot;, Arial, sans-serif, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; cursor: text; display: flex; align-items: center;"><h1 spellcheck="true" placeholder="New page" contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding-top: 3px; padding-left: 2px; padding-right: 2px; font-size: 1em; font-weight: inherit; margin: 0px;">Debugging Exercise</h1></div><div style="margin-left: 4px;"></div></div></div></div></div></div><div class="layout-content" style="min-height: 170px; padding-top: 5px;"><div class="notion-page-content" style="flex-shrink: 0; flex-grow: 1; max-width: 100%; display: flex; align-items: flex-start; flex-direction: column; font-size: 16px; line-height: 1.5; width: 100%; z-index: 4; padding: 8px 0px 0px;"><div data-block-id="564396a1-da23-4b1a-b4c4-5989508d3a97" class="notion-selectable notion-text-block" style="width: 100%; max-width: 1197px; margin-top: 2px; margin-bottom: 1px;"><div style="color: inherit; fill: inherit;"><div style="display: flex;"><div spellcheck="true" placeholder=" " contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px; min-height: 1em; color: rgba(255, 255, 255, 0.81); -webkit-text-fill-color: rgba(255, 255, 255, 0.282);"></div><div style="position: relative; left: 0px;"></div></div></div></div><div data-block-id="87f6bc63-150b-4d7c-9e8c-6bcb7dce7d4d" class="notion-selectable notion-text-block" style="width: 100%; max-width: 1197px; margin-top: 1px; margin-bottom: 1px;"><div style="color: inherit; fill: inherit;"><div style="display: flex;"><div spellcheck="true" placeholder=" " contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px;">Hello, future software developer! In this exercise, you will practice debugging. <span role="img" aria-label="🐛" style="white-space:nowrap;font-size:1em;font-family:&quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;">🐛</span></div><div style="position: relative; left: 0px;"></div></div></div></div><div data-block-id="87c8d385-aef1-4881-882e-0480ded7bc07" class="notion-selectable notion-text-block" style="width: 100%; max-width: 1197px; margin-top: 1px; margin-bottom: 1px;"><div style="color: inherit; fill: inherit;"><div style="display: flex;"><div spellcheck="true" placeholder=" " contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px; min-height: 1em; color: rgba(255, 255, 255, 0.81); -webkit-text-fill-color: rgba(255, 255, 255, 0.282);"></div><div style="position: relative; left: 0px;"></div></div></div></div><div data-block-id="724e6980-5df7-410b-9366-092ad062df01" class="notion-selectable notion-text-block" style="width: 100%; max-width: 1197px; margin-top: 1px; margin-bottom: 1px;"><div style="color: inherit; fill: inherit;"><div style="display: flex;"><div spellcheck="true" placeholder=" " contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px;">As a systems engineer <span role="img" aria-label="🧑‍💻" style="white-space:nowrap;font-size:1em;font-family:&quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;">🧑‍💻</span> in the Rich Bank <span role="img" aria-label="🏦" style="white-space:nowrap;font-size:1em;font-family:&quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;">🏦</span>, you know:</div><div style="position: relative; left: 0px;"></div></div></div></div><div data-block-id="2fc3afbe-1c2d-4821-8974-673317317c06" class="notion-selectable notion-bulleted_list-block" style="width: 100%; max-width: 1197px; margin-top: 1px; margin-bottom: 1px;"><div style="display: flex; align-items: flex-start; width: 100%; padding-left: 2px; color: inherit; fill: inherit;"><div contenteditable="false" class="pseudoSelection" data-content-editable-void="true" data-text-edit-side="start" style="user-select: none; --pseudoSelection--background: transparent; margin-right: 2px; width: 24px; display: flex; align-items: center; justify-content: center; flex-grow: 0; flex-shrink: 0; min-height: calc(1.5em + 6px);"><div class="pseudoBefore" style="font-size: 1.5em; line-height: 1; margin-bottom: 0px; --pseudoBefore--fontFamily: Arial; --pseudoBefore--content: &quot;•&quot;;"></div></div><div style="flex: 1 1 0px; min-width: 1px; display: flex; flex-direction: column;"><div style="display: flex;"><div spellcheck="true" placeholder="List" contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px; text-align: start;"><span role="img" aria-label="📋" style="white-space:nowrap;font-size:1em;font-family:&quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;">📋</span> Each account has the ID (positive integer), the owner (non-empty string), and the balance (non-negative number).</div><div style="position: relative; left: 0px;"></div></div></div></div></div><div data-block-id="bd84f2a7-6309-4194-8a86-c41e40dcbb0b" class="notion-selectable notion-bulleted_list-block" style="width: 100%; max-width: 1197px; margin-top: 1px; margin-bottom: 1px;"><div style="display: flex; align-items: flex-start; width: 100%; padding-left: 2px; color: inherit; fill: inherit;"><div contenteditable="false" class="pseudoSelection" data-content-editable-void="true" data-text-edit-side="start" style="user-select: none; --pseudoSelection--background: transparent; margin-right: 2px; width: 24px; display: flex; align-items: center; justify-content: center; flex-grow: 0; flex-shrink: 0; min-height: calc(1.5em + 6px);"><div class="pseudoBefore" style="font-size: 1.5em; line-height: 1; margin-bottom: 0px; --pseudoBefore--fontFamily: Arial; --pseudoBefore--content: &quot;•&quot;;"></div></div><div style="flex: 1 1 0px; min-width: 1px; display: flex; flex-direction: column;"><div style="display: flex;"><div spellcheck="true" placeholder="List" contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px; text-align: start;"><span role="img" aria-label="🧐" style="white-space:nowrap;font-size:1em;font-family:&quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;">🧐</span> Account holders can view their accounts using their ID (See: <span style="font-family:&quot;SFMono-Regular&quot;, Menlo, Consolas, &quot;PT Mono&quot;, &quot;Liberation Mono&quot;, Courier, monospace;line-height:normal;background:rgba(135,131,120,.15);color:#EB5757;border-radius:4px;font-size:85%;padding:0.2em 0.4em" data-token-index="1" spellcheck="false" class="notion-enable-hover">getAccountById</span>).</div><div style="position: relative; left: 0px;"></div></div></div></div></div><div data-block-id="e5a5999b-1b37-4d81-9902-5127b7e77e3b" class="notion-selectable notion-bulleted_list-block" style="width: 100%; max-width: 1197px; margin-top: 1px; margin-bottom: 1px;"><div style="display: flex; align-items: flex-start; width: 100%; padding-left: 2px; color: inherit; fill: inherit;"><div contenteditable="false" class="pseudoSelection" data-content-editable-void="true" data-text-edit-side="start" style="user-select: none; --pseudoSelection--background: transparent; margin-right: 2px; width: 24px; display: flex; align-items: center; justify-content: center; flex-grow: 0; flex-shrink: 0; min-height: calc(1.5em + 6px);"><div class="pseudoBefore" style="font-size: 1.5em; line-height: 1; margin-bottom: 0px; --pseudoBefore--fontFamily: Arial; --pseudoBefore--content: &quot;•&quot;;"></div></div><div style="flex: 1 1 0px; min-width: 1px; display: flex; flex-direction: column;"><div style="display: flex;"><div spellcheck="true" placeholder="List" contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px; text-align: start;"><span role="img" aria-label="🥳" style="white-space:nowrap;font-size:1em;font-family:&quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;">🥳</span> Customers can create a new account with an ID and their name with 0 balance (See: <span style="font-family:&quot;SFMono-Regular&quot;, Menlo, Consolas, &quot;PT Mono&quot;, &quot;Liberation Mono&quot;, Courier, monospace;line-height:normal;background:rgba(135,131,120,.15);color:#EB5757;border-radius:4px;font-size:85%;padding:0.2em 0.4em" data-token-index="1" spellcheck="false" class="notion-enable-hover">createAccount</span>).</div><div style="position: relative; left: 0px;"></div></div></div></div></div><div data-block-id="6dcbd129-db02-4630-9fa9-4273662b1491" class="notion-selectable notion-bulleted_list-block" style="width: 100%; max-width: 1197px; margin-top: 1px; margin-bottom: 1px;"><div style="display: flex; align-items: flex-start; width: 100%; padding-left: 2px; color: inherit; fill: inherit;"><div contenteditable="false" class="pseudoSelection" data-content-editable-void="true" data-text-edit-side="start" style="user-select: none; --pseudoSelection--background: transparent; margin-right: 2px; width: 24px; display: flex; align-items: center; justify-content: center; flex-grow: 0; flex-shrink: 0; min-height: calc(1.5em + 6px);"><div class="pseudoBefore" style="font-size: 1.5em; line-height: 1; margin-bottom: 0px; --pseudoBefore--fontFamily: Arial; --pseudoBefore--content: &quot;•&quot;;"></div></div><div style="flex: 1 1 0px; min-width: 1px; display: flex; flex-direction: column;"><div style="display: flex;"><div spellcheck="true" placeholder="List" contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px; text-align: start;"><span role="img" aria-label="💸" style="white-space:nowrap;font-size:1em;font-family:&quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;">💸</span> Account holders can deposit money to their accounts with their ID if the amount to be deposited is greater than 0, of course! (See: <span style="font-family:&quot;SFMono-Regular&quot;, Menlo, Consolas, &quot;PT Mono&quot;, &quot;Liberation Mono&quot;, Courier, monospace;line-height:normal;background:rgba(135,131,120,.15);color:#EB5757;border-radius:4px;font-size:85%;padding:0.2em 0.4em" data-token-index="1" spellcheck="false" class="notion-enable-hover">depositMoney</span>).</div><div style="position: relative; left: 0px;"></div></div></div></div></div><div data-block-id="b153e798-a411-4527-b778-fd38eb08e582" class="notion-selectable notion-bulleted_list-block" style="width: 100%; max-width: 1197px; margin-top: 1px; margin-bottom: 1px;"><div style="display: flex; align-items: flex-start; width: 100%; padding-left: 2px; color: inherit; fill: inherit;"><div contenteditable="false" class="pseudoSelection" data-content-editable-void="true" data-text-edit-side="start" style="user-select: none; --pseudoSelection--background: transparent; margin-right: 2px; width: 24px; display: flex; align-items: center; justify-content: center; flex-grow: 0; flex-shrink: 0; min-height: calc(1.5em + 6px);"><div class="pseudoBefore" style="font-size: 1.5em; line-height: 1; margin-bottom: 0px; --pseudoBefore--fontFamily: Arial; --pseudoBefore--content: &quot;•&quot;;"></div></div><div style="flex: 1 1 0px; min-width: 1px; display: flex; flex-direction: column;"><div style="display: flex;"><div spellcheck="true" placeholder="List" contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px; text-align: start;"><span role="img" aria-label="💰" style="white-space:nowrap;font-size:1em;font-family:&quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;">💰</span> Account holders can withdraw money from their accounts with their ID if the amount to be withdrawn is greater than 0, of course! (See: <span style="font-family:&quot;SFMono-Regular&quot;, Menlo, Consolas, &quot;PT Mono&quot;, &quot;Liberation Mono&quot;, Courier, monospace;line-height:normal;background:rgba(135,131,120,.15);color:#EB5757;border-radius:4px;font-size:85%;padding:0.2em 0.4em" data-token-index="1" spellcheck="false" class="notion-enable-hover">withdrawMoney</span>).</div><div style="position: relative; left: 0px;"></div></div></div></div></div><div data-block-id="6446c345-4c2e-4843-9ef8-17a320dd9249" class="notion-selectable notion-bulleted_list-block" style="width: 100%; max-width: 1197px; margin-top: 1px; margin-bottom: 1px;"><div style="display: flex; align-items: flex-start; width: 100%; padding-left: 2px; color: inherit; fill: inherit;"><div contenteditable="false" class="pseudoSelection" data-content-editable-void="true" data-text-edit-side="start" style="user-select: none; --pseudoSelection--background: transparent; margin-right: 2px; width: 24px; display: flex; align-items: center; justify-content: center; flex-grow: 0; flex-shrink: 0; min-height: calc(1.5em + 6px);"><div class="pseudoBefore" style="font-size: 1.5em; line-height: 1; margin-bottom: 0px; --pseudoBefore--fontFamily: Arial; --pseudoBefore--content: &quot;•&quot;;"></div></div><div style="flex: 1 1 0px; min-width: 1px; display: flex; flex-direction: column;"><div style="display: flex;"><div spellcheck="true" placeholder="List" contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px; text-align: start;"><span role="img" aria-label="🛫" style="white-space:nowrap;font-size:1em;font-family:&quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;">🛫</span> Account holders can transfer their money to another account holder's account using IDs if the amount to be transferred is greater than 0, of course! (See: <span style="font-family:&quot;SFMono-Regular&quot;, Menlo, Consolas, &quot;PT Mono&quot;, &quot;Liberation Mono&quot;, Courier, monospace;line-height:normal;background:rgba(135,131,120,.15);color:#EB5757;border-radius:4px;font-size:85%;padding:0.2em 0.4em" data-token-index="1" spellcheck="false" class="notion-enable-hover">transferMoney</span>).</div><div style="position: relative; left: 0px;"></div></div></div></div></div><div data-block-id="cc3d5bad-3e83-4af7-9907-2c9b78f485cd" class="notion-selectable notion-text-block" style="width: 100%; max-width: 1197px; margin-top: 1px; margin-bottom: 1px;"><div style="color: inherit; fill: inherit;"><div style="display: flex;"><div spellcheck="true" placeholder=" " contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px;">The starter code is full of bugs. Your task is fixing the bugs using the knowledge above.</div><div style="position: relative; left: 0px;"></div></div></div></div><div data-block-id="b06d5af1-b053-417d-859f-bf8b909888a7" class="notion-selectable notion-sub_sub_header-block" style="width: 100%; max-width: 1197px; margin-top: 1em; margin-bottom: 1px;"><div style="display: flex; width: 100%; color: inherit; fill: inherit;"><h4 spellcheck="true" placeholder="Heading 3" contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px; font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, &quot;Segoe UI Variable Display&quot;, &quot;Segoe UI&quot;, Helvetica, &quot;Apple Color Emoji&quot;, Arial, sans-serif, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-weight: 600; font-size: 1.25em; line-height: 1.3; margin: 0px;">Starter Code</h4><div style="position: relative; left: 0px;"></div></div></div><div data-block-id="c85c2dac-4286-47c9-9518-0d94d0e41884" class="notion-selectable notion-file-block" style="width: 100%; max-width: 1389px; margin-top: 1px; margin-bottom: 1px;"><div role="figure" aria-labelledby=":r4:"><div style="display: flex;"><div role="button" tabindex="0" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; flex-grow: 1; min-width: 0px; border-radius: 4px; color: rgb(82, 158, 114); fill: rgb(82, 158, 114);"><div style="display: flex; align-items: center; width: 100%; padding-top: 3px; padding-bottom: 3px; padding-left: 2px;"><div contenteditable="false" class="pseudoSelection" data-content-editable-void="true" data-text-edit-side="start" style="user-select: none; --pseudoSelection--background: transparent; margin-right: 2px; width: 1.35em; display: flex; align-items: center; justify-content: center; flex-grow: 0; flex-shrink: 0; min-height: calc(1.5em + 6px); height: 1.35em;"><svg role="graphics-symbol" viewBox="0 0 16 16" class="file" style="width: 100%; height: 100%; display: block; fill: inherit; flex-shrink: 0;"><path d="M4.35645 15.4678H11.6367C13.0996 15.4678 13.8584 14.6953 13.8584 13.2256V7.02539C13.8584 6.0752 13.7354 5.6377 13.1406 5.03613L9.55176 1.38574C8.97754 0.804688 8.50586 0.667969 7.65137 0.667969H4.35645C2.89355 0.667969 2.13477 1.44043 2.13477 2.91016V13.2256C2.13477 14.7021 2.89355 15.4678 4.35645 15.4678ZM4.46582 14.1279C3.80273 14.1279 3.47461 13.7793 3.47461 13.1436V2.99219C3.47461 2.36328 3.80273 2.00781 4.46582 2.00781H7.37793V5.75391C7.37793 6.73145 7.86328 7.20312 8.83398 7.20312H12.5186V13.1436C12.5186 13.7793 12.1836 14.1279 11.5205 14.1279H4.46582ZM8.95703 6.02734C8.67676 6.02734 8.56055 5.9043 8.56055 5.62402V2.19238L12.334 6.02734H8.95703ZM8.59473 12.7266V10.6279L8.54004 9.56152L9.06641 10.1152L9.59277 10.6484C9.68848 10.7646 9.8457 10.833 9.98926 10.833C10.2969 10.833 10.5293 10.6143 10.5293 10.3066C10.5293 10.1357 10.4678 10.0127 10.3379 9.90332L8.45117 8.16699C8.29395 8.02344 8.16406 7.96191 7.99316 7.96191C7.8291 7.96191 7.69922 8.02344 7.54199 8.16699L5.65527 9.90332C5.52539 10.0127 5.46387 10.1357 5.46387 10.3066C5.46387 10.6143 5.68945 10.833 6.00391 10.833C6.14746 10.833 6.29785 10.7646 6.40039 10.6484L6.92676 10.1152L7.45312 9.56152L7.39844 10.6279V12.7266C7.39844 13.0547 7.67188 13.3008 7.99316 13.3008C8.32129 13.3008 8.59473 13.0547 8.59473 12.7266Z"></path></svg></div><div style="flex: 1 1 0px; min-width: 1px;"><div style="display: flex; align-items: baseline;"><div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Starter Code.zip</div><div style="font-size: 12px; line-height: 16px; color: rgba(255, 255, 255, 0.443); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-left: 6px;">1.6KB</div></div></div></div></div><div style="position: relative; left: 0px;"></div></div></div></div><div data-block-id="dbf3b255-48bb-44ae-b84b-84fca02eee7f" class="notion-selectable notion-callout-block" style="width: 100%; max-width: 1197px; margin-top: 4px; margin-bottom: 4px;"><div role="note" style="display: flex;"><div style="display: flex; width: 100%; border-radius: 4px; border: 1px solid transparent; background: rgb(34, 43, 38); padding: 16px 16px 16px 12px;"><div><div class="notion-record-icon notranslate" style="display: flex; align-items: center; justify-content: center; height: 24px; width: 24px; border-radius: 0.25em; flex-shrink: 0;"><div aria-label="💡 Callout icon" role="img" style="display: flex; align-items: center; justify-content: center; height: 24px; width: 24px;"><div style="height: 21.6px; width: 21.6px; font-size: 21.6px; line-height: 1; margin-left: 0px; color: rgb(246, 246, 246);"><span role="img" aria-label="💡" style="white-space: nowrap; font-family: &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;">💡</span></div></div></div></div><div style="display: flex; flex-direction: column; min-width: 0px; margin-left: 8px; width: 100%;"><div spellcheck="true" placeholder="Type something…" contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding-left: 2px; padding-right: 2px;">Hints:</div><div data-block-id="b54cdaa9-94a0-4f80-ac07-4e5a287b9ce2" class="notion-selectable notion-bulleted_list-block" style="width: 100%; max-width: 100%; margin-top: 2px; margin-bottom: 1px;"><div style="display: flex; align-items: flex-start; width: 100%; padding-left: 2px; color: inherit; fill: inherit;"><div contenteditable="false" class="pseudoSelection" data-content-editable-void="true" data-text-edit-side="start" style="user-select: none; --pseudoSelection--background: transparent; margin-right: 2px; width: 24px; display: flex; align-items: center; justify-content: center; flex-grow: 0; flex-shrink: 0; min-height: calc(1.5em + 6px);"><div class="pseudoBefore" style="font-size: 1.5em; line-height: 1; margin-bottom: 0px; --pseudoBefore--fontFamily: Arial; --pseudoBefore--content: &quot;•&quot;;"></div></div><div style="flex: 1 1 0px; min-width: 1px; display: flex; flex-direction: column;"><div style="display: flex;"><div spellcheck="true" placeholder="List" contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px; text-align: start;">At the end of the <span style="font-family:&quot;SFMono-Regular&quot;, Menlo, Consolas, &quot;PT Mono&quot;, &quot;Liberation Mono&quot;, Courier, monospace;line-height:normal;background:rgba(135,131,120,.15);color:#EB5757;border-radius:4px;font-size:85%;padding:0.2em 0.4em" data-token-index="1" spellcheck="false" class="notion-enable-hover">rich-bank.js</span> file, you will find function calls, each representing a hint of a bug.</div><div style="position: relative; left: 16px;"></div></div></div></div></div><div data-block-id="5c288cc3-8532-4495-8609-a67f6f9001a6" class="notion-selectable notion-bulleted_list-block" style="width: 100%; max-width: 100%; margin-top: 1px; margin-bottom: 0px;"><div style="display: flex; align-items: flex-start; width: 100%; padding-left: 2px; color: inherit; fill: inherit;"><div contenteditable="false" class="pseudoSelection" data-content-editable-void="true" data-text-edit-side="start" style="user-select: none; --pseudoSelection--background: transparent; margin-right: 2px; width: 24px; display: flex; align-items: center; justify-content: center; flex-grow: 0; flex-shrink: 0; min-height: calc(1.5em + 6px);"><div class="pseudoBefore" style="font-size: 1.5em; line-height: 1; margin-bottom: 0px; --pseudoBefore--fontFamily: Arial; --pseudoBefore--content: &quot;•&quot;;"></div></div><div style="flex: 1 1 0px; min-width: 1px; display: flex; flex-direction: column;"><div style="display: flex;"><div spellcheck="true" placeholder="List" contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px; text-align: start;">You might be fixing an equality check, adding code logic, or throwing an error where missing.</div><div style="position: relative; left: 16px;"></div></div></div></div></div></div></div><div style="position: relative; left: 0px;"></div></div></div><div data-block-id="9e222a01-aa89-4b5b-83b0-ed11b300132d" class="notion-selectable notion-text-block" style="width: 100%; max-width: 1197px; margin-top: 1px; margin-bottom: 1px;"><div style="color: inherit; fill: inherit;"><div style="display: flex;"><div spellcheck="true" placeholder=" " contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px; min-height: 1em; color: rgba(255, 255, 255, 0.81); -webkit-text-fill-color: rgba(255, 255, 255, 0.282);"></div><div style="position: relative; left: 0px;"></div></div></div></div><div data-block-id="4d1945da-b645-49b7-b342-f0a57ddb4425" class="notion-selectable notion-text-block" style="width: 100%; max-width: 1197px; margin-top: 1px; margin-bottom: 1px;"><div style="color: inherit; fill: inherit;"><div style="display: flex;"><div spellcheck="true" placeholder=" " contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px;">Happy coding!
+
+</div><div style="position: relative; left: 0px;"></div></div></div></div><div data-block-id="5ca11722-2de0-44b9-9f97-b18b84c09e55" class="notion-selectable notion-sub_sub_header-block" style="width: 100%; max-width: 1197px; margin-top: 1em; margin-bottom: 0px;"><div style="display: flex; width: 100%; color: rgb(82, 158, 114); fill: rgb(82, 158, 114);"><div style="display: flex; align-items: flex-start; width: 100%; padding-left: 2px;"><div contenteditable="false" class="pseudoSelection" data-content-editable-void="true" data-text-edit-side="start" style="user-select: none; --pseudoSelection--background: transparent; margin-right: 2px; width: 24px; display: flex; align-items: center; justify-content: center; flex-grow: 0; flex-shrink: 0; min-height: calc(1.5em + 6px); padding-right: 2px; height: 1.625em; margin-top: 3px; margin-bottom: 3px;"><div role="button" tabindex="0" aria-describedby=":r5:" aria-expanded="true" aria-label="Close" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 4px;" aria-controls=":r6:"><svg role="graphics-symbol" viewBox="0 0 100 100" class="triangle" style="width: 0.6875em; height: 0.6875em; display: block; fill: inherit; flex-shrink: 0; transition: transform 200ms ease-out; transform: rotateZ(180deg); opacity: 1;"><polygon points="5.9,88.2 50,11.8 94.1,88.2 "></polygon></svg></div></div><div style="flex: 1 1 0px; min-width: 1px;"><div id=":r5:" style="display: flex;"><h4 spellcheck="true" placeholder="Heading 3" contenteditable="false" data-content-editable-leaf="true" style="max-width: 100%; width: 100%; white-space: pre-wrap; word-break: break-word; caret-color: rgba(255, 255, 255, 0.81); padding: 3px 2px; font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, &quot;Segoe UI Variable Display&quot;, &quot;Segoe UI&quot;, Helvetica, &quot;Apple Color Emoji&quot;, Arial, sans-serif, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-weight: 600; font-size: 1.25em; line-height: 1.3; margin: 0px;">After you complete the exercise, please take a look at our solution:
+
+</h4><div style="position: relative; left: 0px;"></div></div><div id=":r6:" style="display: flex;"><div style="display: flex; flex-direction: column; width: 100%;"><div data-block-id="dcc994fa-91ac-465d-92ed-de3ca308fb58" class="notion-selectable notion-file-block" style="width: 100%; max-width: 100%; margin-top: 2px; margin-bottom: 0px;"><div role="figure" aria-labelledby=":r7:"><div style="display: flex;"><div role="button" tabindex="0" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; flex-grow: 1; min-width: 0px; border-radius: 4px; color: inherit; fill: inherit;"><div style="display: flex; align-items: center; width: 100%; padding-top: 3px; padding-bottom: 3px; padding-left: 2px;"><div contenteditable="false" class="pseudoSelection" data-content-editable-void="true" data-text-edit-side="start" style="user-select: none; --pseudoSelection--background: transparent; margin-right: 2px; width: 1.35em; display: flex; align-items: center; justify-content: center; flex-grow: 0; flex-shrink: 0; min-height: calc(1.5em + 6px); height: 1.35em;"><svg role="graphics-symbol" viewBox="0 0 16 16" class="file" style="width: 100%; height: 100%; display: block; fill: inherit; flex-shrink: 0;"><path d="M4.35645 15.4678H11.6367C13.0996 15.4678 13.8584 14.6953 13.8584 13.2256V7.02539C13.8584 6.0752 13.7354 5.6377 13.1406 5.03613L9.55176 1.38574C8.97754 0.804688 8.50586 0.667969 7.65137 0.667969H4.35645C2.89355 0.667969 2.13477 1.44043 2.13477 2.91016V13.2256C2.13477 14.7021 2.89355 15.4678 4.35645 15.4678ZM4.46582 14.1279C3.80273 14.1279 3.47461 13.7793 3.47461 13.1436V2.99219C3.47461 2.36328 3.80273 2.00781 4.46582 2.00781H7.37793V5.75391C7.37793 6.73145 7.86328 7.20312 8.83398 7.20312H12.5186V13.1436C12.5186 13.7793 12.1836 14.1279 11.5205 14.1279H4.46582ZM8.95703 6.02734C8.67676 6.02734 8.56055 5.9043 8.56055 5.62402V2.19238L12.334 6.02734H8.95703ZM8.59473 12.7266V10.6279L8.54004 9.56152L9.06641 10.1152L9.59277 10.6484C9.68848 10.7646 9.8457 10.833 9.98926 10.833C10.2969 10.833 10.5293 10.6143 10.5293 10.3066C10.5293 10.1357 10.4678 10.0127 10.3379 9.90332L8.45117 8.16699C8.29395 8.02344 8.16406 7.96191 7.99316 7.96191C7.8291 7.96191 7.69922 8.02344 7.54199 8.16699L5.65527 9.90332C5.52539 10.0127 5.46387 10.1357 5.46387 10.3066C5.46387 10.6143 5.68945 10.833 6.00391 10.833C6.14746 10.833 6.29785 10.7646 6.40039 10.6484L6.92676 10.1152L7.45312 9.56152L7.39844 10.6279V12.7266C7.39844 13.0547 7.67188 13.3008 7.99316 13.3008C8.32129 13.3008 8.59473 13.0547 8.59473 12.7266Z"></path></svg></div><div style="flex: 1 1 0px; min-width: 1px;"><div style="display: flex; align-items: baseline;"><div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Solution.zip</div><div style="font-size: 12px; line-height: 16px; color: rgba(255, 255, 255, 0.443); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-left: 6px;">1.6KB</div></div></div></div></div><div style="position: relative; left: 0px;"></div></div></div></div></div></div></div></div></div></div></div></div></div><span data-content-editable-root-tiny-selection-trap="true" style="height: 1px; width: 1px; caret-color: transparent;"></span></div><div class="notion-presence-container" style="position: absolute; top: 0px; left: 0px; z-index: 89;"><div></div></div><div class="sticky-portal-target" data-sticky-stack-name="default" style="position: sticky; z-index: 999; width: 100%; bottom: 0px; left: 0px; flex: 0 1 0%;"></div></div></div></main></div><div role="region" aria-label="Side Peek" aria-hidden="true" class="notion-peek-renderer" style="position: fixed; top: 0px; right: 0px; bottom: 0px; width: 694.5px; z-index: 109; transform: translateX(694.5px) translateZ(0px); transition-delay: 0ms; transition-property: width, transform; transition-duration: 200ms; transition-timing-function: ease;"></div></div></div><div class="notion-overlay-container notion-default-overlay-container" style="position: fixed; inset: 0px; z-index: 999; pointer-events: none; overflow: hidden;"><div style="position: relative; z-index: 0;"></div></div></div></div><script>function handleDragOver(e){if(e.dataTransfer&&e.dataTransfer.types.includes("application/x.notion.tab-id"))return e.dataTransfer.dropEffect="move",void e.preventDefault()}var notionApp=document.getElementById("notion-app");notionApp.addEventListener("dragover",handleDragOver)</script><script>window.CONFIG={env:"production",isAdminMode:!1,isDevelopingInAirplaneMode:!1,isLocalhost:!1,offline:!0,version:"23.13.0.785",buildTarget:"client",domainBaseUrl:"https://www.notion.so",adminUrl:"https://admin.notion.so",publicDomainName:"notion.site",protocol:"notion",staticS3:{url:"https://prod-notion-assets.s3-us-west-2.amazonaws.com",bucket:"prod-notion-assets"},lastUpdatedTime:1732394664536,api:{http:"/api/v3"},googleOAuth:{clientId:"905154081809-858sm3f0qnalqd9d44d9gecjtrdji9tf.apps.googleusercontent.com"},messageStore:{url:"https://msgstore.www.notion.so",api:"/api/v1"},audioProcessor:{url:"https://audioprocessor.www.notion.so",api:"/api/v1"},stripe:{key:"pk_live_vuNO27XGTCbXjVwneiECILjT"},calendar:{domainBaseUrl:"https://calendar.notion.so",notionAuthUrl:"https://calendar.notion.so/notion-auth",openNotionDatabaseUrl:"https://calendar.notion.so/open-notion-database",createEventUrl:"https://calendar.notion.so/event/create",calendarSettingsUrl:"https://calendar.notion.so/settings/calendars",desktopProtocol:"cron",downloadUrl:"https://www.notion.so/calendar/download"},zoom:{desktopProtocol:"zoommtg"},cron:{domainBaseUrl:"https://calendar.cron.com"},mail:{apiBaseUrl:"https://api.mail.notion.so",domainBaseUrl:"https://mail.notion.so",protocol:"notionmail"},identity:{domainBaseUrl:"https://identity.notion.so"},revenueCat:{apiResponseMaxAge:6048e5,entitlementIDs:{personal:"notion.id.personal_pro"},productIDs:{personal:{monthly:"notion.id.personal_pro_monthly",yearly:"notion.id.personal_pro_yearly"}}},mutiny:{personalKey:"1149e901f65fc47c"},partnerStack:{apiKey:"pk_6nwYfqCKEoPt2lTuU8Veswm2zArJ3Apq"},pricing:{invoiceDaysUntilDue:30,free:{spaceBlockLimit:1e3,fileUploadMaxBytes:5e6},team_free:{spaceBlockLimit:1e3,fileUploadMaxBytes:5e6},personal_free:{fileUploadMaxBytes:5e6},student:{productId:"prod_FhChFoDp7gS1Ba"},personal:{productId:"prod_CpavZFCbxF2YGx",monthlyPrice:500,yearlyPrice:4800},plus:{productId:"prod_CpawK4ih14xs4t",monthlyPricePerMember:1e3,yearlyPricePerMember:9600},business:{productId:"prod_LEnFERYcTgENz8",monthlyPricePerMember:1800,yearlyPricePerMember:18e3},enterprise:{productId:"prod_Cpb8M1AFEFhdy1",monthlyPricePerMember:2500,yearlyPricePerMember:24e3},ai:{productId:"prod_N6tyEr9FFSTXJo",monthlyPricePerMember:1e3,yearlyPricePerMember:9600},sites_custom_hostnames:{productId:"prod_Q71ZOab5K7GTYc"}},trials:{default:{duration:14},enterprise:{duration:30},mm_ent:{duration:30},upwork:{duration:30},perfmark:{duration:30},reverse:{duration:14},reverse_mm_ent:{duration:30}},desktopS3:{url:"https://s3-us-west-2.amazonaws.com/desktop-release.notion-static.com"},publicFileS3:{url:"https://s3-us-west-2.amazonaws.com/public.notion-static.com",bucket:"public.notion-static.com"},temporaryFileS3:{url:"https://s3-us-west-2.amazonaws.com/temporary.notion-static.com",bucket:"temporary.notion-static.com"},secureFileS3V2:{url:"https://prod-files-secure.s3.us-west-2.amazonaws.com"},secureFileConfig:{rootPath:"/f",protocol:"https",hostname:"lessons.springboard.com"},loggly:{token:"9b01b08e-c969-4e27-837c-805d1fc6ec7b"},splunk:{token:"EA76605A-F565-4B17-A496-34435622A1EB"},embedly:{key:"421626497c5d4fc2ae6b075189d602a2"},iframely:{key:"222a85036317ca50d3ba5f321bfda6f0"},iframely_prod:{key:"656ac74fac4fff346b811dca7919d483"},aif:{url:"https://lessons.springboard.com/aif-production.html"},contentful:{spaceId:"spoqsaf9291f"},iOSAppId:1232780281,facebook:{pixelId:"499229960464487"},statsig:{apiKey:"client-Tgza5wNFa8dVt9BdeUfG6Vkm29bHxX10MhoztTMzLBB"},googleReCaptcha:{siteKey:"6LcvqigfAAAAAPaPL3j2YLldFcZVGwKvG9TmjDgK"},turnstile:{sitekey:"0x4AAAAAAADLq8YYJOHc6qqw"},google:{clientId:"905154081809-858sm3f0qnalqd9d44d9gecjtrdji9tf.apps.googleusercontent.com"},sprig:{environmentId:"2HKBN1wgCwHr"},front:{domainBaseUrl:"https://www.notion.com"},imageProxy:{baseUrl:"https://img.notionusercontent.com/"}}</script>
+    <script id="ci-hist-static-js">
+    (async () => {
+      try {
+
+         const distributionSlugData = {"":"8ee4277b573a4b75bfac61357183ca4a"};
+
+        const slugData = {}
+        Object.keys(distributionSlugData).forEach(key => {
+          const slug = distributionSlugData[key];
+          slugData[slug.slug] = key.replaceAll('-','');
+        });
+
+        window.CONFIG.domainBaseUrl = 'https://lessons.springboard.com';
+        const SLUG_TO_PAGE = slugData;
+        const PAGE_TO_SLUG = {};
+        const slugs = [];
+        const pages = [];
+        let redirected = false;
+        Object.keys(SLUG_TO_PAGE).forEach(slug => {
+          const page = SLUG_TO_PAGE[slug];
+          slugs.push(slug);
+          pages.push(page);
+          PAGE_TO_SLUG[page] = slug;
+        });
+        function getPage() {
+          return location.pathname.slice(-32);
+        }
+        function getSlug() {
+          return location.pathname.slice(1);
+        }
+        function updateSlug() {
+          const slug = PAGE_TO_SLUG[getPage()];
+          if (slug != null) {
+            history.replaceState(history.state, '', '/' + slug);
+          }
+        }
+
+        const observer = new MutationObserver(function() {
+          if (redirected) return;
+          const nav = document.querySelector('.notion-topbar');
+          const mobileNav = document.querySelector('.notion-topbar-mobile');
+          if (nav && nav.firstChild && nav.firstChild.firstChild
+            || mobileNav && mobileNav.firstChild) {
+            redirected = true;
+            updateSlug();
+            const onpopstate = window.onpopstate;
+            window.onpopstate = function() {
+              if (slugs.includes(getSlug())) {
+                const page = SLUG_TO_PAGE[getSlug()];
+                if (page) {
+                  // history.replaceState(history.state, 'bypass', '/' + page);
+                  window.location.assign('/' + page);
+                  return;
+                }
+              }
+              onpopstate.apply(this, [].slice.call(arguments));
+              updateSlug();
+            };
+          }
+        });
+        observer.observe(document.querySelector('#notion-app'), {
+          childList: true,
+          subtree: true,
+        });
+        const replaceState = window.history.replaceState;
+        window.history.replaceState = function(state) {
+          if (arguments[1] !== 'bypass' && slugs.includes(getSlug())) return;
+          return replaceState.apply(window.history, arguments);
+        };
+        const pushState = window.history.pushState;
+        window.history.pushState = function(state) {
+          const dest = new URL(location.protocol + location.host + arguments[2]);
+          const id = dest.pathname.slice(-32);
+          if (pages.includes(id)) {
+            arguments[2] = '/' + PAGE_TO_SLUG[id];
+          }
+          return pushState.apply(window.history, arguments);
+        };
+
+      } catch (error) {
+        console.error("Failed to load SLUG DATA:", error);
+      }
+    })();
+    </script>
+    
+  <script id="ci-xhr-js">
+  const open = window.XMLHttpRequest.prototype.open;
+  window.XMLHttpRequest.prototype.open = function() {
+    arguments[1] = arguments[1].replace('lessons.springboard.com', 'www.notion.so');
+    // arguments[1] = arguments[1].replace('msgstore.www.notion.so', 'lessons.springboard.com');
+    if (arguments[1].includes('msgstore.www.notion.so') || arguments[1].includes('primus-v8')) {
+      // console.log('Swallowed request:', arguments[1]);
+      return;
+    }
+    return open.apply(this, [].slice.call(arguments));
+  };
+  </script>
+  
+  <div></div>
+  <div id="dupe-modal" style="display: none;">
+    <div class="dupe-content">
+      <h3 class="dupe-title">Ready to copy this Notion template?</h3>
+      <p class="dupe-description">Click Continue to duplicate this template to your Notion workspace.</p>
+      <div class="dupe-footer">
+        <button id="dupe-cancel" class="dupe-button dupe-cancel">Cancel</button>
+        <button id="dupe-continue" class="dupe-button dupe-continue">
+          <span><a href="https://www.notion.so/#?duplicate=true&amp;pvs=36&amp;utm_source=public_page&amp;utm_content=duplicate_button&amp;tid=undefined&amp;from=public_page&amp;n=duplicate_public_page" class="reset-a" target="_blank">Continue</a></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script id="ci-js-notion-topbar">
+    function createLinkFromButton(button) {
+      if (!button) return null;
+      const link = document.createElement('a');
+
+      // Copy styles
+      const buttonStyles = window.getComputedStyle(button);
+      Object.values(buttonStyles).forEach(property => {
+        if (buttonStyles.getPropertyValue(property)) {
+          link.style[property] = buttonStyles.getPropertyValue(property);
+        }
+      });
+
+      // Copy attributes
+      Array.from(button.attributes).forEach(attr => {
+        if (attr.name !== 'role') { link.setAttribute(attr.name, attr.value) }
+      });
+
+      // Set link-specific attributes
+      link.id = 'dupe-open';
+      if(undefined) {
+        link.setAttribute('href', '#');
+        link.addEventListener('click', function(event) { 
+          event.preventDefault();
+          event.stopPropagation();
+          document.getElementById('dupe-modal').style.display = 'flex';
+        });
+      } else {
+        link.setAttribute('href', 'https://www.notion.so/8ee4277b573a4b75bfac61357183ca4a?duplicate=true&pvs=36&utm_source=public_page&utm_content=duplicate_button&tid=undefined&from=public_page&n=duplicate_public_page');
+        link.setAttribute('target', '_blank');
+      }
+
+      // Add a class to the link
+      // link.classList.add('custom-link-class');
+
+      // Copy SVG (if any)
+      const svg = button.querySelector('svg');
+      if (svg) { link.innerHTML = svg.outerHTML; }
+
+      // Copy text content (if any)
+      const textContent = button.textContent.trim();
+      if (textContent) {
+        const textNode = document.createTextNode(textContent);
+        link.appendChild(textNode);
+      }
+      return link;
+    }
+
+    // Handle Notion topbar changes
+    function so_ObserveNotionTopbar(topbar) {
+      const so_NotionTopbarObserver = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'childList') {
+            
+            // ⭕️ add margin for toggle switch
+            const topbar = document.querySelector('.notion-topbar') || document.querySelector('.notion-topbar-mobile');
+            if (topbar) { 
+              topbar.style.paddingRight = '43px' 
+              if(topbar.querySelector('div')) {
+                topbar.querySelector('div').style.display = 'flex'
+              }
+            }
+
+            // ⭕️ remove speech bubble
+            const speechBubbleButton = document.querySelector('svg.speechBubbleFilled')?.parentElement;
+            if (speechBubbleButton) { speechBubbleButton.style.display = 'none' }
+
+            // ⭕️ replace nav links
+            const navLinks = document.querySelectorAll(".notion-topbar > div > div > a") || document.querySelectorAll(".notion-topbar-mobile > div > div > a");
+            navLinks.forEach((link) => {
+              link.href = link.href.replace('insidious-help-d7f.notion.site', 'lessons.springboard.com')
+              link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const url = link.href;
+                window.location.href = url;
+              });
+            })
+
+            // ⭕️ add duplicate button link
+            const duplicateButton = document.querySelector('svg.duplicate')?.parentElement;
+            if (duplicateButton && duplicateButton.style.display !== 'none') {
+              duplicateButton.style.display = 'none';
+              if(undefined) {
+                const link = createLinkFromButton(duplicateButton);
+                link.style.display = 'inline-flex';
+                duplicateButton.parentNode.appendChild(link);
+              } 
+            }
+
+            mutation.addedNodes.forEach((node) => {
+              if (node.nodeType === Node.ELEMENT_NODE) {
+                
+                // ⭕️ remove ellipsis and mobile notion logo
+                if (node.getAttribute('role') === 'button') {
+                  const ellipsisSvg = node.querySelector('svg.ellipsis');
+                  if (ellipsisSvg) { node.style.display = 'none' }
+
+                  const notionLogo = node.querySelector('svg.notionLogo') || node.querySelector('svg.notionLogoBlockMonoWhite');
+                  if (notionLogo) { node.style.display = 'none' }
+                }
+
+                // ⭕️ remove 'Built with' and 'Made with'
+                if (node.textContent.includes('Built with') || node.textContent.includes('Made with')) { 
+                  node.style.display = 'none' 
+                }
+                node.childNodes.forEach((child) => {
+                  if (child.textContent.includes('Built with') || child.textContent.includes('Made with')) { 
+                    if (child.nodeType === Node.ELEMENT_NODE) {
+                      child.style.display = 'none'
+                    }
+                  }
+                });
+              }
+            });
+          }
+        });
+      });
+      so_NotionTopbarObserver.observe(topbar, { childList: true, subtree: true });
+    }
+    const so_NotionTopbarExistsObserver = new MutationObserver((mutations) => {
+      for (let mutation of mutations) {
+        if (mutation.type === 'childList') {
+          const topbar = document.querySelector('.notion-topbar') || document.querySelector('.notion-topbar-mobile');
+          if (topbar) {
+            so_LegacyNotionTopbarCheck(topbar);
+            so_ObserveNotionTopbar(topbar);
+            so_NotionTopbarExistsObserver.disconnect();
+            break;
+          }
+        }
+      }
+    });
+    so_NotionTopbarExistsObserver.observe(document.body, { childList: true, subtree: true });
+
+    // trigger initial checks (used of pre-NotionPages topbar)
+    function so_LegacyNotionTopbarCheck(topbar) {
+      // ⭕️ add margin for toggle switch
+      topbar.style.paddingRight = '43px'
+  
+      const legacyTopbarButtons = topbar.querySelectorAll("div > div[role='button']");
+      legacyTopbarButtons.forEach((button) => {
+        // ⭕️ remove 'Built with' and 'Made with'
+        if (button.textContent.includes('Built with') || button.textContent.includes('Made with')) { 
+          button.style.display = 'none' 
+        }
+
+        // ⭕️ remove ellipsis and mobile notion logo
+        const ellipsisSvg = button.querySelector('svg.ellipsis');
+        if (ellipsisSvg) { button.style.display = 'none' }
+        const notionLogo = button.querySelector('svg.notionLogo') || button.querySelector('svg.notionLogoBlockMonoWhite');
+        if (notionLogo) { button.style.display = 'none' }
+      })
+    }
+
+    // Force check legacy topbar (needed for certain mobile page renders)
+    let checkNumber = 0
+    function forceLegacyCheck() {
+      checkNumber += 1
+      const topbar = document.querySelector('.notion-topbar') || document.querySelector('.notion-topbar-mobile');
+      if (topbar) so_LegacyNotionTopbarCheck(topbar)
+      if(checkNumber >= 10) clearInterval(forceLegacyCheckInterval);
+    }
+    const forceLegacyCheckInterval = setInterval(forceLegacyCheck, 500);
+
+
+  </script>
+
+  <script id="ci-dupe-modal">
+    if(undefined) {
+      document.getElementById('dupe-modal').addEventListener('click', function() {
+          document.getElementById('dupe-modal').style.display = 'none';
+      });
+      document.getElementById('dupe-continue').addEventListener('click', function() {
+          document.getElementById('dupe-modal').style.display = 'none';
+      });
+      document.getElementById('dupe-cancel').addEventListener('click', function() {
+          document.getElementById('dupe-modal').style.display = 'none';
+      }); 
+    } 
+  </script>
+
+  <div class="toggle-button toggle-light toggle-off">
+    <div style="margin-left: auto; margin-right: 14px; min-width: 0px;">
+      <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; border-radius: 44px;">
+        <div style="display: flex; flex-shrink: 0; height: 14px; width: 26px; border-radius: 44px; border-style: solid; border-width: 0.1em; border-color: #6D6C68; padding: 2px; box-sizing: content-box; transition: background 200ms ease 0s, box-shadow 200ms ease 0s;">
+          <div style="width: 14px; height: 14px; border-radius: 44px; transition: transform 200ms ease-out 0s, background 200ms ease-out 0s; transform: translateX(0px) translateY(0px); content: url(&quot;https://cdn.cloak.ist/toggle_moon.svg&quot;);">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toggle-button toggle-dark">
+    <div style="margin-left: auto; margin-right: 14px; min-width: 0px;">
+      <div role="button" tabindex="0" style="user-select: none; transition: background 120ms ease-in 0s; cursor: pointer; border-radius: 44px;">
+        <div style="display: flex; flex-shrink: 0; height: 14px; width: 26px; border-radius: 44px; border-style: solid; border-width: 0.1em; border-color: #D4D4D4; padding: 2px; box-sizing: content-box; transition: background 200ms ease 0s, box-shadow 200ms ease 0s;">
+          <div style="width: 14px; height: 14px; border-radius: 44px; transition: transform 200ms ease-out 0s, background 200ms ease-out 0s; transform: translateX(12px) translateY(0px); content: url(&quot;https://cdn.cloak.ist/toggle_sun.svg&quot;);">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script id="ci-fixed-js-body">
+  let themeStoreIntervalId = -1
+  let themeStoreFound = false
+  let initModeCount = 0
+  //
+  function updateThemeDataScript(mode) {
+    const themeDataScript = document.getElementById('theme-data');
+    if (themeDataScript) {
+      const currentData = JSON.parse(themeDataScript.textContent);
+      currentData.mode = mode;
+      themeDataScript.textContent = JSON.stringify(currentData);
+    }
+  }
+  
+  function onDark() {
+    document.body.classList.add('dark');
+    document.querySelector(".notion-app-inner")?.classList.remove("notion-light-theme")
+    document.querySelector(".notion-app-inner")?.classList.add("notion-dark-theme")
+    window.notionTheme = 'dark';
+    localStorage.setItem('theme', '{"mode":"dark"}')
+    updateThemeDataScript('dark')
+
+    document.querySelector('.toggle-light').classList.add('toggle-off')
+    document.querySelector('.toggle-dark').classList.remove('toggle-off')
+    if(!themeStoreFound && themeStoreIntervalId == -1) {
+      themeStoreIntervalId = setInterval(updateThemeStore, 500, 'dark');
+      // console.log('🐽 themeStore interval', themeStoreIntervalId)
+    } else if(themeStoreFound) {
+      // console.log('🐽 themeStore exists set to dark')
+      __console.environment.ThemeStore.setState({ mode: 'dark' })
+    }
+  };
+  function onLight() {
+    document.body.classList.remove('dark');
+    document.querySelector(".notion-app-inner")?.classList.remove("notion-dark-theme")
+    document.querySelector(".notion-app-inner")?.classList.add("notion-light-theme")
+    window.notionTheme = 'light';
+    localStorage.setItem('theme', '{"mode":"light"}')
+    updateThemeDataScript('light')
+
+    document.querySelector('.toggle-light').classList.remove('toggle-off')
+    document.querySelector('.toggle-dark').classList.add('toggle-off')
+    if(!themeStoreFound && themeStoreIntervalId == -1) {
+      themeStoreIntervalId = setInterval(updateThemeStore, 500, 'light');
+      // console.log('🐽 themeStore interval', themeStoreIntervalId)
+    } else if(themeStoreFound) {
+      // console.log('🐽 themeStore exists set to light')
+      __console.environment.ThemeStore.setState({ mode: 'light' })
+    }
+  }
+  async function updateThemeStore(mode) {
+    // console.log('🐽 check for themeStore...')
+    if(__console?.environment?.ThemeStore) {
+      themeStoreFound = true
+      // console.log('🐽 themeStore found...')
+      if(initModeCount < 10) {
+        initModeCount += 1
+      } else {
+        clearInterval(themeStoreIntervalId)
+      }
+      // console.log('🐽 setting the theme...', mode)
+      __console.environment.ThemeStore.setState({ mode: mode })
+    }
+  }
+  function toggle() {
+    initModeCount = 10
+    if (__console?.environment?.ThemeStore?.getState()?.mode === 'dark') {
+      onLight();
+    } else {
+      onDark();
+    }
+    location.reload();
+  }
+  let toggleLight = document.querySelector('.toggle-light');
+  let toggleDark = document.querySelector('.toggle-dark');
+  toggleLight.addEventListener('click', toggle);
+  toggleDark.addEventListener('click', toggle);
+  let forceDarkMode = 'undefined'
+  var localStorageTheme = localStorage.getItem("theme");
+  if(localStorageTheme) {
+    try { var themeJson = {}; (themeJson=JSON.parse(localTheme)) && themeJson.mode && (localStorageTheme = themeJson.mode) } catch(e){}
+  }
+  // console.log('🐽 init localStorageTheme', localStorageTheme)
+  // first check if user has theme set on local storage, then check the config
+  if (localStorageTheme === 'dark') {
+    console.log('🐽 init dark mode based on localStorageTheme')
+    onDark()
+  } else if (localStorageTheme === 'light') {
+    console.log('🐽 init light mode based on localStorageTheme')
+    onLight()
+  } else if (forceDarkMode === 'true' || (forceDarkMode === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    console.log('🐽 init dark mode', 'forceDarkMode', forceDarkMode, 'prefers-color-scheme', window.matchMedia('(prefers-color-scheme: dark)'))
+    onDark()
+  } else if (forceDarkMode === 'false' || (forceDarkMode === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+    console.log('🐽 init light mode', 'forceDarkMode', forceDarkMode, 'prefers-color-scheme', window.matchMedia('(prefers-color-scheme: light)'))
+    onLight()
+  } else {
+    console.log('🐽 init default light mode')
+    onLight()
+  }
+
+  </script><script>
+
+    /************ Constant and Variable ******************/
+
+    // General Constants
+    let oldHref = document.location.href.split("#")[0];
+    const body = document.querySelector('body');
+    const isMobileTabletView = window.innerWidth <= 1280;
+    const afterBegin = 'afterbegin';
+    let urlChangeObserver, tableOfContentChangeObserver;
+    const config = {
+        childList: true,
+        subtree: true
+    };
+    const marginLeftStyle = {
+        marginLeft: '16px',
+    }
+
+
+    // Springboard logo html
+    const SpringboardLogoHtml = "<div class='springboard-logo-container'>" +
+        "<img class='springboard-logo' src='https://www.springboard.com/assets/images/new-springboard-logo-dark@2x.png' " +
+        "alt='Springboard Logo'/></div>";
+
+    // Cloak.ist url for our notion file
+    const lessonsSpringboardUrl = window.location.origin;
+
+    // Notion classnames
+    const toggleModeClassName = 'toggle-mode';
+    const notionTopBarClassName = 'notion-topbar';
+    const notionTopBarMobileClassName = 'notion-topbar-mobile';
+    const notionTableOfContentsBlock = 'notion-table_of_contents-block';
+    const noTranslateClassName = 'notranslate';
+    const notionFrameClassName = 'notion-frame';
+    const notionScrollerClassName = 'notion-scroller';
+    const pseudoSelectionClassName = 'pseudoSelection';
+    const notionPageContentClassName = 'notion-page-content';
+
+    // Notion classnames with combination
+    const mainInNotionScroller = '.notion-scroller main';
+    const tableOfContentInNotionFrame = '.notion-frame > .notion-table_of_contents-block';
+    const tableOfContentInNotionPageContent = '.notion-page-content > .notion-table_of_contents-block'
+
+    /************ Functions *******************************/
+
+    /************ Generic Function  ***********************/
+
+    const hideElement = (element) => {
+        element.style.display = 'none';
+    }
+
+    const displayElement = (element, value = 'block') => {
+        element.style.display = value;
+    }
+
+    const hideChildren = (element) => {
+        element.children && [...element.children].map((child) => hideElement(child));
+    }
+
+    const hideChildrenExceptOne = (element, childClassName) => {
+        element.children && [...element.children].map((child) => {
+            if (!child.classList.contains(childClassName)) {
+                hideElement(child);
+            }
+        });
+    }
+
+    const removeChildren = (element) => {
+        while (element.hasChildNodes()) {
+            element.removeChild(element.firstChild);
+        }
+    }
+
+    const removeElements = (classname) => {
+        const elements = document.querySelectorAll(classname);
+        elements && elements.length && [...elements].map(element => {
+            removeChildren(element);
+            element.remove();
+        })
+    }
+
+    const updateScrollableElementUI = (element, styles) => {
+        const scrollable = element.scrollHeight > element.clientHeight;
+        if (scrollable) {
+            Object.keys(styles).forEach(key => element.style[key] = styles[key])
+        }
+    }
+
+    const moveElementToParent = (parentClassName, element, position) => {
+        const parentElm = document.querySelector(parentClassName);
+        if (parentElm) {
+            parentElm.insertAdjacentHTML(position, element.outerHTML);
+        }
+    }
+
+    const waitForElement = (querySelector, element) => {
+        return new Promise(resolve => {
+            let elementInDom = element ? element.querySelector(querySelector) : document.querySelector(querySelector);
+
+            if (elementInDom) {
+                return resolve(elementInDom);
+            }
+
+            const observer = new MutationObserver(mutations => {
+                elementInDom = element ? element.querySelector(querySelector) : document.querySelector(querySelector);
+                if (elementInDom) {
+                    resolve(elementInDom);
+                    observer.disconnect();
+                }
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        });
+    }
+
+    /************ Adding Springboard Logo In Header  ***********************/
+
+    const addSpringboardLogo = (className) => {
+        body.insertAdjacentHTML(afterBegin, SpringboardLogoHtml);
+        // hiding everything except toggle button
+        waitForElement(`.${className}`).then((element) => {
+            if (isMobileTabletView) {
+                if (element && element.children) {
+                    hideChildrenExceptOne(element, toggleModeClassName);
+                }
+            } else {
+                waitForElement(`.${noTranslateClassName}`, element).then((noTranslateDiv) => {
+                    if (noTranslateDiv && noTranslateDiv.children) {
+                        hideChildrenExceptOne(noTranslateDiv, toggleModeClassName);
+                    }
+                });
+            }
+        });
+    }
+
+    const setHeaderUI = () => {
+        (isMobileTabletView) ? addSpringboardLogo(notionTopBarMobileClassName) : addSpringboardLogo(notionTopBarClassName);
+       
+    }
+
+    /************ Functions To Set Table Of Content  ***********************/
+
+    const setTableOfContentUI = (element) => {
+        const styleObj = isMobileTabletView ? {} : marginLeftStyle;
+        updateScrollableElementUI(element, styleObj);
+        moveElementToParent(`.${notionFrameClassName}`, element, afterBegin);
+    }
+
+    const setMainContentStyle = () => {
+        const mainContent = document.querySelector(mainInNotionScroller);
+        if (mainContent) {
+            mainContent.style.justifyContent = 'space-around';
+            const headingDiv = mainContent.previousSibling;
+            if (headingDiv) headingDiv.style.marginLeft = '-120px';
+        }
+    }
+
+    const setTableOfContentMenuUI = (className, callback) => {
+        waitForElement(className).then((tableOfContent) => {
+            removeElements(tableOfContentInNotionFrame);
+            setTableOfContentChangeObserver(tableOfContent);
+            setTableOfContentUI(tableOfContent);
+            setMainContentStyle();
+            callback && callback();
+        });
+    }
+
+    const handleUrlChangeUI = () => {
+        removeElements(tableOfContentInNotionFrame);
+        setTableOfContentMenuUI(tableOfContentInNotionPageContent);
+    }
+
+    /************ Mutation Observers  ***********************/
+
+    const setUrlChangeObserver = () => {
+        urlChangeObserver = new MutationObserver((mutations) => {
+            const href = document.location.href.split("#")[0];
+            if (oldHref !== href) {
+                oldHref = href;
+                handleUrlChangeUI();
+            }
+        });
+
+        urlChangeObserver.observe(body, config);
+    }
+
+    const setTableOfContentChangeObserver = (element) => {
+        tableOfContentChangeObserver = new MutationObserver((mutations) => {
+            removeElements(tableOfContentInNotionFrame);
+            setTableOfContentUI(element);
+        });
+
+
+        tableOfContentChangeObserver.observe(element, config);
+    }
+
+    /************ Main Functions  ***********************/
+
+    const setSpringboardUI = () => {
+        setHeaderUI();
+        if (!isMobileTabletView) {
+            setTableOfContentMenuUI(tableOfContentInNotionPageContent);
+            setUrlChangeObserver();
+        }
+    }
+
+    /************ Window Functions  ***********************/
+
+    window.onload = (event) => {
+        waitForElement(`.${notionFrameClassName}`).then((element) => {
+            setSpringboardUI();
+        });
+    };
+
+    window.addEventListener("beforeunload", (e) => {
+        urlChangeObserver && urlChangeObserver.disconnect();
+        tableOfContentChangeObserver && tableOfContentChangeObserver.disconnect();
+    });
+
+    /**********************************************************/
+
+</script>
+
+<iframe sandbox="allow-scripts allow-same-origin" style="position: absolute; opacity: 0; width: 1px; height: 1px; top: 0; left: 0; border: none; display: block; z-index: -1;" aria-hidden="true" tabindex="-1" referrerpolicy="no-referrer" src="./Debugging Exercise_files/aif-production.html"></iframe></body></html>

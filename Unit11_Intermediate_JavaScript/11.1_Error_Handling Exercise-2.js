@@ -44,7 +44,7 @@ function depositMoney (accountId, amount)
 		throw new Error("Account not found");
 	}
 	if (!Number.isFinite(amount) || amount <= 0) {
-		throw new Error("The Amount must be finite number");
+		throw new Error("Invalid value for withdrawal amount: The amount must be a finite number.");
 	}
 	account.balance += amount;
 }
@@ -58,11 +58,12 @@ function withdrawMoney (accountId, amount)
 		throw new Error("Account not found.");
 	}
 
-	if (!Number.isFinite(amount))
-	{
+	if (!Number.isFinite(amount) || amount <= 0){
 		throw new Error("Invalid value for withdrawal amount: The amount must be a finite number.");
 	}
-
+	if (account.balace < amount) {
+		throw new Error("There's not enough money in your account.");
+	}
 	account.balance -= amount;
 }
 
@@ -75,20 +76,24 @@ function transferMoney (fromAccountId, toAccountId, amount)
 	{
 		throw new Error("Source account not found.");
 	}
-
-	if (!Number.isFinite(amount) || amount < 0)
-	{
+	if (!toAccount){
+		throw new Error("Destination account not found.");
+	}
+	if (fromAccount.balance < amount) {
+		throw new Error("There's not enough money in your account.");
+	}	
+	if (!Number.isFinite(amount) || amount < 0) {
 		throw new Error("Invalid value for transfer amount: The amount must be a positive finite number.");
 	}
-
 	toAccount.balance += amount;
+	fromAccount.balance -= amount;
 }
 
 // console.log( getAccountById(1) );
 // createAccount(3, 'Bryan');
 // depositMoney(4, 500);
 // console.log( getAccountById(3) );
-withdrawMoney(3, 900);
+// withdrawMoney(3, 900);
 
 
 
