@@ -30,3 +30,4 @@ for(let i=0; i < mission; i++) {
 
 console.log(` Total vacation days : ${receivedDays}` );
 
+ 
