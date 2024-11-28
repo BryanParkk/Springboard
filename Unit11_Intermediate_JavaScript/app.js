@@ -107,6 +107,8 @@ function getMonthName(mo) {
     }
 }
 
+
+////
 function sum(nums) {
     let total = 0;
     for (let i = 0; i < nums.length; i++) {
@@ -115,4 +117,14 @@ function sum(nums) {
     return total;
 }
 
-console.log( sum(5) );
+/////
+function double(nums) {
+    let doubledNums = [];
+
+    for(let i = 0; i < nums.length; i++) {
+        doubledNums.push(2 * nums[i]);
+    }
+    return doubledNums;
+}
+
+/////
