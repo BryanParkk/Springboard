@@ -1,6 +1,19 @@
-function bubbleSort(arr) {
+// function bubbleSort(arr) {
+//     for(let i=0; i<arr.length; i++) {
+//         for(let j=0; j<arr.length; j++) {
+//             console.log(arr);
+//             if(arr[j] > arr[j+1]) {
+//                 let temp = arr[j];
+//                 arr[j] = arr[j+1];
+//                 arr[j+1] = temp;
+//             }
+//         }
+//     }
+// }
+
+function bubbleSort2(arr) {
     for(let i=0; i<arr.length; i++) {
-        for(let j=0; j<arr.length; j++) {
+        for(let j=0; j<arr.length-1; j++) {
             console.log(arr);
             if(arr[j] > arr[j+1]) {
                 let temp = arr[j];
@@ -14,4 +27,4 @@ function bubbleSort(arr) {
 
 
 
-bubbleSort([45,6,7,23,1,19]);
+bubbleSort2([45,6,7,23,1,19]);
