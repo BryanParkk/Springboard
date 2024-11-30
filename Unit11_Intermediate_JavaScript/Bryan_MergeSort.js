@@ -23,4 +23,14 @@ function merge(arr1, arr2) {
     return results;
 }
 
-console.log( merge([1,3,5,7,11], [2,4,6,8,9,10,30]) );
+
+function mergeSort(arr) {
+    if(arr.length <= 1) return arr;
+    const mid = Math.floor(arr.length/2);
+    const left = mergeSort(arr.slice(0,mid));
+    const right = mergeSort(arr.slice(mid)); 
+    return merge(left, right); 
+}
+s
+console.log( mergeSort([-9,2,6,18,63,236,63,-3,1,-63]) );
+
