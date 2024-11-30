@@ -27,10 +27,18 @@ function merge(arr1, arr2) {
 function mergeSort(arr) {
     if(arr.length <= 1) return arr;
     const mid = Math.floor(arr.length/2);
+    // console.log('mid: ', mid);
     const left = mergeSort(arr.slice(0,mid));
+    // console.log('left: ', left);
     const right = mergeSort(arr.slice(mid)); 
+    // console.log('right: ', right);
     return merge(left, right); 
 }
-s
+
 console.log( mergeSort([-9,2,6,18,63,236,63,-3,1,-63]) );
 
+
+
+function mergeSort2(arr) {
+    if(arr.length <= 1) return arr;
+}
