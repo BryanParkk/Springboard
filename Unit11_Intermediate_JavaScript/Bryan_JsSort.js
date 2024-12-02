@@ -9,7 +9,7 @@ let instructors = [
     {name: "Joel", favzLang: "Python"},
     {name: "Alissa", favLang: "JS"}
 ]
- 
+
 // console.log( instructors.sort() );
 console.log( instructors.sort((a,b) => {
     if(a.name < b.name) return -1;
