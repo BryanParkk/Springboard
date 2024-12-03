@@ -1,20 +1,25 @@
-// function setup() {
-//     noCanvas();
-//     setTimeout(sayHello, 1000);
-// }
+function setup() {
+    noCanvas();
+    delay(2000)
+    .then(() => createP('hello'))
+    .catch((err) => console.error(err));
+
+    // delay('promising')
+    // .then(() => createP('hello'))
+    // .catch((err) => console.error(err));
+}
+
+function delay(time) {
+    return new Promise((resolve, reject) => {
+        if (isNaN(time)) {
+            reject(new Error('delay requires a valid number.'));
+        }
+        setTimeout(resolve, time)
+    });
+    // setTimeout(sayHello, time);
+}
+
 
 // function sayHello() {
 //     createP('Hello');
 // }
-
-function setup() {
-    createCanvas(100, 100);
-  
-    background(200);
-  
-    // Create a paragraph element and set its position.
-    let p = createP('Tell me a story.');
-    p.position(5, 0);
-  
-    describe('A gray square displaying the text "Tell me a story." written in black.');
-  }
