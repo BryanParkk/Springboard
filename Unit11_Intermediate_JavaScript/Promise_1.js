@@ -33,4 +33,24 @@ function setup() {
         })
         .catch(err => console.log(err));
     ///////////////////////////////////////
+        wordGIF().
+        then(results => {
+            createP(results.word);
+            createImg(results.img);
+        }).
+        catch(err => console.error(err));
+
+        async function wordGIF() {
+            let response1 = await fetch(wordnikAPI);
+            let json1 = await response1.json();
+            let response2 = await fetch(giphyAPI + json1.word);
+            let json2 = await response2.json();
+            let img_url = json2.data[0].images['fixed_height_small'].url;
+
+            return {
+                word: json1.word,
+                url: img_url
+            }
+        }
+        
     }

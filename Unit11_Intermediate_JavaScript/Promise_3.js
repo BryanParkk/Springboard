@@ -1,13 +1,27 @@
 function setup() {
     noCanvas();
-    delay(2000)
-    .then(() => createP('hello'))
+    delayES8(1000)
+    .then(() => createP('helloa'))
     .catch((err) => console.error(err));
 
     // delay('promising')
     // .then(() => createP('hello'))
     // .catch((err) => console.error(err));
 }
+
+async function delayES8(time) {
+    // This function returns a promise!
+    await delay(time);
+    // await someThingElse();
+    // let val = await somethingElseElse();
+    // return val;
+    return;
+
+}
+
+
+
+
 
 function delay(time) {
     return new Promise((resolve, reject) => {
