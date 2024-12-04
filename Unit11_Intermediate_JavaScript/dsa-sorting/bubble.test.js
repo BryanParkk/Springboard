@@ -1,6 +1,6 @@
 const bubbleSort = require("./bubble")
 
-describe('bubbleSort', function () sssf
+describe('bubbleSort', function () {
   it('should exist', function () {
     expect(typeof bubbleSort).toBe(
       'function',
