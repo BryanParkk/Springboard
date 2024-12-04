@@ -19,10 +19,6 @@ async function delayES8(time) {
 
 }
 
-
-
-
-
 function delay(time) {
     return new Promise((resolve, reject) => {
         if (isNaN(time)) {
