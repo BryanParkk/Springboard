@@ -34,6 +34,8 @@ Person2.prototype.calcAge = function () {
   console.log(age2);
 };
 
+Person2.prototype.city = "London";
+
 let bryan2 = new Person2("bryan", "male", 1986);
 bryan2.calcAge();
 console.log(bryan2);
