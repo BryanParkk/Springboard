@@ -19,3 +19,33 @@ console.log(merry);
 let steve = new Person("steve", "male", 2005);
 // let now = new Date();
 // let str = new String();
+
+////////////////////////////////////////////////////////////////
+
+// function constructor => blue print
+let Person2 = function (name, gender, birthYear) {
+  this.name = name;
+  this.gender = gender;
+  this.birthYear = birthYear;
+};
+
+Person2.prototype.calcAge = function () {
+  let age2 = new Date().getFullYear() - this.birthYear;
+  console.log(age2);
+};
+
+let bryan2 = new Person2("bryan", "male", 1986);
+bryan2.calcAge();
+console.log(bryan2);
+
+let merry2 = new Person2("merry", "female", 1983);
+merry2.calcAge();
+console.log(merry2);
+
+let steve2 = new Person2("steve", "male", 2005);
+steve2.calcAge();
+console.log(steve2);
+// let now = new Date();
+// let str = new String();
+
+////////////////////////////////////////
