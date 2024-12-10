@@ -15,5 +15,7 @@ console.log(bryan);
 
 let merry = new Person("merry", "female", 1983);
 console.log(merry);
+
+let steve = new Person("steve", "male", 2005);
 // let now = new Date();
 // let str = new String();
