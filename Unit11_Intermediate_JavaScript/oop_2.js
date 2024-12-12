@@ -42,12 +42,3 @@ console.log(merry2);
 //1. classes caanot be hoisted.
 //2. classes are first class citizen
 //3. classes are excuted in strict mode
-
-function Bubble(radius) {
-  this.radius = radius;
-  this.getDiameter = function () {
-    return 2 * this.radius;
-  };
-  const circle1 = new Bubble(5);
-  const circle2 = new Bubble(10);
-}
