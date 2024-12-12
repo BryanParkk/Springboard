@@ -51,3 +51,14 @@ console.log(steve2);
 // let str = new String();
 
 ////////////////////////////////////////
+let mark = {
+  name: "Mark",
+  birthYear: 1983,
+  gender: "Male",
+};
+// let mark = new Object();
+
+let arr = [10, 20, 30, 40];
+console.log(arr);
+//new Array()
+arr.push(23);
