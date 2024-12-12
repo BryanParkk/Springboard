@@ -62,3 +62,16 @@ let arr = [10, 20, 30, 40];
 console.log(arr);
 //new Array()
 arr.push(23);
+
+////////////////////////////////////////
+function Person3(name, gender, addr) {
+  this.name = name;
+  this.gender = gender;
+  this.addr = addr;
+  this.sayHello = () => {
+    return `hello ${name}. I'm genie`;
+  };
+}
+
+bryan = new Person3("bryan", "Male", "google");
+console.log(bryan.sayHello());
