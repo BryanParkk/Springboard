@@ -1,7 +1,6 @@
 //getter and setter
 //Accessor properties are mothds that gets or sets the value
 // of an objects property
-
 // 1. getter properties - read objects property value - get
 // 2. setter properties - set an objects property value - set
 
