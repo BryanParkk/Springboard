@@ -16,5 +16,3 @@ class Person {
 
 let john = new Person("john", 1983, "Male");
 console.log(john);
-
-Person.greet();
