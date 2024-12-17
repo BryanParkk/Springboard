@@ -6,6 +6,7 @@ let person = {
   grett() {
     return "Have a nice day!";
   },
+  // 3-1.
   init(name, birthYear, gender) {
     this.name = name;
     this.birthYear = birthYear;
@@ -28,7 +29,7 @@ let merry = Object.create(person, {
 });
 console.log(merry);
 
-// 3.
+// 3-2.
 let mark = Object.create(person);
 mark.init("Mark", 1994, "Male");
 console.log(mark);
