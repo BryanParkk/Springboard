@@ -19,3 +19,5 @@ let Employee = function (name, gender, birthYear, empId, salary) {
   this.empId = empId;
   this.salary = salary;
 };
+
+//
