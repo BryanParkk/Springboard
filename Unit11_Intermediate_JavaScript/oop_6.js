@@ -11,16 +11,17 @@ Person.prototype.calcAge = function () {
 
 let john = new Person("John", "Male", 1983);
 let merry = new Person("merry", "Female", 1984);
-console.log(john);
 
 //Employee function constructor
+//this = mark
+//Employee - child class
 let Employee = function (name, gender, birthYear, empId, salary) {
-  this.name = name;
-  this.gender = gender;
-  this.birthYear = birthYear;
+  Person.call(this, name, gender, birthYear);
   this.empId = empId;
   this.salary = salary;
 };
+Employee.prototype = Person.prototype;
+
 Employee.prototype.calcSalary = function () {
   return this.salary * 12;
 };
