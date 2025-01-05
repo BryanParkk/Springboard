@@ -33,3 +33,4 @@ Employee.prototype.empDetails = function () {
 let mark = new Employee("Mark", "Male", 1983, 101, 12000);
 console.log(mark);
 //
+//
