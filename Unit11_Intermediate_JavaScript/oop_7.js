@@ -53,3 +53,4 @@ let Person1 = function (name, gender, money) {
 };
 
 Person1.prototype.addPerson = function () {};
+Person1.prototype.addMoney = 50000;
