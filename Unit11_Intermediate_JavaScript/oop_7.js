@@ -29,12 +29,15 @@ let Person = function (name, gender, birthYear) {
   this.name = name;
   this.gender = gender;
   this.birthYear = birthYear;
-  this.calcAge = function () {
-    let age = new Date().getFullYear() - this.birthYear;
-    console.log(age);
-  };
 };
+// Prototype
+Person.prototype.calcAge = function () {
+  let age = new Date().getFullYear() - this.birthYear;
+  console.log(age);
+};
+Person.prototype.city = "London";
 
+// Object
 let jon = new Person("jon", "Male", 1986);
 jon.calcAge();
 console.log(jon);
@@ -43,15 +46,10 @@ let merry = new Person("merry", "Female", 1983);
 merry.calcAge();
 console.log(merry);
 
-// let Car = function (tire, window, water) {
-//   this.tire = tire;
-//   this.window = window;
-//   this.water = water;
-//   this.engine = function () {
-//     let gas = "v8";
-//     console.log(gas);
-//   };
-// };
+let Person1 = function (name, gender, money) {
+  this.name = name;
+  this.gender = gender;
+  this.money = money;
+};
 
-// let BMW = new Car(4, 4, 2);
-// console.log(BMW);
+Person1.prototype.addPerson = function () {};
