@@ -54,3 +54,6 @@ let Person1 = function (name, gender, money) {
 
 Person1.prototype.addPerson = function () {};
 Person1.prototype.addMoney = 50000;
+
+park = new Person1("Byeongil", "Male", 50000);
+console.log(park);
