@@ -35,7 +35,6 @@ Person.prototype.calcAge = function () {
   let age = new Date().getFullYear() - this.birthYear;
   console.log(age);
 };
-Person.prototype.city = "London";
 
 // Object
 let jon = new Person("jon", "Male", 1986);
