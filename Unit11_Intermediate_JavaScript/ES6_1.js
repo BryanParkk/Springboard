@@ -79,3 +79,20 @@ const dailyRainTotals = [
 dailyRainTotals.map((hourlyRainTotals) =>
   hourlyRainTotals.reduce((sum, inchesOfRain) => sum + inchesOfRain)
 );
+
+// ******************************
+// ARROW FUNCTION "Gotchas"
+// ******************************
+
+const makeMath = (num) => ({
+  square: num * num,
+  double: num * 2,
+});
+
+const cat = {
+  //Don't use arrow function in Object!
+  name: "Bubs",
+  meow: function () {
+    return `${this.name} syas MEOW!!`;
+  },
+};
