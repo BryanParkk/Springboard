@@ -36,3 +36,46 @@ const subs = (x, y) => {
 const greett = () => {
   console.log("hello");
 };
+
+[1, 2, 3, 4, 5, 6].filter(function (num) {
+  return num % 2 === 0;
+});
+
+[1, 2, 3, 4, 5, 6].filter((num) => num % 2 === 0);
+
+const double = (n) => n * 2;
+const doublee = (n) => {
+  return n * 2;
+};
+
+[1, 2, 3, 4, 5, 6, 7, 8].map((n) => {
+  if (n % 2 === 0) {
+    return "even";
+  }
+  return "odd";
+});
+
+// [1, 2, 3, 4, 5, 6, 7, 8].map((n) =>
+//     if (n % 2 === 0) {
+//     "even";
+//     }
+//     "odd";
+// );
+
+[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (n % 2 === 0 ? "even" : "odd"));
+
+//////
+const dailyRainTotals = [
+  [1.3, 0.35, 2.2],
+  [1.7, 0.6, 0.1],
+  [2.5, 0.9, 1.5],
+];
+// dailyRainTotals.map((hourlyRainTotals) => {
+//   return hourlyRainTotals.reduce((sum, inchesOfRain) => {
+//     return sum + inchesOfRain;
+//   });
+// });
+
+dailyRainTotals.map((hourlyRainTotals) =>
+  hourlyRainTotals.reduce((sum, inchesOfRain) => sum + inchesOfRain)
+);
