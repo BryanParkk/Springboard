@@ -1,27 +1,24 @@
-function holler() {
-  console.log("HEY YOU!");
+// rest, spread operators
+
+// function max() {
+//   console.log(arguments);
+// }
+
+function sum() {
+  //   console.log(Array.from(arguments));
+  const args = Array.from(arguments);
+  return args.reduce((sum, val) => {
+    return sum + val;
+  });
 }
 
-const whisper = function () {
-  console.log("pssssst I have a secret!");
+const max = () => {
+  console.log(arguments);
 };
 
-function add(x, y) {
-  return x + y;
-}
-
-function subtract(x, y) {
-  return x - y;
-}
-
-function multiply(x, y) {
-  return x * y;
-}
-
-function divide(x, y) {
-  return x / y;
-}
-
-const mathFuncs = [add, subtract, multiply, divide];
-
-setTimeout(whisper, 4000);
+const maxx = function () {
+  const args = Array.from(arguments);
+  return args.reduce((max, currVal) => {
+    return currVal > max ? currVal : max;
+  });
+};
