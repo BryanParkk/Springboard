@@ -1,4 +1,3 @@
-//forEach
 function holler() {
   console.log("HEY YOU!");
 }
