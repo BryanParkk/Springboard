@@ -25,3 +25,14 @@ forEach(colors, function (color, i, arr) {
 
 const numbers = [4, 3, 2, 1, 4, 2, 3, 45];
 numbers.forEach((val) => console.log(val));
+
+function greet(name) {
+  console.log(`Hello! good morning! ${name}`);
+}
+
+function inputName(callback) {
+  let name = "Bryan";
+  callback(name);
+}
+
+inputName(greet);
