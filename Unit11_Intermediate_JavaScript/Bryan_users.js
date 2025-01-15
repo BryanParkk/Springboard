@@ -6,20 +6,11 @@ const users = [
 
 //
 
-const info = users.map(function (member, idx) {
+const info = users.map(function (member) {
   const name = `${member.firstName} ${member.lastName}`;
-  const points = member.points;
 
-  for (let i = 0; i < member.length; i++) {
-    if (points >= 100) {
-      users.forEach((users) => {
-        users.membershipStatus = "Premium";
-      });
-    } else {
-      users.forEach((users) => {
-        users.membershipStatus = "Standard";
-      });
-    }
-  }
-  return console.log(name, points, membershipStatus);
+  return {
+    name,
+    membershipStatus: member.points > 100 ? "Premium" : "Standard",
+  };
 });
