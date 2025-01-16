@@ -10,6 +10,8 @@ const words = [
   "jukijuhyujhyyjuuyjmh",
   "byeongil",
   "eunji",
+  "aaaaaa",
+  "bbbbcccddd",
 ];
 
 const longWords = words.filter(function (word) {
@@ -38,3 +40,31 @@ const containsVowel = function (word) {
 const isVowel = function (char) {
   return "aeiou".indexOf(char) != -1;
 };
+
+const containVowels = words.filter(containsVowel);
+
+const noVowels = words.filter(function (word) {
+  return !containsVowel(word);
+});
+
+///////////////////
+const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+
+const checked = Array.from(allCheckboxes).filter(function (box) {
+  return box.checked;
+});
+
+const completedItems = checked.map(function (checkbox) {
+  return checkbox.parentElement.innerText;
+});
+
+function extractCompletedTodos() {
+  const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+  return Array.from(allCheckboxes)
+    .filter(function (box) {
+      return box.checked;
+    })
+    .map(function (checkbox) {
+      return checkbox.parentElement.innerText;
+    });
+}
