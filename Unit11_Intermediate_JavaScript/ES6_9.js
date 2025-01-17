@@ -88,3 +88,17 @@ const shorties = myFilter(words, function (word) {
 const everyOtherWord = myFilter(words, function (word, i) {
   return i % 2 === 0;
 });
+
+////
+
+words.some(function (word) {
+  return word.length > 25;
+});
+
+words.some(function (word) {
+  return word.indexOf("z");
+});
+
+words.every(function (word) {
+  return word.indexOf("a");
+});
