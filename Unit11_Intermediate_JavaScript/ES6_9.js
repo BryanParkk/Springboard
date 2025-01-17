@@ -68,3 +68,23 @@ function extractCompletedTodos() {
       return checkbox.parentElement.innerText;
     });
 }
+
+/////
+
+function myFilter(arr, callback) {
+  const filteredArray = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (callback(arr[i], i, arr)) {
+      filteredArray.push(arr[i]);
+    }
+  }
+  return filteredArray;
+}
+
+const shorties = myFilter(words, function (word) {
+  return word.length <= 10;
+});
+
+const everyOtherWord = myFilter(words, function (word, i) {
+  return i % 2 === 0;
+});
