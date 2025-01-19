@@ -100,5 +100,15 @@ words.some(function (word) {
 });
 
 words.every(function (word) {
-  return word.indexOf("a");
+  return word.length > 200;
+});
+
+// array filter checkbox check
+const btn = document.querySelector("button");
+btn.addEventListener("click", function (e) {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const allChecked = Array.from(checkboxes).every(function (checkbox) {
+    return checkbox.checked;
+  });
+  if (!allChecked) alert("PLEASE AGREE TO EVERYTHING!");
 });
