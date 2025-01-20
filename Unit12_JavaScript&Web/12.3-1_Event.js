@@ -18,3 +18,10 @@ const violetBtn = document.querySelector("#violet");
 violetBtn.addEventListener("click", function () {
   makeBody("violet");
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("DOM CONTENT LOADED");
+});
+window.addEventListener("load", function () {
+  console.log("WINDOW LOADED");
+});
