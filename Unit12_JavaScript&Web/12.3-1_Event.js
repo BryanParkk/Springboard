@@ -13,12 +13,23 @@ btn.onclick = function () {
   makeBody("teal");
 };
 
+const h1 = document.querySelector("h1");
+// btn.onclick = function () {
+//   h1.style.color = "cyan";
+// };
+
 //Event Listener
 const violetBtn = document.querySelector("#violet");
+
 violetBtn.addEventListener("click", function () {
   makeBody("violet");
 });
 
+violetBtn.addEventListener("click", function () {
+  h1.style.color = "purple";
+});
+
+//////////////////////////////
 document.addEventListener("DOMContentLoaded", function () {
   console.log("DOM CONTENT LOADED");
 });
