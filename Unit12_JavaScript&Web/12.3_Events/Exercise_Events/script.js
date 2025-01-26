@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const boxes = document.querySelectorAll(".box");
 
   let boxColor = "#848";
-  let counter = 0;
+  let boxCounter = 0;
 
   colorForm.addEventListener("click", function (e) {
     e.preventDefault();
@@ -20,11 +20,26 @@ document.addEventListener("DOMContentLoaded", function () {
     colorInput.value = "";
   });
 
-  newBoxButton.addEventListener("click", function (e) {
-    e.preventDefault();
-    document.appendChild("div");
-    newDiv.innerText = "HelloWorld";
-  });
+  function addNewBox() {
+    const newBox = document.createElement("div");
+    const boxID = `box-${boxCounter}`;
+    // box setting
+    newBox.textContent = boxID;
+    newBox.className = "box";
+    newBox.style.backgroundColor = boxColor;
+    newBox.setAttribute("data-id", boxID);
+    // mouse leave Event
+    newBox.addEventListener("mouseleave", function () {
+      newBox.textContent = newBox.getAttribute("data-id");
+    });
+    // append newBox
+    document.querySelector("#box-container").appendChild(newBox);
+    // increase counter
+    boxCounter++;
+  }
+  document
+    .querySelector("#new-box-button")
+    .addEventListener("click", addNewBox);
 });
 
 // form.addEventListener("submit", function (e) {
