@@ -1,4 +1,5 @@
-// storeManager.mjs
+// Named Exports and import //
+// // storeManager.mjs
 import { addItem, removeItem, listItems } from "./inventory.mjs";
 
 // addItems

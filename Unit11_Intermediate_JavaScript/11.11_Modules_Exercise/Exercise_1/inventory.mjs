@@ -1,3 +1,4 @@
+// Named Exports and import //
 // inventory.mjs
 const inventory = [];
 
