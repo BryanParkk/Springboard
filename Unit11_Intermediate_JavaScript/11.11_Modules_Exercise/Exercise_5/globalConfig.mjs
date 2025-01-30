@@ -1,4 +1,4 @@
 //Side Effects
-console.log("Global config init.");
+console.log("Global config initializing...");
 console.log(".....");
-console.log("Compted.");
+console.log("Completed.");
