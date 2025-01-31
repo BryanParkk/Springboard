@@ -35,3 +35,5 @@ let htmlEl = new Node("html", [
     new Node("table"),
   ]),
 ]);
+
+let html = new Node("html");
