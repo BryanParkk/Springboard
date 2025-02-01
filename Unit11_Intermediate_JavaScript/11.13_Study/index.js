@@ -37,5 +37,3 @@ let htmlEl = new Node("html", [
 ]);
 
 let html = new Node("html");
-//
-//
