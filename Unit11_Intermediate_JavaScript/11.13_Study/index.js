@@ -1,9 +1,9 @@
-//Depth first search
 class Node {
   constructor(val, children = []) {
     this.val = val;
     this.children = children;
   }
+  //Depth first search
   findDFS(val) {
     const toVisitStack = [this];
     while (toVisitStack.length) {
@@ -17,6 +17,7 @@ class Node {
       }
     }
   }
+  // Breadth first search
   findBFS(val) {
     const toVisitQueue = [this];
     while (toVisitQueue.length) {
@@ -29,6 +30,18 @@ class Node {
         toVisitQueue.push(child);
       }
     }
+  }
+}
+
+class Tree {
+  constructor(root) {
+    this.root = root;
+  }
+  findInTreeDFS(val) {
+    return this.root.findDFS(val);
+  }
+  findInTreeBFS(val) {
+    return this.root.findBFS(val);
   }
 }
 
@@ -50,4 +63,11 @@ let htmlEl = new Node("html", [
   ]),
 ]);
 
-// Breadth first search
+// Example tree
+class BinNode {
+  constructor(val, left = null, right = null) {
+    this.val = val;
+    this.left = left;
+    this.right = right;
+  }
+}
