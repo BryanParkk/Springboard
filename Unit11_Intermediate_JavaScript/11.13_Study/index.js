@@ -32,7 +32,6 @@ class Node {
     }
   }
 }
-
 class Tree {
   constructor(root) {
     this.root = root;
