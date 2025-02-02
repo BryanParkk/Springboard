@@ -1,18 +1,32 @@
+//Depth first search
 class Node {
   constructor(val, children = []) {
     this.val = val;
     this.children = children;
   }
-  find(val) {
-    const toVisitzStack = [this];
-    while (toVisitzStack.length) {
-      const current = toVisitzStack.pop();
+  findDFS(val) {
+    const toVisitStack = [this];
+    while (toVisitStack.length) {
+      const current = toVisitStack.pop();
       console.log("Visiting: ", current);
       if (current.val === val) {
         return current;
       }
       for (let child of current.children) {
-        toVisitzStack.push(child);
+        toVisitStack.push(child);
+      }
+    }
+  }
+  findBFS(val) {
+    const toVisitQueue = [this];
+    while (toVisitQueue.length) {
+      const current = toVisitQueue.shift();
+      console.log("Visiting: ", current);
+      if (current.val == val) {
+        return current;
+      }
+      for (let child of current.children) {
+        toVisitQueue.push(child);
       }
     }
   }
@@ -36,4 +50,4 @@ let htmlEl = new Node("html", [
   ]),
 ]);
 
-let html = new Node("html");
+// Breadth first search
