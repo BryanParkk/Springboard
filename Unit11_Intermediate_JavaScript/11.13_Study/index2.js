@@ -25,6 +25,11 @@ class BinarySearchTree {
   constructor(root) {
     this.root = root;
   }
+  traverse(node = this.root) {
+    if (node.left) this.traverse(node.left);
+    if (node.right) this.traverse(node.right);
+    console.log(node.val);
+  }
 }
 
 //Value insert
