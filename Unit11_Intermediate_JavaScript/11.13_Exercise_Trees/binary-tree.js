@@ -18,9 +18,7 @@ class BinaryTree {
 
   minDepth() {
     if (!this.root) return 0;
-    if (this.root.left && !this.root.right) return 1
-    if ()
-
+    if (!this.root.left && !this.root.right) return 0;
   }
 
   /** maxDepth(): return the maximum depth of the tree -- that is,
