@@ -27,12 +27,36 @@ class Tree {
   }
 
   /** countEvens(): count all of the nodes in the tree with even values. */
-  countEvens() {}
+  countEvens() {
+    if (!this.root) return 0;
+    let counter = 0;
+    const toVisit = [this.root];
+    while (toVisit.length) {
+      const current = toVisit.pop();
+      if (current.val % 2 === 0) counter++;
+      for (let child of current.children) {
+        toVisit.push(child);
+      }
+    }
+    return counter;
+  }
 
   /** numGreater(lowerBound): return a count of the number of nodes
    * whose value is greater than lowerBound. */
 
-  numGreater(lowerBound) {}
+  numGreater(lowerBound) {
+    if (!this.root) return 0;
+    let counter = 0;
+    const toVisit = [this.root];
+    while (toVisit.length) {
+      const current = toVisit.pop();
+      if (current.val > lowerBound) counter++;
+      for (let child of current.children) {
+        toVisit.push(child);
+      }
+    }
+    return counter;
+  }
 }
 
 module.exports = { Tree, TreeNode };
