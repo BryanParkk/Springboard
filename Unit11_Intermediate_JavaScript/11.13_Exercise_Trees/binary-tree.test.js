@@ -1,10 +1,10 @@
-const { BinaryTree, BinaryTreeNode } = require("./binary-tree").default;
+const { BinaryTree, BinaryTreeNode } = require("./binary-tree");
 
 let smallTree;
 let largeTree;
 let emptyTree;
 
-beforeEach(function () {
+beforeEach(function() {
   emptyTree = new BinaryTree();
 
   // build small tree;
@@ -24,48 +24,48 @@ beforeEach(function () {
   largeTree = new BinaryTree(root);
 });
 
-describe("minDepth", function () {
-  it("handles simple trees", function () {
+describe("minDepth", function() {
+  it("handles simple trees", function() {
     expect(smallTree.minDepth()).toBe(2);
   });
 
-  it("handles more complex trees", function () {
+  it("handles more complex trees", function() {
     expect(largeTree.minDepth()).toBe(2);
   });
 
-  it("handles empty trees", function () {
+  it("handles empty trees", function() {
     expect(emptyTree.minDepth()).toBe(0);
   });
 });
 
-describe("maxDepth", function () {
-  it("handles simple trees", function () {
+describe("maxDepth", function() {
+  it("handles simple trees", function() {
     expect(smallTree.maxDepth()).toBe(2);
   });
 
-  it("handles more complex trees", function () {
+  it("handles more complex trees", function() {
     expect(largeTree.maxDepth()).toBe(4);
   });
 
-  it("handles empty trees", function () {
+  it("handles empty trees", function() {
     expect(emptyTree.maxDepth()).toBe(0);
   });
 });
 
-describe("maxSum", function () {
-  it("handles simple trees", function () {
+describe("maxSum", function() {
+  it("handles simple trees", function() {
     expect(smallTree.maxSum()).toBe(16);
   });
 
-  it("handles empty trees", function () {
+  it("handles empty trees", function() {
     expect(emptyTree.maxSum()).toBe(0);
   });
 
-  it("handles more complex trees", function () {
+  it("handles more complex trees", function() {
     expect(largeTree.maxSum()).toBe(21);
   });
 
-  it("handles negative values", function () {
+  it("handles negative values", function() {
     let node100 = new BinaryTreeNode(100);
     let node8 = new BinaryTreeNode(8);
     let nodeNeg4 = new BinaryTreeNode(-4);
@@ -78,18 +78,18 @@ describe("maxSum", function () {
   });
 });
 
-describe("nextLarger", function () {
-  it("handles simple trees", function () {
+describe("nextLarger", function() {
+  it("handles simple trees", function() {
     expect(smallTree.nextLarger(4)).toBe(5);
     expect(smallTree.nextLarger(5)).toBe(6);
     expect(smallTree.nextLarger(6)).toBe(null);
   });
 
-  it("handles empty trees", function () {
+  it("handles empty trees", function() {
     expect(emptyTree.nextLarger(0)).toBe(null);
   });
 
-  it("handles more complex trees", function () {
+  it("handles more complex trees", function() {
     expect(largeTree.nextLarger(1)).toBe(2);
     expect(largeTree.nextLarger(2)).toBe(3);
     expect(largeTree.nextLarger(3)).toBe(5);
@@ -99,8 +99,8 @@ describe("nextLarger", function () {
   });
 });
 
-describe("areCousins", function () {
-  it("returns true if they are cousins, false if not", function () {
+describe("areCousins", function() {
+  it("returns true if they are cousins, false if not", function() {
     let n7 = new BinaryTreeNode(7);
     let n6 = new BinaryTreeNode(6);
     let n5 = new BinaryTreeNode(5);
@@ -122,10 +122,10 @@ describe("areCousins", function () {
   });
 });
 
-describe("serialize and deserialize", function () {
+describe("serialize and deserialize", function() {
   let myTree;
 
-  beforeEach(function () {
+  beforeEach(function() {
     let root = new BinaryTreeNode(1);
     root.left = new BinaryTreeNode(2);
     root.right = new BinaryTreeNode(3);
@@ -135,14 +135,14 @@ describe("serialize and deserialize", function () {
     myTree = new BinaryTree(root);
   });
 
-  it("serializes trees into strings", function () {
+  it("serializes trees into strings", function() {
     // Failure message:
     // The 'serialize' function needs to output a string.
 
     expect(typeof BinaryTree.serialize(myTree)).toBe("string");
   });
 
-  it("deserializes strings into BinaryTree objects", function () {
+  it("deserializes strings into BinaryTree objects", function() {
     // Failure message:
     // The 'deserialize' function needs to output a BinaryTreeNode
 
@@ -151,7 +151,7 @@ describe("serialize and deserialize", function () {
     expect(result instanceof BinaryTree).toBe(true);
   });
 
-  it("reverses one another", function () {
+  it("reverses one another", function() {
     // Failure message:
     // the function 'deserialize' should perfectly reverse the function 'serialize'
 
@@ -160,7 +160,7 @@ describe("serialize and deserialize", function () {
     expect(result).toEqual(myTree);
   });
 
-  it("is a pure function", function () {
+  it("is a pure function", function() {
     // Failure message:
     // original tree must be unchanged
 
@@ -179,8 +179,8 @@ describe("serialize and deserialize", function () {
   });
 });
 
-describe("lowestCommonAncestor", function () {
-  it("returns the lowest common ancestor", function () {
+describe("lowestCommonAncestor", function() {
+  it("returns the lowest common ancestor", function() {
     // Failure message:
     // failed for tree (same as test examples)
     const root = new BinaryTreeNode(3);
