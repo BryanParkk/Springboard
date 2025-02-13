@@ -1,3 +1,4 @@
+
 input[type=checkbox]{
 	height: 0;
 	width: 0;
@@ -41,17 +42,18 @@ label:active:after {
 }
 
 body {
-	display: flex;
+	/* display: flex; */
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
 }
 
 .dark {
-background-color: 'darkslateblue';
-color: 'white';
+	background-color: darkslateblue;
+	color: white;
 }
 
 .dark a {
-color: lightskyblue
+	/* background-color: ; */
+	color: lightskyblue
 }
