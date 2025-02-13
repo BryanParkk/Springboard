@@ -46,3 +46,12 @@ body {
 	align-items: center;
 	height: 100vh;
 }
+
+.dark {
+background-color: 'darkslateblue';
+color: 'white';
+}
+
+.dark a {
+color: lightskyblue
+}
