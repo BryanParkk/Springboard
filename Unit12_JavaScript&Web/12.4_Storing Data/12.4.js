@@ -3,13 +3,11 @@
 //   favColor: "teal",
 // };
 
+const { setServers } = require("dns");
+
 //in
 // // localStorage.setItem("preferences", preferences);
-// localStorage.setItem("preferences", JSON.stringify(preferences));
-// JSON.parse(localStorage.getItem("preferences"));
-
-// //out
-// const { favColor } = JSON.parse(localStorage.preferences);
-// document.body.style.backgroundColor = favColor;
-
-const toggleSwitch = document.querySelector('input[type="checkbox"]');
+// localStorage.setItem("preferences", JSON.stringify(preference''''''''''''''''''''''''''''''''''
+//
+//
+//
