@@ -3,7 +3,7 @@
 //   favColor: "teal",
 // };
 
-const { setServers } = require("dns");
+// const { setServers } = require("dns");
 
 //in
 // // localStorage.setItem("preferences", preferences);
@@ -11,3 +11,16 @@ const { setServers } = require("dns");
 //
 //
 //
+
+const toggleSwitch = document.querySelector('input[type="checkbox"]');
+
+if (localStorage.getItem("darkModeEnabled") == "true") {
+  document.body.className = "dark";
+  toggleSwitch.checked = true;
+}
+
+toggleSwitch.addEventListener("click", function (e) {
+  const checked = toggleSwitch.checked;
+  document.body.className = checked ? "dark" : "";
+  localStorage.setItem("darkModeEnabled", checked);
+});
