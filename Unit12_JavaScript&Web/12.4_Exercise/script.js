@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // TODO: Load the note ID counter from the local storage.
   let noteIdCounter = Number(localStorage.getItem("noteIdCounter")) || 0; // Counter for assigning unique IDs to new notes.
 
-  // TODO: Load the notes from the local storage.
+  // TODO: Load the notes from the local storage..
 
   function addNewNote() {
     const id = noteIdCounter;
