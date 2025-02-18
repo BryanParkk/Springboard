@@ -1,20 +1,3 @@
-let name = "Apple";
+document.getElementById("google").innerHTML = "Hello Google";
 
-function myFunction() {
-  let num = 45;
-  console.log(name);
-  console.log(num);
-}
-
-myFunction();
-
-let student = {
-  firstName: "Bryan",
-  lastName: "Park",
-  age: 38,
-  mark: "brown eyes",
-};
-
-console.log(student);
-console.log(student.age);
-console.log(student.lastName);
+// document.getElementById("google").innerHTML = "Bye bye";
