@@ -1,3 +1,10 @@
-document.getElementById("google").innerHTML = "Hello Google";
-
-// document.getElementById("google").innerHTML = "Bye bye";
+document.getElementById("ref")
+  .innerHTML(`at Object.<anonymous> (/Users/bryanpark/Documents/Visual Studio 2022/Springboard/Practice/app.js:8:26)
+    at Module._compile (node:internal/modules/cjs/loader:1546:14)
+    at Object..js (node:internal/modules/cjs/loader:1689:10)
+    at Module.load (node:internal/modules/cjs/loader:1318:32)
+    at Function._load (node:internal/modules/cjs/loader:1128:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:315:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:170:5)
+    at node:internal/main/run_main_module:36:49`);
