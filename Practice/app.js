@@ -1,7 +1,7 @@
-let userInput = window.prompt("enter your name");
+let userInput = window.prompt("Hello, Input your name");
 
-if (userInput !== null) {
-  window.alert(`hello ${userInput}~~!`);
+if (userInput == null) {
+  window.alert("You just canceled.");
 } else {
-  window.alert("bye bye");
+  window.alert(`Hello, ${userInput}. :)`);
 }
