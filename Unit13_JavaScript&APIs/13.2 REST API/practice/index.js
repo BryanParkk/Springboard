@@ -1,1 +1,1 @@
-document.getElementById("name").innerHtml = "Google.com";
+document.getElementById("google").innerHTML = "Google.com";
