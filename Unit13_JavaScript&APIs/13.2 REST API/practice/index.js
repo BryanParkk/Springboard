@@ -1,1 +1,3 @@
-document.getElementById("google").innerHTML = "Google.com";
+console.log(axios);
+
+axios.get("https://catfact.ninja/fact");
