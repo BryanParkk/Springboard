@@ -13,6 +13,14 @@
     width : 100%;
 }
 
+.error-response {
+    background-color: red;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 1em;
+}
+
 #generate-button {
     background-color: green;
     border: 0px;
