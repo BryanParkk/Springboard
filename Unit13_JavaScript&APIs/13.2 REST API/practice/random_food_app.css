@@ -1,0 +1,29 @@
+#display-div {
+    border: 1px solid green;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px; 
+    font-size: 11px;
+}
+
+.button-display {
+    /* Add your styles here */
+    border: 1px solid green;
+    text-align: center;
+    width : 100%;
+}
+
+#generate-button {
+    background-color: green;
+    border: 0px;
+    color: white;
+    padding: 5px;
+    width: 95%;
+    display: block;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+#generate-button:active {
+    background-color: greenyellow;
+}
