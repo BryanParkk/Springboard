@@ -9,16 +9,19 @@
   </head>
   <body>
     <main>
-      <h1>Giphy Party</h1>  
+      <h1 id="title">Giphy Party</h1>  
       <div>
         <!-- Think about placing the form here -->
-
+        <form id="giphy-form">
+          <input type="text" id="search_term" name="search_term" placeholder="Enter a search term" size="25">
+          <button type="submit" id="search_button" class="btn">Search Giphy!</button>
+          <button type="button" id="remove_button" class="btn">Remove Images</button>
+        </form>
       </div>
-      <div>
+      <div id="gifs">
         <!-- Think about displaying the results here -->
         <!-- Or you can build out your own custom HTML structure -->
-
-        ... Your GIFs here ..
+        Results
       </div>
      
     </main>

@@ -1,1 +1,45 @@
 /* Your Styles Here */
+body {
+    background-color: black;
+    color: white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+}
+#title {
+    background: linear-gradient(rgb(1, 29, 56), black);
+    margin: 0 0 20px;
+    padding: 15px 0 0;
+
+}
+
+#giphy-form {
+    margin: 0 0 30px;
+}
+
+#search_term {
+    margin: 5px;
+    padding: 8px;
+}
+
+#search_button {
+    background-color: darkblue;
+    color: white;
+    height: 35px;
+}
+
+#remove_button {
+    background-color: darkred;
+    color: white;
+    height: 35px;
+
+}
+#search_button:active {
+    background-color: black;
+}
+#remove_button:active {
+    background-color: black;
+}
+
+#gifs {
+}
