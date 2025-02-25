@@ -41,8 +41,8 @@ class FriendGraph {
 
     while (toVisitQueue.length > 0) {
       let currPerson = toVisitQueue.shift();
-      
-      if (currPerson === person2) return true
+
+      if (currPerson === person2) return true;
 
       for (let neighbor of currPerson.adjacent) {
         if (!seen.has(neighbor)) {
@@ -56,15 +56,15 @@ class FriendGraph {
   }
   // end
 
-  areConnectedDFS(person1, person2) {  
+  areConnectedDFS(person1, person2) {
     let toVisitStack = [person1];
     let seen = new Set(toVisitStack);
-  
+
     while (toVisitStack.length > 0) {
       let currPerson = toVisitStack.pop();
-  
+
       if (currPerson === person2) return true;
-  
+
       for (let neighbor of currPerson.adjacent) {
         if (!seen.has(neighbor)) {
           toVisitStack.push(neighbor);
@@ -72,12 +72,12 @@ class FriendGraph {
         }
       }
     }
-  
+
     return false;
   }
   // end
 
-  areConnectedRecursive(person1, person2, seen=new Set([person1])) {
+  areConnectedRecursive(person1, person2, seen = new Set([person1])) {
     if (person1 === person2) return true;
 
     for (let neighbor of person1.adjacent) {
@@ -102,10 +102,11 @@ let lisa = new PersonNode("Lisa");
 let grampa = new PersonNode("Grampa");
 
 let friends = new FriendGraph();
-friends.addPeople([homer,marge,maggie,lisa,grampa]);
+friends.addPeople([homer, marge, maggie, lisa, grampa]);
 
 friends.setFriends(homer, marge);
 friends.setFriends(homer, maggie);
 friends.setFriends(homer, lisa);
 friends.setFriends(marge, maggie);
 friends.setFriends(lisa, grampa);
+//
