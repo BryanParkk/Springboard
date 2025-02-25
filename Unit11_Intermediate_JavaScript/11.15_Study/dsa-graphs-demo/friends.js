@@ -109,4 +109,3 @@ friends.setFriends(homer, maggie);
 friends.setFriends(homer, lisa);
 friends.setFriends(marge, maggie);
 friends.setFriends(lisa, grampa);
-//
