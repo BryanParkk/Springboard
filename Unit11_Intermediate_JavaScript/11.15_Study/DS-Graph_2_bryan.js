@@ -14,7 +14,7 @@ class FriendGraph {
   }
   addPeople(peopleList) {
     for (let node of peopleList) {
-      this.addPerson(node); // 수정: add -> node
+      this.addPerson(node);
     }
   }
   setFriends(person1, person2) {
@@ -69,7 +69,6 @@ const grampa = new PersonNode("grampa simpson");
 const friends = new FriendGraph();
 friends.addPeople([homer, marge, maggie, lisa, grampa]);
 
-// setFriends 메서드에는 두 개의 인자를 전달합니다.
 friends.setFriends(homer, marge);
 friends.setFriends(homer, lisa);
 friends.setFriends(homer, maggie);
