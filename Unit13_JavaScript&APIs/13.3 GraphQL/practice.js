@@ -5,6 +5,3 @@ greeting();
 
 const greeting2 = () => console.log("hello world");
 greeting2();
-//
-//
-//
