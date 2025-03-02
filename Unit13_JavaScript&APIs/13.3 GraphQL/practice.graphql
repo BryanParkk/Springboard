@@ -1,0 +1,20 @@
+type Film {
+  id: ID!
+  title: String!
+  releaseDate: String!
+  characters: [Character!]!
+}
+
+type Character {
+  id: ID!
+  name: String!
+  homeworld: Planet
+  starships: [Starship!]!
+}
+
+type Planet {
+  id: ID!
+  name: String!
+  climate: String!
+  population: Int
+}
