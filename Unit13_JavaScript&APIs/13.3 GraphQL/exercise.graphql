@@ -1,0 +1,9 @@
+#### Basic Tasks
+# 1. List All Films
+query {
+  allFilms {
+    films {
+      title
+    }
+  }
+}
