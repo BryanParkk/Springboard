@@ -79,7 +79,7 @@ query {
   }
 }
 
-### Advanced Tasks ###
+### Advanced Tasks ####
 
 #1. Characters in a Specific Film: List all characters appearing in a given film by ID.
 query {
