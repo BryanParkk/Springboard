@@ -9,3 +9,11 @@
 const arr = ["a", "b", "c"];
 
 console.log(arr.length);
+
+arr.push("d");
+console.log(arr);
+
+arr.pop();
+console.log(arr);
+
+console.log(arr.indexOf("b"));
