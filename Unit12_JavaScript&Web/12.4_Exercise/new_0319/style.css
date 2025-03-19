@@ -1,0 +1,73 @@
+*
+{
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 400;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body
+{
+  line-height: 1.5;
+  color: green;
+  background-color: black;
+}
+
+button
+{
+  padding: 10px;
+  color: green;
+  border: 1px solid green;
+  background-color: black;
+}
+
+label
+{
+  padding: 10px;
+  border: 1px solid green;
+}
+
+input
+{
+  width: 230px;
+  padding: 10px;
+  color: white;
+  border: 1px solid green;
+  outline: none;
+  background-color: black;
+}
+
+#new-note-button
+{
+  margin: 10px;
+}
+
+#color-form
+{
+  margin: 10px;
+}
+
+#note-container
+{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.note
+{
+  font-family: monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  margin: 10px;
+  border: 1px solid green;
+}
+
+.note:focus-visible
+{
+  outline: 2px solid green;
+}
