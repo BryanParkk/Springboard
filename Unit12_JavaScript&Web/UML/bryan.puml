@@ -1,0 +1,94 @@
+@startuml
+
+actor User
+
+rectangle "Fitness Tracking Application" {
+    usecase "Personalized Workout Recommendation" as U1
+    usecase "Search by Body Part" as U2
+    usecase "Start Workout with Timer" as U3
+    usecase "Log Workout Progress" as U4
+    usecase "Receive Nutritional Tips" as U5
+    usecase "Schedule Workout Plan" as U6
+}
+
+User -- U1
+User -- U2
+User -- U3
+User -- U4
+User -- U5
+User -- U6
+
+@enduml
+
+@startuml
+
+title Activity Diagram - User Workout Flow
+
+start
+:User logs in;
+:Selects workout preferences;
+:Receives personalized workout recommendations;
+if (Search by body part?) then (Yes)
+    :User searches workout by body part;
+endif
+:Starts workout session;
+:Workout timer starts;
+while (More exercises left?) is (Yes)
+    :Perform exercise;
+    :Rest timer starts;
+endwhile
+:User logs progress;
+:Receives nutritional tips;
+:Schedules next workout;
+stop
+
+@enduml
+
+@startuml
+
+title Sequence Diagram - Workout Session
+
+User -> System: Log in
+User -> System: Select preferences
+System -> User: Display workout recommendations
+User -> System: Start workout
+System -> User: Start exercise timer
+User -> System: Perform workout
+System -> User: Start rest timer
+User -> System: Log progress
+System -> User: Provide nutritional tips
+User -> System: Schedule next workout
+
+@enduml
+
+@startuml
+
+title Class Diagram - Fitness Tracking Application
+
+class User {
+    - username: String
+    - age: Integer
+    - fitnessGoal: String
+    - workoutHistory: List<Workout>
+    + selectPreferences()
+    + logWorkout()
+    + viewProgress()
+}
+
+class Workout {
+    - name: String
+    - duration: Integer
+    - bodyPart: String
+    + startTimer()
+    + trackProgress()
+}
+
+class Nutrition {
+    - mealPlans: List<String>
+    + getRecommendations()
+}
+
+User "1" -- "*" Workout
+User "1" -- "1" Nutrition
+
+@enduml
