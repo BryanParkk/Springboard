@@ -7,6 +7,23 @@
 // Popular Front end Frameworks
 // - Angular , Ember, Vue , React
 
-const App = () => {
-  return <p> Hello World </p>;
+const MovieList = () => {
+  return (
+    <ul>
+      <li>Big fish</li>
+      <li>Terminator 2</li>
+      <li>Diehard 3</li>
+    </ul>
+  );
 };
+
+const App = () => {
+  return (
+    <div>
+      <h1>App component!</h1>
+      <MovieList />
+    </div>
+  );
+};
+
+ReactDOM.render(<app />, document.getElementById("root"));
