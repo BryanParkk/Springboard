@@ -7,7 +7,25 @@ const Shiba = () => {
   );
 };
 
-// ReactDOM.render(<Shiba />, document.getElementById("root"));
+// ReactDOM.render(<Shiba />, document.getElementById("root")); //
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(<Shiba />);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Shiba />);
+const SharPei = () => {
+  return (
+    <img src="https://m.media-amazon.com/images/I/71L+46v5hnL._AC_SY300_SX300_.jpg" />
+  );
+};
+
+const App = () => {
+  return (
+    <div>
+      <Shiba />
+      <SharPei />
+      <Shiba />
+    </div>
+  );
+};
+
+const app = ReactDOM.createRoot(document.getElementById("root"));
+app.render(<App />);
