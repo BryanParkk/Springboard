@@ -27,3 +27,4 @@ const App = () => {
 };
 
 ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<MovieList />, document.getElementById("root"));
