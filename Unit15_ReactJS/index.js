@@ -35,6 +35,7 @@ function repeat(n, action) {
 }
 repeat(3, console.log);
 
+//
 function greet(name) {
   console.log("Hello, " + name);
 }
@@ -45,3 +46,9 @@ function processUserInput(callback) {
 }
 
 processUserInput(greet); // "Hello, John"
+
+const artists = ["Picasso", "Kahlo", "Matisse", "Utamaro"];
+
+const result = artists.forEach((artist) => {
+  console.log(artist + " is one of my favorite artists.");
+});
