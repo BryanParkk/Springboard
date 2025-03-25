@@ -34,3 +34,14 @@ function repeat(n, action) {
   }
 }
 repeat(3, console.log);
+
+function greet(name) {
+  console.log("Hello, " + name);
+}
+
+function processUserInput(callback) {
+  var name = "John";
+  callback(name); // 콜백 함수 호출
+}
+
+processUserInput(greet); // "Hello, John"
