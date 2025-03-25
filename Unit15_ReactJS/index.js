@@ -47,8 +47,23 @@ function processUserInput(callback) {
 
 processUserInput(greet); // "Hello, John"
 
-const artists = ["Picasso", "Kahlo", "Matisse", "Utamaro"];
+const favFood = ["kimchi", "noodle", "mandoo", "bulgogi"];
 
-const result = artists.forEach((artist) => {
-  console.log(artist + " is one of my favorite artists.");
+favFood.forEach((food, idx) => {
+  console.log(`${idx}: ${food} is my favorite food`);
+});
+
+const favHobby = ["ski", "exercise", "golf", "pingpong", "google", "samsung"];
+
+const myHobby = favHobby.map((hobby, idx) => {
+  idx++;
+  if (idx == 1) {
+    console.log(`${hobby} is my ${idx}st my favorite hobby`);
+  } else if (idx == 2) {
+    console.log(`${hobby} is my ${idx}nd my favorite hobby`);
+  } else if (idx == 3) {
+    console.log(`${hobby} is my ${idx}rd my favorite hobby`);
+  } else {
+    console.log(`${hobby} is my ${idx}th my favorite hobby`);
+  }
 });
