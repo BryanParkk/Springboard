@@ -4,14 +4,39 @@ document.addEventListener("DOMContentLoaded", function () {
   const colorForm = document.getElementById("color-form");
   const colorInput = document.getElementById("color-input");
 
-  // TODO: Load the note color from the local storage.
   let noteColor = localStorage.getItem("noteColor") || null; // Stores the selected note color from the form.
+  let noteIdCounter = Number(localStorage.getItem("noteIdCounter")) || 0; // Counter for assigning unique IDs to new notes.
 
-  // TODO: Load the note ID counter from the local storage.
-  let noteIdCounter = Number(localStorage.getItem("noteIdCounter")); // Counter for assigning unique IDs to new notes.
+  function readNotes() {
+    let notes = localStorage.getItem("notes");
 
-  // TODO: Load the notes from the local storage.
-  let notes = JSON.parse(localStorage.getItem("notes")) || [];
+    if (!notes) {
+      notes = [];
+    } else {
+      notes = JSON.parse(notes);
+    }
+
+    return notes;
+  }
+
+  function saveNotes(notes) {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }
+
+  function loadNotes() {
+    const notes = readNotes();
+
+    for (const note of notes) {
+      const noteElement = document.createElement("textarea");
+      noteElement.setAttribute("data-note-id", note.id.toString()); // Stores the note ID to its data attribute.
+      noteElement.value = note.content; // Sets the note ID as value.
+      noteElement.className = "note"; // Sets a CSS class.
+      noteElement.style.backgroundColor = noteColor; // Sets the note's background color using the last selected note color.
+      noteContainer.appendChild(noteElement); // Appends it to the note container element as its child.
+    }
+  }
+
+  loadNotes();
 
   function addNewNote() {
     const id = noteIdCounter;
@@ -24,14 +49,12 @@ document.addEventListener("DOMContentLoaded", function () {
     note.style.backgroundColor = noteColor; // Sets the note's background color using the last selected note color.
     noteContainer.appendChild(note); // Appends it to the note container element as its child.
 
-    // noteIdCounter++; // Increments the counter since the ID is used for this note.
+    noteIdCounter++; // Increments the counter since the ID is used for this note.
 
-    // TODO: Add new note to the saved notes in the local storage.
-    notes.push({ id, content, color: noteColor }); // 배열에 새 노트 추가
-    localStorage.setItem("notes", JSON.stringify(notes)); // localStorage에 저장
-
-    noteIdCounter++;
-    localStorage.setItem("noteIdCounter", noteIdCounter); // ID 카운터 저장
+    const notes = readNotes();
+    notes.push({ id, content });
+    saveNotes(notes);
+    localStorage.setItem("noteIdCounter", noteIdCounter.toString());
   }
 
   colorForm.addEventListener("submit", function (event) {
@@ -48,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     noteColor = newColor; // Updates the stored note color with the new selection.
 
-    // TODO: Update the note color in the local storage.
     localStorage.setItem("noteColor", noteColor);
   });
 
@@ -58,15 +80,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.addEventListener("dblclick", function (event) {
     if (event.target.classList.contains("note")) {
-      // event.target.remove(); // Removes the clicked note.
+      event.target.remove(); // Removes the clicked note.
 
-      // TODO: Delete the note from the saved notes in the local storage.
-      const noteId = Number(event.target.getAttribute("data-note-id"));
+      const id = Number(event.target.getAttribute("data-note-id"));
 
-      // 노트 삭제
-      notes = notes.filter((note) => note.id != noteId);
-      localStorage.setItem("notes", JSON.stringify(notes));
-      event.target.remove();
+      const notes = readNotes();
+
+      for (let i = 0; i < notes.length; i++) {
+        if (notes[i].id === id) {
+          notes.splice(i, 1);
+        }
+      }
+
+      saveNotes(notes);
     }
   });
 
@@ -74,14 +100,17 @@ document.addEventListener("DOMContentLoaded", function () {
     "blur",
     function (event) {
       if (event.target.classList.contains("note")) {
-        // TODO: Update the note from the saved notes in the local storage.
-        const noteId = Number(event.target.getAttribute("data-note-id"));
-        const updatedContent = event.target.value;
+        const id = Number(event.target.getAttribute("data-note-id"));
 
-        notes = notes.map((note) =>
-          note.id === noteId ? { ...note, content: updatedContent } : note
-        );
-        localStorage.setItem("notes", JSON.stringify(notes));
+        const notes = readNotes();
+
+        for (let i = 0; i < notes.length; i++) {
+          if (notes[i].id === id) {
+            notes[i].content = event.target.value;
+          }
+        }
+
+        saveNotes(notes);
       }
     },
     true
