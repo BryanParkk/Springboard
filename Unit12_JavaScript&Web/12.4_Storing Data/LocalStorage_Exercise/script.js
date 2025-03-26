@@ -13,6 +13,27 @@ document.addEventListener("DOMContentLoaded", function () {
   // TODO: Load the notes from the local storage.
   let notes = JSON.parse(localStorage.getItem("notes")) || [];
 
+  function readNotes() {
+    return localStorage.getItem("notes")
+      ? JSON.parse(localStorage.getItem("notes"))
+      : [];
+  }
+
+  function loadNotes() {
+    const notes = readNotes();
+
+    for (const note of notes) {
+      const noteElement = document.createElement("textarea");
+      noteElement.setAttribute("data-note-id", note.id.toString());
+      noteElement.value = note.content;
+      noteElement.className = "note";
+      noteElement.style.backgroundColor = noteColor;
+      noteContainer.appendChild(noteElement);
+    }
+  }
+
+  loadNotes();
+
   function addNewNote() {
     const id = noteIdCounter;
     const content = `Note ${id}`;
