@@ -67,3 +67,11 @@ const myHobby = favHobby.map((hobby, idx) => {
     console.log(`${hobby} is my ${idx}th my favorite hobby`);
   }
 });
+
+const things = ["desk", "chair", 5, "backpack", 3.14, 100];
+
+const onlyNumbers = things.filter((thing) => {
+  return typeof thing === "number";
+});
+
+console.log(onlyNumbers);
