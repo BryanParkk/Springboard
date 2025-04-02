@@ -16,20 +16,7 @@ function App() {
 
   return (
     <div>
-      <h1>Space Phenomena Tracker</h1>
-      <ul>
-        {spacePhenomena.map((spacePhenomen) => {
-          const random = Math.floor(Math.random() * observationStatuses.length);
-          const status = observationStatuses[random];
-
-          return (
-            <li key={spacePhenomen.id}>
-              {spacePhenomen.emoji} {spacePhenomen.name} - {status}
-              {random === 2 && <>💡 (Gear up with your best equipment!)</>}
-            </li>
-          );
-        })}
-      </ul>
+      <h1>Space Pheonomena Tracker</h1>
     </div>
   );
 }
