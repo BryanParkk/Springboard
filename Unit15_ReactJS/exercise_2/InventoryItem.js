@@ -1,7 +1,7 @@
 function InventoryItem({ name, type, quantity = 0, price = 0 }) {
   const totalValue = quantity * price;
   return (
-    <div className="item">
+    <div>
       <h2>
         {name} ({type})
       </h2>
