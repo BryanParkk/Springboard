@@ -16,10 +16,31 @@ function App() {
 
   return (
     <div>
-      <h1>Space Pheonomena Tracker</h1>
+      <h1>Space Phenomena Tracker 🌠</h1>
+      <ul>
+        {spacePhenomena.map((spacePhenomenon) => {
+          const randomIndex = Math.floor(
+            Math.random() * observationStatuses.length
+          );
+          const observationStatus = observationStatuses[randomIndex];
+
+          return (
+            <li key={spacePhenomenon.id}>
+              {spacePhenomenon.emoji} {spacePhenomenon.name} -{" "}
+              {observationStatus}{" "}
+              {randomIndex === 2 && (
+                <span>💡 (Gear up with your best equipment!)</span>
+              )}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+root.render(<App></App>);
+
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(<App />);
