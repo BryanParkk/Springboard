@@ -49,5 +49,11 @@ p {
 }
 
 #type {
-    color: red;
+    color: rgb(255, 0, 144);
+    font-weight: bold;
+    ;
+}
+
+#exp {
+    font-style: italic;
 }
