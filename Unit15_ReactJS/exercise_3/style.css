@@ -1,0 +1,53 @@
+#pokemon {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4열 */
+    grid-template-rows: repeat(2, auto);
+    /* 2행 */
+    gap: 20px;
+    /* 카드 간격 */
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    /* 가운데 정렬 */
+
+}
+
+.pokemon {
+    text-align: center;
+    background-color: rgb(208, 255, 210);
+    width: 120px;
+    padding: 10px 10px;
+    margin: 10px 10px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgb(244, 228, 0);
+}
+
+h1 {
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: purple;
+    text-shadow: 2px 2px 2px rgba(64, 64, 64, 0.5);
+}
+
+h3 {
+    margin: 5px;
+    color: rgb(0, 78, 0);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 13pt;
+}
+
+img {
+    margin: -20px;
+}
+
+p {
+    font-size: 10pt;
+    padding: 0px;
+    margin: 5px;
+}
+
+#type {
+    color: red;
+}
