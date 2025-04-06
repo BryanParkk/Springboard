@@ -2,6 +2,11 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import mac from './helpers'
+
+// import helpers
+console.log(`FUNCTION VALUE ${mac(7)}`);
+
 
 function App() {
   const [count, setCount] = useState(0)
