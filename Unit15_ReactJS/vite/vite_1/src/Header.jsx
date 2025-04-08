@@ -1,5 +1,5 @@
 import './Header.css'
-export default function Header() {
-  return <h1 className="Header">Welcome to my application!</h1>;
+export default function Header({color, text}) {
+  return <h1 style={{color: color}} className="Header">{text}</h1>;
 }
 

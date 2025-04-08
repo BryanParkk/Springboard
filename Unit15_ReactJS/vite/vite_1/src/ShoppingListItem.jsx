@@ -1,6 +1,7 @@
 function ShoppingListItem({item, price, qty}) {
+
     return (
-    <li>
+    <li style={{color: price > 7 ? "red" : "green"}}>
         {item} - <b>${price}</b> - quantity : {qty}
     </li>
     )
