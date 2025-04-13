@@ -1,13 +1,20 @@
-const Navbar = () => {
+const Home = () => {
+
+  const handleClick = (e) => {
+    console.log('hello ninjas', e);
+  }
+
+  const handleClickAgain = (name, e) => {
+    console.log('hello ' + name, e.target);
+  }
+
   return (
-    <div className="navbar">
-      <h1>The Dojo Blog</h1>
-      <div className="links">
-        <a href="/">Home</a>
-        <a href="/create">New Blog</a>
-      </div>
+    <div className="home">
+      <h2>Homepage</h2>
+      <button onClick={handleClick}>Click me</button>
+      <button onClick={(e) => handleClickAgain('mario', e)}>Click me again</button>
     </div>
   );
-};
-
-export default Navbar;
+}
+ 
+export default Home;
