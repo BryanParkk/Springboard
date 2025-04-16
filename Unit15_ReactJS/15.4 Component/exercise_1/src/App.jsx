@@ -1,4 +1,5 @@
 import MissionControl from "./MissionControl";
+import MissionFilter from "./MissionFilter";
 
 function App ()
 {
@@ -17,7 +18,17 @@ function App ()
 
 	return (
 		<>
-			<MissionControl></MissionControl>
+		    <h1> 🚀 Space Mission Control 🚀 </h1>
+			<MissionFilter></MissionFilter>
+			{INITIAL_MISSIONS.map( (mission) => {
+				return <MissionControl 
+						key={mission.id} 
+						name={mission.name} 
+						status={mission.status}
+						crew={mission.crew}
+						>
+					   </MissionControl>
+			})}
 		</>
 	);
 }
