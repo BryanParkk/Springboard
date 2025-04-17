@@ -1,5 +1,7 @@
 import MissionControl from "./MissionControl";
 import MissionFilter from "./MissionFilter";
+import { useState } from 'react';
+import './index.css';
 
 function App ()
 {
@@ -16,18 +18,34 @@ function App ()
 		{id: 10, name: "Pluto Reclamation", status: "Planned", crew: ["Sam", "Tina"]}
 	];
 
+	//Filter variable
+	const [filter, setFilter] = useState('All');
+
+	//Filter condition
+	const filteredMission = filter === 'All' ? INITIAL_MISSIONS : INITIAL_MISSIONS.filter(INITIAL_MISSIONS => INITIAL_MISSIONS.status === filter);
+
 	return (
 		<>
 		    <h1> 🚀 Space Mission Control 🚀 </h1>
-			<MissionFilter></MissionFilter>
-			{INITIAL_MISSIONS.map( (mission) => {
-				return <MissionControl 
-						key={mission.id} 
-						name={mission.name} 
-						status={mission.status}
-						crew={mission.crew}
-						>
-					   </MissionControl>
+			{/* Filter button */}
+			<button className='btn-filter' onClick={() => setFilter('All')}>All</button>
+			<button className='btn-filter' onClick={() => setFilter('Planned')}>Planned</button>
+			<button className='btn-filter' onClick={() => setFilter('Active')}>Active</button>
+			<button className='btn-filter' onClick={() => setFilter('Completed')}>Completed</button>
+
+			{/* Crew cards */}
+			{filteredMission.map( (INITIAL_MISSIONS, index) => {
+				return <div className='crew-card' key={index}>
+							<div className='crew-info'>
+								<div className='crew-name'>{INITIAL_MISSIONS.name}</div>
+								<div className='crew-status'>Status: {INITIAL_MISSIONS.status}</div>
+								<div className='crew-member'>Crew: {INITIAL_MISSIONS.crew.join(', ')}</div>
+							</div>
+							<div className="btn-card-group">
+								<button className="btn-card-launch">Launch</button>
+								<button className="btn-card-complete">Complete</button>
+                			</div>
+					   </div>
 			})}
 		</>
 	);

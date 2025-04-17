@@ -10,10 +10,11 @@ h1 {
     text-align: center;
 }
 
-.btn-filter-all,
+/* .btn-filter-all,
 .btn-filter-planned,
 .btn-filter-active,
-.btn-filter-completed {
+.btn-filter-completed { */
+.btn-filter {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin: 5px 5px;
     width: 100px;
