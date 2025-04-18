@@ -20,9 +20,20 @@ function App ()
 
 	//Filter variable
 	const [filter, setFilter] = useState('All');
+	const [missions, setMissions] = useState(INITIAL_MISSIONS);
 
 	//Filter condition
 	const filteredMission = filter === 'All' ? INITIAL_MISSIONS : INITIAL_MISSIONS.filter(INITIAL_MISSIONS => INITIAL_MISSIONS.status === filter);
+
+	//Status update
+	const updateStatus = (id, newStatus) => {
+		const updated = missions.map(INITIAL_MISSIONS =>
+			INITIAL_MISSIONS.id === id ? { ...INITIAL_MISSIONS, status: newStatus } : INITIAL_MISSIONS
+		);
+		setMissions(updated);
+	};
+
+
 
 	return (
 		<>
@@ -34,19 +45,18 @@ function App ()
 			<button className='btn-filter' onClick={() => setFilter('Completed')}>Completed</button>
 
 			{/* Crew cards */}
-			{filteredMission.map( (INITIAL_MISSIONS, index) => {
-				return <div className='crew-card' key={index}>
-							<div className='crew-info'>
-								<div className='crew-name'>{INITIAL_MISSIONS.name}</div>
-								<div className='crew-status'>Status: {INITIAL_MISSIONS.status}</div>
-								<div className='crew-member'>Crew: {INITIAL_MISSIONS.crew.join(', ')}</div>
-							</div>
-							<div className="btn-card-group">
-								<button className="btn-card-launch">Launch</button>
-								<button className="btn-card-complete">Complete</button>
-                			</div>
-					   </div>
-			})}
+			{filteredMission.map((INITIAL_MISSIONS, index) => (
+				<div className='crew-card' key={index}>
+					<div className='crew-info'>
+						<div className='crew-name'>{INITIAL_MISSIONS.name}</div>
+						<div className='crew-status'>Status: {INITIAL_MISSIONS.status}</div>
+						<div className='crew-member'>Crew: {INITIAL_MISSIONS.crew.join(', ')}</div>
+					</div>
+					<div className="btn-card-group">	
+						<button onClick={() => updateStatus(INITIAL_MISSIONS.id, 'Completed')}>Launch</button>
+					</div>
+				</div>
+			))}
 		</>
 	);
 }
