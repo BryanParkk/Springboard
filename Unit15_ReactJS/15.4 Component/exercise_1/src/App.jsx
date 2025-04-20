@@ -25,15 +25,21 @@ function App ()
 	//Filter condition
 	const filteredMission = filter === 'All' ? missions : missions.filter(mission => mission.status === filter);
 
-	//Status update
-	const updateStatus = (id, newStatus) => {
-		const updatedStatus = missions.map(INITIAL_MISSIONS =>
-			INITIAL_MISSIONS.id === id ? { ...INITIAL_MISSIONS, status: newStatus } : INITIAL_MISSIONS
+	//Status update (Completed -> Completed)
+	const handleComplete = (id) => {
+		const updated = missions.map((mission) =>
+		  mission.id === id ? { ...mission, status: 'Completed' } : mission
 		);
-		setMissions(updatedStatus);
-	};
+		setMissions(updated);
+	  };
 
-
+	//Status update (Launch -> Active)
+	const handleLaunch= (id) => {
+		const updated = missions.map((mission) =>
+		  mission.id === id ? { ...mission, status: 'Active' } : mission
+		);
+		setMissions(updated);
+	  };
 
 	return (
 		<>
@@ -53,7 +59,8 @@ function App ()
 						<div className='crew-member'>Crew: {INITIAL_MISSIONS.crew.join(', ')}</div>
 					</div>
 					<div className="btn-card-group">	
-						<button onClick={() => updateStatus(INITIAL_MISSIONS.id, 'Completed')}>Launch</button>
+						<button className='' onClick={() => handleLaunch(INITIAL_MISSIONS.id)}>Launch</button>
+						<button className='' onClick={() => handleComplete(INITIAL_MISSIONS.id)}>Completed</button>
 					</div>
 				</div>
 			))}
