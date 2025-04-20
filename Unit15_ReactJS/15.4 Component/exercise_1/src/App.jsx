@@ -23,14 +23,14 @@ function App ()
 	const [missions, setMissions] = useState(INITIAL_MISSIONS);
 
 	//Filter condition
-	const filteredMission = filter === 'All' ? INITIAL_MISSIONS : INITIAL_MISSIONS.filter(INITIAL_MISSIONS => INITIAL_MISSIONS.status === filter);
+	const filteredMission = filter === 'All' ? missions : missions.filter(mission => mission.status === filter);
 
 	//Status update
 	const updateStatus = (id, newStatus) => {
-		const updated = missions.map(INITIAL_MISSIONS =>
+		const updatedStatus = missions.map(INITIAL_MISSIONS =>
 			INITIAL_MISSIONS.id === id ? { ...INITIAL_MISSIONS, status: newStatus } : INITIAL_MISSIONS
 		);
-		setMissions(updated);
+		setMissions(updatedStatus);
 	};
 
 
