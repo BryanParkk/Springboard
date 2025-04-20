@@ -59,8 +59,8 @@ function App ()
 						<div className='crew-member'>Crew: {INITIAL_MISSIONS.crew.join(', ')}</div>
 					</div>
 					<div className="btn-card-group">	
-						<button className='' onClick={() => handleLaunch(INITIAL_MISSIONS.id)}>Launch</button>
-						<button className='' onClick={() => handleComplete(INITIAL_MISSIONS.id)}>Completed</button>
+						<button className='btn-card-launch' onClick={() => handleLaunch(INITIAL_MISSIONS.id)}>Launch</button>
+						<button className='btn-card-complete' onClick={() => handleComplete(INITIAL_MISSIONS.id)}>Completed</button>
 					</div>
 				</div>
 			))}
