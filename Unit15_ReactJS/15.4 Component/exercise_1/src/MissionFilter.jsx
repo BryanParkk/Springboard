@@ -1,10 +1,11 @@
-function MissionFilter() {
+function MissionFilter( {filter, setFilter} ) {
+
     return (
         <>
-            <button className="btn-filter-all">All</button>
-            <button className="btn-filter-planned">Planned</button>
-            <button className="btn-filter-active">Active</button>
-            <button className="btn-filter-completed">Completed</button>
+			<button className='btn-filter' onClick={() => setFilter('All')}>All</button>
+			<button className='btn-filter' onClick={() => setFilter('Planned')}>Planned</button>
+			<button className='btn-filter' onClick={() => setFilter('Active')}>Active</button>
+			<button className='btn-filter' onClick={() => setFilter('Completed')}>Completed</button>
         </>
     );
 }

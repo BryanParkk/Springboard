@@ -21,49 +21,22 @@ function App ()
 	//Filter variable
 	const [filter, setFilter] = useState('All');
 	const [missions, setMissions] = useState(INITIAL_MISSIONS);
-
-	//Filter condition
 	const filteredMission = filter === 'All' ? missions : missions.filter(mission => mission.status === filter);
 
-	//Status update (Completed -> Completed)
-	const handleComplete = (id) => {
-		const updated = missions.map((mission) =>
-		  mission.id === id ? { ...mission, status: 'Completed' } : mission
-		);
-		setMissions(updated);
-	  };
+	const handleLaunch = (id) => {
+		setMissions(missions.map(mission => mission.id === id ? { ...mission, status: 'Active' } : mission));
+	};
 
-	//Status update (Launch -> Active)
-	const handleLaunch= (id) => {
-		const updated = missions.map((mission) =>
-		  mission.id === id ? { ...mission, status: 'Active' } : mission
-		);
-		setMissions(updated);
-	  };
+	const handleComplete = (id) => {
+		setMissions(missions.map(mission => mission.id === id ? { ...mission, status: 'Completed' } : mission));
+	};
 
 	return (
 		<>
 		    <h1> 🚀 Space Mission Control 🚀 </h1>
 			{/* Filter button */}
-			<button className='btn-filter' onClick={() => setFilter('All')}>All</button>
-			<button className='btn-filter' onClick={() => setFilter('Planned')}>Planned</button>
-			<button className='btn-filter' onClick={() => setFilter('Active')}>Active</button>
-			<button className='btn-filter' onClick={() => setFilter('Completed')}>Completed</button>
-
-			{/* Crew cards */}
-			{filteredMission.map((INITIAL_MISSIONS, index) => (
-				<div className='crew-card' key={index}>
-					<div className='crew-info'>
-						<div className='crew-name'>{INITIAL_MISSIONS.name}</div>
-						<div className='crew-status'>Status: {INITIAL_MISSIONS.status}</div>
-						<div className='crew-member'>Crew: {INITIAL_MISSIONS.crew.join(', ')}</div>
-					</div>
-					<div className="btn-card-group">	
-						<button className='btn-card-launch' onClick={() => handleLaunch(INITIAL_MISSIONS.id)}>Launch</button>
-						<button className='btn-card-complete' onClick={() => handleComplete(INITIAL_MISSIONS.id)}>Completed</button>
-					</div>
-				</div>
-			))}
+			<MissionFilter filter={filter} setFilter={setFilter}/>
+			<MissionControl missions={filteredMission} onLaunch={handleLaunch} onComplete={handleComplete} />
 		</>
 	);
 }
