@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import './App.css'
-import Simple from './SimpleCounter'
+import NumbersList from './NumbersList'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <Simple />
-      <Simple />
-      <Simple />
+      <div className="App">
+        <NumbersList />
+      </div>
     </>
   )
 }
