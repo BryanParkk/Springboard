@@ -4,7 +4,7 @@ import './ColorButtons.css';
 
 const ColorButtons = ({options, addCircle}) => {
     return (
-        <div className="ColorButtons">
+        <div className="ColorButton">
             {options.map(color => (
                 <ColorButton color={color} addCircle={addCircle} />
             ))}
