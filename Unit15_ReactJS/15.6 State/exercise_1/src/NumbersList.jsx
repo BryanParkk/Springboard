@@ -12,7 +12,7 @@ const NumbersList = () => {
   return (
     <ul>
       {numbers.map((n) => (
-        <NumberItem number={n} remove={remove}/>
+        <NumberItem number={n} remove={remove} key={n}/>
       ))}
     </ul>
   );
