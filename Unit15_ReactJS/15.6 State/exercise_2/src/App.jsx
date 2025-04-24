@@ -1,6 +1,5 @@
 
 import './App.css'
-import Circle from './Circle'
 import ColoredCircles from './ColoredCircles';
 
 function App() {
@@ -9,7 +8,6 @@ function App() {
     <>
       <div className="App">
           <ColoredCircles />
-
       </div>
     </>
   )
