@@ -1,12 +1,11 @@
-import { useState } from 'react'
+import ProfileCard from './ProfileCard'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      
+      <ProfileCard name="Terin" age={37} hobby={"Exercise"} />
     </>
   )
 }
