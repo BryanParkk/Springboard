@@ -25,7 +25,6 @@ import './App.css'
 
 // export default App
 
-
 function App() {
   const [input, setInput] = useState("");
   const [user, setUser] = useState({
