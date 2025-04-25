@@ -1,12 +1,13 @@
-import ProfileCard from './ProfileCard'
+import Dice from './Dice'
 import './App.css'
 
 function App() {
 
   return (
-    <>
-      <ProfileCard name="Terin" age={37} hobby={"Exercise"} />
-    </>
+    <div className="App">
+      <Dice numDice={5} maxVal={22}/>
+      
+    </div>
   )
 }
 
