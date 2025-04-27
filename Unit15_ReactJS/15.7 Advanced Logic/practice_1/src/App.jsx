@@ -1,14 +1,20 @@
-import { useState } from 'react'
-import './App.css'
+import React from 'react';
+import './App.css';
+import Counter from './Counter';
+import Timer from './Timer';
+import ProfileViewer from './ProfileViewer';
+import ProfileViewerWithSearch from './ProfileViewerWithSearch';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      
+      <Counter />
+      {/* <Timer /> */}
+      {/* <ProfileViewer /> */}
+      <ProfileViewerWithSearch />
     </>
   )
 }
 
-export default App
+export default App;
