@@ -6,24 +6,29 @@ const SpaceMain = () => {
     console.log(`Hello World, ${a}`);
 
     return (
-        <>
-            <h1 className="title"> Space Battle Simulator</h1>
-            <div className="player-info">
-                <label className="label-player-name">Player Health: </label>
-                <label className="label-player-hp">0</label>
+        <div className="space-area">
+            <div className="top">
+                <h1 className="title"> Space Battle Simulator</h1>
             </div>
 
-            <button className="btn-battle">Fire!</button>
+            <div className="mid">
+                <div className="player-info">
+                    <label className="label-player-name">Player Health: </label>
+                    <label className="label-player-hp">0</label>
+                </div>
 
-            <div className="enemy-info">
-                <label className="label-enemy-name">Enemy Health: </label>
-                <label className="label-enemy-hp">0</label>
+                <button className="btn-battle">Fire!</button>
+
+                <div className="enemy-info">
+                    <label className="label-enemy-name">Enemy Health: </label>
+                    <label className="label-enemy-hp">0</label>
+                </div>
             </div>
 
-            <div>
+            <div className="bottom">
                 <SpaceBottom />
             </div>
-        </>
+        </div>
     )
 }
 export default SpaceMain;

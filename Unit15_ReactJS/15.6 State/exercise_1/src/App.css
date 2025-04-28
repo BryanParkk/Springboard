@@ -1,11 +1,10 @@
 :root {
-    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
+    font-family: 'Courier New', Courier, monospace line-height: 1.5;
     font-weight: 400;
 
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
+    background-color: #18161e;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -14,9 +13,56 @@
 }
 
 body {
-    margin: 0;
-    display: flex;
     place-items: center;
-    min-width: 320px;
-    min-height: 100vh;
+}
+
+
+
+.space-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 90vh;
+}
+
+.mid {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 15pt;
+    width: 150%;
+    align-items: center;
+}
+
+.player-info {
+    color: rgb(58, 237, 196);
+}
+
+.enemy-info {
+    color: rgb(169, 0, 0)
+}
+
+.btn-battle {
+    border: 5px solid white;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    font-size: 20pt;
+}
+
+.btn-battle:hover {
+    background-color: rgb(121, 12, 12);
+}
+
+.bottom {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: 2px solid white;
+    width: 1000px;
+    height: 100px;
+    font-size: 20pt;
+
 }
