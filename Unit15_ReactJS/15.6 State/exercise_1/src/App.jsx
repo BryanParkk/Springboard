@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import './App.css'
+import SpaceMain from './SpaceMain'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const a = "Bryan";
 
   return (
     <>
-      
+     <SpaceMain />
     </>
   )
 }

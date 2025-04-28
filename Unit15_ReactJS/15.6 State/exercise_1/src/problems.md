@@ -14,3 +14,16 @@
    • 상태를 만들고, 이벤트 핸들러 (onClick, onChange 등) 연결하고, 결과를 화면에 반영해요.
 6. 작게 테스트하면서 점진적으로 완성하기
    • 한 번에 다 하려 하지 말고, 작동하는 작은 단위부터 완성하고 넘어가요.
+
+7. 화면 구성
+   : 검정 배경,
+   : 타이틀 (Space Battle Simulator)
+   : 텍스트 레이어 2개 (남은 체력 포함) , Player Health: 100 (green), Enemy Health: 100 (red) , change the emoji to skull if defeat
+   : Fire! Button (change to Restart), Fire! and Restart?
+   : Status 레이어, "Engage the enemy!" , "Mission Failed. Your spacecraft has been defeated." , "Congratulations! You've successfully defended your spacecraft".
+   "It's a draw! Both spacecrafts have been neutralized."
+
+8. 컴포넌트 구성
+   : 화트 뿌리는 컴포넌트
+   : 공격 컴포넌트
+   :
