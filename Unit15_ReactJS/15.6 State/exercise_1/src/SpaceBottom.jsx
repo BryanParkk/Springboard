@@ -1,9 +1,10 @@
+import React from 'react';
 
-const SpaceBottom = () => {
+const SpaceBottom = ( {text} ) => {
     return (
         <>
             <div className="SpaceBottom">
-                Engage the enemy!
+                {text}
             </div>
         </>
     )

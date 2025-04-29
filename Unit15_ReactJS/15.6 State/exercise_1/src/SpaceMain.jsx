@@ -12,45 +12,70 @@ const SpaceMain = () => {
     const [btnText, setBtnText] = useState("Fire!");
 
     //
+    const [bottomText, setBottomText] = useState('⚠️ Engage the enemy ⚠️');
+
+    // handle fire
     const handleFire = () => {
-        if (playerHp > 0 && enemyHp > 0) {
-            // 둘 다 살아있을 때만 공격
-            setPlayerHp(prev => {
-              const newHp = Math.max(prev - playerRandomHp, 0);
-              if (newHp === 0 || enemyHp - enemyRandomHp <= 0) {
+        if(playerHp > 0 && enemyHp > 0) {
+            const playerNew = Math.max(playerHp - playerRandomHp, 0);
+            const enemyNew = Math.max(enemyHp - enemyRandomHp, 0);
+
+            setPlayerHp(playerNew);
+            setEnemyHp(enemyNew);
+
+            if (playerNew === 0 || enemyNew === 0) {
                 setBtnText('Restart?');
-              }
-              return newHp;
-            });
-        
-            setEnemyHp(prev => Math.max(prev - enemyRandomHp, 0));
-          } else {
-            setBtnText('Restart?');
-          }
-        };
+
+                if(playerNew === 0 && enemyNew === 0) {
+                    setBottomText(`‼️ It's a draw! Both spacecrafts have been neutralized. ‼️`);
+                } else if (playerNew === 0) {
+                    setBottomText(`Mission Failed. Your spacecraft has been defeated. 😨`);
+                } else if (enemyNew === 0) {
+                    setBottomText(`🎉 Congratulations! You've successfully defended your spacecraft! 🎉`);
+                }
+            }
+        }
+    };
+
+    // handle Restart
+    const handleRestart = () => {
+        setPlayerHp(100);
+        setEnemyHp(100);
+        setBtnText('Fire!');
+        setBottomText('⚠️ Engage the enemy ⚠️');
+    };
+
+    // control handle
+    const handleButtonClick = () => {
+        if(btnText === 'Fire!') {
+            handleFire();
+        } else {
+            handleRestart();
+        }
+    };
 
     return (
         <div className="space-area">
             <div className="top">
-                <h1 className="title"> Space Battle Simulator</h1>
+                <h1 className="title"> 🚀 Space Battle Simulator 🚀 </h1>
             </div>
 
             <div className="mid">
                 <div className="player-info">
-                    <label className="label-player-name">Player Health: </label>
+                    <label className="label-player-name">🛰️ Player Health: </label>
                     <label className="label-player-hp">{playerHp}</label>
                 </div>
 
-                <button className="btn-battle" onClick={handleFire}>{btnText}</button>
+                <button className={btnText === 'Fire!' ? 'fire-btn' : 'restart-btn'} onClick={handleButtonClick}>{btnText}</button>
 
                 <div className="enemy-info">
-                    <label className="label-enemy-name">Enemy Health: </label>
+                    <label className="label-enemy-name">🛸 Enemy Health: </label>
                     <label className="label-enemy-hp">{enemyHp}</label>
                 </div>
             </div>
 
             <div className="bottom">
-                <SpaceBottom />
+                <SpaceBottom text={bottomText}/>
             </div>
         </div>
     )
