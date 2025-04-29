@@ -28,18 +28,22 @@ body {
 .mid {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 15pt;
-    /* width: 150%; */
-    align-items: center;
+    width: 150%;
 }
 
 .player-info {
     color: rgb(58, 237, 196);
+    flex: 1;
+    text-align: left;
 }
 
 .enemy-info {
-    color: rgb(169, 0, 0)
+    color: rgb(169, 0, 0);
+    flex: 1;
+    text-align: right;
 }
 
 .fire-btn {
