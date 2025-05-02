@@ -11,7 +11,8 @@ function Child() {
         <CounterContext.Provider value={count}>
             <div style={{border: '4px solid #0074D9', margin: '1rem', width: '500px'}}>
                 <p>I'm the child!</p>
-                <p>I "own" count, It is: {count}</p>
+                {/* <p>I "own" count, It is: {count}</p> */}
+                <button onClick={addToCount}>Add to count</button>
                 <GrandChild />
             </div>
         </CounterContext.Provider>
