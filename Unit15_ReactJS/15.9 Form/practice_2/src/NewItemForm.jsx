@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const NewItemForm = () => {
+const NewItemForm = ({ addItem }) => {
   const INITIAL_STATE = {
     name: "",
     qty: ""
@@ -18,7 +18,8 @@ const NewItemForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-     
+     addItem(formData.name, formData.qty)
+     setFormData(INITIAL_STATE);
   }
 
   return (
