@@ -15,13 +15,6 @@ import React, { useState } from 'react'
             [name]: value
         }));
     }
-    // const handleChange = (e) => {
-    //     setUsername(e.target.value)
-    // }
-
-    // const handleEmailChange = (e) => {
-    //     setEmail(e.target.value)
-    // }
 
     const handleSubmit = (e) => {
         e.preventDefault();
