@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Poppins";
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
@@ -41,7 +43,7 @@ button:hover {
 }
 
 .input-text {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Poppins";
   display: block;
   margin: 0.5em 0;
   padding: 0.6em;
@@ -67,4 +69,5 @@ textarea {
   background-color: rgba(0, 0, 0, 0.2);
   height: 35px;
   padding: 0 0 0 3pt;
+  gap: 5px;
 }

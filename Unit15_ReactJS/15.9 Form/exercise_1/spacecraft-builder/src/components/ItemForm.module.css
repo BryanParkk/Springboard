@@ -1,0 +1,70 @@
+.form
+{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.element
+{
+  margin-bottom: 20px;
+  border: 2px solid #ffffff;
+}
+
+.element input,
+.element textarea
+{
+  width: 100%;
+  padding: 10px;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.element textarea
+{
+  height: 100px;
+}
+
+.element input::-webkit-outer-spin-button,
+.element input::-webkit-inner-spin-button
+{
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.element input[type=number]
+{
+  -moz-appearance: textfield;
+}
+
+.agreeToTerms
+{
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 2px solid #ffffff;
+}
+
+.agreeToTerms input
+{
+  margin-right: 10px;
+}
+
+.error
+{
+  border-color: #ff2727;
+}
+
+.button
+{
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  justify-content: center;
+  width: 120px;
+  height: 40px;
+  color: #ffffff;
+  border: 2px solid #62ff62;
+  background-color: transparent;
+}
