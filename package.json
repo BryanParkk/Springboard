@@ -11,5 +11,9 @@
   "license": "ISC",
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "script": "^0.1.4"
   }
 }
