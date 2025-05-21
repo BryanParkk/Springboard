@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const Counter = () => {
 
 }
@@ -21,4 +20,3 @@ const Counter = () => {
 }
 
 export default Counter;
->>>>>>> 16c6856e1683260f1c764344bdac450456862404
