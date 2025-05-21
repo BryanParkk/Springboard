@@ -1,3 +1,4 @@
+import Counter from './features/counter/Counter'
 
 function App() {
   return (
@@ -7,3 +8,6 @@ function App() {
   )
 }
 export default App
+
+
+13;23
