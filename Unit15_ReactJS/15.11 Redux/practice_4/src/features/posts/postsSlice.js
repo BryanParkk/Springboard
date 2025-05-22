@@ -9,7 +9,8 @@ const initialState = [
   {
     id: "2",
     title: "Slices...",
-    content: "The more I say slice, the more I want pizza.",
+    content:
+      "The more I say slice, the more I want pizza.The more I say slice, the more I want pizza.",
   },
 ];
 
