@@ -45,8 +45,10 @@ update products set can_be_returned = true;
 -- exercise 2
 
 -- 1. Find the app with an ID of ***1880***
+SELECT app_name FROM analytics WHERE id = 1880;
 
 -- 2. Find the ID and app name for all apps that were last updated on August 01, 2018.
+select id, app_name from analytics where last_updated='2018-08-01';
 
 -- 3. Count the number of apps in each category, e.g. “Family | 1972”.
 
