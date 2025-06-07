@@ -69,8 +69,10 @@ select app_name, price, rating from analytics where rating < 3 order by price de
 select app_name, rating from analytics where min_installs < 50 order by rating desc;   
 
 -- 9. Find the names of all apps that are rated less than 3 with at least 10000 reviews.
-   
+select app_name from analytics where rating < 3 and reviews >= 10000;
+
 -- 10. Find the top 10 most-reviewed apps that cost between 10 cents and a dollar.
+select app_name from analytics where price between 0.10 and 1.00 order by reviews desc limit 10
 
 -- 11. Find the most out of date app. Hint: You don’t need to do it this way, but it’s possible to do with a subquery: http://www.postgresqltutorial.com/postgresql-max-function/
 
