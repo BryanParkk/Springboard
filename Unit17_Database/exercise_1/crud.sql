@@ -25,10 +25,10 @@ insert into products(name, price, can_be_returned) values ('Queen bed', 2500.00,
 select can_be_returned from products where can_be_returned=true;
 
 -- 9. Display only the products that have a price less than 44.00.
-SELECT price FROM products WHERE price < 44.00;
+select price from products where price < 44.00;
 
 -- 10. Display only the products that have a price in between 22.50 and 99.99.
-SELECT price FROM products WHERE price BETWEEN 22.50 AND 99.99;
+select price from products where price BETWEEN 22.50 AND 99.99;
 
 -- 11. There’s a sale going on: Everything is $20 off! Update the database accordingly.
 update products set price = price - 20;
@@ -81,6 +81,7 @@ select app_name, last_updated from analytics order by last_updated asc limit 1;
 select app_name, price from analytics order by price desc limit 1;
 
 -- 13. Count all the reviews in the Google Play Store.
-SELECT SUM(reviews) AS total_reviews FROM analytics;
+select sum(reviews) as total_reviews from analytics;
 
 -- 14. Find all the categories that have more than 300 apps in them.
+select category, count(*) where analytics group by category having count(*) > 300;
