@@ -20,3 +20,4 @@ join vehicles v on o.id = v.owner_id
 group by o.id, o.first_name, o.last_name
 having count(v.id) > 1 and avg(v.price) > 10000
 order by first_name desc;
+ . 
