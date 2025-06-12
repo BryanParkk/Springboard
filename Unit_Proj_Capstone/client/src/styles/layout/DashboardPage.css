@@ -1,0 +1,21 @@
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+.dashboard-main {
+    flex: 1;
+    padding: 2rem;
+    background-color: #f9f9f9;
+}
+
+.dashboard-greeting h1 {
+    font-size: 2rem;
+    color: #222;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-greeting p {
+    font-size: 1.2rem;
+    color: #555;
+}

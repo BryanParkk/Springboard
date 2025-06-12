@@ -1,0 +1,31 @@
+.sidebar {
+    width: 240px;
+    background-color: #111;
+    color: white;
+    padding: 2rem 1rem;
+}
+
+.sidebar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.sidebar-menu a:hover {
+    color: #0077ff;
+}

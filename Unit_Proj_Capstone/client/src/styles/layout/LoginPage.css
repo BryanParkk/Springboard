@@ -1,0 +1,82 @@
+.share-tech-regular {
+    font-family: "Share Tech", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.login-title-group {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-title {
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+.flex-text {
+    font-weight: 800;
+    color: #0077ff;
+}
+
+.fit-text {
+    font-weight: 500;
+    color: #222;
+}
+
+.login-subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 0.25rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 2rem;
+    background-color: #f7f7f7;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.login-input {
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.2s;
+}
+
+.login-input:focus {
+    border-color: #0077ff;
+    outline: none;
+}
+
+.login-button {
+    padding: 0.75rem 1rem;
+    background-color: #0077ff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.login-button:hover {
+    background-color: #005fcc;
+}
+
+.login-error {
+    color: red;
+    margin-top: 1rem;
+    text-align: center;
+}
