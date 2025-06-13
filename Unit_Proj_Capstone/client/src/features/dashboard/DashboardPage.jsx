@@ -1,4 +1,4 @@
-import Sidebar from './Sidebar';
+import '../../styles/layout/DashboardPage.css';
 
 export default function DashboardPage() {
   return (

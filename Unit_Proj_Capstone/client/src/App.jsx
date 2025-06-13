@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import LoginPage from './features/auth/LoginPage';
-import DashboardPage from './features/dashboard/DashboardPage'
+import DashboardPage from './features/dashboard/DashboardPage';
 import AppLayout from './layouts/AppLayout';
 
 function App() {
@@ -16,9 +16,10 @@ function App() {
             </AppLayout>
           }
         />
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </Router>
-  )
+  );
 }
+
 export default App;

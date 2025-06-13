@@ -1,9 +1,8 @@
 body {
     margin: 0;
-    display: flex;
+    /* display: flex; */
     font-family: sans-serif;
     color: #333;
-    /* 짙은 회색 글자 */
 }
 
 .sidebar {
@@ -19,13 +18,27 @@ body {
     padding: 2rem 1rem;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     z-index: 10;
+
+    /* 상단 메뉴와 하단 프로필 분리 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
 }
 
 /* 사이드바 타이틀 */
 .sidebar-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
     margin-bottom: 2rem;
+}
+
+.sidebar-title-flex {
+    color: #0077ff;
+}
+
+.sidebar-title-fit {
+    color: #222;
 }
 
 /* 사이드 메뉴 */
@@ -33,6 +46,10 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
+
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 0;
 }
 
 .sidebar-menu li {
@@ -60,13 +77,61 @@ body {
     padding-left: 0.5rem;
 }
 
-/* 오른쪽 메인 콘텐츠 영역 */
-.main-content {
-    margin-left: 240px;
-    padding: 2rem;
-    background-color: #f5f5f5;
-    /* 아주 연한 회색 */
-    min-height: 100vh;
-    overflow-y: auto;
-    width: calc(100% - 240px);
+/* 사이드바 하단 프로필 영역 */
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 80px;
+    /* ✅ 원하는 만큼 띄우기 */
+    left: 1rem;
+    right: 1rem;
+
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+
+    background-color: white;
+    /* 가려지지 않도록 */
+    opacity: 1;
+}
+
+
+/* fadeIn 애니메이션 */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* 프로필 이미지 호버 시 확대 */
+.profile-image:hover {
+    transform: scale(1.05);
+}
+
+.profile-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.profile-title {
+    font-size: 0.8rem;
+    color: gray;
+}
+
+/* 닉네임에 hover 효과 */
+.profile-name:hover {
+    color: #0077ff;
+    cursor: pointer;
 }

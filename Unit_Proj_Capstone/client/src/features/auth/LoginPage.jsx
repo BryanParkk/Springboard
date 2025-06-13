@@ -17,7 +17,7 @@ export default function LoginPage() {
         e.preventDefault();
 
         const dummyEmail = 'test@flexfit.com';
-        const dummyPassword = '1234';
+        const dummyPassword = '1234!@#$';
 
         if (email === dummyEmail && password === dummyPassword) {
             navigate(postLoginPath);
