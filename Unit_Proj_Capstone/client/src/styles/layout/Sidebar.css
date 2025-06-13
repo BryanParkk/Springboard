@@ -1,8 +1,11 @@
 .sidebar {
+    position: fixed;
     width: 240px;
+    height: 100vh;
     background-color: #111;
     color: white;
     padding: 2rem 1rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar-title {
@@ -14,6 +17,7 @@
 .sidebar-menu {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .sidebar-menu li {
@@ -24,8 +28,16 @@
     color: white;
     text-decoration: none;
     font-size: 1rem;
+    transition: color 0.3s ease;
 }
 
 .sidebar-menu a:hover {
     color: #0077ff;
+}
+
+.sidebar-menu a.active {
+    color: #0077ff;
+    font-weight: bold;
+    border-left: 4px solid #0077ff;
+    padding-left: 0.5rem;
 }
