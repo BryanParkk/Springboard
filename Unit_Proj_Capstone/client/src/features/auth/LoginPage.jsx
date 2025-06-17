@@ -14,7 +14,7 @@ export default function LoginPage() {
     const postLoginPath = searchParams.get('postLoginPath') || '/dashboard';
     
     const handleLogin = (e) => {
-        e.preventDefault(); //
+        e.preventDefault();
 
         const dummyEmail = 'test@flexfit.com';
         const dummyPassword = '1234!@#$';
