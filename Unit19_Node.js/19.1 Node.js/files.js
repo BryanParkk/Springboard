@@ -1,20 +1,42 @@
 const fs = require("fs");
 
-// reading
+////// reading
 // fs.readFile("../docs/blog1.txt", (err, data) => {
 //   if (err) {
 //     console.log(err);
 //   }
 //   console.log(data.toString());
 // });
-
 // console.log("last line");
 
-// writing
-fs.writeFile("../docs/blog2.txt", "hello, world", () => {
-  console.log("file was written");
-});
+////// writing
+// fs.writeFile("../docs/blog2.txt", "hello, world", () => {
+//   console.log("file was written");
+// });
 
-// directories
+////// directories
+// if (!fs.existsSync("../docs/assets")) {
+//   fs.mkdir("../docs/assets", (err) => {
+//     if (err) {
+//       console.log(err);
+//     }
+//     console.log("folder created");
+//   });
+// } else {
+//   fs.rmdir("../docs/assets", (err) => {
+//     if (err) {
+//       console.log(err);
+//     }
+//     console.log("folder deleted");
+//   });
+// }
 
-// deleting
+////// deleting
+if (fs.existsSync("../docs/deleteme.txt")) {
+  fs.unlink("../docs/deleteme.txt", (err) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log("file deleted");
+  });
+}
