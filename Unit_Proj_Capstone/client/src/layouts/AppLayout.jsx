@@ -1,4 +1,4 @@
-import Sidebar from "../features/dashboard/Sidebar";
+import Sidebar from "../features/pages/Sidebar";
 import "../styles/layout/MainLayout.css";
 
 export default function AppLayout({ children }) {

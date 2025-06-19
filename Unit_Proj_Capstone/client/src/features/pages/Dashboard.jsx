@@ -1,6 +1,6 @@
 import '../../styles/layout/DashboardPage.css';
 
-export default function DashboardPage() {
+export default function Dashboard() {
   return (
     <div className="dashboard-container">
         <main className="dashboard-main">
