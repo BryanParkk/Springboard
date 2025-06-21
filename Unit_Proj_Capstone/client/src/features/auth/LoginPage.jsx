@@ -22,7 +22,7 @@ export default function LoginPage() {
         if (email === dummyEmail && password === dummyPassword) {
             navigate(postLoginPath);
         } else {
-            setError('Email or password is incorrect.');
+            setError('Email or Password is incorrect.');
         }
     }
 
@@ -47,7 +47,7 @@ export default function LoginPage() {
                 <input
                     className="login-input"
                     type="password"
-                    placeholder="Pasword"
+                    placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
