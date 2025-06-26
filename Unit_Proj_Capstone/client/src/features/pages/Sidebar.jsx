@@ -13,14 +13,14 @@ return (
             <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? "active" : ""}>🏠 Dashboard</NavLink></li>
             <li><NavLink to="/log" className={({ isActive }) => isActive ? "active" : ""}>📓 Log Workout</NavLink></li>
             <li><NavLink to="/routine" className={({ isActive }) => isActive ? "active" : ""}>💪 Routine</NavLink></li>
+            <li><NavLink to="/exercises" className={({ isActive }) => isActive ? "active" : ""}>🧠 Exercise Guide</NavLink></li>
             <li><NavLink to="/meals" className={({ isActive }) => isActive ? "active" : ""}>🥗 Meal Plan</NavLink></li>
             <li><NavLink to="/settings" className={({ isActive }) => isActive ? "active" : ""}>⚙️ Settings</NavLink></li>
-
         </ul>
-        <div class="sidebar-footer">
-            <img src={profileImg} alt="Profile" class="profile-image" />
-            <div class="profile-name">Bryan Park
-                <div class ="profile-title">Full-stack Dev</div>
+        <div className="sidebar-footer">
+            <img src={profileImg} alt="Profile" className="profile-image" />
+            <div className="profile-name">Bryan Park
+                <div className="profile-title">Full-stack Dev</div>
             </div>
         </div>
     </aside>
