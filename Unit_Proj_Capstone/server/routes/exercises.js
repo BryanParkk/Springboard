@@ -1,16 +1,16 @@
-const express = require("express");
-const router = express.Router();
-const db = require("../db");
+import express from "express";
+import db from "../db/index.js";
 
-// GET /api/exercises
+const router = express.Router();
+
 router.get("/", async (req, res) => {
   try {
-    const result = await db.query("SELECT * FROM exercies ORDER BY id");
+    const result = await db.query("SELECT * FROM exercises ORDER BY id");
     res.json(result.rows);
   } catch (err) {
     console.error("Error fetching exercises:", err);
-    res.status(500).json({ error: "Seerver error" });
+    res.status(500).json({ error: "Server error" });
   }
 });
 
-module.exports = router;
+export default router;
