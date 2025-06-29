@@ -26,5 +26,5 @@ return (
     </aside>
 );
 };
-//
+
 export default Sidebar;
