@@ -67,4 +67,3 @@ if (isURL(input)) {
 } else {
   cat(input, outFile);
 }
-//
