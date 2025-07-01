@@ -8,3 +8,4 @@ const greet = (name) => {
 
 greet("mario");
 greet("yoshi");
+//
