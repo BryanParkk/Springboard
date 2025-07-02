@@ -30,7 +30,7 @@ const fs = require("fs");
 //     console.log("folder deleted");
 //   });
 // }
-//
+
 ////// deleting
 if (fs.existsSync("../docs/deleteme.txt")) {
   fs.unlink("../docs/deleteme.txt", (err) => {
