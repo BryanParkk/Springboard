@@ -21,10 +21,15 @@ export default function MealPlan() {
       <h1>Meal Plan</h1>
       <p className="subtitle">Discover meals tailored to your fitness goals</p>
 
+      <div className="search-section">
+        <input type="text" placeholder="Search meal plan..." />
+        <button>Search</button>
+      </div>
+
       <div className="meal-cards">
         {meals.map((meal) => (
           <div className="meal-card" key={meal.id}>
-            <img src={meal.image_url} alt={meal.name}/>
+            <img className="meal-img" src={meal.image_url} alt={meal.name}/>
             <h3>{meal.name}</h3>
             <p><strong>Type:</strong> {meal.type}</p>
             <p><strong>Calories:</strong> {meal.calories} kcal</p>
