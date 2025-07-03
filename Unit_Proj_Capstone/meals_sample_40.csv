@@ -1,0 +1,41 @@
+name,type,calories,protein,carbs,fat,goal,recipe,image_url
+Oatmeal with Berries,Breakfast,350,12,45,10,Maintenance,<p>Cook oatmeal and top with fresh berries and a drizzle of honey.</p>,/images/meal_1.jpg
+Grilled Chicken Salad,Lunch,420,35,15,18,Fat Loss,"<p>Combine grilled chicken breast with mixed greens, cherry tomatoes, and olive oil dressing.</p>",/images/meal_2.jpg
+Salmon with Quinoa,Dinner,520,40,30,25,Muscle Gain,<p>Bake salmon and serve with cooked quinoa and steamed broccoli.</p>,/images/meal_3.jpg
+Greek Yogurt with Nuts,Snack,250,20,10,15,Maintenance,<p>Mix plain Greek yogurt with a handful of almonds and a spoon of honey.</p>,/images/meal_4.jpg
+Avocado Toast,Breakfast,300,8,32,16,Fat Loss,"<p>Toast bread and top with mashed avocado, salt, and pepper.</p>",/images/meal_5.jpg
+Turkey Wrap,Lunch,450,30,35,15,Muscle Gain,"<p>Wrap turkey slices with whole wheat tortilla, lettuce, and hummus.</p>",/images/meal_6.jpg
+Beef Stir-Fry,Dinner,600,45,40,20,Muscle Gain,<p>Stir-fry beef with vegetables and serve over brown rice.</p>,/images/meal_7.jpg
+Fruit Smoothie,Snack,220,5,35,6,Maintenance,"<p>Blend banana, berries, and almond milk for a quick smoothie.</p>",/images/meal_8.jpg
+Egg White Omelette,Breakfast,200,20,5,8,Fat Loss,<p>Cook egg whites with spinach and mushrooms in olive oil.</p>,/images/meal_9.jpg
+Quinoa Salad,Lunch,400,15,40,12,Maintenance,"<p>Mix quinoa with chickpeas, cucumber, and lemon vinaigrette.</p>",/images/meal_10.jpg
+Grilled Salmon,Dinner,550,42,20,28,Muscle Gain,<p>Grill salmon fillet and serve with steamed vegetables.</p>,/images/meal_11.jpg
+Protein Bar,Snack,280,20,22,10,Muscle Gain,<p>Eat a store-bought or homemade high-protein bar.</p>,/images/meal_12.jpg
+Banana Pancakes,Breakfast,370,12,50,14,Maintenance,"<p>Make pancakes with banana, oats, and eggs.</p>",/images/meal_13.jpg
+Chicken Buddha Bowl,Lunch,480,38,45,14,Fat Loss,<p>Serve grilled chicken over a mix of grains and veggies.</p>,/images/meal_14.jpg
+Lentil Soup,Dinner,420,25,35,10,Maintenance,"<p>Cook lentils with carrots, celery, and tomato broth.</p>",/images/meal_15.jpg
+Hummus and Veggies,Snack,180,6,20,8,Fat Loss,<p>Dip sliced cucumbers and carrots in hummus.</p>,/images/meal_16.jpg
+Cottage Cheese Bowl,Breakfast,310,28,12,10,Muscle Gain,<p>Mix cottage cheese with pineapple and chia seeds.</p>,/images/meal_17.jpg
+Tofu Stir-Fry,Lunch,430,22,25,18,Maintenance,<p>Stir-fry tofu with broccoli and bell peppers.</p>,/images/meal_18.jpg
+Chicken and Sweet Potato,Dinner,500,40,35,18,Muscle Gain,<p>Bake chicken breast and sweet potato wedges.</p>,/images/meal_19.jpg
+Apple with Peanut Butter,Snack,210,6,25,12,Fat Loss,<p>Slice apple and spread peanut butter on top.</p>,/images/meal_20.jpg
+Chia Pudding,Breakfast,290,10,30,14,Maintenance,<p>Soak chia seeds overnight in almond milk with vanilla.</p>,/images/meal_21.jpg
+Veggie Wrap,Lunch,380,12,40,12,Fat Loss,<p>Wrap grilled vegetables in a whole grain tortilla.</p>,/images/meal_22.jpg
+Stuffed Peppers,Dinner,520,35,40,18,Muscle Gain,<p>Fill bell peppers with ground turkey and rice.</p>,/images/meal_23.jpg
+Boiled Eggs,Snack,160,13,1,10,Maintenance,<p>Boil eggs and season with pepper.</p>,/images/meal_24.jpg
+Protein Pancakes,Breakfast,400,30,35,14,Muscle Gain,<p>Make pancakes with protein powder and oats.</p>,/images/meal_25.jpg
+Grilled Shrimp Tacos,Lunch,470,28,38,16,Maintenance,<p>Serve grilled shrimp in corn tortillas with salsa.</p>,/images/meal_26.jpg
+Turkey Chili,Dinner,540,40,30,20,Muscle Gain,"<p>Cook ground turkey with beans, tomato, and spices.</p>",/images/meal_27.jpg
+Cucumber Salad,Snack,140,4,10,7,Fat Loss,<p>Toss cucumber slices with vinegar and sesame seeds.</p>,/images/meal_28.jpg
+Breakfast Burrito,Breakfast,460,25,40,18,Muscle Gain,"<p>Fill tortilla with eggs, beans, and cheese.</p>",/images/meal_29.jpg
+Caprese Salad,Lunch,350,18,12,22,Maintenance,"<p>Layer tomatoes, mozzarella, and basil.</p>",/images/meal_30.jpg
+Zucchini Noodles with Pesto,Dinner,480,20,30,22,Fat Loss,<p>Serve spiralized zucchini with pesto sauce.</p>,/images/meal_31.jpg
+Mixed Nuts,Snack,300,8,10,25,Maintenance,<p>Eat a small handful of mixed unsalted nuts.</p>,/images/meal_32.jpg
+Yogurt Parfait,Breakfast,370,15,35,12,Maintenance,<p>Layer yogurt with granola and berries.</p>,/images/meal_33.jpg
+Chicken Caesar Wrap,Lunch,460,32,30,20,Fat Loss,<p>Wrap grilled chicken and romaine in a tortilla with Caesar dressing.</p>,/images/meal_34.jpg
+Baked Cod with Veggies,Dinner,510,38,25,18,Muscle Gain,<p>Bake cod fillet and serve with roasted vegetables.</p>,/images/meal_35.jpg
+Rice Cakes with Almond Butter,Snack,230,6,28,10,Fat Loss,<p>Spread almond butter on brown rice cakes.</p>,/images/meal_36.jpg
+Spinach Frittata,Breakfast,320,20,8,18,Maintenance,<p>Whisk eggs and cook with spinach and feta.</p>,/images/meal_37.jpg
+Pasta Salad,Lunch,480,18,50,16,Maintenance,<p>Mix cooked pasta with veggies and vinaigrette.</p>,/images/meal_38.jpg
+Grilled Steak with Asparagus,Dinner,600,45,20,25,Muscle Gain,<p>Grill steak and serve with sautéed asparagus.</p>,/images/meal_39.jpg
+Cottage Cheese and Fruit,Snack,240,18,15,9,Maintenance,<p>Top cottage cheese with mixed fruit.</p>,/images/meal_40.jpg

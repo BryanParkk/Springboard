@@ -1,0 +1,5 @@
+name,type,calories,protein,carbs,fat,goal,recipe,image_url
+Oatmeal with Berries,Breakfast,350,12,45,10,Maintenance,<p>Cook oatmeal and top with fresh berries and a drizzle of honey.</p>,/images/meal_1.jpg
+Grilled Chicken Salad,Lunch,420,35,15,18,Fat Loss,"<p>Combine grilled chicken breast with mixed greens, cherry tomatoes, and olive oil dressing.</p>",/images/meal_2.jpg
+Salmon with Quinoa,Dinner,520,40,30,25,Muscle Gain,<p>Bake salmon and serve with cooked quinoa and steamed broccoli.</p>,/images/meal_3.jpg
+Greek Yogurt with Nuts,Snack,250,20,10,15,Maintenance,<p>Mix plain Greek yogurt with a handful of almonds and a spoon of honey.</p>,/images/meal_4.jpg
