@@ -88,3 +88,8 @@ details summary {
     font-weight: bold;
     cursor: pointer;
 }
+
+p {
+    margin-block-start: 3px;
+    margin-block-end: 3px;
+}
