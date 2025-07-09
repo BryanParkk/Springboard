@@ -9,8 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/exercises", exercisesRoute);
-app.use("/api/meals", mealsRoute); // 연결
-
+app.use("/api/meals", mealsRoute);
 const PORT = 5001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
