@@ -15,7 +15,7 @@ export default function MealPlan() {
       console.error("Error fetching meals:", err);
     })
   }, []);
- // 
+  
   return (
     <div className="meal-plan-container">
       <h1>Meal Plan</h1>
