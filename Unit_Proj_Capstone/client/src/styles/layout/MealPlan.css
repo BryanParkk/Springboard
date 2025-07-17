@@ -14,6 +14,8 @@
     display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
+    width: 800px;
+    max-width: 100%;
 }
 
 .search-section input[type="text"] {
@@ -81,6 +83,46 @@
 
 .meal-card:hover {
     transform: translateY(-4px);
+}
+
+.meal-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-right: 100px;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.pagination button {
+    background-color: #0077ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+    background-color: #005fcc;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination span {
+    font-weight: bold;
+    color: #333;
 }
 
 details summary {
