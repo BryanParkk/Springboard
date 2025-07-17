@@ -116,6 +116,7 @@ export default function MealPlan() {
   return (
     <div className="meal-plan-container">
       <h1>Meal Plan</h1>
+      <p className="subtitle">Discover meals tailored to your fitness goals</p>
       <CategorySelector 
         onCategorySelect={() => {}} 
         onValueSelect={handleValueSelect} 
