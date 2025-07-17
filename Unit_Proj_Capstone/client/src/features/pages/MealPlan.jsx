@@ -133,6 +133,10 @@ export default function MealPlan() {
             <p><strong>Carbs:</strong> {meal.carbs}g</p>
             <p><strong>Fat:</strong> {meal.fat}g</p>
             <p><strong>Goal:</strong> {meal.goal}</p>
+             <details>
+               <summary>Recipe</summary>
+               <div dangerouslySetInnerHTML={{ __html: meal.recipe }} />
+             </details>
           </div>
         ))}
       </div>
