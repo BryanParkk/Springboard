@@ -31,7 +31,7 @@ export default function ExerciseGuide() {
         {exercises.map((ex) => (
           <div className="exercise-card" key={ex.id}>
             {/* <img src={ex.image_url} alt={ex.name} style={{ width: "100%", borderRadius: "6px"}} /> */}
-            <img src="https://images.squarespace-cdn.com/content/v1/5d53668c6636c10001f5d9b3/9e7e35c4-ceab-4209-abe7-05243caf9259/pexels-polina-tankilevitch-6516165.jpg" style={{ width: "100%", borderRadius: "6px"}}/>
+            <img className="exercise-img" src={ex.image_url}/>
             <h3>{ex.name}</h3>
             <p><strong>Body: </strong> {ex.body_part}</p>
             <p><strong>Target: </strong> {ex.target_muscle}</p>
