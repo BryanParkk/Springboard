@@ -78,8 +78,6 @@
     width: 180px;
     height: auto;
     object-fit: contain;
-    /* 비율 유지하며 이미지 전부 보이게 */
     margin: 12px auto;
-    /* 가운데 정렬 */
     display: block;
 }
