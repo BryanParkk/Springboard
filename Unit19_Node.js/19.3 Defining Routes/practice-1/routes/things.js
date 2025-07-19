@@ -25,4 +25,23 @@ router
     res.send("hi put /things/cars" + req.params.carid);
   });
 
+const greetings = {
+  en: "hello",
+  fr: "bonjour",
+  ko: "안녕하세요.",
+  ja: "konnichiwa",
+};
+
+// router.route("/greet/:language").get((req, res) => {
+//   const lang = req.params.language;
+//   const greeting = greetings[lang];
+//   res.send(greeting);
+// });
+
+router.get("/greet/:language", (req, res) => {
+  const lang = req.params.language;
+  const greeting = greetings[lang];
+  res.send(greeting);
+});
+
 module.exports = router;
