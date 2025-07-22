@@ -31,3 +31,13 @@ app.get("/greet/:language", (req, res) => {
   const greeting = greetings[lang];
   res.send(greeting);
 });
+
+app.get("/show-me-headers", (req, res) => {
+  console.log(req.rawHeaders);
+  res.send(req.headers);
+});
+
+app.get("/show-language", (req, res) => {
+  const lang = req.headers["accept-language"];
+  res.send(`your preference language is ${lang}`);
+}); //
