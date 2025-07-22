@@ -40,4 +40,4 @@ app.get("/show-me-headers", (req, res) => {
 app.get("/show-language", (req, res) => {
   const lang = req.headers["accept-language"];
   res.send(`your preference language is ${lang}`);
-}); //
+});
