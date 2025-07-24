@@ -10,7 +10,9 @@ app.get("/candies", (req, res) => {
   res.json(candies);
 });
 
-app.use();
+app.use((error, req, res, next) => {
+  res.send("This is an error");
+});
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
