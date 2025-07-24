@@ -1,0 +1,17 @@
+<!-- views/create.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+</head>
+<body>
+  <h1>Create a New Blog</h1>
+  <form action="/blogs" method="POST">
+    <label>Blog Title:</label>
+    <input type="text" name="title">
+    <label>Blog Snippet:</label>
+    <textarea name="snippet"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
