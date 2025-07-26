@@ -31,8 +31,6 @@ nav ul {
     gap: 15px;
 }
 
-nav ul li {}
-
 nav ul li a {
     color: #fff;
     text-decoration: none;
@@ -98,4 +96,15 @@ footer {
 
 .create-blog button:hover {
     background: #004a99;
+}
+
+.single a {
+    display: block;
+    margin: 40px 0;
+    padding-left: 30px;
+    border-left: 6px solid crimson;
+}
+
+.single a:hover h3 {
+    color: crimson;
 }
