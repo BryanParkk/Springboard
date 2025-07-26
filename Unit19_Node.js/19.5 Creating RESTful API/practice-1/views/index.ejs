@@ -1,0 +1,18 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1>Welcome to the Blog</h1>
+    <ul>
+      <% blogs.forEach(blog => { %>
+      <li>
+        <h2><%= blog.title %></h2>
+        <p><%= blog.snippet %></p>
+      </li>
+      <% }) %>
+    </ul>
+  </body>
+</html>

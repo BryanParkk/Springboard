@@ -1,0 +1,36 @@
+<!-- views/create.ejs -->
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+</head>
+<body>
+  <h1>Create a New Blog</h1>
+  <form action="/blogs" method="POST">
+    <label>Blog Title:</label>
+    <input type="text" name="title">
+    <label>Blog Snippet:</label>
+    <textarea name="snippet"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html> -->
+
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+  <body>
+    <div class="create-blog content">
+    <form action="/blogs" method="POST">
+      <label for="title">Blog Title:</label>
+      <input type="text" id="title" name="title" required>
+      <label for="snippet">Blog Snippet:</label>
+      <input type="text" id="snippet" name="snippet" required>
+      <label for="body">Blog Body:</label>
+      <textarea id="body" name="body" rows="10" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <%- include('./partials/footer') %>
+  </body>
+</html>
