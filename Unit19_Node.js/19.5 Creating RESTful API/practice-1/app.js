@@ -46,7 +46,16 @@ app.get("/blogs", (req, res) => {
 
 //
 app.post("/blogs", (req, res) => {
-  req.body;
+  const blog = new Blog(req.body);
+
+  blog
+    .save()
+    .then((result) => {
+      res.redirect("/blogs");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 //

@@ -17,20 +17,22 @@
 </html> -->
 
 <html lang="en">
-<%- include('./partials/head.ejs') %>
-  <body>
-    <div class="create-blog content">
-    <form action="/blogs" method="POST">
-      <label for="title">Blog Title:</label>
-      <input type="text" id="title" name="title" required>
-      <label for="snippet">Blog Snippet:</label>
-      <input type="text" id="snippet" name="snippet" required>
-      <label for="body">Blog Body:</label>
-      <textarea id="body" name="body" rows="10" required></textarea>
+<%- include('../partials/header') %>
 
-      <button type="submit">Submit</button>
-    </form>
-  </div>
-  <%- include('./partials/footer') %>
-  </body>
-</html>
+<div class="create-blog content">
+  <h2>Create a New Blog</h2>
+  <form action="/blogs" method="POST">
+    <label for="title">Blog Title:</label>
+    <input type="text" id="title" name="title" required />
+
+    <label for="snippet">Blog Snippet:</label>
+    <input type="text" id="snippet" name="snippet" required />
+
+    <label for="body">Blog Body:</label>
+    <textarea id="body" name="body" rows="10" required></textarea>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>
