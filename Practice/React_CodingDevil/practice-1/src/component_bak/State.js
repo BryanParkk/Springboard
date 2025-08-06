@@ -10,8 +10,6 @@ const State = () => {
   }
   return (
     <div>
-      <h1>State</h1>
-      <h2>{name}</h2>
       <button onClick={changeName}>Change</button>
     </div>
   );
