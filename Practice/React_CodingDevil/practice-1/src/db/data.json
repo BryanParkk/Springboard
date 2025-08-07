@@ -1,0 +1,64 @@
+{
+    "days": [
+        {"id": 1, "day": 1},
+        {"id": 2, "day": 2},
+        {"id": 3, "day": 3}
+    ],
+    "words": [
+    {
+        "id": 1,
+        "day": 1,
+        "eng": "apple",
+        "kor": "사과",
+        "isDone": false
+    },
+    {
+        "id": 2,
+        "day": 1,
+        "eng": "run",
+        "kor": "달리다",
+        "isDone": false
+    },
+    {
+        "id": 3,
+        "day": 2,
+        "eng": "sky",
+        "kor": "하늘",
+        "isDone": false
+    },
+    {
+        "id": 4,
+        "day": 2,
+        "eng": "water",
+        "kor": "물",
+        "isDone": false
+    },
+    {
+        "id": 5,
+        "day": 3,
+        "eng": "smile",
+        "kor": "미소",
+        "isDone": false
+    },
+    {
+        "id": 6,
+        "day": 3,
+        "eng": "house",
+        "kor": "집",
+        "isDone": false
+    },
+    {
+        "id": 7,
+        "day": 3,
+        "eng": "strong",
+        "kor": "강한",
+        "isDone": false
+    },
+    {
+        "id": 8,
+        "day": 1,
+        "eng": "music",
+        "kor": "음악",
+        "isDone": false
+    }]
+}
