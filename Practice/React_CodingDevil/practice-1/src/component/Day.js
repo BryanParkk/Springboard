@@ -9,8 +9,8 @@ export default function Day() {
       <h2>Day {day}</h2>
       <table>
         <tbody>
-          {dummy.words.map((word) => (
-            <tr>
+          {wordList.map((word) => (
+            <tr key={word.id}>
               <td>{word.eng}</td>
               <td>{word.kor}</td>
             </tr>
