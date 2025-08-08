@@ -15,7 +15,7 @@ export default function Day() {
       .then((data) => {
         setwWords(data);
       });
-  }, []);
+  }, [day]);
 
   return (
     <>
