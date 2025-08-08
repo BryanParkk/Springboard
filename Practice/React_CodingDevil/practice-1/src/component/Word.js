@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-export default function Word({ word }) {
+export default function Word({ word: w }) {
+  const [word, setWord] = useState(w);
   const [isEnable, setEnable] = useState(false);
   const [isDone, setDone] = useState(word.isDone);
 
@@ -9,7 +10,36 @@ export default function Word({ word }) {
   }
 
   function toggleDone() {
-    setDone(!isDone);
+    // setDone(!isDone);
+    fetch(`http://localhost:3001/words/${word.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...word,
+        isDone: !isDone,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        setDone(!isDone);
+      }
+    });
+  }
+
+  function del() {
+    if (window.confirm("Would you like to delete this word?")) {
+      fetch(`http://localhost:3001/words/${word.id}`, {
+        method: "DELETE",
+      }).then((res) => {
+        if (res.ok) {
+          setWord({ id: 0 });
+        }
+      });
+    }
+  }
+  if (word.id === 0) {
+    return null;
   }
 
   return (
@@ -21,7 +51,9 @@ export default function Word({ word }) {
       <td>{isEnable && word.kor}</td>
       <td>
         <button onClick={toggleEnable}>{isEnable ? "Hide" : "Show"}</button>
-        <button className="btn_del">Delete</button>
+        <button className="btn_del" onClick={del}>
+          Delete
+        </button>
       </td>
     </tr>
   );
