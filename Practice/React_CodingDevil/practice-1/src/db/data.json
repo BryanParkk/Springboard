@@ -33,7 +33,7 @@
       "day": 2,
       "eng": "sky",
       "kor": "하늘",
-      "isDone": true
+      "isDone": false
     },
     {
       "id": "4",
@@ -68,6 +68,48 @@
       "day": 1,
       "eng": "music",
       "kor": "음악",
+      "isDone": false
+    },
+    {
+      "id": "5c94",
+      "day": "1",
+      "eng": "neck",
+      "kor": "목",
+      "isDone": false
+    },
+    {
+      "id": "afcb",
+      "day": "3",
+      "eng": "window",
+      "kor": "창문",
+      "isDone": false
+    },
+    {
+      "id": "925e",
+      "day": "2",
+      "eng": "house",
+      "kor": "집",
+      "isDone": false
+    },
+    {
+      "id": "1e70",
+      "day": "1",
+      "eng": "America",
+      "kor": "미국",
+      "isDone": false
+    },
+    {
+      "id": "df77",
+      "day": "2",
+      "eng": "google",
+      "kor": "구글",
+      "isDone": false
+    },
+    {
+      "id": "72f8",
+      "day": "1",
+      "eng": "naver",
+      "kor": "네이버",
       "isDone": false
     }
   ]
