@@ -26,3 +26,6 @@ function App() {
 }
 
 export default App;
+
+///// Terminal 1 (JSON Server) : npx json-server --watch data.json --port 3001
+///// Terminal 2 (React Server) : npm start
