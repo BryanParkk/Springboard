@@ -7,7 +7,7 @@ export default function ExerciseGuide() {
   const [exercises, setExercises] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5001/api/exercises")
+    axios.get("/api/exercises")
     .then((res) => {
       setExercises(res.data);
     })

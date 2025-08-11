@@ -10,6 +10,7 @@ app.use(express.json());
 
 app.use("/api/exercises", exercisesRoute); // exercise
 app.use("/api/meals", mealsRoute); // mealplan
+
 const PORT = 5001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

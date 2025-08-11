@@ -60,7 +60,7 @@ export default function MealPlan() {
   const mealsPerPage = 8;
 
   useEffect(() => {
-    axios.get('http://localhost:5001/api/meals')
+    axios.get('/api/meals')
       .then(res => {
         setMeals(res.data);
         setFilteredMeals(res.data);
