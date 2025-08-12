@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useAuth } from '../../context/AuthContext.jsx';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../../styles/layout/LoginPage.css'
 
 export default function LoginPage() {
+  const { isAuthenticated, login } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -15,16 +17,16 @@ export default function LoginPage() {
     
     const handleLogin = (e) => {
         e.preventDefault();
-
         const dummyEmail = 'test@flexfit.com';
         const dummyPassword = '1234!@#$';
-
         if (email === dummyEmail && password === dummyPassword) {
+            login(email); // ✅ 컨텍스트에 로그인 반영
             navigate(postLoginPath);
         } else {
             setError('Email or Password is incorrect.');
         }
-    }
+    };
+
 
     return (
        <div className="login-container">
