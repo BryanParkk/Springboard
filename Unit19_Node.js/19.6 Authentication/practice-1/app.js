@@ -14,7 +14,8 @@ app.set("view engine", "ejs");
 // database connection
 // const dbURI = 'mongodb+srv://shaun:test1234@cluster0.del96.mongodb.net/node-auth';
 const dbURI =
-  "mongodb+srv://bryan:	1234%21%40%23%24@springboard.mtzjsej.mongodb.net/?retryWrites=true&w=majority&appName=SpringBoard";
+  "mongodb+srv://bryan:1234%21%40%23%24@springboard.mtzjsej.mongodb.net/?retryWrites=true&w=majority&appName=SpringBoard";
+
 mongoose
   .connect(dbURI, {
     useNewUrlParser: true,
