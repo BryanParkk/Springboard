@@ -1,3 +1,7 @@
+:root {
+    --sidebar-width: 240px;
+}
+
 body {
     margin: 0;
     /* display: flex; */
@@ -9,7 +13,7 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    width: 240px;
+    width: 280px;
     height: 105vh;
     background-color: #ffffff;
     /* 흰색 배경 */
@@ -134,11 +138,6 @@ body {
     transition: color 0.3s ease;
 }
 
-.profile-title {
-    font-size: 0.8rem;
-    color: gray;
-}
-
 /* 닉네임에 hover 효과 */
 .profile-name:hover {
     color: #0077ff;
@@ -168,4 +167,23 @@ body {
 
 .logout-btn:active {
     transform: translateY(1px);
+}
+
+/* Sidebar Footer */
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.profile-stats {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #6b7280;
+    display: flex;
+    gap: 6px;
+}
+
+.profile-stats__sep {
+    opacity: .6;
 }

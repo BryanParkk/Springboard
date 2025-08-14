@@ -6,10 +6,10 @@ const SEX = ['male','female','other','prefer_not_say'];
 const GOAL = ['bulking','cutting','maintenance','recomp','tone'];
 const THEME = ['light','dark','system'];
 
-const toKg = (val, unit) => val == null ? null : unit === 'lbs' ? +(val / 2.2046226218).toFixed(2) : +(+val).toFixed(2);
-const fromKg = (kg, unit) => kg == null ? '' : unit === 'lbs' ? +(kg * 2.2046226218).toFixed(2) : +(+kg).toFixed(2);
-const toCm = (val, unit) => val == null ? null : unit === 'in' ? +(val * 2.54).toFixed(2) : +(+val).toFixed(2);
-const fromCm = (cm, unit) => cm == null ? '' : unit === 'in' ? +(cm / 2.54).toFixed(2) : +(+cm).toFixed(2);
+const toKg = (val, unit) => val == null ? null : unit === 'lbs' ? +(val / 2.2046226218).toFixed(1) : +(+val).toFixed(1);
+const fromKg = (kg, unit) => kg == null ? '' : unit === 'lbs' ? +(kg * 2.2046226218).toFixed(1) : +(+kg).toFixed(1);
+const toCm = (val, unit) => val == null ? null : unit === 'in' ? +(val * 2.54).toFixed(1) : +(+val).toFixed(1);
+const fromCm = (cm, unit) => cm == null ? '' : unit === 'in' ? +(cm / 2.54).toFixed(1) : +(+cm).toFixed(1);
 
 export default function Settings() {
   const [loading, setLoading] = useState(true);
@@ -136,11 +136,8 @@ export default function Settings() {
 
           <div className="form-row">
             <div className="form-group">
-              <label className="form-label">Weight Unit</label>
-              <select className="form-select" value={profile.weight_unit} onChange={onChange('weight_unit')}>
-                <option value="kg">kg</option>
-                <option value="lbs">lbs</option>
-              </select>
+              <label className="form-label">Current Height</label>
+              <input className="form-input" type="number" step="0.1" value={profile.height_value} onChange={onChange('height_value')} />
             </div>
             <div className="form-group">
               <label className="form-label">Height Unit</label>
@@ -153,8 +150,11 @@ export default function Settings() {
 
           <div className="form-row">
             <div className="form-group">
-              <label className="form-label">Current Height</label>
-              <input className="form-input" type="number" step="0.1" value={profile.height_value} onChange={onChange('height_value')} />
+              <label className="form-label">Weight Unit</label>
+              <select className="form-select" value={profile.weight_unit} onChange={onChange('weight_unit')}>
+                <option value="kg">kg</option>
+                <option value="lbs">lbs</option>
+              </select>
             </div>
             <div className="form-group">
               <label className="form-label">Distance Unit</label>
@@ -181,7 +181,7 @@ export default function Settings() {
 
         <div className="actions">
           <button type="button" className="btn btn-outline" onClick={() => window.location.reload()}>Cancel</button>
-          <button type="submit" className="btn btn-primary" disabled={saving}>
+          <button type="submit" className="btn btn-primary" disabled={saving} onClick={() => window.location.reload()}>
             {saving ? 'Saving...' : 'Save Settings'}
           </button>
         </div>

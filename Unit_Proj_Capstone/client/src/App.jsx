@@ -3,7 +3,7 @@ import AuthProvider from './context/AuthContext.jsx';
 import ProtectedRoute from '../../server/routes/ProtectedRoute.jsx';
 import AppLayout from './layouts/AppLayout';
 
-// 페이지들 (네가 올린 경로 유지)
+// Pages
 import Login from './features/auth/LoginPage';
 import Dashboard from './features/pages/Dashboard';
 import LogWorkout from './features/pages/LogWorkout';
@@ -11,16 +11,18 @@ import WorkoutRoutine from './features/pages/WorkoutRoutine';
 import MealPlan from './features/pages/MealPlan';
 import Settings from './features/pages/Settings';
 import ExercisesGuide from './features/pages/ExercisesGuide';
+import SignUp from './features/auth/SignUpPage';
 
 export default function App() {
   return (
     <AuthProvider>
       <Router>
         <Routes>
-          {/* 공개 라우트 */}
+          {/* Public Route */}
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
 
-          {/* 보호 라우트 (로그인 필요) */}
+          {/* Protected Route (Login required) */}
           <Route element={<ProtectedRoute />}> 
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
@@ -39,3 +41,8 @@ export default function App() {
     </AuthProvider>
   );
 }
+
+
+// To start.
+// Terminal 1 : npm run start
+// Terminal 2 : npm run dev

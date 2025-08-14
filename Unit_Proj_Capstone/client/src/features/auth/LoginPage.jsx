@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import api from '../../api/client';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import '../../styles/layout/LoginPage.css';
 
 export default function LoginPage() {
@@ -65,8 +65,13 @@ const handleLogin = async (e) => {
           Let’s Go to Workout
         </button>
       </form>
-
       {error && <p className="login-error">{error}</p>}
+
+      {/* Sign up area */}
+        <p className="signup-msg">
+          Get Stronger, Together — {' '}
+          <Link to={`/signup?postLoginPath=${encodeURIComponent(postLoginPath)}`}>Start Your Journey!</Link>
+        </p>
     </div>
   );
 }
