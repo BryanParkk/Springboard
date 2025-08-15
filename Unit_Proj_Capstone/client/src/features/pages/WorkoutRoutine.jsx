@@ -1,4 +1,4 @@
 // src/pages/WorkoutRoutine.jsx
 export default function WorkoutRoutine() {
-  return <h1>Workout Routine Page</h1>;
+  return <h1 className='gradient-text'>Workout Routine Page</h1>;
 }

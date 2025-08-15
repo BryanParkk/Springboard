@@ -83,7 +83,7 @@ export default function Settings() {
   return (
     <div className="settings-container">
       <header className="settings-header">
-        <h2 className="settings-title">Settings</h2>
+        <h2 className="settings-title, gradient-text">Journey Settings</h2>
         <p className="settings-subtitle">Set your personal information, measurement units, and theme.</p>
       </header>
 

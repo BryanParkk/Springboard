@@ -18,7 +18,7 @@ export default function ExerciseGuide() {
 
   return (
     <div className="exercise-guide-container">
-      <h1>Exercise Guide</h1>
+      <h1 className='gradient-text'>Exercise Guide</h1>
       <p className="subtitle">Find the best exercise guide tailored for you</p>
 
       <div className="search-section">
