@@ -55,7 +55,7 @@ export default function SignUpPage() {
         <div className="hero-inner">
           <span className="eyebrow">🚀 Ready to Transform?</span>
           <h1 className="headline">
-            <span className="gradient-text">Create Account</span> & Join the Community
+            <span className="gradient-text">Create Account</span> for FlexFit
           </h1>
           <p className="sub">Your goals, our mission — start your journey today.</p>
 

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
 /* === Base / 리셋 느낌 === */
 :root {
     --bg: #0b0f14;
@@ -81,15 +83,6 @@ body {
     background-clip: padding-box, border-box;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
-
-.headline {
-    margin: 14px 0 12px;
-    font-size: clamp(2rem, 4.2vw, 3.4rem);
-    line-height: 1.05;
-    font-weight: 900;
-    color: #4d658e;
-}
-
 
 .gradient-text {
     background: linear-gradient(90deg, var(--brand1), var(--brand2), var(--brand3));

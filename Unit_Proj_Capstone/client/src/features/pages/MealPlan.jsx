@@ -115,7 +115,7 @@ export default function MealPlan() {
 
   return (
     <div className="meal-plan-container">
-      <h1 className="gradient-text">Meal Plan</h1>
+      <h1 className="headline">Meal Plan</h1>
       <p className="subtitle">Discover meals tailored to your fitness goals</p>
       <CategorySelector 
         onCategorySelect={() => {}} 

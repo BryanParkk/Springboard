@@ -1,4 +1,13 @@
 // src/pages/WorkoutRoutine.jsx
+import '../../styles/layout/WorkoutRoutine.css';
+
 export default function WorkoutRoutine() {
-  return <h1 className='gradient-text'>Workout Routine Page</h1>;
+  return (
+    <div className='workoutroutine-container'>
+      <main className='workoutroutine-main'>
+        <h1 className='headline'>Workout Routine</h1>
+        <p className='subtitle'>Personalized plans to match your goals.</p>
+      </main>
+    </div>
+  )
 }

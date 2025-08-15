@@ -39,7 +39,7 @@ const handleLogin = async (e) => {
       <section class="hero">
       <div class="hero-inner">
         <span class="eyebrow">🚀 Ready to Transform?</span>
-        <h1 class="headline"><span class="gradient-text">Join Now</span> & Level Up Your Fitness</h1>
+        <h1 class="headline"><span class="gradient-text">Join Now</span> <i>& Level Up Your Fitness</i></h1>
         <p class="sub">Your goals, our mission — start your journey today.</p>
 
         <form className="login-form" onSubmit={handleLogin}>
@@ -65,12 +65,12 @@ const handleLogin = async (e) => {
 
         {error && <p className="login-error">{error}</p>} 
         <div class="cta-row">
-           <p className="signup-msg">
+           <p className="signup-msg"> 
             <Link
               to={`/signup?postLoginPath=${encodeURIComponent(postLoginPath)}`}
               className="btn btn-primary"
             >
-              Start Your Journey!
+              Start Your Journey with FlexFit!
             </Link>
           </p>
           <a class="btn btn-ghost" href="#learn">Learn More</a>
