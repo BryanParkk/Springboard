@@ -1,4 +1,16 @@
 .logworkout-container {
     display: flex;
     padding: 2rem;
+
+    min-height: 100dvh;
+    /* 최신 뷰포트 단위 */
+    padding: clamp(16px, 3vw, 32px);
+
+    background:
+        radial-gradient(900px 600px at 110% 0%, rgba(108, 92, 255, 0.12), transparent 60%),
+        radial-gradient(900px 600px at -10% 10%, rgba(22, 199, 154, 0.10), transparent 60%),
+        var(--bg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
 }

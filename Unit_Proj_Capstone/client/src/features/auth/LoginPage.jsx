@@ -36,11 +36,11 @@ const handleLogin = async (e) => {
 
   return (
     <div>
-      <section class="hero">
-      <div class="hero-inner">
-        <span class="eyebrow">🚀 Ready to Transform?</span>
-        <h1 class="headline"><span class="gradient-text">Join Now</span> <i>& Level Up Your Fitness</i></h1>
-        <p class="sub">Your goals, our mission — start your journey today.</p>
+      <section className="hero">
+      <div className="hero-inner">
+        <span className="eyebrow">🚀 Ready to Transform?</span>
+        <h1 className="headline"><span className="gradient-text">Join Now</span> <i>& Level Up Your Fitness</i></h1>
+        <p className="sub">Your goals, our mission — start your journey today.</p>
 
         <form className="login-form" onSubmit={handleLogin}>
           <input
@@ -64,7 +64,7 @@ const handleLogin = async (e) => {
         </form>
 
         {error && <p className="login-error">{error}</p>} 
-        <div class="cta-row">
+        <div className="cta-row">
            <p className="signup-msg"> 
             <Link
               to={`/signup?postLoginPath=${encodeURIComponent(postLoginPath)}`}
@@ -73,13 +73,13 @@ const handleLogin = async (e) => {
               Start Your Journey with FlexFit!
             </Link>
           </p>
-          <a class="btn btn-ghost" href="#learn">Learn More</a>
+          <a className="btn btn-ghost" href="#learn">Learn More</a>
         </div>
 
-        <ul class="usp">
-          <li><span class="badge">Personalized Plans</span></li>
-          <li><span class="badge">Progress Tracker</span></li>
-          <li><span class="badge">Community Challenges</span></li>
+        <ul className="usp">
+          <li><span className="badge">Personalized Plans</span></li>
+          <li><span className="badge">Progress Tracker</span></li>
+          <li><span className="badge">Community Challenges</span></li>
         </ul>
       </div>
     </section>

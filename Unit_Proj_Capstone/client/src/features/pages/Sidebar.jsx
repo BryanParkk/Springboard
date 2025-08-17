@@ -72,7 +72,7 @@ const Sidebar = () => {
           <img src={profileImg} alt="Profile" className="profile-image" />
           <div className="profile-info">
             <div className="profile-name">
-              {displayName}
+              Hello, <strong>{displayName}</strong>
             </div>
 
             {/* 현재/목표 체중 (단위 자동) */}
@@ -83,7 +83,7 @@ const Sidebar = () => {
             </div>
           </div>
             <button type="button" className="logout-btn" onClick={handleLogout}>
-              🔓 Logout
+              <i>🔓 LOGOUT</i>
             </button>
         </div>
     </aside>
