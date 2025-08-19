@@ -16,7 +16,6 @@ export default function LoginPage() {
   const searchParams = new URLSearchParams(location.search);
   const postLoginPath = searchParams.get('postLoginPath') || '/dashboard';
 
-  // 1) async 추가
 const handleLogin = async (e) => {
   e.preventDefault();
   setError('');

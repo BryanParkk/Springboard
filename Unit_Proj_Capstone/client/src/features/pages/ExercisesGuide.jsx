@@ -30,7 +30,6 @@ export default function ExerciseGuide() {
         {/* 운동 카드들이 여기에 렌더링됨 */}
         {exercises.map((ex) => (
           <div className="exercise-card" key={ex.id}>
-            {/* <img src={ex.image_url} alt={ex.name} style={{ width: "100%", borderRadius: "6px"}} /> */}
             <img className="exercise-img" src={ex.image_url}/>
             <h3>{ex.name}</h3>
             <p><strong>Body: </strong> {ex.body_part}</p>

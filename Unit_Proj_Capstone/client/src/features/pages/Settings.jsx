@@ -4,7 +4,7 @@ import '../../styles/layout/Settings.css';
 
 const SEX = ['male','female','other','prefer_not_say'];
 const GOAL = ['bulking','cutting','maintenance','recomp','tone'];
-const THEME = ['light','dark','system'];
+// const THEME = ['light','dark','system'];
 
 const toKg = (val, unit) => val == null ? null : unit === 'lbs' ? +(val / 2.2046226218).toFixed(1) : +(+val).toFixed(1);
 const fromKg = (kg, unit) => kg == null ? '' : unit === 'lbs' ? +(kg * 2.2046226218).toFixed(1) : +(+kg).toFixed(1);
