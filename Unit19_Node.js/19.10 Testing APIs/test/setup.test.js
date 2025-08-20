@@ -11,6 +11,6 @@ before((done) => {
 
 after((done) => {
   User.deleteMany({}, function (err) {});
-  //   Product.deleteMany({}, function (err) {});
+  Product.deleteMany({}, function (err) {});
   done();
 });

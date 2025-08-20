@@ -9,16 +9,6 @@ const server = require("../server");
 
 chai.use(chaiHttp);
 
-before((done) => {
-  Product.deleteMany({}, function (err) {});
-  done();
-});
-
-after((done) => {
-  //   Product.deleteMany({}, function (err) {});
-  done();
-});
-
 describe("/First Test Collection", () => {
   it("should verify that we have 0 products in the DB", (done) => {
     chai
