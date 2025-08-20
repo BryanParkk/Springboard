@@ -20,6 +20,18 @@ after((done) => {
 });
 
 describe("/First Test Collection", () => {
+  it("should verify that we have 0 products in the DB", (done) => {
+    chai
+      .request(server)
+      .get("/api/products")
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a("array");
+        res.body.length.should.be.eql(0);
+        done();
+      });
+  });
+
   it("test default API welcome route", (done) => {
     chai
       .request(server)
