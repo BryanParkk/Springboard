@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../../styles/layout/CategorySelector.css';
+import '../../styles/layout/MealCategorySelector.css';
 
 export default function CategorySelector({ onCategorySelect, onValueSelect, onSearch }) {
   const categories = [

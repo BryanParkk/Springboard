@@ -1,0 +1,96 @@
+/* 전체 래퍼 */
+.category-selector {
+    margin-bottom: 2rem;
+}
+
+/* 검색 섹션 */
+.search-section {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.search-section input {
+    flex: 1;
+    min-width: 220px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.search-section button {
+    padding: 0.55rem 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.search-section button:hover {
+    background-color: #0077ff;
+    color: #fff;
+    border-color: #0077ff;
+}
+
+/* 카테고리 버튼들 */
+.category-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.category-btn.active,
+.category-btn:hover {
+    background-color: #0077ff;
+    color: #fff;
+    border-color: #0077ff;
+}
+
+/* 값 선택 영역 */
+.value-selector {
+    margin-top: 1rem;
+}
+
+.value-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.value-buttons button {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.value-buttons button:hover {
+    background-color: #0077ff;
+    color: #fff;
+    border-color: #0077ff;
+}
+
+/* 하위 값이 선택된 상태(고정 강조) */
+.value-buttons button.active {
+    background-color: #0077ff;
+    color: #fff;
+    border-color: #0077ff;
+}

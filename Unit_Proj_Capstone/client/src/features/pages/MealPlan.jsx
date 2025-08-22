@@ -50,7 +50,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import CategorySelector from './CategorySelector';
+import CategorySelector from './MealCategorySelector';
 import '../../styles/layout/MealPlan.css';
 
 export default function MealPlan() {
