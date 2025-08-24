@@ -9,6 +9,14 @@ export default function WorkoutRoutine() {
   const [routines, setRoutines] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const handleDelete = async (rid) => {
+  if (!window.confirm('Delete this routine?')) return;
+    try {
+      await api.delete(`/api/routines/${rid}`);
+      setRoutines(list => list.filter(r => r.id !== rid));
+    } catch (e) { alert('Delete failed'); }
+  };
+
   useEffect(()=>{
     (async()=>{
       try {
@@ -42,6 +50,7 @@ export default function WorkoutRoutine() {
                   <div className="routine-card__title">{r.title}</div>
                   <div className="routine-card__meta">Updated: {new Date(r.updated_at).toLocaleString()}</div>
                   <Link to={`/routine/${r.id}`} className="routine-card__link">Open</Link>
+                  <button className="btn btn-danger btn-sm" onClick={()=>handleDelete(r.id)}>Delete</button>
                 </div>
               ))}
             </div>

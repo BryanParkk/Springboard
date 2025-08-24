@@ -16,7 +16,7 @@ body,
 :root {
     --bg: #f7f8fb;
     --card: #ffffff;
-    --muted: #f2f4f8;
+    --muted: #404c63;
     --text: #111318;
     --subtext: #737b8c;
     --brand: #6c5cff;
@@ -108,7 +108,6 @@ body {
 
 /* 카드 */
 .settings-card {
-    background: linear-gradient(180deg, var(--card), var(--muted));
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);

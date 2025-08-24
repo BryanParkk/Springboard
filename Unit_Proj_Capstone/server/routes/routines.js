@@ -99,7 +99,13 @@ router.put("/:id", async (req, res) => {
 // 삭제(옵션)
 router.delete("/:id", async (req, res) => {
   try {
-    await db.query("DELETE FROM routines WHERE id=$1", [req.params.id]);
+    const userId = req.user?.id;
+    if (!userId) return res.status(401).json({ error: "UNAUTHORIZED" });
+    const { rows } = await db.query(
+      "DELETE FROM routines WHERE id=$1 AND user_id=$2 RETURNING id",
+      [req.params.id, userId]
+    );
+    if (!rows.length) return res.status(404).json({ error: "NOT_FOUND" });
     res.json({ ok: true });
   } catch (e) {
     console.error(e);

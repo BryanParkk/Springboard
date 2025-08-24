@@ -1,10 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import api from '../../api/client';
 
 const lbsToKg = (v) => (v===''||v==null)? null : +(Number(v) / 2.2046226218).toFixed(2);
 
-export default function RoutineBuilder() {
+export default function RoutineBuilder({ mode }) {
+  const params = useParams();
+  const isEdit = mode === 'edit' && params?.id;
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [exercises, setExercises] = useState([]);
@@ -21,6 +24,26 @@ export default function RoutineBuilder() {
     })();
   },[]);
 
+ useEffect(() => {
+   if (!isEdit) return;
+   (async () => {
+     const { data } = await api.get(`/api/routines/${params.id}`);
+     setTitle(data.title || '');
+     const sel = (data.items || []).map(it => ({
+       exercise_id: it.exercise_id,
+       name: it.name,
+       note: it.note || '',
+       rest_sec: it.rest_sec ?? 90,
+       sets: (it.sets || []).map(s => ({
+         set_no: s.set_no || 1,
+         weight_lbs: s.weight_kg != null ? (s.weight_kg * 2.2046226218).toFixed(1) : '',
+         reps: s.reps || ''
+       }))
+     }));
+     setSelected(sel);
+   })();
+ }, [isEdit, params?.id]);
+
   // 유니크 옵션
   const equipmentOpts = useMemo(() => ['All', ...uniq(exercises.map(x=>x.equipment))], [exercises]);
   const targetOpts    = useMemo(() => ['All', ...uniq(exercises.map(x=>x.target_muscle))], [exercises]);
@@ -32,7 +55,7 @@ export default function RoutineBuilder() {
       .filter(x => filter.equipment==='All' || (x.equipment||'')===filter.equipment)
       .filter(x => filter.target==='All'    || (x.target_muscle||'')===filter.target)
       .filter(x => !q || [x.name,x.target_muscle].some(f => (f||'').toLowerCase().includes(q)))
-      .slice(0,15);
+      // .slice(0,15);
   },[exercises, filter, query]);
 
   // 운동 추가
@@ -85,8 +108,13 @@ export default function RoutineBuilder() {
           reps: Number(s.reps)||0
         }))
       }));
-      const { data } = await api.post('/api/routines', { title: title.trim(), items });
-      navigate('/routine', { replace: true });
+     if (isEdit) {
+       await api.put(`/api/routines/${params.id}`, { title: title.trim(), items });
+       navigate(`/routine/${params.id}`, { replace: true });
+     } else {
+       const { data } = await api.post('/api/routines', { title: title.trim(), items });
+       navigate(`/routine/${data.id}`, { replace: true });
+     }
     } catch (e) {
       console.error(e);
       alert('Failed to save routine.');
@@ -95,6 +123,10 @@ export default function RoutineBuilder() {
 
   return (
     <div className="routine-builder">
+      <main className='workoutroutine-main'>
+        <h1 className='headline'>Create Workout Routine</h1>
+        <p className='subtitle'>Personalized plans to match your goals.</p>
+      </main>
       <div className="builder-header">
         <input
           className="routine-title-input"
@@ -121,25 +153,21 @@ export default function RoutineBuilder() {
                     <button className="icon-btn remove-btn" onClick={()=>removeExercise(idx)}>✕</button>
                   </div>
 
-                  <label className="field-label">Note</label>
-                  <input
-                    className="field-input"
-                    placeholder="e.g., Incline 30°, elbows in"
-                    value={it.note}
-                    onChange={e=>updateItem(idx, { note: e.target.value })}
-                  />
-
-                  <div className="field-row">
-                    <div className="field-cell">
-                      <label className="field-label">Rest (sec)</label>
-                      <input
-                        className="field-input"
-                        type="number"
-                        min="0"
-                        value={it.rest_sec}
-                        onChange={e=>updateItem(idx, { rest_sec: e.target.value })}
-                      />
-                    </div>
+                  <div className="selected-compact-row">
+                    <input
+                      className="field-input compact-note"
+                      placeholder="Note…"
+                      value={it.note}
+                      onChange={e=>updateItem(idx, { note: e.target.value })}
+                    />
+                    <input
+                      className="field-input compact-rest"
+                      type="number"
+                      min="0"
+                      placeholder="Rest (s)"
+                      value={it.rest_sec}
+                      onChange={e=>updateItem(idx, { rest_sec: e.target.value })}
+                    />
                   </div>
 
                   <div className="sets-table">
@@ -228,7 +256,8 @@ export default function RoutineBuilder() {
             ))}
             {workoutList.length === 0 && <div className="empty-list">No exercises match your filters.</div>}
           </div>
-          <div className="workout-list-hint">Showing up to 15 results. Use filters or search to narrow down.</div>
+          {/* <div className="workout-list-hint">Showing up to 15 results. Use filters or search to narrow down.</div> */}
+          <div className="workout-list-hint">Showing {workoutList.length} results.</div>
         </div>
       </div>
     </div>

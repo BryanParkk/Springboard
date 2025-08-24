@@ -479,3 +479,63 @@
         grid-column: auto;
     }
 }
+
+.btn-danger {
+    background: #ef4444;
+    color: #fff;
+    border-color: #ef4444;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+    border-color: #dc2626;
+}
+
+.btn-sm {
+    height: 34px;
+    padding: 0 10px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+
+/* ▼ 여백 타이트하게 */
+.selected-card {
+    gap: 10px;
+    padding: 12px;
+}
+
+.selected-card__head {
+    margin-bottom: 6px;
+}
+
+/* ▼ 노트 + 휴식 한 줄 */
+.selected-compact-row {
+    display: grid;
+    grid-template-columns: 1fr 110px;
+    /* 좌: 노트(가변) / 우: 휴식  */
+    gap: 8px;
+    align-items: center;
+}
+
+.field-input.compact-note {
+    height: 36px;
+}
+
+.field-input.compact-rest {
+    height: 36px;
+    text-align: center;
+}
+
+/* ▼ 세트 테이블도 살짝 컴팩트하게 */
+.sets-table {
+    margin-top: 2px;
+}
+
+.sets-row {
+    padding: 6px 10px;
+}
+
+.add-set-btn {
+    margin-top: 8px;
+}
