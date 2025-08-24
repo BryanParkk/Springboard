@@ -6,6 +6,7 @@ import mealsRoute from "./routes/meals.js";
 import authRoute from "./routes/auth.js";
 import userRoute from "./routes/user.js";
 import requireAuth from "./middleware/requireAuth.js";
+import routinesRoute from "./routes/routines.js";
 
 const app = express();
 app.use(cors());
@@ -20,6 +21,8 @@ app.use("/api/auth", authRoute);
 app.use("/api/user", requireAuth, userRoute);
 app.use("/api/exercises", exercisesRoute);
 app.use("/api/meals", mealsRoute);
+app.use("/api/routines", requireAuth, routinesRoute);
+
 const PORT = 5001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

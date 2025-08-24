@@ -1,16 +1,481 @@
-.workoutroutine-container {
+/* ===== Design Tokens (톤 정리) ===== */
+:root {
+    --bg: #f7f8fb;
+    --panel: #ffffff;
+    --bd: #e6eaf0;
+    --muted: #6b7280;
+    --txt: #111827;
+
+    --brand: #2563eb;
+    /* 버튼/포커스 */
+    --brand-600: #1d4ed8;
+    --brand-50: #eff6ff;
+
+    --radius: 14px;
+    /* 둥근 정도 살짝 키움 */
+    --shadow: 0 6px 20px rgba(17, 24, 39, .08);
+
+    --space-1: 6px;
+    --space-2: 10px;
+    --space-3: 14px;
+    --space-4: 18px;
+    --space-5: 22px;
+    --space-6: 28px;
+
+    --input-h: 40px;
+    /* 입력 높이統一 */
+}
+
+
+/* 페이지 배경을 살짝 밝게 */
+.main-content {
+    background: var(--bg);
+    padding: var(--space-6);
+}
+
+/* ===== 공통 UI ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    height: var(--input-h);
+    padding: 0 var(--space-4);
+    border-radius: 12px;
+    border: 1px solid var(--bd);
+    background: #fff;
+    color: var(--txt);
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .08s ease, box-shadow .18s ease, background .18s ease, border-color .18s;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: var(--brand);
+    color: #fff;
+    border-color: var(--brand);
+}
+
+.btn-primary:hover {
+    background: var(--brand-600);
+    border-color: var(--brand-600);
+}
+
+.icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    border: 1px solid var(--bd);
+    background: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .18s;
+}
+
+.icon-btn:hover {
+    background: #f3f4f6;
+}
+
+.remove-btn {
+    color: #ef4444;
+    border-color: #fecaca;
+}
+
+.remove-btn:hover {
+    background: #fee2e2;
+}
+
+.field-label {
+    font-size: .9rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+    display: block;
+}
+
+.field-input,
+.set-input,
+.routine-title-input,
+.filters select,
+.filters input {
+    width: 100%;
+    height: var(--input-h);
+    padding: 0 var(--space-3);
+    border: 1px solid var(--bd);
+    border-radius: 12px;
+    background: #fff;
+    outline: none;
+    transition: border-color .18s, box-shadow .18s, background .18s;
+}
+
+.field-input:focus,
+.set-input:focus,
+.routine-title-input:focus,
+.filters select:focus,
+.filters input:focus {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 4px var(--brand-50);
+}
+
+/* ===== Routine 목록 페이지 ===== */
+.routine-page {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: var(--space-6);
+}
+
+.routine-left {
+    position: sticky;
+    top: var(--space-6);
+    align-self: start;
+    background: var(--panel);
+    border: 1px solid var(--bd);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    box-shadow: var(--shadow);
+}
+
+.new-routine-btn {
+    width: 100%;
+}
+
+.routine-right {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.section-title {
+    margin: 0;
+    font-size: 1.15rem;
+    letter-spacing: -.01em;
+}
+
+.empty-state {
+    padding: var(--space-5);
+    border: 1px dashed var(--bd);
+    border-radius: var(--radius);
+    color: var(--muted);
+    background: var(--panel);
+}
+
+.routine-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+}
+
+.routine-card {
+    background: var(--panel);
+    border: 1px solid var(--bd);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    box-shadow: var(--shadow);
+    display: grid;
+    gap: 6px;
+    transition: transform .08s ease, box-shadow .18s ease;
+}
+
+.routine-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(17, 24, 39, .12);
+}
+
+.routine-card__title {
+    font-weight: 700;
+}
+
+.routine-card__meta {
+    color: var(--muted);
+    font-size: .9rem;
+}
+
+.routine-card__link {
+    margin-top: 2px;
+    justify-self: start;
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: none;
+}
+
+.routine-card__link:hover {
+    text-decoration: underline;
+}
+
+/* ===== Routine Builder ===== */
+.routine-builder {
+    display: grid;
+    gap: var(--space-4);
+}
+
+.builder-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-3);
+    align-items: center;
+}
+
+.routine-title-input {
+    font-size: 1.05rem;
+    background: #fff;
+}
+
+.builder-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 440px;
+    /* 좌측 가변 / 우측 패널 */
+    gap: var(--space-4);
+}
+
+/* 좌측(선택된 운동 카드) */
+.builder-left {
+    display: grid;
+    gap: var(--space-4);
+    min-height: 360px;
+}
+
+.empty-left {
+    padding: var(--space-5);
+    border: 1px dashed var(--bd);
+    border-radius: var(--radius);
+    color: var(--muted);
+    background: var(--panel);
+}
+
+.selected-list {
+    display: grid;
+    gap: var(--space-4);
+}
+
+.selected-card {
+    background: var(--panel);
+    border: 1px solid var(--bd);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    box-shadow: var(--shadow);
+    display: grid;
+    gap: var(--space-3);
+}
+
+.selected-card__head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.selected-card__title {
+    font-weight: 700;
+    letter-spacing: -.01em;
+}
+
+.field-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+}
+
+.field-cell {
+    display: grid;
+    gap: 6px;
+}
+
+/* 세트 테이블 */
+.sets-table {
+    border: 1px solid var(--bd);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.sets-row {
+    display: grid;
+    grid-template-columns: 72px 1fr 1fr;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    align-items: center;
+    border-top: 1px solid var(--bd);
+}
+
+.sets-row:first-child {
+    border-top: 0;
+}
+
+.sets-row--head {
+    background: #f3f5f9;
+    font-weight: 700;
+}
+
+.sets-col--no {
+    text-align: center;
+}
+
+.set-input {
+    text-align: center;
+}
+
+.add-set-btn {
+    height: var(--input-h);
+    border-radius: 12px;
+    border: 1px dashed var(--bd);
+    background: #fafbff;
+    transition: background .18s, border-color .18s;
+}
+
+.add-set-btn:hover {
+    background: var(--brand-50);
+    border-color: #c7d2fe;
+}
+
+/* 우측 패널(Workout List) */
+.builder-right {
+    background: var(--panel);
+    border: 1px solid var(--bd);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    box-shadow: var(--shadow);
     display: flex;
-    padding: 2rem;
+    flex-direction: column;
+    max-height: 78vh;
+    /* 높이 균형 */
+}
 
-    min-height: 100dvh;
-    /* 최신 뷰포트 단위 */
-    padding: clamp(16px, 3vw, 32px);
+.workout-list-header {
+    display: grid;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+}
 
-    background:
-        radial-gradient(900px 600px at 110% 0%, rgba(108, 92, 255, 0.12), transparent 60%),
-        radial-gradient(900px 600px at -10% 10%, rgba(22, 199, 154, 0.10), transparent 60%),
-        var(--bg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: scroll;
+.workout-list-header h3 {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+}
+
+.filter {
+    display: grid;
+    gap: 6px;
+}
+
+.filter.search {
+    grid-column: span 2;
+}
+
+.workout-list {
+    margin-top: var(--space-2);
+    border: 1px solid var(--bd);
+    border-radius: 12px;
+    background: #fff;
+    overflow: auto;
+    flex: 1;
+    /* 헤더 제외 나머지를 스크롤 영역으로 */
+}
+
+.workout-item {
+    all: unset;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f2f6;
+    transition: background .12s;
+}
+
+.workout-item:last-child {
+    border-bottom: 0;
+}
+
+.workout-item:hover {
+    background: #f8fafc;
+}
+
+.workout-thumb {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid var(--bd);
+}
+
+.workout-texts {
+    display: grid;
+    gap: 4px;
+}
+
+.workout-name {
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -.01em;
+}
+
+.workout-meta {
+    font-size: .9rem;
+    color: var(--muted);
+}
+
+.workout-list-hint {
+    margin-top: var(--space-2);
+    color: var(--muted);
+    font-size: .9rem;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 1200px) {
+    .routine-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .builder-body {
+        grid-template-columns: minmax(0, 1fr) 400px;
+    }
+}
+
+@media (max-width: 960px) {
+    .main-content {
+        padding: var(--space-4);
+    }
+
+    .routine-page {
+        grid-template-columns: 1fr;
+    }
+
+    .routine-left {
+        position: static;
+    }
+
+    .routine-list {
+        grid-template-columns: 1fr;
+    }
+
+    .builder-body {
+        grid-template-columns: 1fr;
+    }
+
+    .builder-right {
+        max-height: none;
+    }
+
+    .filters {
+        grid-template-columns: 1fr;
+    }
+
+    .filter.search {
+        grid-column: auto;
+    }
 }
