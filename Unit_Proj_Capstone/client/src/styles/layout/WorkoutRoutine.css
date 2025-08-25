@@ -241,6 +241,8 @@
     display: grid;
     gap: var(--space-4);
     min-height: 360px;
+    align-content: start;
+    grid-auto-rows: min-content;
 }
 
 .empty-left {
@@ -254,6 +256,7 @@
 .selected-list {
     display: grid;
     gap: var(--space-4);
+    align-content: start;
 }
 
 .selected-card {
@@ -264,14 +267,21 @@
     box-shadow: var(--shadow);
     display: grid;
     gap: var(--space-3);
+    align-content: start;
+    align-self: start;
 }
 
 .selected-card__head {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    gap: var(--space-3);
+    column-gap: var(--space-3);
+    row-gap: 0;
+    align-content: start;
+    height: auto;
+    min-height: 0;
 }
+
 
 .selected-card__title {
     font-weight: 700;
@@ -316,6 +326,11 @@
 }
 
 .sets-col--no {
+    text-align: center;
+}
+
+.sets-col--lbs,
+.sets-col--reps {
     text-align: center;
 }
 
@@ -395,6 +410,7 @@
     cursor: pointer;
     border-bottom: 1px solid #f1f2f6;
     transition: background .12s;
+    width: 100%;
 }
 
 .workout-item:last-child {
@@ -498,8 +514,6 @@
     font-weight: 700;
 }
 
-
-/* ▼ 여백 타이트하게 */
 .selected-card {
     gap: 10px;
     padding: 12px;
@@ -509,11 +523,9 @@
     margin-bottom: 6px;
 }
 
-/* ▼ 노트 + 휴식 한 줄 */
 .selected-compact-row {
     display: grid;
-    grid-template-columns: 1fr 110px;
-    /* 좌: 노트(가변) / 우: 휴식  */
+    grid-template-columns: 8fr auto 1fr;
     gap: 8px;
     align-items: center;
 }

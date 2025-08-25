@@ -160,6 +160,7 @@ export default function RoutineBuilder({ mode }) {
                       value={it.note}
                       onChange={e=>updateItem(idx, { note: e.target.value })}
                     />
+                    Rest
                     <input
                       className="field-input compact-rest"
                       type="number"
@@ -173,13 +174,13 @@ export default function RoutineBuilder({ mode }) {
                   <div className="sets-table">
                     <div className="sets-row sets-row--head">
                       <div className="sets-col sets-col--no">Set</div>
-                      <div className="sets-col sets-col--w">lbs</div>
+                      <div className="sets-col sets-col--lbs">lbs</div>
                       <div className="sets-col sets-col--reps">Reps</div>
                     </div>
                     {it.sets.map((s, j) => (
                       <div key={j} className="sets-row">
                         <div className="sets-col sets-col--no">{s.set_no}</div>
-                        <div className="sets-col sets-col--w">
+                        <div className="sets-col sets-col--lbs">
                           <input
                             className="set-input"
                             type="number"

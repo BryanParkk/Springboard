@@ -33,6 +33,7 @@ export default function WorkoutRoutine() {
         <p className='subtitle'>Personalized plans to match your goals.</p>
       </main>
       <div className="routine-page">
+        
         <div className="routine-left">
           <Link to="/routine/new" className="btn btn-primary new-routine-btn">＋ New Workout Routine</Link>
         </div>
