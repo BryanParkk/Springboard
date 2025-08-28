@@ -16,7 +16,7 @@ export default function WorkoutRoutine() {
       setRoutines(list => list.filter(r => r.id !== rid));
     } catch (e) { alert('Delete failed'); }
   };
-
+//
   useEffect(()=>{
     (async()=>{
       try {
@@ -34,6 +34,7 @@ export default function WorkoutRoutine() {
       </main>
       <div className="routine-page">
         
+          <h2 className="section-title">Saved Routines</h2>
         <div className="routine-left">
           <Link to="/routine/new" className="btn btn-primary new-routine-btn">＋ New Workout Routine</Link>
         </div>
