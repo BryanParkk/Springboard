@@ -14,15 +14,26 @@ app.use(
   "/graphql",
   graphqlHttp({
     schema: buildSchema(`
+        type RootQuery {
+          events: [String!]!
+            
+        }
+        type RootMutation {
+          createEvent(name: String): String
+        }
+
         schema {
-            query: 
-            mutation: 
+            query: RootQuery
+            mutation: RootMutation
         }
     `),
-    rootValue: {},
+    rootValue: {
+      events: () => {
+        return ["Romantic Cooking", "Cooking", "Sailing", "All-Night Coding"];
+      },
+    },
     graphql: true,
   })
 );
 
 app.listen(3000);
-//
