@@ -5,14 +5,10 @@
     --bd: #e6eaf0;
     --muted: #6b7280;
     --txt: #111827;
-
     --brand: #2563eb;
-    /* 버튼/포커스 */
     --brand-600: #1d4ed8;
     --brand-50: #eff6ff;
-
     --radius: 14px;
-    /* 둥근 정도 살짝 키움 */
     --shadow: 0 6px 20px rgba(17, 24, 39, .08);
 
     --space-1: 6px;
