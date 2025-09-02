@@ -3,7 +3,8 @@ const bodyParser = require("body-parser");
 const { graphqlHTTP } = require("express-graphql");
 const { buildSchema } = require("graphql");
 const mongoose = require("mongoose");
-
+const bcrypt = require("bcryptjs");
+const User = require("./models/user");
 const Event = require("./models/event");
 
 const app = express();
@@ -27,6 +28,12 @@ app.use(
           date: String!
         }
 
+        type User {
+          _id: ID!
+          email: String!
+          password: String
+        }
+
         input EventInput {
           title: String!
           description: String!
@@ -34,12 +41,18 @@ app.use(
           date: String!
         }
 
+        input UserInput {
+          email: String!
+          password: String!
+        }
+
         type RootQuery {
           events: [Event!]!
             
         }
         type RootMutation {
-          createEvent(eventInput: EventInput!): Event!
+          createEvent(eventInput: EventInput): Event
+          createUser(userInput: UserInput): User
         }
 
         schema {
@@ -73,15 +86,51 @@ app.use(
           description: eventInput.description,
           price: eventInput.price,
           date: eventInput.date,
+          creator: "68b610c8979ce6862906ac0a",
         });
+        let createdEvent;
         return event
           .save()
           .then((result) => {
-            console.log(result);
-            return { ...result._doc, _id: result._doc._id.toString() };
+            createdEvent = { ...result._doc, _id: result._doc._id.toString() };
+            return User.findById("68b610c8979ce6862906ac0a");
+          })
+          .then((user) => {
+            if (!user) {
+              throw new Error("User not found.");
+            }
+            user.createdEvents.push(event);
+            return user.save();
+          })
+          .then((result) => {
+            return createdEvent;
           })
           .catch((err) => {
             console.log(err);
+            throw err;
+          });
+      },
+      createUser: (args) => {
+        const { userInput } = args;
+
+        return User.findOne({ email: userInput.email })
+          .then((user) => {
+            if (user) {
+              throw new Error("User exists already.");
+            }
+            return bcrypt.hash(userInput.password, 12);
+          })
+          .then((hashedPassword) => {
+            const user = new User({
+              email: userInput.email,
+              password: hashedPassword,
+            });
+            return user.save();
+          })
+          .then((result) => {
+            return { ...result._doc, password: null, _id: result.id };
+          })
+          .catch((err) => {
             throw err;
           });
       },
