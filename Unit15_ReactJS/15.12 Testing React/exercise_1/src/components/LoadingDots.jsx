@@ -16,4 +16,4 @@ export default function LoadingDots({ label = "Loading", maxDots = 6, interval =
       {label} {tail}
     </div>
   );
-}//
+}
