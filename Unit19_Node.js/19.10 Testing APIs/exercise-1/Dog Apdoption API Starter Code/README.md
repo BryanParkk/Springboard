@@ -12,3 +12,63 @@ The folder structure designed by our software architects ensures adherence to be
 This structure provides a solid foundation for building a well-organized, scalable backend service. By separating concerns into dedicated directories and files, your project remains clean, navigable, and easier to debug and extend.
 
 View the rubric for this assessment [here](https://storage.googleapis.com/hatchways.appspot.com/employers/springboard/student_rubrics/Dog%20Adoption%20Platform%20Rubric.pdf)
+
+##### RUN
+
+- npm run dev
+- localhost:3000
+
+##### TEST
+
+- npm test
+
+##### API Health check
+
+- GET
+- http://localhost:3000/api/health
+
+##### Register
+
+- POST
+- http://localhost:3000/api/auth/register
+  {
+  "username": "bryan park",
+  "password": "pass123"
+  }
+
+##### Login
+
+- POST
+- http://localhost:3000/api/auth/login
+  {
+  "username": "bryan park",
+  "password": "pass123"
+  }
+
+##### Register Dog
+
+- POST
+- Auth Type : Bearer Token
+- http://localhost:3000/api/dogs
+  {
+  "name": "Buddy",
+  "description": "Friendly golden retriever"
+  }
+
+##### Adopt Dog
+
+- POST
+- Auth Type : Bearer Token
+- http://localhost:3000/api/dogs/68b9e296fd55726906e54605/adopt
+
+##### My Registered Dogs
+
+- GET
+- Auth Type : Bearer Token
+- http://localhost:3000/api/dogs/mine?status=available&page=1&limit=5
+
+##### My Adopted Dogs
+
+- GET
+- Auth Type : Bearer Token
+- http://localhost:3000/api/dogs/adopted?page=1&limit=5
