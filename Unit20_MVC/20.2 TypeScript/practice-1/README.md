@@ -25,5 +25,3 @@ project/
 # compile
 
 npx tsc
-
-//
