@@ -3,3 +3,7 @@ function sum(x: number, y: number) {
 }
 
 sum(1, 3);
+
+
+let color = "red";
+color="123";
