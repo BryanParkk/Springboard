@@ -14,23 +14,19 @@
 // color="cream";
 
 // let high:any;
-
 // high='google';
-
 // high=2;
-
 // console.log(high);
 
-let firstName = 'Tonya';
+// let firstName = 'Tonya';
+// firstName = firstName + 1+1;
+// console.log(firstName);
+// let names: number[];
+// names = [2,3,4,5,6]
+// const stuff: (string | number)[] = [2, 'abc', 3, '3423']
 
-firstName = firstName + 1+1;
-
-console.log(firstName);
-
-
-let names: number[];
-
-names = [2,3,4,5,6]
-
-const stuff: (string | number)[] = [2, 'abc', 3, '3423']
-
+let currentUser:{username: string, age: number} = {username: "colt", age: 30}
+function printUsername(user: {username: string, age: number}){
+  console.log(user.username)
+}
+printUsername({username: "Teddy", age: 39});
