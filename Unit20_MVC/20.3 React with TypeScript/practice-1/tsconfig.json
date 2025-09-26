@@ -7,7 +7,8 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
+    "module": "CommonJS",
+    "esModuleInterop": true,
     "target": "esnext",
     "types": [],
     // For nodejs:
@@ -27,8 +28,8 @@
     // Style Options
     // "noImplicitReturns": true,
     // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
+    "noUnusedLocals": false, // suppress TS6133 for unused locals while practicing
+    "noUnusedParameters": false, // suppress TS6133 for unused parameters while practicing
     // "noFallthroughCasesInSwitch": true,
     // "noPropertyAccessFromIndexSignature": true,
 
