@@ -5,3 +5,4 @@ function product(x: number, y: number): number {
 }
 
 console.log(product(4, 7));
+//
