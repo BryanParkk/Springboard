@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import './App.css';
 
 // const Heading = (props: {title: string}) => (
@@ -38,6 +38,9 @@ function App() {
   const onListClick = useCallback((item: string) => {
     alert(item)
   }, [])
+
+  // const [checkedState, setCheckedState] = useState(true);
+
 
   return (
     <div className="App">
