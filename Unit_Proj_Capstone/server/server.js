@@ -7,6 +7,7 @@ import authRoute from "./routes/auth.js";
 import userRoute from "./routes/user.js";
 import requireAuth from "./middleware/requireAuth.js";
 import routinesRoute from "./routes/routines.js";
+import logsRoute from "./routes/logs.js";
 
 const app = express();
 app.use(cors());
@@ -18,6 +19,7 @@ app.get("/api/health", (req, res) =>
 );
 
 app.use("/api/auth", authRoute);
+app.use("/api/logs", requireAuth, logsRoute);
 app.use("/api/user", requireAuth, userRoute);
 app.use("/api/exercises", exercisesRoute);
 app.use("/api/meals", mealsRoute);

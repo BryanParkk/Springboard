@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import AuthProvider from './context/AuthContext.jsx';
 import ProtectedRoute from '../../server/routes/ProtectedRoute.jsx';
 import AppLayout from './layouts/AppLayout';
+import LogSessionDetail from './features/pages/LogSessionDetail';
 
 // Pages
 import Login from './features/auth/LoginPage';
@@ -30,6 +31,7 @@ export default function App() {
 
             <Route path="/dashboard" element={<AppLayout><Dashboard /></AppLayout>} />
             <Route path="/log"       element={<AppLayout><LogWorkout /></AppLayout>} />
+            <Route path="/log/:id" element={<AppLayout><LogSessionDetail /></AppLayout>} />
             <Route path="/routine"   element={<AppLayout><WorkoutRoutine /></AppLayout>} />
               <Route path="/routine/:id" element={<AppLayout> <RoutineDetail /> </AppLayout>} />
               <Route path="/routine/:id/edit" element={<AppLayout> <RoutineBuilder mode="edit" /> </AppLayout>} />
