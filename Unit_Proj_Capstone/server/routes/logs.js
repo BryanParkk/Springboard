@@ -178,6 +178,48 @@ router.patch("/sets/:setId", async (req, res) => {
   }
 });
 
+// 세션 취소(하드 삭제): in_progress 상태의 세션과 자식 레코드 전체 제거
+router.post("/:id/cancel", async (req, res) => {
+  const userId = req.user?.id;
+  if (!userId) return res.status(401).json({ error: "UNAUTHORIZED" });
+
+  const sid = req.params.id;
+
+  try {
+    await db.query("BEGIN");
+
+    // 소유/상태 확인
+    const own = await db.query(
+      `SELECT status FROM workout_sessions WHERE id=$1 AND user_id=$2`,
+      [sid, userId]
+    );
+    if (!own.rowCount) {
+      await db.query("ROLLBACK");
+      return res.status(404).json({ error: "NOT_FOUND" });
+    }
+    if (own.rows[0].status !== "in_progress") {
+      await db.query("ROLLBACK");
+      return res.status(400).json({ error: "NOT_IN_PROGRESS" });
+    }
+
+    await db.query(`DELETE FROM workout_sets WHERE session_id=$1`, [sid]);
+    await db.query(`DELETE FROM workout_exercises WHERE session_id=$1`, [sid]);
+    await db.query(`DELETE FROM workout_sessions WHERE id=$1 AND user_id=$2`, [
+      sid,
+      userId,
+    ]);
+
+    await db.query("COMMIT");
+    return res.json({ ok: true });
+  } catch (e) {
+    console.error(e);
+    try {
+      await db.query("ROLLBACK");
+    } catch {}
+    return res.status(500).json({ error: "INTERNAL_ERROR" });
+  }
+});
+
 /** 단건 세션 조회 */
 router.get("/:id", async (req, res) => {
   try {

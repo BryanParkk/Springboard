@@ -1,158 +1,238 @@
-import { useEffect, useMemo, useState } from 'react';
+// src/features/pages/LogWorkout.jsx
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api/client';
 import '../../styles/layout/LogWorkout.css';
 
-const toKg = (v, unit) => v===''||v==null ? null : (unit==='lbs' ? Number(v)/2.2046226218 : Number(v));
-const fromKg = (kg, unit) => kg==null ? '' : (unit==='lbs' ? (kg*2.2046226218).toFixed(1) : Number(kg).toFixed(1));
+const toKg = (v, unit) =>
+  v === '' || v == null ? null : unit === 'lbs' ? Number(v) / 2.2046226218 : Number(v);
+const fromKg = (kg, unit) =>
+  kg == null ? '' : unit === 'lbs' ? (kg * 2.2046226218).toFixed(1) : Number(kg).toFixed(1);
+
+/** 루틴 카드 그리드 */
+function RoutineGrid({ routines, onChoose }) {
+  return (
+    <div className="routine-grid">
+      {routines.map((rt) => {
+        const items = Array.isArray(rt.items) ? rt.items : [];
+        const exCount = items.length;
+        const setCount = items.reduce(
+          (acc, it) => acc + (Array.isArray(it.sets) ? it.sets.length : 0),
+          0
+        );
+        return (
+          <div key={rt.id} className="routine-card">
+            <div className="routine-card__head">
+              <h4 className="routine-card__title">{rt.title}</h4>
+            </div>
+            <div className="routine-card__meta">
+              <span>{exCount} exercises</span>
+              <span>·</span>
+              <span>{setCount} sets</span>
+            </div>
+            <div className="routine-card__actions">
+              <button className="btn btn-primary" onClick={() => onChoose(rt)}>
+                Start
+              </button>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/** 시작 전 확인 — 인라인(제목 아래, 그리드 위) */
+function ConfirmStartInline({ open, routine, onYes, onNo }) {
+  if (!open) return null;
+  return (
+    <div className="inline-confirm">
+      <div className="inline-confirm__body">
+        <h3 className="inline-confirm__title">Start this workout?</h3>
+        <p className="inline-confirm__text">
+          You’re about to begin <strong>{routine?.title}</strong>. We’ll start tracking your sets and reps
+          now.
+        </p>
+        <div className="inline-confirm__actions">
+          <button className="btn btn-ghost" onClick={onNo}>
+            No, go back
+          </button>
+          <button className="btn btn-primary" onClick={onYes}>
+            Yes, start
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function LogWorkout() {
-  const [unit, setUnit] = useState('kg');       // 사용자 선호(옵션: /api/user로 가져와도 됨)
+  const [unit, setUnit] = useState('kg');
   const [todaySession, setTodaySession] = useState(null);
   const [routines, setRoutines] = useState([]);
-  const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 오늘 세션 로드 + 루틴 목록
-  useEffect(()=>{
-    (async()=>{
+  const [confirm, setConfirm] = useState({ open: false, routine: null });
+  const [runner, setRunner] = useState(null); // { session, exercises:[{... sets:[]}] }
+
+  useEffect(() => {
+    (async () => {
       try {
         const [sess, rts] = await Promise.all([
           api.get('/api/logs?status=in_progress'),
-          api.get('/api/routines')
+          api.get('/api/routines'),
         ]);
         const session = (sess.data || [])[0] || null;
         setTodaySession(session);
         setRoutines(rts.data || []);
-        // 단위 선호
-        api.get('/api/user').then(u=> {
-          if (u.data?.weight_unit) setUnit(u.data.weight_unit);
-        }).catch(()=>{});
-        // 히스토리 로드(완료 세션)
-        api.get('/api/logs/history?status=completed&limit=50')
-        .then(res=>setHistory(res.data||[]))
-        .catch(()=>{});
-      } finally { setLoading(false); }
+
+        api
+          .get('/api/user')
+          .then((u) => {
+            if (u.data?.weight_unit) setUnit(u.data.weight_unit);
+          })
+          .catch(() => {});
+      } finally {
+        setLoading(false);
+      }
     })();
-  },[]);
+  }, []);
 
-  const startFromRoutine = async (rid) => {
-    const { data } = await api.post('/api/logs/start', { routine_id: rid });
-    const sess = await api.get(`/api/logs/${data.id}`);
-    setTodaySession({ id: data.id, title: data.title, status: 'in_progress' });
-    setRunner(sess.data);
-  };
-
-  // 세션 상세 상태(실행)
-  const [runner, setRunner] = useState(null); // { session, exercises:[{... sets:[]}] }
-
-  // 세션 로드(있으면)
-  useEffect(()=>{
+  useEffect(() => {
     if (!todaySession?.id) return;
-    (async()=>{
+    (async () => {
       const { data } = await api.get(`/api/logs/${todaySession.id}`);
       setRunner(data);
     })();
   }, [todaySession?.id]);
 
+  const startFromRoutine = async (routine) => {
+    const rid = typeof routine === 'object' ? routine.id : routine;
+    const rtitle = typeof routine === 'object' ? routine.title : undefined;
+    const { data } = await api.post('/api/logs/start', { routine_id: rid, title: rtitle });
+    const sess = await api.get(`/api/logs/${data.id}`);
+    setTodaySession({ id: data.id, title: data.title, status: 'in_progress' });
+    setRunner(sess.data);
+  };
+
   if (loading) return <p>Loading...</p>;
 
   return (
     <div className="logw-page">
+      <main className='workoutroutine-main'>
+        <h1 className='headline'>Log Workout</h1>
+        <p className='subtitle'>Log your workout to keep track of your exercises, sets, reps, and progress over time.</p>
+      </main>
       {!runner ? (
         <div className="logw-start">
           <div className="panel">
             <h2>Start Workout</h2>
+
+            <ConfirmStartInline
+              open={!!confirm.open}
+              routine={confirm.routine}
+              onNo={() => setConfirm({ open: false, routine: null })}
+              onYes={async () => {
+                const rt = confirm.routine;
+                setConfirm({ open: false, routine: null });
+                await startFromRoutine(rt);
+              }}
+            />
+
             {routines.length === 0 ? (
-              <div className="empty">No routines yet. <Link to="/routine/new">Create one</Link> to start faster.</div>
-            ) : (
-              <div className="routine-grid">
-                {routines.map(r => (
-                  <button key={r.id} className="routine-item" onClick={()=>startFromRoutine(r.id)}>
-                    <div className="routine-item__title">{r.title}</div>
-                    <div className="routine-item__meta">Open as today</div>
-                  </button>
-                ))}
+              <div className="empty">
+                No routines yet. <Link to="/routine/new">Create your first workout routine</Link>.
               </div>
+            ) : (
+              <RoutineGrid routines={routines} onChoose={(rt) => setConfirm({ open: true, routine: rt })} />
             )}
-            <div className="hr" />
-            <button className="btn" onClick={()=>startFromRoutine(null)}>+ Quick Start (empty)</button>
           </div>
         </div>
       ) : (
-        <>
-          <SessionRunner runner={runner} unit={unit} onRunnerChange={setRunner} onComplete={async (titleText) => {
-              await api.post(`/api/logs/${runner.session.id}/complete`, { title: titleText });
-              setRunner(null);
-              setTodaySession(null);
-              try {
-                const h = await api.get('/api/logs/history?status=completed&limit=50');
-                setHistory(h.data || []);
-              } catch {}
-            }}
-          />
-          <div className="panel" style={{ marginTop: 16 }}>
-            <h3>Workout History</h3>
-            <WorkoutHistoryTable rows={history} />
-          </div>
-        </>
+        <SessionRunner
+          runner={runner}
+          unit={unit}
+          onRunnerChange={setRunner}
+          onComplete={async (titleText) => {
+            await api.post(`/api/logs/${runner.session.id}/complete`, { title: titleText });
+            localStorage.removeItem('logw:suppressResume'); 
+            setRunner(null);
+            setTodaySession(null);
+          }}
+          onCancel={async () => {
+            try {
+              await api.post(`/api/logs/${runner.session.id}/cancel`);
+            } catch (e) {}
+            localStorage.removeItem('logw:suppressResume'); 
+            setRunner(null);
+            setTodaySession(null);
+          }}
+        />
       )}
     </div>
   );
 }
 
-function SessionRunner({ runner, unit, onRunnerChange, onComplete }) {
+function SessionRunner({ runner, unit, onRunnerChange, onComplete, onCancel }) {
   const { session, exercises } = runner;
-
   const [localTitle, setLocalTitle] = useState(session.title || '');
 
-  useEffect(()=>{ setLocalTitle(session.title || ''); }, [session.id]);
+  useEffect(() => {
+    setLocalTitle(session.title || '');
+  }, [session.id]);
 
   const saveTitle = async (next) => {
-    setLocalTitle(next);
+    const val = next.trim() || 'Workout';
+    setLocalTitle(val);
     try {
-      await api.patch(`/api/logs/${session.id}`, { title: next.trim() || 'Workout' });
-      onRunnerChange(prev => ({ ...prev, session: { ...prev.session, title: next.trim() || 'Workout' } }));
+      await api.patch(`/api/logs/${session.id}`, { title: val });
+      onRunnerChange((prev) => ({ ...prev, session: { ...prev.session, title: val } }));
     } catch {}
   };
 
   const patchSet = async (setId, patch) => {
     const body = { ...patch };
-    if ('weight' in patch) { body.weight_kg = toKg(patch.weight, unit); delete body.weight; }
+    if ('weight' in patch) {
+      body.weight_kg = toKg(patch.weight, unit);
+      delete body.weight;
+    }
     const { data } = await api.patch(`/api/logs/sets/${setId}`, body);
-    // 로컬 반영
-    onRunnerChange(prev => ({
+    onRunnerChange((prev) => ({
       ...prev,
-      exercises: prev.exercises.map(ex => ({
+      exercises: prev.exercises.map((ex) => ({
         ...ex,
-        sets: ex.sets.map(s => s.id === setId ? { ...s, ...data } : s)
-      }))
+        sets: ex.sets.map((s) => (s.id === setId ? { ...s, ...data } : s)),
+      })),
     }));
   };
 
   return (
     <div className="runner">
       <div className="runner-head">
-
         <input
           className="runner-title-input"
           value={localTitle}
-          onChange={(e)=>setLocalTitle(e.target.value)}
-          onBlur={()=>saveTitle(localTitle)}
+          onChange={(e) => setLocalTitle(e.target.value)}
+          onBlur={() => saveTitle(localTitle)}
           placeholder="Session name"
         />
-
         <div className="runner-actions">
-
-         <button className="btn btn-primary" onClick={()=>onComplete(localTitle)} disabled={session.status==='completed'}>
-            {session.status==='completed' ? 'Completed' : 'Finish Workout'}
+          <button className="btn btn-danger" onClick={onCancel}>
+            Cancel
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={() => onComplete(localTitle)}
+            disabled={session.status === 'completed'}
+          >
+            {session.status === 'completed' ? 'Completed' : 'Finish Workout'}
           </button>
         </div>
       </div>
 
       <div className="runner-body">
         {exercises.length === 0 && <div className="empty">No exercises in this session.</div>}
-        {exercises.map(ex => (
+        {exercises.map((ex) => (
           <div key={ex.id} className="runner-card">
             <div className="runner-card__head">
               <div className="runner-card__title">{ex.name}</div>
@@ -167,7 +247,8 @@ function SessionRunner({ runner, unit, onRunnerChange, onComplete }) {
                 <div className="sets-col sets-col--rpe">RPE</div>
                 <div className="sets-col sets-col--chk">Done</div>
               </div>
-              {ex.sets.map(s => (
+
+              {ex.sets.map((s) => (
                 <div key={s.id} className="sets-row">
                   <div className="sets-col sets-col--no">{s.set_no}</div>
                   <div className="sets-col sets-col--w">
@@ -176,7 +257,7 @@ function SessionRunner({ runner, unit, onRunnerChange, onComplete }) {
                       type="number"
                       step="0.5"
                       value={fromKg(s.weight_kg, unit)}
-                      onChange={e=>patchSet(s.id, { weight: e.target.value })}
+                      onChange={(e) => patchSet(s.id, { weight: e.target.value })}
                     />
                   </div>
                   <div className="sets-col sets-col--reps">
@@ -184,7 +265,7 @@ function SessionRunner({ runner, unit, onRunnerChange, onComplete }) {
                       className="set-input"
                       type="number"
                       value={s.reps ?? ''}
-                      onChange={e=>patchSet(s.id, { reps: Number(e.target.value)||0 })}
+                      onChange={(e) => patchSet(s.id, { reps: Number(e.target.value) || 0 })}
                     />
                   </div>
                   <div className="sets-col sets-col--rpe">
@@ -193,14 +274,14 @@ function SessionRunner({ runner, unit, onRunnerChange, onComplete }) {
                       type="number"
                       step="0.5"
                       value={s.rpe ?? ''}
-                      onChange={e=>patchSet(s.id, { rpe: Number(e.target.value) })}
+                      onChange={(e) => patchSet(s.id, { rpe: Number(e.target.value) })}
                     />
                   </div>
                   <div className="sets-col sets-col--chk">
                     <input
                       type="checkbox"
                       checked={!!s.completed}
-                      onChange={e=>patchSet(s.id, { completed: e.target.checked })}
+                      onChange={(e) => patchSet(s.id, { completed: e.target.checked })}
                     />
                   </div>
                 </div>
@@ -214,32 +295,3 @@ function SessionRunner({ runner, unit, onRunnerChange, onComplete }) {
     </div>
   );
 }
-
-function WorkoutHistoryTable({ rows }) {
-  if (!rows?.length) return <div className="empty">No completed sessions yet.</div>;
-  return (
-    <div className="log-history-wrap">
-      <table className="log-history">
-        <thead>
-          <tr>
-            <th style={{width:64}}>#</th>
-            <th>Name</th>
-            <th style={{width:180}}>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r, i) => (
-            <tr key={r.id}>
-              <td>{i+1}</td>
-              <td>
-                <Link to={`/log/${r.id}`} className="link">{r.title || 'Workout'}</Link>
-              </td>
-              <td>{new Date(r.workout_date || r.completed_at || r.started_at).toLocaleDateString()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-

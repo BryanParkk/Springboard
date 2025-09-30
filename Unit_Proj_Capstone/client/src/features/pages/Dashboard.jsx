@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import api from '../../api/client';
 // import dashboardImg from "../../assets/dashboard_img.png";
+import WorkoutHistoryPanel from '../components/WorkoutHistoryPanel';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -29,6 +30,8 @@ export default function Dashboard() {
             <h1 className='headline'>Welcome back, {name}</h1>
             <p className='subtitle'>Every rep counts. Let’s crush your goals today!</p>
             {/* <img src={dashboardImg} width='400px'/> */}
+            {/* 최근 완료 기록 표 */}
+            <WorkoutHistoryPanel limit={10} title="Recent Workouts" />
         </main>
     </div>
     )

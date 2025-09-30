@@ -1,7 +1,6 @@
 .logworkout-container {
     display: flex;
     padding: 2rem;
-
     min-height: 100dvh;
     /* 최신 뷰포트 단위 */
     padding: clamp(16px, 3vw, 32px);
@@ -68,4 +67,296 @@
 
 .link:hover {
     text-decoration: underline;
+}
+
+.logw-page {
+    background:
+        radial-gradient(900px 600px at 110% 0%, rgba(108, 92, 255, 0.12), transparent 60%),
+        radial-gradient(900px 600px at -10% 10%, rgba(22, 199, 154, 0.10), transparent 60%),
+        var(--bg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+}
+
+/* 배경/패딩: 루트에 두 클래스가 함께 달려있으니 이렇게 잡아주면 정확히 그 요소에만 적용됨 */
+.logw-page .btn {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: filter .15s ease, box-shadow .15s ease, transform .05s ease;
+}
+
+.logw-page .btn:hover {
+    filter: brightness(0.98);
+}
+
+.logw-page .btn:active {
+    transform: translateY(1px);
+}
+
+.logw-page .btn-primary {
+    background: #2563eb;
+    color: #fff;
+    border-color: #2563eb;
+}
+
+.logw-page .btn-primary:hover {
+    filter: brightness(0.97);
+}
+
+.logw-page .btn-ghost {
+    background: transparent;
+}
+
+.logw-page .btn-danger {
+    background: #ef4444;
+    color: #fff;
+    border-color: #ef4444;
+}
+
+.logw-page .btn-danger:hover {
+    filter: brightness(0.97);
+}
+
+.logw-page .panel {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.logw-page .empty {
+    color: #6b7280;
+}
+
+/* 인라인 확인(제목 아래, 그리드 위) */
+.logw-page .inline-confirm {
+    margin: 12px 0 6px;
+}
+
+.logw-page .inline-confirm__body {
+    border: 1px solid #cfe2ff;
+    background: #f0f7ff;
+    border-radius: 12px;
+    padding: 12px 14px;
+}
+
+.logw-page .inline-confirm__title {
+    margin: 0 0 6px;
+    font-size: 1.05rem;
+}
+
+.logw-page .inline-confirm__text {
+    margin: 0 0 10px;
+    color: #334155;
+}
+
+.logw-page .inline-confirm__actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* 루틴 카드 그리드 */
+.logw-page .routine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.logw-page .routine-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: box-shadow .2s, transform .1s;
+}
+
+.logw-page .routine-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .06);
+    transform: translateY(-1px);
+}
+
+.logw-page .routine-card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logw-page .routine-card__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.logw-page .routine-card__meta {
+    color: #6b7280;
+    display: flex;
+    gap: 8px;
+    font-size: .9rem;
+}
+
+.logw-page .routine-card__actions {
+    margin-top: 6px;
+}
+
+/* 러너 영역 */
+.logw-page .runner-head {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.logw-page .runner-title-input {
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: 1px solid var(--bd);
+    border-radius: 12px;
+    padding: 8px 12px;
+    min-width: 260px;
+    outline: none;
+}
+
+.logw-page .runner-title-input:focus {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 4px var(--brand-50);
+}
+
+.logw-page .runner-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.logw-page .runner-body {
+    display: grid;
+    gap: 12px;
+}
+
+.logw-page .runner-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 12px;
+    background: #fff;
+}
+
+.logw-page .runner-card__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.logw-page .runner-card__title {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.logw-page .runner-card__meta {
+    color: #6b7280;
+    font-size: .9rem;
+}
+
+/* 세트 테이블 */
+.logw-page .sets-table {
+    display: grid;
+    gap: 6px;
+}
+
+.logw-page .sets-row {
+    display: grid;
+    grid-template-columns: 56px 1fr 1fr 1fr 56px;
+    gap: 8px;
+    align-items: center;
+}
+
+.logw-page .sets-row--head {
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.logw-page .sets-col--no,
+.logw-page .sets-col--chk {
+    text-align: center;
+}
+
+.logw-page .set-input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: .95rem;
+}
+
+.logw-page .runner-rest {
+    margin-top: 8px;
+    color: #6b7280;
+    font-size: .9rem;
+}
+
+/* (문제였던) 로그 히스토리 표 — LogWorkout 페이지에서만 적용되도록 스코프 */
+.logw-page .log-history-wrap {
+    overflow: auto;
+    border: 1px solid var(--bd);
+    border-radius: 12px;
+    background: #fff;
+}
+
+.logw-page .log-history {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.logw-page .log-history th,
+.logw-page .log-history td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #f1f2f6;
+    text-align: left;
+    font-size: .95rem;
+}
+
+.logw-page .log-history thead th {
+    background: #f7f8fb;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.logw-page .log-history tbody tr:hover {
+    background: #f8fafc;
+}
+
+.logw-page .link {
+    color: var(--brand);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.logw-page .link:hover {
+    text-decoration: underline;
+}
+
+/* 반응형 */
+@media (max-width:640px) {
+    .logw-page .sets-row {
+        grid-template-columns: 48px 1fr 1fr 1fr 48px;
+        gap: 6px;
+    }
+
+    .logw-page .runner-head {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .logw-page .runner-actions {
+        justify-content: flex-end;
+    }
 }
