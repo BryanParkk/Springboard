@@ -171,7 +171,7 @@ export default function LogWorkout() {
       )}
     </div>
   );
-}  
+}
 
 function SessionRunner({ runner, unit, onRunnerChange, onComplete, onCancel }) {
   const { session, exercises } = runner;
