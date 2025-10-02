@@ -1,0 +1,108 @@
+/* === Table.css (공통 테이블 스타일) ===
+   기존 클래스명을 그대로 지원하도록 매핑해 둠 (.table ↔ .sets-*)
+*/
+
+/* 컨테이너: 스크롤/코너 라운드/보더 */
+.table,
+.sets-table {
+    border: 1px solid var(--bd);
+    border-radius: 12px;
+    background: #fff;
+    overflow: hidden;
+    max-width: 1100px;
+}
+
+/* 내부 스크롤이 필요하면 wrapper에 .table--scroll 붙이거나, 해당 페이지에서 max-height만 지정 */
+.table--scroll {
+    overflow: auto;
+    max-height: clamp(260px, 55vh, 560px);
+}
+
+/* 행 */
+.table__row,
+.sets-row {
+    display: grid;
+    gap: 10px;
+    padding: 8px 12px;
+    align-items: center;
+    border-top: 1px solid var(--bd);
+    grid-template-columns: 56px 1fr 1fr 1fr 56px;
+}
+
+.table__row:first-child,
+.sets-row:first-child {
+    border-top: 0;
+}
+
+/* 헤더 행 */
+.table__row--head,
+.sets-row--head {
+    background: #f3f5f9;
+    font-weight: 700;
+}
+
+/* sticky 헤더(옵션): 테이블에 .table--sticky-head 추가 */
+.table--sticky-head .table__row--head,
+.table--sticky-head .sets-row--head {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* 셀 정렬 유틸 */
+.table__cell--center,
+.sets-col--no,
+.sets-col--w,
+.sets-col--reps,
+.sets-col--rpe,
+.sets-col--chk {
+    text-align: center;
+}
+
+.runner-rest {
+    margin-top: 8px;
+    color: #6b7280;
+    font-size: .9rem;
+}
+
+/* 인풋 */
+.table__input,
+.set-input {
+    height: var(--input-h, 40px);
+    border: 1px solid var(--bd);
+    border-radius: 12px;
+    background: #fff;
+    text-align: center;
+    outline: none;
+    transition: border-color .18s, box-shadow .18s;
+}
+
+.table__input:focus,
+.set-input:focus {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 4px var(--brand-50);
+}
+
+/* 세트 추가 버튼 */
+.table__add-btn,
+.add-set-btn {
+    height: var(--input-h, 40px);
+    border-radius: 12px;
+    border: 1px dashed var(--bd);
+    background: #fafbff;
+    transition: background .18s, border-color .18s;
+    width: 100%;
+}
+
+.table__add-btn:hover,
+.add-set-btn:hover {
+    background: var(--brand-50);
+    border-color: #c7d2fe;
+}
+
+/* 컴팩트 옵션(옵션) */
+.table--compact .table__row,
+.table--compact .sets-row {
+    padding: 6px 10px;
+    gap: 8px;
+}

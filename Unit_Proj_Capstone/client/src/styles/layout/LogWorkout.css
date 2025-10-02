@@ -241,49 +241,13 @@
     margin-bottom: 8px;
 }
 
+/* Log workout start - table title */
 .runner-card__title {
     font-weight: 700;
     font-size: 1rem;
 }
 
 .runner-card__meta {
-    color: #6b7280;
-    font-size: .9rem;
-}
-
-/* 세트 테이블 */
-.sets-table {
-    display: grid;
-    gap: 6px;
-}
-
-.sets-row {
-    display: grid;
-    grid-template-columns: 56px 1fr 1fr 1fr 56px;
-    gap: 8px;
-    align-items: center;
-}
-
-.sets-row--head {
-    color: #6b7280;
-    font-weight: 600;
-}
-
-.sets-col--no,
-.sets-col--chk {
-    text-align: center;
-}
-
-.set-input {
-    width: 100%;
-    padding: 8px 10px;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    font-size: .95rem;
-}
-
-.runner-rest {
-    margin-top: 8px;
     color: #6b7280;
     font-size: .9rem;
 }
@@ -331,9 +295,8 @@
 
 /* 반응형 */
 @media (max-width:640px) {
-    .sets-row {
+    .logworkout-container .sets-row {
         grid-template-columns: 48px 1fr 1fr 1fr 48px;
-        gap: 6px;
     }
 
     .runner-head {

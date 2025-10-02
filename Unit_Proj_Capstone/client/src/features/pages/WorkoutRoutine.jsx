@@ -30,24 +30,24 @@ export default function WorkoutRoutine() {
   }, []);
 
   return (
-    <div className="workoutroutine-container">
+    <div className="workoutroutine-container wr-page">
       <main className="workoutroutine-main">
         <h1 className="headline">Workout Routine</h1>
         <p className="subtitle">Personalized plans to match your goals.</p>
       </main>
 
-      {/* 페이지 스코프 루트 */}
-      <div>
-        <h2>Saved Routines</h2>
+      {/* 페이지 스코프 루트 (WorkoutRoutine 전용 네임스페이스) */}
+      <section className="wr-content" aria-label="Saved Workout Routines">
+        <h2 className="wr-title">Saved Routines</h2>
 
-        <div className="routine-layout">
-          <section className="routine-top">
+        <div className="wr-layout">
+          <section className="wr-top">
             {loading ? (
               <p>Loading...</p>
             ) : routines.length === 0 ? (
-              <div className="empty">No routines yet. Create your first workout routine!</div>
+              <div className="wr-empty">No routines yet. Create your first workout routine!</div>
             ) : (
-              <div className="routine-grid">
+              <div className="wr-grid">
                 {routines.map((rt) => {
                   const items = Array.isArray(rt.items) ? rt.items : [];
                   const exCount = items.length;
@@ -61,20 +61,20 @@ export default function WorkoutRoutine() {
                       : '';
 
                   return (
-                    <div key={rt.id} className="routine-card">
-                      <div className="routine-card__head">
-                        <h4 className="routine-card__title">{rt.title}</h4>
+                    <div key={rt.id} className="wr-card">
+                      <div className="wr-card__head">
+                        <h4 className="wr-card__title">{rt.title}</h4>
                       </div>
 
-                      <div className="routine-card__meta">
+                      <div className="wr-card__meta">
                         <span>{exCount} exercises</span>
-                        <span>·</span>
+                        <span aria-hidden>·</span>
                         <span>{setCount} sets</span>
                       </div>
 
-                      {when && <div className="routine-card__date">Updated: {when}</div>}
+                      {when && <div className="wr-card__date">Updated: {when}</div>}
 
-                      <div className="routine-card__actions">
+                      <div className="wr-card__actions">
                         <Link to={`/routine/${rt.id}`} className="btn">
                           Open
                         </Link>
@@ -92,14 +92,13 @@ export default function WorkoutRoutine() {
             )}
           </section>
 
-          {/* 좌측: 새 루틴 만들기 */}
-          <aside className="routine-bottom">
+          <aside className="wr-bottom">
             <Link to="/routine/new" className="btn btn-primary new-routine-btn">
               ＋ New Workout Routine
             </Link>
           </aside>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

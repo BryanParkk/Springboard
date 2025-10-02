@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api/client';
 import '../../styles/layout/LogWorkout.css';
+import '../../styles/components/Table.css';
 
 const toKg = (v, unit) =>
   v === '' || v == null ? null : unit === 'lbs' ? Number(v) / 2.2046226218 : Number(v);
@@ -239,7 +240,7 @@ function SessionRunner({ runner, unit, onRunnerChange, onComplete, onCancel }) {
               <div className="runner-card__meta">{ex.note ? ex.note : ''}</div>
             </div>
 
-            <div className="sets-table">
+            <div className="sets-table table table--sticky-head table--scroll">
               <div className="sets-row sets-row--head">
                 <div className="sets-col sets-col--no">Set</div>
                 <div className="sets-col sets-col--w">{unit === 'lbs' ? 'lbs' : 'kg'}</div>
@@ -272,7 +273,7 @@ function SessionRunner({ runner, unit, onRunnerChange, onComplete, onCancel }) {
                     <input
                       className="set-input"
                       type="number"
-                      step="0.5"
+                      step="1"
                       value={s.rpe ?? ''}
                       onChange={(e) => patchSet(s.id, { rpe: Number(e.target.value) })}
                     />

@@ -139,7 +139,6 @@
 
 /* ===== Routine 목록 페이지 ===== */
 .workoutroutine-main {
-    /* Header stays visually the same, but background moved to container */
     padding: 0;
     margin-bottom: var(--space-4);
     background: transparent;
@@ -187,14 +186,11 @@
     color: var(--muted);
     background: var(--panel);
     white-space: normal;
-    /* ensure normal wrapping */
     word-break: break-word;
-    /* avoid overly long tokens overflowing */
 }
 
 .routine-list {
     display: grid;
-    /* grid-template-columns: repeat(3, minmax(0, 1fr)); */
     gap: var(--space-4);
 }
 
@@ -533,9 +529,7 @@
     padding: 0 var(--space-4);
     border-radius: 12px;
     border: 1px solid #fca5a5;
-    /* 연한 빨강 */
     background: #f87171;
-    /* 조금 밝은 빨강 */
     color: #fff;
     font-weight: 700;
     cursor: pointer;
@@ -544,10 +538,8 @@
 
 .btn-danger:hover {
     transform: translateY(-0.5px);
-    /* 살짝만 떠오르게 */
     box-shadow: var(--shadow);
     background: #ef4444;
-    /* hover 시 진한 빨강 */
     border-color: #f87171;
 }
 
@@ -663,5 +655,129 @@
 @media (max-width: 960px) {
     .routine-bottom {
         position: static;
+    }
+}
+
+/* ==========================
+   WorkoutRoutine page namespace (wr-*)
+   ========================== */
+.wr-page {
+    /* Page-wide gradient only for this page */
+    min-height: 100dvh;
+    background: radial-gradient(1200px 600px at 100% 0%, rgba(99, 102, 241, 0.12), transparent 60%),
+        radial-gradient(900px 500px at 0% 20%, rgba(16, 185, 129, 0.10), transparent 55%),
+        var(--bg);
+    background-repeat: no-repeat;
+}
+
+.wr-content {
+    max-width: 1100px;
+}
+
+.wr-title {
+    margin: 0 0 12px 0;
+    font-size: clamp(20px, 2.2vw, 24px);
+}
+
+/* Workout routine - saved routines and + New Workout button align */
+.wr-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "top"
+        "bottom";
+    /* 위: 목록, 아래: 버튼/사이드 */
+    gap: clamp(12px, 2.5vw, 24px);
+}
+
+.wr-top {
+    grid-area: top;
+}
+
+.wr-bottom {
+    grid-area: bottom;
+    align-self: start;
+    width: 350px;
+}
+
+/* 빈 상태 메시지 줄바꿈/단어 단위 유지 */
+.wr-empty {
+    border: 1px solid var(--bd);
+    border-radius: 12px;
+    background: #fff;
+    padding: 18px;
+    white-space: normal;
+    word-break: keep-all;
+}
+
+/* 카드/그리드 네임스페이스 */
+.wr-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(10px, 2vw, 16px);
+}
+
+.wr-card {
+    border: 1px solid var(--bd);
+    border-radius: var(--radius);
+    background: #fff;
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: box-shadow .2s, transform .1s;
+    height: 100%;
+}
+
+.wr-card:hover {
+    box-shadow: 0 8px 28px rgba(2, 6, 23, 0.08);
+    transform: translateY(-1px);
+}
+
+.wr-card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.wr-card__title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.wr-card__meta {
+    color: #6b7280;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.wr-card__date {
+    color: #9ca3af;
+    font-size: 12px;
+}
+
+.wr-card__actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 960px) {
+    .wr-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .wr-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .wr-grid {
+        grid-template-columns: 1fr;
     }
 }
