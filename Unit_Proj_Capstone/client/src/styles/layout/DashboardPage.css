@@ -12,6 +12,13 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: scroll;
+
+    background-image: url('../../assets/dashboard_img.png');
+    background-position: calc(100% - 100px) calc(100% - 100px);
+    /* 우측 하단 */
+    background-repeat: no-repeat;
+    background-size: 500px auto;
+    /* 크기 조정 (가로 400px) */
 }
 
 .dashboard-greeting h1 {

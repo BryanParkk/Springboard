@@ -20,7 +20,7 @@ export default function WorkoutHistoryPanel({ limit = 20, title = 'Workout Histo
 
   return (
     <div className="panel" style={{ marginTop: 16 }}>
-      <h3>{title}</h3>
+      <h2>{title}</h2>
       {loading ? (
         <div className="empty">Loading...</div>
       ) : !rows.length ? (

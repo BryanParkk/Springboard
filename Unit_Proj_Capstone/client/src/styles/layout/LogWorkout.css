@@ -113,12 +113,6 @@
     filter: brightness(0.97);
 }
 
-.panel {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 16px;
-}
 
 .empty {
     color: #6b7280;
