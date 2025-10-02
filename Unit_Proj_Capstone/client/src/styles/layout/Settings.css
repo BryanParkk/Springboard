@@ -182,7 +182,7 @@ body {
     margin-top: 4px;
 }
 
-.btn {
+/* .btn {
     appearance: none;
     border: 0;
     cursor: pointer;
@@ -190,7 +190,7 @@ body {
     padding: 12px 16px;
     font-weight: 700;
     transition: transform .05s ease, box-shadow .15s ease, filter .15s ease, opacity .15s ease;
-}
+} */
 
 .btn:disabled {
     opacity: .65;

@@ -21,16 +21,16 @@ function RoutineGrid({ routines, onChoose }) {
           0
         );
         return (
-          <div key={rt.id} className="routine-card">
-            <div className="routine-card__head">
-              <h4 className="routine-card__title">{rt.title}</h4>
+          <div key={rt.id} className="log-routine-card">
+            <div className="log-routine-card__head">
+              <h4 className="log-routine-card__title">{rt.title}</h4>
             </div>
-            <div className="routine-card__meta">
+            <div className="log-routine-card__meta">
               <span>{exCount} exercises</span>
               <span>·</span>
               <span>{setCount} sets</span>
             </div>
-            <div className="routine-card__actions">
+            <div className="log-routine-card__actions">
               <button className="btn btn-primary" onClick={() => onChoose(rt)}>
                 Start
               </button>
@@ -118,14 +118,14 @@ export default function LogWorkout() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="logw-page">
+    <div className="logworkout-container">
       <main className='workoutroutine-main'>
         <h1 className='headline'>Log Workout</h1>
         <p className='subtitle'>Log your workout to keep track of your exercises, sets, reps, and progress over time.</p>
       </main>
       {!runner ? (
-        <div className="logw-start">
-          <div className="panel">
+        <div>
+          <div>
             <h2>Start Workout</h2>
 
             <ConfirmStartInline

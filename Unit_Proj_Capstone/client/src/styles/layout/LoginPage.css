@@ -37,7 +37,6 @@ body {
     place-items: center;
     padding: 96px 20px;
     min-height: 100vh;
-
     background-color: #f9f9ff;
     opacity: 1;
     background-size: 9px 9px;
@@ -118,7 +117,7 @@ body {
     border: 1px solid var(--_bd);
     color: var(--text);
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: .01em;
     transition: transform var(--speed) cubic-bezier(.2, .8, .2, 1), box-shadow var(--speed), background var(--speed), border-color var(--speed);
     will-change: transform;

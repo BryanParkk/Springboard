@@ -37,21 +37,11 @@ export default function WorkoutRoutine() {
       </main>
 
       {/* 페이지 스코프 루트 */}
-      <div className="routine-page">
-        <div className="routine-head">
-          <h2 className="section-title">Saved Routines</h2>
-        </div>
+      <div>
+        <h2>Saved Routines</h2>
 
         <div className="routine-layout">
-          {/* 좌측: 새 루틴 만들기 */}
-          <aside className="routine-left">
-            <Link to="/routine/new" className="btn btn-primary new-routine-btn">
-              ＋ New Workout Routine
-            </Link>
-          </aside>
-
-          {/* 우측: 저장된 루틴 그리드 */}
-          <section className="routine-right">
+          <section className="routine-top">
             {loading ? (
               <p>Loading...</p>
             ) : routines.length === 0 ? (
@@ -89,7 +79,7 @@ export default function WorkoutRoutine() {
                           Open
                         </Link>
                         <button
-                          className="btn btn-danger btn-sm"
+                          className="btn btn-danger"
                           onClick={() => handleDelete(rt.id)}
                         >
                           Delete
@@ -101,6 +91,13 @@ export default function WorkoutRoutine() {
               </div>
             )}
           </section>
+
+          {/* 좌측: 새 루틴 만들기 */}
+          <aside className="routine-bottom">
+            <Link to="/routine/new" className="btn btn-primary new-routine-btn">
+              ＋ New Workout Routine
+            </Link>
+          </aside>
         </div>
       </div>
     </div>

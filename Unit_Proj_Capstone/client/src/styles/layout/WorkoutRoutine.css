@@ -23,7 +23,24 @@
     --space-6: 28px;
 
     --input-h: 40px;
-    /* 입력 높이統一 */
+}
+
+/* Page container gets the gradient so it covers the whole view (header + list) */
+.workoutroutine-container {
+    padding: 2rem;
+    min-height: 100vh;
+
+    min-height: 100dvh;
+    /* 최신 뷰포트 단위 */
+    padding: clamp(16px, 3vw, 32px);
+
+    background:
+        radial-gradient(900px 600px at 110% 0%, rgba(108, 92, 255, 0.12), transparent 60%),
+        radial-gradient(900px 600px at -10% 10%, rgba(22, 199, 154, 0.10), transparent 60%),
+        var(--bg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
 }
 
 /* ===== 공통 UI ===== */
@@ -122,40 +139,39 @@
 
 /* ===== Routine 목록 페이지 ===== */
 .workoutroutine-main {
-    padding: clamp(16px, 3vw, 32px);
-    background:
-        radial-gradient(900px 600px at 110% 0%, rgba(108, 92, 255, 0.12), transparent 60%),
-        radial-gradient(900px 600px at -10% 10%, rgba(22, 199, 154, 0.10), transparent 60%),
-        var(--bg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: scroll;
+    /* Header stays visually the same, but background moved to container */
+    padding: 0;
+    margin-bottom: var(--space-4);
+    background: transparent;
 }
 
-.routine-page {
+/* Make the "Saved Routines" title span across the left+right columns */
+.routine-page>.section-title {
+    grid-column: 1 / -1;
+}
+
+.routine-bottom {
     display: grid;
-    grid-template-columns: 260px;
-    gap: var(--space-6);
-}
-
-.routine-left {
-    position: sticky;
-    top: var(--space-6);
+    position: static;
     align-self: start;
     background: var(--panel);
     border: 1px solid var(--bd);
     border-radius: var(--radius);
     padding: var(--space-4);
     box-shadow: var(--shadow);
+    grid-area: bottom;
+    max-width: 400px;
+    margin-left: 0;
 }
 
 .new-routine-btn {
     width: 100%;
 }
 
-.routine-right {
+.routine-top {
     display: grid;
     gap: var(--space-3);
+    grid-area: right;
 }
 
 .section-title {
@@ -170,6 +186,10 @@
     border-radius: var(--radius);
     color: var(--muted);
     background: var(--panel);
+    white-space: normal;
+    /* ensure normal wrapping */
+    word-break: break-word;
+    /* avoid overly long tokens overflowing */
 }
 
 .routine-list {
@@ -472,7 +492,7 @@
         grid-template-columns: 1fr;
     }
 
-    .routine-left {
+    .routine-bottom {
         position: static;
     }
 
@@ -495,29 +515,44 @@
     .filter.search {
         grid-column: auto;
     }
+
+    .routine-layout {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "right"
+            "bottom";
+    }
 }
 
 .btn-danger {
-    background: #ef4444;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    height: var(--input-h);
+    padding: 0 var(--space-4);
+    border-radius: 12px;
+    border: 1px solid #fca5a5;
+    /* 연한 빨강 */
+    background: #f87171;
+    /* 조금 밝은 빨강 */
     color: #fff;
-    border-color: #ef4444;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .08s ease, box-shadow .18s ease, background .18s ease, border-color .18s;
 }
 
 .btn-danger:hover {
-    background: #dc2626;
-    border-color: #dc2626;
+    transform: translateY(-0.5px);
+    /* 살짝만 떠오르게 */
+    box-shadow: var(--shadow);
+    background: #ef4444;
+    /* hover 시 진한 빨강 */
+    border-color: #f87171;
 }
 
-.btn-sm {
-    height: 34px;
-    padding: 0 10px;
-    border-radius: 10px;
-    font-weight: 700;
-}
-
-.selected-card {
-    gap: 10px;
-    padding: 12px;
+.btn-danger:active {
+    transform: translateY(0);
 }
 
 .selected-card__head {
@@ -558,19 +593,23 @@
 /* 좌측 New 버튼(260px) + 우측 목록(가변) */
 .routine-layout {
     display: grid;
-    grid-template-columns: 260px 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "right"
+        "bottom";
     gap: var(--space-6);
 }
 
 /* 우측: 카드 그리드 */
-.routine-right .routine-grid {
+.routine-top .routine-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: var(--space-4);
+    align-items: stretch;
 }
 
 /* 카드 */
-.routine-right .routine-card {
+.routine-top .routine-card {
     background: var(--panel);
     border: 1px solid var(--bd);
     border-radius: var(--radius);
@@ -580,39 +619,40 @@
     flex-direction: column;
     gap: 6px;
     transition: transform .08s ease, box-shadow .18s ease;
+    height: 100%;
 }
 
-.routine-right .routine-card:hover {
+.routine-top .routine-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 28px rgba(17, 24, 39, .12);
 }
 
-.routine-right .routine-card__head {
+.routine-top .routine-card__head {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
 }
 
-.routine-right .routine-card__title {
+.routine-top .routine-card__title {
     margin: 0;
     font-weight: 700;
     letter-spacing: -.01em;
 }
 
-.routine-right .routine-card__meta {
+.routine-top .routine-card__meta {
     color: var(--muted);
     font-size: .9rem;
     display: flex;
     gap: 8px;
 }
 
-.routine-right .routine-card__date {
+.routine-top .routine-card__date {
     color: var(--muted);
     font-size: .85rem;
 }
 
-.routine-right .routine-card__actions {
+.routine-top .routine-card__actions {
     display: flex;
     gap: 8px;
     margin-top: 4px;
@@ -621,11 +661,7 @@
 
 /* 반응형 */
 @media (max-width: 960px) {
-    .routine-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .routine-left {
+    .routine-bottom {
         position: static;
     }
 }
