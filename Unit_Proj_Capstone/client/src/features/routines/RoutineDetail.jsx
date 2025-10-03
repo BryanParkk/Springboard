@@ -47,13 +47,19 @@ export default function RoutineDetail() {
   };
 
   return (
-    <div className="routine-builder">
+    <div className="workoutroutine-container routine-builder">
+      <main className="workoutroutinedetail-main">
+        <h1 className="headline">Routine Detail</h1>
+        <p className="subtitle">Edit lets you update exercises, sets, and notes; Delete permanently removes this routine.</p>
+      </main>
+
+
       {/* 헤더 재사용 스타일 */}
       <div className="builder-header">
-        <h2 className="routine-title-input" style={{ border: "none" }}>
+        <h2 className="routine-title-input">
           {routine.title}
         </h2>
-        <div style={{ display: "flex", gap: 8 }}>
+        <div>
           <Link className="btn" to="/routine">← Back</Link>
           <Link className="btn btn-primary" to={`/routine/${routine.id}/edit`}>
             Edit Routine
@@ -75,16 +81,16 @@ export default function RoutineDetail() {
                   </div>
 
                   {it.note && (
-                    <>
+                    <div className="field-cell">
                       <label className="field-label">Note</label>
-                      <div className="field-input" style={{ background: "#fafafa" }}>{it.note}</div>
-                    </>
+                      <div className="field-note">{it.note}</div>
+                    </div>
                   )}
 
                   <div className="field-row">
                     <div className="field-cell">
                       <label className="field-label">Rest (sec)</label>
-                      <div className="field-input" style={{ background: "#fafafa" }}>{it.rest_sec ?? 0}</div>
+                      <div className="field-input">{it.rest_sec ?? 0}</div>
                     </div>
                   </div>
 

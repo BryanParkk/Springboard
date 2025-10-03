@@ -1,0 +1,34 @@
+/* ===== 본문 — 좌측 여백 없는 느낌 해소(패널 톤 통일) ===== */
+.builder-body {
+    /* 2단 그리드 구조는 유지 */
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 420px;
+    gap: 16px;
+    /* 패널 간격 살짝 축소 */
+}
+
+/* 좌/우 패널을 공통 패널 스타일로 감싸 톤 통일 */
+.builder-left,
+.builder-right {
+    background: var(--panel);
+    border: 1px solid var(--bd);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    box-shadow: var(--shadow);
+}
+
+/* ===== 모바일에서 좌측 여백 보정 ===== */
+@media (max-width: 960px) {
+    .builder-container {
+        padding: 16px;
+    }
+
+    /* 좌우 여백 유지 */
+    .builder-header {
+        margin-bottom: 8px;
+    }
+
+    .builder-body {
+        grid-template-columns: 1fr;
+    }
+}

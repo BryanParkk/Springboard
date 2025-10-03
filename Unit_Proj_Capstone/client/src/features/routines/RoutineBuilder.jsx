@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import api from '../../api/client';
+import '../../styles/layout/RoutineBuilder.css';
 
 const lbsToKg = (v) => (v===''||v==null)? null : +(Number(v) / 2.2046226218).toFixed(2);
 
@@ -123,10 +124,12 @@ export default function RoutineBuilder({ mode }) {
 
   return (
     <div className="routine-builder">
-      <main className='workoutroutine-main'>
-        <h1 className='headline'>Create Workout Routine</h1>
-        <p className='subtitle'>Personalized plans to match your goals.</p>
-      </main>
+      <main className='workoutroutine-container builder-shell'>
+        <header className="page-hero builder-hero">
+          <h1 className='headline'>Create Workout Routine</h1>
+          <p className='subtitle'>Personalized plans to match your goals.</p>
+        </header>
+      
       <div className="builder-header">
         <input
           className="routine-title-input"
@@ -134,7 +137,7 @@ export default function RoutineBuilder({ mode }) {
           value={title}
           onChange={e=>setTitle(e.target.value)}
         />
-        <button className="btn btn-primary" onClick={handleSave} disabled={saving}>
+        <button className="btn btn-primary builder-save-btn" onClick={handleSave} disabled={saving}>
           {saving ? 'Saving...' : 'Save Routine'}
         </button>
       </div>
@@ -160,7 +163,7 @@ export default function RoutineBuilder({ mode }) {
                       value={it.note}
                       onChange={e=>updateItem(idx, { note: e.target.value })}
                     />
-                    Rest
+                    <span className="field-label">Rest</span>
                     <input
                       className="field-input compact-rest"
                       type="number"
@@ -174,13 +177,13 @@ export default function RoutineBuilder({ mode }) {
                   <div className="sets-table">
                     <div className="sets-row sets-row--head">
                       <div className="sets-col sets-col--no">Set</div>
-                      <div className="sets-col sets-col--lbs">lbs</div>
+                      <div className="sets-col sets-col--w">lbs</div>
                       <div className="sets-col sets-col--reps">Reps</div>
                     </div>
                     {it.sets.map((s, j) => (
                       <div key={j} className="sets-row">
                         <div className="sets-col sets-col--no">{s.set_no}</div>
-                        <div className="sets-col sets-col--lbs">
+                        <div className="sets-col sets-col--w">
                           <input
                             className="set-input"
                             type="number"
@@ -212,12 +215,12 @@ export default function RoutineBuilder({ mode }) {
 
         {/* 우측: Workout List (필터/검색/목록) */}
         <div className="builder-right">
-          <div className="workout-list-header">
+          <div className="workout-list-header workout-toolbar">
             <h3>Workout List</h3>
 
             <div className="filters">
               <div className="filter">
-                <label>Equipment</label>
+                <label className="field-label">Equipment</label>
                 <select
                   value={filter.equipment}
                   onChange={e=>setFilter(f=>({ ...f, equipment:e.target.value }))}
@@ -226,7 +229,7 @@ export default function RoutineBuilder({ mode }) {
                 </select>
               </div>
               <div className="filter">
-                <label>Target</label>
+                <label className="field-label">Target</label>
                 <select
                   value={filter.target}
                   onChange={e=>setFilter(f=>({ ...f, target:e.target.value }))}
@@ -235,7 +238,7 @@ export default function RoutineBuilder({ mode }) {
                 </select>
               </div>
               <div className="filter search">
-                <label>Search</label>
+                <label className="field-label">Search</label>
                 <input
                   placeholder="Search exercises..."
                   value={query}
@@ -261,6 +264,7 @@ export default function RoutineBuilder({ mode }) {
           <div className="workout-list-hint">Showing {workoutList.length} results.</div>
         </div>
       </div>
+      </main>
     </div>
   );
 }

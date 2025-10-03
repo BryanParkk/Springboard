@@ -109,16 +109,27 @@
 .field-label {
     font-size: .9rem;
     color: var(--muted);
-    margin-bottom: 6px;
     display: block;
+    text-align: center;
 }
 
-.field-input,
+.field-input {
+    font-size: .9rem;
+    width: 80px;
+    text-align: center;
+    border-radius: 12px;
+    border: 1px solid var(--bd);
+}
+
+.field-note {
+    font-size: .9rem;
+    text-align: center;
+}
+
 .set-input,
 .routine-title-input,
 .filters select,
 .filters input {
-    width: 100%;
     height: var(--input-h);
     padding: 0 var(--space-3);
     border: 1px solid var(--bd);
@@ -234,7 +245,6 @@
 /* ===== Routine Builder ===== */
 .routine-builder {
     display: grid;
-    gap: var(--space-4);
 }
 
 .builder-header {
@@ -242,11 +252,15 @@
     grid-template-columns: 1fr auto;
     gap: var(--space-3);
     align-items: center;
+    vertical-align: middle;
+    margin-bottom: 20px;
 }
 
 .routine-title-input {
     font-size: 1.05rem;
     background: #fff;
+    display: grid;
+    align-items: center;
 }
 
 .builder-body {
@@ -271,6 +285,7 @@
     border-radius: var(--radius);
     color: var(--muted);
     background: var(--panel);
+    padding-left: 15px;
 }
 
 .selected-list {
@@ -314,7 +329,7 @@
 }
 
 .field-cell {
-    display: grid;
+    display: flex;
     gap: 6px;
 }
 
