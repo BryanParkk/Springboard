@@ -100,9 +100,33 @@
     border-color: #c7d2fe;
 }
 
-/* 컴팩트 옵션(옵션) */
-.table--compact .table__row,
-.table--compact .sets-row {
-    padding: 6px 10px;
-    gap: 8px;
+.add-set-btn {
+    height: var(--input-h);
+    border-radius: 12px;
+    border: 1px dashed var(--bd);
+    background: #fafbff;
+    transition: background .18s, border-color .18s;
+}
+
+.add-set-btn:hover {
+    background: var(--brand-50);
+    border-color: #c7d2fe;
+}
+
+
+/* 반응형 */
+@media (max-width:640px) {
+    .logworkout-container .sets-row {
+        grid-template-columns: 48px 1fr 1fr 1fr 48px;
+    }
+
+    .runner-head {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .runner-actions {
+        justify-content: flex-end;
+    }
 }

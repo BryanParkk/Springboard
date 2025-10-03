@@ -302,7 +302,6 @@
     min-height: 0;
 }
 
-
 .selected-card__title {
     font-weight: 700;
     letter-spacing: -.01em;
@@ -317,58 +316,6 @@
 .field-cell {
     display: grid;
     gap: 6px;
-}
-
-/* 세트 테이블 */
-.sets-table {
-    border: 1px solid var(--bd);
-    border-radius: 12px;
-    overflow: hidden;
-    background: #fff;
-}
-
-.sets-row {
-    display: grid;
-    grid-template-columns: 72px 1fr 1fr;
-    gap: var(--space-2);
-    padding: var(--space-2) var(--space-3);
-    align-items: center;
-    border-top: 1px solid var(--bd);
-}
-
-.sets-row:first-child {
-    border-top: 0;
-}
-
-.sets-row--head {
-    background: #f3f5f9;
-    font-weight: 700;
-}
-
-.sets-col--no {
-    text-align: center;
-}
-
-.sets-col--lbs,
-.sets-col--reps {
-    text-align: center;
-}
-
-.set-input {
-    text-align: center;
-}
-
-.add-set-btn {
-    height: var(--input-h);
-    border-radius: 12px;
-    border: 1px dashed var(--bd);
-    background: #fafbff;
-    transition: background .18s, border-color .18s;
-}
-
-.add-set-btn:hover {
-    background: var(--brand-50);
-    border-color: #c7d2fe;
 }
 
 /* 우측 패널(Workout List) */
@@ -567,21 +514,7 @@
     text-align: center;
 }
 
-/* ▼ 세트 테이블도 살짝 컴팩트하게 */
-.sets-table {
-    margin-top: 2px;
-}
-
-.sets-row {
-    padding: 6px 10px;
-}
-
-.add-set-btn {
-    margin-top: 8px;
-}
-
 /* ===== Saved Routines: 2열 레이아웃 + 카드 그리드 ===== */
-
 /* 좌측 New 버튼(260px) + 우측 목록(가변) */
 .routine-layout {
     display: grid;

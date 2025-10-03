@@ -292,20 +292,3 @@
 .link:hover {
     text-decoration: underline;
 }
-
-/* 반응형 */
-@media (max-width:640px) {
-    .logworkout-container .sets-row {
-        grid-template-columns: 48px 1fr 1fr 1fr 48px;
-    }
-
-    .runner-head {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-    }
-
-    .runner-actions {
-        justify-content: flex-end;
-    }
-}
