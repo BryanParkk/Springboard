@@ -224,7 +224,7 @@
 
 .runner-body {
     display: grid;
-    gap: 15px;
+    gap: 15fpx;
 }
 
 .runner-card {
@@ -232,6 +232,7 @@
     border-radius: 12px;
     padding: 12px;
     background: #fff;
+    margin-bottom: 20px;
 }
 
 .runner-card__head {
@@ -252,43 +253,51 @@
     font-size: .9rem;
 }
 
-/* (문제였던) 로그 히스토리 표 — LogWorkout 페이지에서만 적용되도록 스코프 */
-.log-history-wrap {
-    overflow: auto;
-    border: 1px solid var(--bd);
-    border-radius: 12px;
-    background: #fff;
+.runner-rest {
+    margin-top: 8px;
+    color: #6b7280;
+    font-size: .9rem;
 }
 
-.log-history {
-    width: 100%;
-    border-collapse: collapse;
+/* ==== Dashboard Recent workout history ==== */
+/* 중앙 정렬 보장 */
+.log-history th.cell-center,
+.log-history td.cell-center {
+    text-align: center;
+    vertical-align: middle;
 }
 
-.log-history th,
-.log-history td {
-    padding: 10px 12px;
-    border-bottom: 1px solid #f1f2f6;
-    text-align: left;
-    font-size: .95rem;
+/* 헤더 아이콘(연한 톤) */
+.icon-header-img {
+    width: 16px;
+    height: 16px;
+    opacity: .6;
+    filter: grayscale(100%);
 }
 
-.log-history thead th {
-    background: #f7f8fb;
-    color: var(--muted);
-    font-weight: 700;
+/* 휴지통 아이콘 버튼 */
+.icon-trash {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
 }
 
-.log-history tbody tr:hover {
-    background: #f8fafc;
+.icon-trash:hover {
+    background: #f3f4f6;
 }
 
-.link {
-    color: var(--brand);
-    text-decoration: none;
-    font-weight: 700;
+.icon-trash[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: .5;
 }
 
-.link:hover {
-    text-decoration: underline;
+.icon-trash-img {
+    width: 18px;
+    height: 18px;
+    display: block;
 }

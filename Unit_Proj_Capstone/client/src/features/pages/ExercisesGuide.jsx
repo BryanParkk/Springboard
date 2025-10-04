@@ -74,9 +74,9 @@ export default function ExercisesGuide() {
       </div>
 
       <div className="pagination">
-        <button onClick={prev} disabled={currentPage === 1}>Previous</button>
-        <span>Page {currentPage} of {totalPages}</span>
-        <button onClick={next} disabled={currentPage === totalPages}>Next</button>
+        <button onClick={prev} disabled={currentPage === 1}>❮ Prev</button>
+        <span>{currentPage} of {totalPages}</span>
+        <button onClick={next} disabled={currentPage === totalPages}>Next ❯</button>
       </div>
     </div>
   );

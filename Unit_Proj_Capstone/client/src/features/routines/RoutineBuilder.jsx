@@ -4,7 +4,20 @@ import { useParams } from 'react-router-dom';
 import api from '../../api/client';
 import '../../styles/layout/RoutineBuilder.css';
 
-const lbsToKg = (v) => (v===''||v==null)? null : +(Number(v) / 2.2046226218).toFixed(2);
+const toKg = (v, unit) => {
+  if (v === '' || v == null) return null;
+  const n = Number(v);
+  if (Number.isNaN(n)) return null;
+  const kg = unit === 'lbs' ? n / 2.2046226218 : n;
+  return Math.round(kg); // always store as integer kg
+};
+const fromKg = (kg, unit) => {
+  if (kg == null) return '';
+  const n = Number(kg);
+  if (Number.isNaN(n)) return '';
+  if (unit === 'lbs') return String(Math.round(n * 2.2046226218)); // integer lbs
+  return String(Math.round(n)); // integer kg
+};
 
 export default function RoutineBuilder({ mode }) {
   const params = useParams();
@@ -16,6 +29,18 @@ export default function RoutineBuilder({ mode }) {
   const [filter, setFilter] = useState({ equipment: 'All', target: 'All' });
   const [selected, setSelected] = useState([]); // [{exercise_id,name,note,rest_sec,sets:[{set_no,weight_lbs,reps}]}]
   const [saving, setSaving] = useState(false);
+
+  const [unit, setUnit] = useState('kg'); // user preference
+
+  // load user unit (kg/lbs)
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await api.get('/api/user');
+        if (data?.weight_unit) setUnit(data.weight_unit); // 'kg' | 'lbs'
+      } catch {}
+    })();
+  }, []);
 
   // 로드
   useEffect(()=>{
@@ -37,13 +62,13 @@ export default function RoutineBuilder({ mode }) {
        rest_sec: it.rest_sec ?? 90,
        sets: (it.sets || []).map(s => ({
          set_no: s.set_no || 1,
-         weight_lbs: s.weight_kg != null ? (s.weight_kg * 2.2046226218).toFixed(1) : '',
+         weight_val: fromKg(s.weight_kg, unit), // display in user's unit
          reps: s.reps || ''
        }))
      }));
      setSelected(sel);
    })();
- }, [isEdit, params?.id]);
+ }, [isEdit, params?.id, unit]);
 
   // 유니크 옵션
   const equipmentOpts = useMemo(() => ['All', ...uniq(exercises.map(x=>x.equipment))], [exercises]);
@@ -67,7 +92,7 @@ export default function RoutineBuilder({ mode }) {
       name: ex.name,
       note: '',
       rest_sec: 90,
-      sets: [{ set_no: 1, weight_lbs: '', reps: '' }]
+      sets: [{ set_no: 1, weight_val: '', reps: '' }]
     }]);
   };
 
@@ -85,9 +110,20 @@ export default function RoutineBuilder({ mode }) {
     setSelected(arr => arr.map((it,i)=>{
       if (i!==idx) return it;
       const nextNo = (it.sets.at(-1)?.set_no || it.sets.length) + 1;
-      return { ...it, sets: [...it.sets, { set_no: nextNo, weight_lbs:'', reps:'' }] };
+      return { ...it, sets: [...it.sets, { set_no: nextNo, weight_val:'', reps:'' }] };
     }));
   };
+
+  const removeSet = (idx, setIdx) => {
+    setSelected(arr => arr.map((it,i)=>{
+      if (i!==idx) return it;
+      const next = it.sets
+        .filter((_, j) => j !== setIdx)
+        .map((s, k) => ({ ...s, set_no: k + 1 }));
+      return { ...it, sets: next };
+    }));
+  };
+
   const removeExercise = (idx) => {
     setSelected(arr => arr.filter((_,i)=> i!==idx));
   };
@@ -105,7 +141,7 @@ export default function RoutineBuilder({ mode }) {
         rest_sec: Number(it.rest_sec)||0,
         sets: (it.sets||[]).map(s => ({
           set_no: Number(s.set_no)||1,
-          weight_kg: lbsToKg(s.weight_lbs),   // 저장은 kg (SI)
+          weight_kg: toKg(s.weight_val, unit),   // save as kg based on user unit
           reps: Number(s.reps)||0
         }))
       }));
@@ -177,8 +213,9 @@ export default function RoutineBuilder({ mode }) {
                   <div className="sets-table">
                     <div className="sets-row sets-row--head">
                       <div className="sets-col sets-col--no">Set</div>
-                      <div className="sets-col sets-col--w">lbs</div>
+                      <div className="sets-col sets-col--w">{unit}</div>
                       <div className="sets-col sets-col--reps">Reps</div>
+                      <div className="sets-col sets-col--act">Remove</div>
                     </div>
                     {it.sets.map((s, j) => (
                       <div key={j} className="sets-row">
@@ -187,10 +224,10 @@ export default function RoutineBuilder({ mode }) {
                           <input
                             className="set-input"
                             type="number"
-                            step="0.5"
-                            placeholder="lbs"
-                            value={s.weight_lbs}
-                            onChange={e=>updateSet(idx, j, { weight_lbs: e.target.value })}
+                            step={1}
+                            placeholder={unit}
+                            value={s.weight_val}
+                            onChange={e=>updateSet(idx, j, { weight_val: e.target.value })}
                           />
                         </div>
                         <div className="sets-col sets-col--reps">
@@ -201,6 +238,14 @@ export default function RoutineBuilder({ mode }) {
                             value={s.reps}
                             onChange={e=>updateSet(idx, j, { reps: e.target.value })}
                           />
+                        </div>
+                        <div className="sets-col sets-col--act">
+                          <button
+                            type="button"
+                            className="icon-btn remove-btn"
+                            title="Remove set"
+                            onClick={()=>removeSet(idx, j)}
+                          >X</button>
                         </div>
                       </div>
                     ))}
@@ -260,7 +305,6 @@ export default function RoutineBuilder({ mode }) {
             ))}
             {workoutList.length === 0 && <div className="empty-list">No exercises match your filters.</div>}
           </div>
-          {/* <div className="workout-list-hint">Showing up to 15 results. Use filters or search to narrow down.</div> */}
           <div className="workout-list-hint">Showing {workoutList.length} results.</div>
         </div>
       </div>

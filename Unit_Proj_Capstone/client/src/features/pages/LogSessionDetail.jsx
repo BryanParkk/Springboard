@@ -1,8 +1,28 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import api from '../../api/client';
+import '../../styles/layout/LogWorkout.css';
 
 const fromKg = (kg, unit) => kg==null ? '' : unit==='lbs' ? (kg*2.2046226218).toFixed(1) : Number(kg).toFixed(1);
+
+const fmtDateTime = (session) => {
+  // Prefer timestamps that include time; fallback to date-only
+  const raw =
+    session?.completed_at ||
+    session?.started_at ||
+    session?.workout_date;
+
+  if (!raw) return '';
+
+  // If we got a pure date (no time part), show just the local date
+  const isDateOnly = typeof raw === 'string' && !raw.includes('T');
+  if (isDateOnly) {
+    return new Date(raw + 'T00:00:00').toLocaleDateString();
+  }
+
+  // Otherwise, full local date-time
+  return new Date(raw).toLocaleString();
+};
 
 export default function LogSessionDetail() {
   const { id } = useParams();
@@ -28,49 +48,57 @@ export default function LogSessionDetail() {
   const { session, exercises } = data;
 
   return (
-    <div className="runner">
-      <div className="runner-head">
-        <h2>{session.title || 'Workout'}</h2>
-        <div className="runner-actions">
-          <Link className="btn" to="/log">← Back to Log</Link>
-        </div>
-      </div>
-
-      <div style={{ marginBottom: 8, color: '#6b7280' }}>
-        Date: {new Date(session.workout_date || session.completed_at || session.started_at).toLocaleString()} • Status: {session.status}
-      </div>
-
-      <div className="runner-body">
-        {exercises.length === 0 && <div className="empty">No exercises in this session.</div>}
-        {exercises.map(ex => (
-          <div key={ex.id} className="runner-card">
-            <div className="runner-card__head">
-              <div className="runner-card__title">{ex.name}</div>
-              {ex.note && <div className="runner-card__meta">{ex.note}</div>}
-            </div>
-
-            <div className="sets-table">
-              <div className="sets-row sets-row--head">
-                <div className="sets-col sets-col--no">Set</div>
-                <div className="sets-col sets-col--w">{unit==='lbs'?'lbs':'kg'}</div>
-                <div className="sets-col sets-col--reps">Reps</div>
-                <div className="sets-col sets-col--rpe">RPE</div>
-                <div className="sets-col sets-col--chk">Done</div>
-              </div>
-              {ex.sets.map(s => (
-                <div key={s.id} className="sets-row">
-                  <div className="sets-col sets-col--no">{s.set_no}</div>
-                  <div className="sets-col sets-col--w">{fromKg(s.weight_kg, unit)}</div>
-                  <div className="sets-col sets-col--reps">{s.reps ?? '-'}</div>
-                  <div className="sets-col sets-col--rpe">{s.rpe ?? '-'}</div>
-                  <div className="sets-col sets-col--chk">{s.completed ? '✓' : ''}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="runner-rest">Rest: {ex.rest_sec}s</div>
+      <div className="logworkout-container">
+        <main className='workoutroutine-main'>
+          <h1 className='headline'>Recent Workout Details</h1>
+          <p className='subtitle'>Track what’s working: compare sets, reps, and weight across workouts.</p>
+        </main>
+      <div className="runner">
+        <div className="runner-head">
+          <h2 className="wr-title">{session.title || 'Workout'}</h2>
+          <div className="runner-actions">
+            <Link className="btn" to="/log">← Back to Log</Link>
           </div>
-        ))}
+        </div>
+
+        <div className="runner-submeta">
+          <span>Date: {fmtDateTime(session)}</span>
+          <span> • </span>
+          <span>Status: {session.status}</span>
+        </div>
+
+        <div className="runner-body">
+          {exercises.length === 0 && <div className="empty">No exercises in this session.</div>}
+          {exercises.map(ex => (
+            <div key={ex.id} className="runner-card">
+              <div className="runner-card__head">
+                <div className="runner-card__title">{ex.name}</div>
+                {ex.note && <div className="runner-card__meta">{ex.note}</div>}
+              </div>
+
+              <div className="sets-table">
+                <div className="sets-row sets-row--head">
+                  <div className="sets-col sets-col--no">Set</div>
+                  <div className="sets-col sets-col--w">{unit==='lbs'?'lbs':'kg'}</div>
+                  <div className="sets-col sets-col--reps">Reps</div>
+                  <div className="sets-col sets-col--rpe">RPE</div>
+                  <div className="sets-col sets-col--chk">Done</div>
+                </div>
+                {ex.sets.map(s => (
+                  <div key={s.id} className="sets-row">
+                    <div className="sets-col sets-col--no">{s.set_no}</div>
+                    <div className="sets-col sets-col--w">{fromKg(s.weight_kg, unit)}</div>
+                    <div className="sets-col sets-col--reps">{s.reps ?? '-'}</div>
+                    <div className="sets-col sets-col--rpe">{s.rpe ?? '-'}</div>
+                    <div className="sets-col sets-col--chk">{s.completed ? '✓' : ''}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="runner-rest">Rest: {ex.rest_sec}s</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

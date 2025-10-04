@@ -55,14 +55,13 @@
 .sets-col--w,
 .sets-col--reps,
 .sets-col--rpe,
-.sets-col--chk {
+.sets-col--chk,
+.sets-col--act {
     text-align: center;
 }
 
-.runner-rest {
-    margin-top: 8px;
-    color: #6b7280;
-    font-size: .9rem;
+.sets-col--act {
+    width: 50px;
 }
 
 /* 인풋 */
@@ -111,22 +110,4 @@
 .add-set-btn:hover {
     background: var(--brand-50);
     border-color: #c7d2fe;
-}
-
-
-/* 반응형 */
-@media (max-width:640px) {
-    .logworkout-container .sets-row {
-        grid-template-columns: 48px 1fr 1fr 1fr 48px;
-    }
-
-    .runner-head {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-    }
-
-    .runner-actions {
-        justify-content: flex-end;
-    }
 }

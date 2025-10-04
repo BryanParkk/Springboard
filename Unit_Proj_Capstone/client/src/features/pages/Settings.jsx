@@ -140,20 +140,20 @@ export default function Settings() {
               <input className="form-input" type="number" step="0.1" value={profile.height_value} onChange={onChange('height_value')} />
             </div>
             <div className="form-group">
-              <label className="form-label">Height Unit</label>
-              <select className="form-select" value={profile.height_unit} onChange={onChange('height_unit')}>
-                <option value="cm">cm</option>
-                <option value="in">in</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="form-row">
-            <div className="form-group">
               <label className="form-label">Weight Unit</label>
               <select className="form-select" value={profile.weight_unit} onChange={onChange('weight_unit')}>
                 <option value="kg">kg</option>
                 <option value="lbs">lbs</option>
+              </select>
+            </div>
+          </div>
+          {/* Height and Distance to comment for future use */}
+          {/* <div className="form-row">
+            <div className="form-group">
+              <label className="form-label">Height Unit</label>
+              <select className="form-select" value={profile.height_unit} onChange={onChange('height_unit')}>
+                <option value="cm">cm</option>
+                <option value="in">in</option>
               </select>
             </div>
             <div className="form-group">
@@ -163,7 +163,7 @@ export default function Settings() {
                 <option value="mi">mi</option>
               </select>
             </div>
-          </div>
+          </div> */}
         </section>
 
         <section className="settings-card">

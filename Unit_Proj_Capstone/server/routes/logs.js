@@ -120,9 +120,16 @@ router.post("/start", async (req, res) => {
         for (let j = 0; j < sets.length; j++) {
           const s = sets[j];
           await db.query(
-            `INSERT INTO workout_sets (session_id, exercise_id, set_no, weight_kg, reps)
-             VALUES ($1,$2,$3,$4,$5)`,
-            [sid, exId, s.set_no || j + 1, s.weight_kg ?? null, s.reps ?? null]
+            `INSERT INTO workout_sets (session_id, exercise_id, set_no, weight_kg, reps, rpe)
+            VALUES ($1,$2,$3,$4,$5,$6)`,
+            [
+              sid,
+              exId,
+              s.set_no || j + 1,
+              s.weight_kg ?? null,
+              s.reps ?? null,
+              s.rpe == null ? 10 : s.rpe,
+            ]
           );
         }
       }
@@ -311,6 +318,44 @@ router.post("/:id/complete", async (req, res) => {
     console.error(e);
     res.status(500).json({ error: "INTERNAL_ERROR" });
   }
+});
+
+router.get("/history/count", async (req, res) => {
+  const userId = req.user?.id; // 인증 필요
+  if (!userId) return res.status(401).json({ error: "UNAUTHORIZED" });
+  const status = req.query.status || null;
+  const { rows } = await db.query(
+    `SELECT COUNT(*)::int AS total
+     FROM workout_sessions
+     WHERE user_id=$1
+       AND ($2::text IS NULL OR status=$2)`,
+    [userId, status]
+  );
+  res.json({ total: rows[0]?.total ?? 0 });
+});
+
+router.delete("/:id", async (req, res) => {
+  const userId = req.user?.id;
+  if (!userId) return res.status(401).json({ error: "UNAUTHORIZED" });
+
+  const sid = req.params.id;
+
+  // 본인 소유 세션인지 확인
+  const own = await db.query(
+    `SELECT id FROM workout_sessions WHERE id=$1 AND user_id=$2`,
+    [sid, userId]
+  );
+  if (!own.rowCount) return res.status(404).json({ error: "NOT_FOUND" });
+
+  // 하위 삭제(카스케이드 미구성 가정)
+  await db.query(`DELETE FROM workout_sets WHERE session_id=$1`, [sid]);
+  await db.query(`DELETE FROM workout_exercises WHERE session_id=$1`, [sid]);
+  await db.query(`DELETE FROM workout_sessions WHERE id=$1 AND user_id=$2`, [
+    sid,
+    userId,
+  ]);
+
+  return res.json({ ok: true });
 });
 
 export default router;

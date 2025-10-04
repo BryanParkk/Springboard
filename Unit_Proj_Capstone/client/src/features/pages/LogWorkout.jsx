@@ -121,7 +121,7 @@ export default function LogWorkout() {
   return (
     <div className="logworkout-container">
       <main className='workoutroutine-main'>
-        <h1 className='headline'>Log Workout</h1>
+        <h2 className='headline'>Log Workout</h2>
         <p className='subtitle'>Log your workout to keep track of your exercises, sets, reps, and progress over time.</p>
       </main>
       {!runner ? (
@@ -256,7 +256,7 @@ function SessionRunner({ runner, unit, onRunnerChange, onComplete, onCancel }) {
                     <input
                       className="set-input"
                       type="number"
-                      step="0.5"
+                      step="1"
                       value={fromKg(s.weight_kg, unit)}
                       onChange={(e) => patchSet(s.id, { weight: e.target.value })}
                     />
@@ -270,14 +270,21 @@ function SessionRunner({ runner, unit, onRunnerChange, onComplete, onCancel }) {
                     />
                   </div>
                   <div className="sets-col sets-col--rpe">
-                    <input
+                    <select
                       className="set-input"
-                      type="number"
-                      step="1"
-                      value={s.rpe ?? ''}
-                      onChange={(e) => patchSet(s.id, { rpe: Number(e.target.value) })}
-                    />
+                      /* 문자열로 와도 숫자로 표시되게 강제 */
+                      value={s.rpe == null ? 10 : Number(s.rpe)}
+                      onChange={(e) => {
+                        const n = Math.max(1, Math.min(10, parseInt(e.target.value, 10) || 10));
+                        patchSet(s.id, { rpe: n });          // rpe만 패치
+                      }}
+                    >
+                      {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+                        <option key={n} value={n}>{n}</option>
+                      ))}
+                    </select>                    
                   </div>
+
                   <div className="sets-col sets-col--chk">
                     <input
                       type="checkbox"
