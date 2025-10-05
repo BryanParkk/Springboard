@@ -69,10 +69,10 @@ const handleLogin = async (e) => {
               to={`/signup?postLoginPath=${encodeURIComponent(postLoginPath)}`}
               className="btn btn-primary"
             >
-              Start Your Journey with FlexFit!
+              Sign up and Start Your Journey Today!
             </Link>
           </p>
-          <a className="btn btn-ghost" href="#learn">Learn More</a>
+          {/* <a className="btn" href="#learn">Learn More</a> */}
         </div>
 
         <ul className="usp">

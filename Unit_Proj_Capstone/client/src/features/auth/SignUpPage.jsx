@@ -97,7 +97,7 @@ export default function SignUpPage() {
             />
 
             <button className="login-button" type="submit" disabled={loading}>
-              {loading ? 'Creating...' : 'Create account'}
+              {loading ? 'Creating...' : 'I\'m Ready'}
             </button>
           </form>
 
@@ -109,7 +109,6 @@ export default function SignUpPage() {
               <Link
                 to={`/login?postLoginPath=${encodeURIComponent(postLoginPath)}`}
                 className="btn btn-ghost"
-                style={{ marginLeft: 6 }}
               >
                 Log in
               </Link>
