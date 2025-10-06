@@ -4,7 +4,6 @@
 
 body {
     margin: 0;
-    /* display: flex; */
     font-family: sans-serif;
     color: #333;
 }
@@ -16,19 +15,16 @@ body {
     width: 280px;
     height: 105vh;
     background-color: #ffffff;
-    /* 흰색 배경 */
     color: #333;
-    /* 텍스트: 짙은 회색 */
     padding: 2rem 1rem;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     z-index: 10;
+    box-sizing: border-box;
 
     /* 상단 메뉴와 하단 프로필 분리 */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-
 }
 
 /* 사이드바 타이틀 */
@@ -48,6 +44,7 @@ body {
 
 /* 사이드 메뉴 */
 .sidebar-menu {
+    font-family: BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, sans-serif;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -55,6 +52,8 @@ body {
     flex-grow: 1;
     overflow-y: auto;
     min-height: 0;
+    padding-right: 6px;
+    overflow-x: visible;
 }
 
 .sidebar-menu li {
@@ -62,24 +61,38 @@ body {
 }
 
 .sidebar-menu a {
-    color: #333;
+    color: #625f93;
     text-decoration: none;
     font-size: 1rem;
-    transition: color 0.3s ease, border-left 0.3s ease, padding-left 0.3s ease;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.2;
+
+    padding: 10px 12px;
+    border-radius: 12px;
+    margin-right: 4px;
+
 }
 
 /* 호버 시 */
 .sidebar-menu a:hover {
-    color: #0077ff;
+    color: #003775;
+    background-color: #f5f7ff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .06);
 }
 
 /* 활성화 상태 */
 .sidebar-menu a.active {
-    color: #0077ff;
-    font-weight: bold;
-    border-left: 4px solid #0077ff;
-    padding-left: 0.5rem;
+    color: #000666;
+    font-weight: 700;
+    border-left: 4px solid #000666;
+
+    background-color: #eef2ff;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .08);
+
+    padding-left: calc(0.5rem + 2px);
 }
 
 /* 사이드바 하단 프로필 영역 */
@@ -186,4 +199,34 @@ body {
 
 .profile-stats__sep {
     opacity: .6;
+}
+
+/* 아이콘/라벨 래퍼가 있을 때 정렬 보정 */
+.sidebar-menu .nav-icon {
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.sidebar-menu .nav-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.sidebar-menu .nav-label {
+    flex: 1;
+}
+
+.sidebar-menu a:focus-visible {
+    outline: none;
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, .18),
+        0 6px 16px rgba(0, 0, 0, .08);
+    background-color: #f5f7ff;
+    border-radius: 12px;
 }

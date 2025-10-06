@@ -4,7 +4,13 @@ import api from "../../api/client";
 import { useAuth } from "../../context/AuthContext.jsx";
 import "../../styles/layout/Sidebar.css";
 import profileImg from "../../assets/profile_sample.png";
-
+import logoImg from "../../assets/logo_flexfit.png";
+import iconDashboard from "../../assets/icon_dashboard.png";
+import iconLog from "../../assets/icon_log.png";
+import iconRoutine from "../../assets/icon_routine.png";
+import iconGuide from "../../assets/icon_guide.png";
+import iconMeal from "../../assets/icon_meal.png";
+import iconSettings from "../../assets/icon_settings.png";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -54,17 +60,18 @@ const Sidebar = () => {
   return (
     <aside className="sidebar">
       <div className="sidebar-title">
-        <span className="sidebar-title-flex">Flex</span>
-        <span className="sidebar-title-fit">Fit</span>
+        {/* <span className="sidebar-title-flex">Flex</span>
+        <span className="sidebar-title-fit">Fit</span> */}
+        <img src={logoImg} alt="Welcome to FlexFit" className="logo-image" />
       </div>
 
       <ul className="sidebar-menu">
-        <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? "active" : ""}>🏠 Dashboard</NavLink></li>
-        <li><NavLink to="/log" className={({ isActive }) => isActive ? "active" : ""}>📓 Log Workout</NavLink></li>
-        <li><NavLink to="/routine" className={({ isActive }) => isActive ? "active" : ""}>💪 Routine</NavLink></li>
-        <li><NavLink to="/exercises" className={({ isActive }) => isActive ? "active" : ""}>🧠 Exercise Guide</NavLink></li>
-        <li><NavLink to="/meals" className={({ isActive }) => isActive ? "active" : ""}>🥗 Meal Plan</NavLink></li>
-        <li><NavLink to="/settings" className={({ isActive }) => isActive ? "active" : ""}>⚙️ Settings</NavLink></li>
+        <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? "active" : ""}><img src={iconDashboard} className="icon-sidebar" /> Dashboard</NavLink></li>
+        <li><NavLink to="/log" className={({ isActive }) => isActive ? "active" : ""}><img src={iconLog} className="icon-sidebar" />  Log Workout</NavLink></li>
+        <li><NavLink to="/routine" className={({ isActive }) => isActive ? "active" : ""}><img src={iconRoutine} className="icon-sidebar" />  Routine</NavLink></li>
+        <li><NavLink to="/exercises" className={({ isActive }) => isActive ? "active" : ""}><img src={iconGuide} className="icon-sidebar" />  Exercise Guide</NavLink></li>
+        <li><NavLink to="/meals" className={({ isActive }) => isActive ? "active" : ""}><img src={iconMeal} className="icon-sidebar" />  Meal Plan</NavLink></li>
+        <li><NavLink to="/settings" className={({ isActive }) => isActive ? "active" : ""}><img src={iconSettings} className="icon-sidebar" />  Settings</NavLink></li>
       </ul>
 
         {/* sidebar footer */}
