@@ -148,8 +148,28 @@
 /* 루틴 카드 그리드 */
 .routine-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 16px;
+    margin-top: 12px;
+    max-width: 1100px;
+}
+
+@media (max-width: 1200px) {
+    .routine-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .routine-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .routine-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .log-routine-card {

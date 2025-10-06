@@ -43,6 +43,11 @@
     background-attachment: scroll;
 }
 
+/* Avoid stacking two backgrounds when wr-page is used */
+.workoutroutine-container.wr-page {
+    background: none;
+}
+
 /* ===== 공통 UI ===== */
 .btn {
     display: inline-flex;
@@ -245,38 +250,63 @@
 /* ===== Routine Builder ===== */
 .routine-builder {
     display: grid;
+    grid-template-rows: auto 1fr;
+    row-gap: var(--space-3);
+    min-height: 0;
 }
 
 .builder-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
     display: grid;
     grid-template-columns: 1fr auto;
     gap: var(--space-3);
     align-items: center;
-    vertical-align: middle;
-    margin-bottom: 20px;
+    height: 56px;
+    padding: 0 var(--space-3);
+    margin-bottom: 0;
 }
 
-.routine-title-input {
-    font-size: 1.05rem;
-    background: #fff;
-    display: grid;
+.builder-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    align-self: center;
+    line-height: 1;
+    display: flex;
     align-items: center;
+}
+
+.builder-header h2,
+.builder-header .routine-title-input {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.builder-header input,
+.builder-header select,
+.builder-header button {
+    height: var(--input-h);
+    min-height: var(--input-h);
 }
 
 .builder-body {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 440px;
-    /* 좌측 가변 / 우측 패널 */
     gap: var(--space-4);
+    min-height: 0;
 }
 
 /* 좌측(선택된 운동 카드) */
 .builder-left {
     display: grid;
     gap: var(--space-4);
-    min-height: 360px;
+    min-height: 0;
     align-content: start;
     grid-auto-rows: min-content;
+    overflow: auto;
 }
 
 .empty-left {
@@ -312,9 +342,8 @@
     align-items: center;
     column-gap: var(--space-3);
     row-gap: 0;
-    align-content: start;
-    height: auto;
-    min-height: 0;
+    margin-bottom: 6px;
+    min-height: 40px;
 }
 
 .selected-card__title {
@@ -379,7 +408,6 @@
     background: #fff;
     overflow: auto;
     flex: 1;
-    /* 헤더 제외 나머지를 스크롤 영역으로 */
 }
 
 .workout-item {
@@ -641,7 +669,6 @@
     grid-template-areas:
         "top"
         "bottom";
-    /* 위: 목록, 아래: 버튼/사이드 */
     gap: clamp(12px, 2.5vw, 24px);
 }
 
