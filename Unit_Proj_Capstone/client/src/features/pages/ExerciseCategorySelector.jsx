@@ -54,7 +54,7 @@ export default function ExerciseCategorySelector({ data = [], onCategorySelect, 
       <div className="search-section">
         <input
           type="text"
-          placeholder="Search exercises by name/target/equipment/difficulty..."
+          placeholder="Search exercises by name / target / equipment / difficulty."
           value={term}
           onChange={(e) => setTerm(e.target.value)}
         />

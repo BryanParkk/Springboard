@@ -28,11 +28,6 @@ body,
     --radius: 16px;
 }
 
-/* body는 단색 배경만, 그래픽 배경은 컨테이너에 적용 */
-body {
-    background: var(--bg);
-    color: var(--text);
-}
 
 /* 페이지 컨테이너 - 배경 꽉 채우기, 좌측 정렬 */
 .settings-container {
@@ -63,23 +58,6 @@ body {
     max-width: 960px;
     margin: 0;
     /* auto 제거 → 좌측 */
-}
-
-/* 헤더 */
-.settings-header {
-    margin-bottom: 18px;
-}
-
-.settings-title {
-    font-size: clamp(22px, 2.4vw, 30px);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-}
-
-.settings-subtitle {
-    color: var(--subtext);
-    margin-top: 6px;
-    font-size: 14px;
 }
 
 /* 로딩 */
@@ -119,7 +97,7 @@ body {
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 12px;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .card-hint {
@@ -154,7 +132,7 @@ body {
 }
 
 .form-label {
-    font-size: 13px;
+    font-size: 15px;
     color: var(--subtext);
 }
 
@@ -167,6 +145,7 @@ body {
     border-radius: 12px;
     padding: 12px 14px;
     outline: none;
+    font-size: 15px;
     transition: border-color .15s ease, box-shadow .15s ease, transform .05s ease;
 }
 

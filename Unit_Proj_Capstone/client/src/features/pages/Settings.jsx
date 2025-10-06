@@ -102,7 +102,6 @@ export default function Settings() {
               <input className="form-input" type="date" value={profile.birthday || ''} onChange={onChange('birthday')} />
             </div>
           </div>
-
           <div className="form-row">
             <div className="form-group">
               <label className="form-label">Sex</label>

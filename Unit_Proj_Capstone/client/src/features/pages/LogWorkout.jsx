@@ -141,7 +141,7 @@ export default function LogWorkout() {
             />
 
             {routines.length === 0 ? (
-              <div className="empty">
+              <div className="wr-empty">
                 No routines yet. <Link to="/routine/new">Create your first workout routine</Link>.
               </div>
             ) : (

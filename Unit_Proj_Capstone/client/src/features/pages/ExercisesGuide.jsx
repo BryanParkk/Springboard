@@ -62,8 +62,8 @@ export default function ExercisesGuide() {
       {/* Meal Plan의 4열 그리드 재사용하려면 아래처럼 클래스 두 개 모두 부여 */}
       <div className="exercise-cards-grid meal-cards-grid">
         {curr.map(ex => (
-          <div key={ex.id} className="exercise-card meal-card">
-            <img className="exercise-img meal-img" src={ex.image_url} alt={ex.name} />
+          <div key={ex.id} className="exercise-card">
+            <img className="exercise-img" src={ex.image_url} alt={ex.name} />
             <h3>{ex.name}</h3>
             <p><strong>Target:</strong> {ex.target_muscle || '-'}</p>
             <p><strong>Equipment:</strong> {ex.equipment || '-'}</p>

@@ -41,7 +41,6 @@ body {
     opacity: 1;
     background-size: 9px 9px;
     background-image: repeating-linear-gradient(45deg, #4147c2 0, #4147c2 0.9px, #f9f9ff 0, #f9f9ff 50%);
-
 }
 
 .hero-inner {
