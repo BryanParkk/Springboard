@@ -6,7 +6,8 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import '../../styles/layout/LoginPage.css';
 import googleImg from '../../assets/google-black.svg'
 import appleImg from '../../assets/apple-black.svg'
-import logoImg from '../../assets/logo_big_flexfit.png';
+import bigLogoImg from '../../assets/logo_big_flexfit.png';
+import smallLogoImg from "../../assets/profile_sample.png";
 
 export default function LoginPageFit() {
   const { login } = useAuth();
@@ -20,7 +21,8 @@ export default function LoginPageFit() {
   const [error, setError] = useState("");
 
   const searchParams = new URLSearchParams(location.search);
-  const postLoginPath = searchParams.get('postLoginPath') || '/dashboard';
+  // const postLoginPath = searchParams.get('postLoginPath') || '/dashboard';
+  const postLoginPath =  '/dashboard';
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -42,15 +44,14 @@ export default function LoginPageFit() {
     <div className="loginFit">
       {/* floating brand */}
       <header className="fit-brand">
-        <div className="logo">🏋️</div>
-        <strong>FlexFit</strong>
+        <img className="logo" src={smallLogoImg} />
       </header>
 
       <div className="fit-shell">
         {/* left: hero / right: form */}
         <aside className="fit-hero" aria-hidden>
           <div className="grid-overlay" />
-            <img className="brand-mark" src={logoImg} alt="FlexFit" />
+            <img className="brand-mark" src={bigLogoImg} alt="FlexFit" />
           <div className="hero-copy">
             <h1>Train. Track. Transform.</h1>
             <p>Build routines, log sets, and watch your progress climb.</p>
@@ -59,7 +60,7 @@ export default function LoginPageFit() {
 
         <main className="fit-card">
           <div className="fit-head">
-            <h2>FlexFit — built for progress.</h2>
+            <h2>FlexFit — Your Fitness. Your Flex.</h2>
             <p>Sign in to continue your program.</p>
           </div>
 
@@ -107,19 +108,19 @@ export default function LoginPageFit() {
             </div>
 
             <button className="fit-btn fit-btn--primary" disabled={loading}>
-              {loading ? 'Signing in…' : 'Sign in'}
+              {loading ? 'Signing in…' : 'Start Training'}
             </button>
 
             <div className="fit-or"><span>or</span></div>
 
             <div className="fit-social">
               <button type="button" className="fit-btn fit-btn--ghost" disabled={loading}>
-                <img alt="Google" src={googleImg} />
+                <img alt="Google" src="https://www.svgrepo.com/show/475656/google-color.svg" />
                 Continue with Google
               </button>
               <button type="button" className="fit-btn fit-btn--ghost" disabled={loading}>
-                <img alt="Apple" src={appleImg} />
-                Continue with Apple
+                <img alt="GitHub" src="https://www.svgrepo.com/show/512317/github-142.svg" />
+                Continue with GitHub
               </button>
             </div>
           </form>

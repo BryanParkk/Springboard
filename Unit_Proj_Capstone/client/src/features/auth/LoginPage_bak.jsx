@@ -14,8 +14,9 @@ export default function LoginPage() {
   const [error, setError] = useState("");
 
   const searchParams = new URLSearchParams(location.search);
-  const postLoginPath = searchParams.get("postLoginPath") || "/dashboard";
-
+  // const postLoginPath = searchParams.get('postLoginPath') || '/dashboard';
+  const postLoginPath =  '/dashboard';
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");

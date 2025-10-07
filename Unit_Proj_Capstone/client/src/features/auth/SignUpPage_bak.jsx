@@ -17,8 +17,9 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState(false);
 
   const searchParams = new URLSearchParams(location.search);
-  const postLoginPath = searchParams.get('postLoginPath') || '/dashboard';
-
+  // const postLoginPath = searchParams.get('postLoginPath') || '/dashboard';
+  const postLoginPath =  '/dashboard';
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');

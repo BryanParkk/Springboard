@@ -3,7 +3,8 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import api from '../../api/client';
 import { useAuth } from '../../context/AuthContext.jsx';
 import '../../styles/layout/SignUpPage.css';
-import logoImg from '../../assets/logo_big_flexfit.png';
+import bigLogoImg from '../../assets/logo_big_flexfit.png';
+import smallLogoImg from "../../assets/profile_sample.png";
 
 export default function SignUpPage() {
   const navigate = useNavigate();
@@ -18,8 +19,9 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState(false);
 
   const searchParams = new URLSearchParams(location.search);
-  const postLoginPath = searchParams.get('postLoginPath') || '/dashboard';
-
+  // const postLoginPath = searchParams.get('postLoginPath') || '/dashboard';
+  const postLoginPath =  '/dashboard';
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -54,15 +56,14 @@ export default function SignUpPage() {
     <div className="signupFit">
       {/* floating brand */}
       <header className="fit-brand">
-        <div className="logo">🏋️</div>
-        <strong>FlexFit</strong>
+        <img className="logo" src={smallLogoImg} />
       </header>
 
       <div className="fit-shell">
         {/* left: hero */}
         <aside className="fit-hero" aria-hidden>
           <div className="grid-overlay" />
-            {/* <img className="brand-mark" src={logoImg} alt="FlexFit" /> */}
+            {/* <img className="brand-mark" src={bigLogoImg} alt="FlexFit" /> */}
           <div className="hero-copy">
             <h1>Start Strong. Stay Consistent.</h1>
             <p>Create your account and begin your transformation.</p>
