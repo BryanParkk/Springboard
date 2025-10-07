@@ -1,5 +1,5 @@
 // LoginPageFit.jsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import api from '../../api/client.js';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
@@ -8,17 +8,32 @@ import googleImg from '../../assets/google-black.svg'
 import appleImg from '../../assets/apple-black.svg'
 import bigLogoImg from '../../assets/logo_big_flexfit.png';
 import smallLogoImg from "../../assets/profile_sample.png";
+import loginMainImg from "../../assets/login_main.jpg";
+
+// Persist preferred email when "Remember me" is checked
+const K_PREF_EMAIL = 'ff_pref_email';
 
 export default function LoginPageFit() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-
+  const [remember, setRemember] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  // Load saved email on first render
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(K_PREF_EMAIL);
+      if (saved) {
+        setEmail(saved);
+        setRemember(true);
+      }
+    } catch {}
+  }, []);
 
   const searchParams = new URLSearchParams(location.search);
   // const postLoginPath = searchParams.get('postLoginPath') || '/dashboard';
@@ -30,7 +45,13 @@ export default function LoginPageFit() {
     setLoading(true);
     try {
       const res = await api.post('/api/auth/login', { email, password });
-      login(res.data.user, res.data.token);
+      // Pass remember flag so AuthContext stores token in localStorage (remember) or sessionStorage
+      login(res.data.user, res.data.token, remember);
+      // Persist preferred email only on successful login
+      try {
+        if (remember) localStorage.setItem(K_PREF_EMAIL, email || '');
+        else localStorage.removeItem(K_PREF_EMAIL);
+      } catch {}
       navigate(postLoginPath, { replace: true });
     } catch (err) {
       if (err?.response?.status === 401) setError('Incorrect email or password.');
@@ -44,7 +65,7 @@ export default function LoginPageFit() {
     <div className="loginFit">
       {/* floating brand */}
       <header className="fit-brand">
-        <img className="logo" src={smallLogoImg} />
+        <img className="logo" src={smallLogoImg} alt="FlexFit" />
       </header>
 
       <div className="fit-shell">
@@ -101,8 +122,8 @@ export default function LoginPageFit() {
 
             <div className="row between">
               <label className="fit-check">
-                <input type="checkbox" />
-                <i /><span>Remember me</span>
+                <input type="checkbox" checked={remember} onChange={e=>setRemember(e.target.checked)} />
+                <i/><span>Remember me</span>
               </label>
               <a className="fit-link" href="#">Forgot password?</a>
             </div>

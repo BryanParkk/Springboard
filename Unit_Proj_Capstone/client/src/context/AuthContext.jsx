@@ -3,27 +3,72 @@ import { createContext, useContext, useMemo, useState, useEffect } from 'react';
 
 const K_USER = 'flexfit:user';
 const K_TOKEN = 'flexfit:token';
+// Helpers: read from either localStorage or sessionStorage safely
+function readFromStorage(key) {
+  try {
+    const local = localStorage.getItem(key);
+    if (local != null) return { value: local, source: 'local' };
+    const session = sessionStorage.getItem(key);
+    if (session != null) return { value: session, source: 'session' };
+  } catch {}
+  return { value: null, source: null };
+}
+
+function readJsonFromStorage(key) {
+  const { value, source } = readFromStorage(key);
+  if (!value) return { value: null, source };
+  try { return { value: JSON.parse(value), source }; } catch { return { value: null, source }; }
+}
+
+function detectRemember() {
+  try { return !!localStorage.getItem(K_TOKEN); } catch { return false; }
+}
+
+function writeSession(user, token, remember) {
+  try {
+    const target = remember ? localStorage : sessionStorage;
+    const other  = remember ? sessionStorage : localStorage;
+    if (user) target.setItem(K_USER, JSON.stringify(user)); else target.removeItem(K_USER);
+    if (token) target.setItem(K_TOKEN, token); else target.removeItem(K_TOKEN);
+    // Ensure no duplicates in the other storage
+    other.removeItem(K_USER);
+    other.removeItem(K_TOKEN);
+  } catch {}
+}
+
+function clearAllSessions() {
+  try {
+    localStorage.removeItem(K_USER); localStorage.removeItem(K_TOKEN);
+    sessionStorage.removeItem(K_USER); sessionStorage.removeItem(K_TOKEN);
+  } catch {}
+}
 const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
 
 export default function AuthProvider({ children }) {
-  const [user, setUser] = useState(() => {
-    try { const raw = localStorage.getItem(K_USER); return raw ? JSON.parse(raw) : null; } catch { return null; }
-  });
-  const [token, setToken] = useState(() => {
-    try { return localStorage.getItem(K_TOKEN) || null; } catch { return null; }
-  });
+  const [{ value: initUser }, ] = [readJsonFromStorage(K_USER)];
+  const [{ value: initToken, source: initSource }] = [readFromStorage(K_TOKEN)];
+
+  const [user, setUser] = useState(initUser);
+  const [token, setToken] = useState(initToken);
+  const [remember, setRemember] = useState(() => (initSource ? initSource === 'local' : detectRemember()));
 
   useEffect(() => {
-    try {
-      user ? localStorage.setItem(K_USER, JSON.stringify(user)) : localStorage.removeItem(K_USER);
-      token ? localStorage.setItem(K_TOKEN, token) : localStorage.removeItem(K_TOKEN);
-    } catch {}
-  }, [user, token]);
+    writeSession(user, token, remember);
+  }, [user, token, remember]);
 
-  const login = (u, t) => { setUser(u); setToken(t); };
-  const logout = () => { setUser(null); setToken(null); };
+  const login = (u, t, rememberMe = false) => {
+    setRemember(!!rememberMe);
+    setUser(u);
+    setToken(t);
+  };
+  const logout = () => {
+    setUser(null);
+    setToken(null);
+    setRemember(false);
+    clearAllSessions();
+  };
 
-  const value = useMemo(() => ({ user, token, isAuthenticated: !!token, login, logout }), [user, token]);
+  const value = useMemo(() => ({ user, token, remember, isAuthenticated: !!token, login, logout }), [user, token, remember]);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
