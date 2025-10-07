@@ -272,11 +272,10 @@ function SessionRunner({ runner, unit, onRunnerChange, onComplete, onCancel }) {
                   <div className="sets-col sets-col--rpe">
                     <select
                       className="set-input"
-                      /* 문자열로 와도 숫자로 표시되게 강제 */
                       value={s.rpe == null ? 10 : Number(s.rpe)}
                       onChange={(e) => {
                         const n = Math.max(1, Math.min(10, parseInt(e.target.value, 10) || 10));
-                        patchSet(s.id, { rpe: n });          // rpe만 패치
+                        patchSet(s.id, { rpe: n });         
                       }}
                     >
                       {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (

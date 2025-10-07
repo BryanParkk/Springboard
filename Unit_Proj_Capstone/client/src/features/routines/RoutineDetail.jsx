@@ -47,8 +47,8 @@ export default function RoutineDetail() {
   };
 
   return (
-    <div className="workoutroutine-container routine-builder">
-      <main className="workoutroutinedetail-main">
+    <div className="workoutroutine-container">
+      <main className="workoutroutine-main">
         <h1 className="headline">Routine Detail</h1>
         <p className="subtitle">Edit lets you update exercises, sets, and notes; Delete permanently removes this routine.</p>
       </main>
@@ -126,7 +126,7 @@ export default function RoutineDetail() {
             <button className="btn btn-danger" onClick={onDelete}>Delete</button>
           </div>
           <div className="workout-list-hint" style={{ marginTop: 12 }}>
-            We show weights in your preferred unit ({unit}). You can change it in Settings.
+            We show weights in your preferred unit({unit}).
           </div>
         </div>
       </div>

@@ -248,11 +248,15 @@
 }
 
 .runner-card {
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 12px;
-    background: #fff;
-    margin-bottom: 20px;
+    background: var(--panel);
+    border: 1px solid var(--bd);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    box-shadow: var(--shadow);
+    display: grid;
+    gap: var(--space-3);
+    align-content: start;
+    align-self: start;
 }
 
 .runner-card__head {
@@ -265,7 +269,11 @@
 /* Log workout start - table title */
 .runner-card__title {
     font-weight: 700;
-    font-size: 1rem;
+    letter-spacing: -.01em;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .runner-card__meta {

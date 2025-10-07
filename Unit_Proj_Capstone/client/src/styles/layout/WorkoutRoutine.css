@@ -263,9 +263,15 @@
     grid-template-columns: 1fr auto;
     gap: var(--space-3);
     align-items: center;
-    height: 56px;
-    padding: 0 var(--space-3);
-    margin-bottom: 0;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+/* Right-side actions inside builder header: ensure gap between buttons */
+.builder-header>*:last-child {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
 }
 
 .builder-header h2 {
@@ -290,6 +296,12 @@
 .builder-header button {
     height: var(--input-h);
     min-height: var(--input-h);
+}
+
+/* Title input size match (header) */
+.builder-header .routine-title-input {
+    font-size: 1.05rem;
+    font-weight: 600;
 }
 
 .builder-body {
@@ -341,14 +353,20 @@
     grid-template-columns: 1fr auto;
     align-items: center;
     column-gap: var(--space-3);
-    row-gap: 0;
     margin-bottom: 6px;
-    min-height: 40px;
 }
 
 .selected-card__title {
     font-weight: 700;
     letter-spacing: -.01em;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.selected-card__head .icon-btn {
+    flex-shrink: 0;
 }
 
 .field-row {
@@ -372,7 +390,6 @@
     display: flex;
     flex-direction: column;
     max-height: 78vh;
-    /* 높이 균형 */
 }
 
 .workout-list-header {
@@ -535,10 +552,6 @@
 
 .btn-danger:active {
     transform: translateY(0);
-}
-
-.selected-card__head {
-    margin-bottom: 6px;
 }
 
 .selected-compact-row {

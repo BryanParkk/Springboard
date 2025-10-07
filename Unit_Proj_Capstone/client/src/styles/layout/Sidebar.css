@@ -27,6 +27,31 @@ body {
     justify-content: space-between;
 }
 
+/* 숨김 상태 */
+.sidebar.is-hidden {
+    transform: translateX(calc(-100% - 16px));
+    pointer-events: none;
+}
+
+/* 토글 버튼(심플) */
+.sidebar-toggle {
+    position: sticky;
+    /* 스크롤되어도 상단에 */
+    top: 12px;
+    left: 0;
+
+    padding: 8px 10px;
+    font-weight: 700;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    cursor: pointer;
+}
+
+.sidebar-toggle:hover {
+    background: #f5f7ff;
+}
+
 /* 사이드바 타이틀 */
 .sidebar-title {
     font-size: 2rem;

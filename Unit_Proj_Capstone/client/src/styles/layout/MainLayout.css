@@ -1,3 +1,28 @@
+/* 레이아웃 컨테이너 */
+.app-layout {
+    position: relative;
+}
+
+/* 사이드바 열렸을 때 메인 영역 왼쪽 여백(사이드바 폭만큼) */
+.main-content.shifted {
+    margin-left: 280px;
+    /* 너희 사이드바 width에 맞춰서: 현재 280px */
+    transition: margin-left 220ms cubic-bezier(.2, .8, .2, 1);
+}
+
+/* 닫혔을 때는 0 */
+.main-content.no-shift {
+    margin-left: 0;
+    transition: margin-left 220ms cubic-bezier(.2, .8, .2, 1);
+}
+
+/* 모바일에서는 항상 오버레이로 띄우고 메인은 0 여백 */
+@media (max-width: 960px) {
+    .main-content.shifted {
+        margin-left: 0;
+    }
+}
+
 .main-content {
     margin-left: 280px;
     background-color: #f5f5f5;

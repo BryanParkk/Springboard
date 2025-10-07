@@ -159,8 +159,8 @@ export default function RoutineBuilder({ mode }) {
   };
 
   return (
-    <div className="routine-builder">
-      <main className='workoutroutine-container builder-shell'>
+    <div className="workoutroutine-container routine-builder">
+      <main className='workoutroutine-main'>
         <header className="page-hero builder-hero">
           <h1 className='headline'>Create Workout Routine</h1>
           <p className='subtitle'>Personalized plans to match your goals.</p>

@@ -50,7 +50,7 @@ export default function ExerciseCategorySelector({ data = [], onCategorySelect, 
 
   return (
     <div className="category-selector">
-      {/* 검색 */}
+      {/* Search */}
       <div className="search-section">
         <input
           type="text"

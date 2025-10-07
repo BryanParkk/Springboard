@@ -28,7 +28,7 @@ export default function Dashboard() {
         <main className="dashboard-main">
             <h1 className='headline'>Welcome back, {name}</h1>
             <p className='subtitle'>Every rep counts. Let’s crush your goals today!</p>
-            {/* 최근 완료 기록 표 */}
+            {/* Recent workout complated table */}
             <WorkoutHistoryPanel limit={10} title="Recent Workouts" />
         </main>
     </div>

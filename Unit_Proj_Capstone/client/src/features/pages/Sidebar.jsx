@@ -12,7 +12,7 @@ import iconGuide from "../../assets/icon_guide.png";
 import iconMeal from "../../assets/icon_meal.png";
 import iconSettings from "../../assets/icon_settings.png";
 
-const Sidebar = () => {
+const Sidebar = ({ hidden = false }) => {
   const navigate = useNavigate();
   const { logout, user } = useAuth();
 
@@ -29,7 +29,6 @@ const Sidebar = () => {
         const { data } = await api.get("/api/user");
         setProfile((p) => ({ ...p, ...data }));
       } catch {
-        // ignore
       }
     })();
   }, []);
@@ -58,7 +57,7 @@ const Sidebar = () => {
 
   // * Return * //
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${hidden ? 'is-hidden' : ''}`}>
       <div className="sidebar-title">
         {/* <span className="sidebar-title-flex">Flex</span>
         <span className="sidebar-title-fit">Fit</span> */}
@@ -98,15 +97,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-
-
-        {/* <div className="sidebar-footer">
-            <img src={profileImg} alt="Profile" className="profile-image" />
-            <div className="profile-name">
-                Bryan Park
-                <div className="profile-title">Full-stack Dev</div>
-            </div>
-            <button type="button" className="logout-btn" onClick={handleLogout}>
-                🔓 Logout
-            </button>
-        </div> */}
