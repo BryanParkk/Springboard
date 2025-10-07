@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+/* === Base / 리셋 느낌 === */
+:root {
+    --bg: #0b0f14;
+    --bg-soft: #111824;
+    --card: #0f1623cc;
+    --text: #e6eefc;
+    --muted: #9ab0d0;
+    --brand1: #6aa8ff;
+    --brand2: #9a6aff;
+    --brand3: #4df;
+    --ring: #7cc9ff;
+    --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    --radius: 16px;
+    --speed: .28s;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, Segoe UI, Apple SD Gothic Neo, Helvetica, Arial;
+    line-height: 1.4;
+}
+
+/* === Hero 영역 === */
+.hero {
+    display: grid;
+    place-items: center;
+    padding: 96px 20px;
+    min-height: 100vh;
+    background-color: #f9f9ff;
+    opacity: 1;
+    background-size: 9px 9px;
+    background-image: repeating-linear-gradient(45deg, #4147c2 0, #4147c2 0.9px, #f9f9ff 0, #f9f9ff 50%);
+}
+
+.hero-inner {
+    width: min(1080px, 92vw);
+    background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .00)),
+        var(--card);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(140, 170, 220, .12);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    /* padding: 48px clamp(20px, 5vw, 56px); */
+    padding: 48px clamp(20px, 5vw, 100px);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 장식용 빛 번짐 */
+.hero-inner::after {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(600px 300px at 85% 15%, rgba(106, 168, 255, .25), transparent 60%),
+        radial-gradient(700px 400px at 20% 80%, rgba(154, 106, 255, .18), transparent 60%);
+    pointer-events: none;
+    filter: blur(10px);
+}
+
+/* === 텍스트 스타일 === */
+.eyebrow {
+    display: inline-block;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: .9rem;
+    padding: 6px 16px;
+    border-radius: 999px;
+    color: #0a1f44;
+    background-color: #fff;
+    border: 2px solid transparent;
+    background-image:
+        linear-gradient(#fff, #fff),
+        linear-gradient(90deg, var(--brand1), var(--brand2), var(--brand3));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, var(--brand1), var(--brand2), var(--brand3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.sub {
+    margin: 6px 0 20px;
+    color: #444;
+    /* 짙은 회색 */
+    font-size: clamp(1rem, 1.2vw, 1.125rem);
+    max-width: 60ch;
+}
+
+/* === 버튼 === */
+.btn {
+    --_bg: rgba(255, 255, 255, .06);
+    --_bd: rgba(140, 170, 220, .26);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--_bd);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: .01em;
+    transition: transform var(--speed) cubic-bezier(.2, .8, .2, 1), box-shadow var(--speed), background var(--speed), border-color var(--speed);
+    will-change: transform;
+    backdrop-filter: blur(6px);
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .25);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    --_bg: linear-gradient(90deg, rgba(106, 168, 255, .95), rgba(154, 106, 255, .95) 60%, rgba(77, 221, 255, .95));
+    --_ring: 0 0 0 6px rgba(124, 201, 255, .15);
+    background: var(--_bg);
+    border-color: transparent;
+    color: #021425;
+    box-shadow: var(--_ring), 0 10px 24px rgba(80, 140, 255, .25);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.05);
+}
+
+.btn-ghost {
+    background: var(--_bg);
+}
+
+/* 버튼 줄 */
+.cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 14px 0 18px;
+}
+
+/* === 포인트 배지 === */
+.usp {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: #fff;
+    border: 2px solid #0a1f44;
+    color: #0a1f44;
+    font-weight: 600;
+    font-size: .95rem;
+}
+
+.share-tech-regular {
+    font-family: "Share Tech", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.login-title-group {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-title {
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+.flex-text {
+    font-weight: 800;
+    color: #0077ff;
+}
+
+.fit-text {
+    font-weight: 500;
+    color: #222;
+}
+
+.login-subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 0.25rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 2rem;
+    background-color: #f7f7f7;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.login-input {
+    width: 190px;
+    font-size: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.2s;
+    padding: 15px;
+}
+
+.login-input:focus {
+    border-color: #0077ff;
+    outline: none;
+}
+
+.login-button {
+    padding: 0.75rem 1rem;
+    background: rgba(108, 92, 255);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(108, 92, 255, 0.25);
+    transition: transform 0.05s ease, box-shadow 0.15s ease, filter 0.15s ease, opacity 0.15s ease;
+}
+
+.login-button:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+}
+
+.login-button:active {
+    transform: translateY(1px);
+}
+
+.login-error {
+    color: red;
+    text-align: left;
+    margin-top: 15px;
+    margin-left: 10px;
+}

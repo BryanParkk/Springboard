@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import api from '../../api/client';
 import { useAuth } from '../../context/AuthContext.jsx';
-import '../../styles/layout/LoginPage.css';
+import '../../styles/layout/SignUpPage.css';
+import logoImg from '../../assets/logo_big_flexfit.png';
 
 export default function SignUpPage() {
   const navigate = useNavigate();
@@ -50,78 +51,94 @@ export default function SignUpPage() {
   };
 
   return (
-    <div>
-      <section className="hero">
-        <div className="hero-inner">
-          <span className="eyebrow">🚀 Ready to Transform?</span>
-          <h1 className="headline">
-            <span className="gradient-text">Create Account</span> for FlexFit
-          </h1>
-          <p className="sub">Your goals, our mission — start your journey today.</p>
+    <div className="signupFit">
+      {/* floating brand */}
+      <header className="fit-brand">
+        <div className="logo">🏋️</div>
+        <strong>FlexFit</strong>
+      </header>
 
-          <form className="login-form" onSubmit={handleSubmit}>
-            <input
-              className="login-input"
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-            <input
-              className="login-input"
-              type="email"
-              placeholder="Email Address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              autoComplete="email"
-            />
-            <input
-              className="login-input"
-              type="password"
-              placeholder="Password (min 8 chars)"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              autoComplete="new-password"
-            />
-            <input
-              className="login-input"
-              type="password"
-              placeholder="Confirm Password"
-              value={confirm}
-              onChange={(e) => setConfirm(e.target.value)}
-              required
-              autoComplete="new-password"
-            />
+      <div className="fit-shell">
+        {/* left: hero */}
+        <aside className="fit-hero" aria-hidden>
+          <div className="grid-overlay" />
+            {/* <img className="brand-mark" src={logoImg} alt="FlexFit" /> */}
+          <div className="hero-copy">
+            <h1>Start Strong. Stay Consistent.</h1>
+            <p>Create your account and begin your transformation.</p>
+          </div>
+        </aside>
 
-            <button className="login-button" type="submit" disabled={loading}>
-              {loading ? 'Creating...' : 'I\'m Ready'}
+        {/* right: sign up card */}
+        <main className="fit-card">
+          <div className="fit-head">
+            <h2>Create account</h2>
+            <p>Join FlexFit and track every rep.</p>
+          </div>
+
+          {error && <div className="fit-alert" role="alert">{error}</div>}
+
+          <form className="fit-form" onSubmit={handleSubmit}>
+            <label className="fit-field">
+              <input
+                type="text"
+                value={name}
+                onChange={(e)=>setName(e.target.value)}
+                placeholder=" "
+                required
+              />
+              <span>Name</span>
+            </label>
+
+            <label className="fit-field">
+              <input
+                type="email"
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}
+                placeholder=" "
+                autoComplete="email"
+                required
+              />
+              <span>Email</span>
+            </label>
+
+            <label className="fit-field">
+              <input
+                type="password"
+                value={password}
+                onChange={(e)=>setPassword(e.target.value)}
+                placeholder=" "
+                autoComplete="new-password"
+                required
+              />
+              <span>Password (min 8 chars)</span>
+            </label>
+
+            <label className="fit-field">
+              <input
+                type="password"
+                value={confirm}
+                onChange={(e)=>setConfirm(e.target.value)}
+                placeholder=" "
+                autoComplete="new-password"
+                required
+              />
+              <span>Confirm password</span>
+            </label>
+
+            <button className="fit-btn fit-btn--primary" disabled={loading}>
+              {loading ? 'Creating…' : 'Create account'}
             </button>
           </form>
 
-          {error && <p className="login-error">{error}</p>}
-
-          <div className="cta-row" style={{ justifyContent: 'left', paddingLeft: '5px' }}>
-            <p className="signup-msg" style={{ margin: 0 }}>
-              Already have an account?{' '}
-              <Link
-                to={`/login?postLoginPath=${encodeURIComponent(postLoginPath)}`}
-                className="btn btn-ghost"
-              >
-                Log in
-              </Link>
-            </p>
-          </div>
-
-          <ul className="usp">
-            <li><span className="badge">Personalized Plans</span></li>
-            <li><span className="badge">Progress Tracker</span></li>
-            <li><span className="badge">Community Challenges</span></li>
-          </ul>
-        </div>
-      </section>
+          <p className="fit-hint">
+            Already have an account?{' '}
+            <Link className="fit-link" to={`/login?postLoginPath=${encodeURIComponent(postLoginPath)}`}>
+              Log in
+            </Link>
+          </p>
+        </main>
+      </div>
     </div>
   );
 }
