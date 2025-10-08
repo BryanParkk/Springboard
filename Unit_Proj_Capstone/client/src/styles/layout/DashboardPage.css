@@ -20,14 +20,3 @@
     background-size: 500px auto;
     /* 크기 조정 (가로 400px) */
 }
-
-.dashboard-greeting h1 {
-    font-size: 2rem;
-    color: #222;
-    margin-bottom: 0.5rem;
-}
-
-.dashboard-greeting p {
-    font-size: 1.2rem;
-    color: #555;
-}

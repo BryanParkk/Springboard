@@ -63,6 +63,7 @@
     font-weight: 700;
     cursor: pointer;
     transition: transform .08s ease, box-shadow .18s ease, background .18s ease, border-color .18s;
+    text-decoration: none;
 }
 
 .btn:hover {
@@ -78,6 +79,7 @@
     background: var(--brand);
     color: #fff;
     border-color: var(--brand);
+    text-decoration: none;
 }
 
 .btn-primary:hover {
@@ -115,7 +117,8 @@
     font-size: .9rem;
     color: var(--muted);
     display: block;
-    text-align: center;
+    text-align: left;
+    padding-left: 5px;
 }
 
 .field-input {
@@ -136,7 +139,6 @@
 .filters select,
 .filters input {
     height: var(--input-h);
-    padding: 0 var(--space-3);
     border: 1px solid var(--bd);
     border-radius: 12px;
     background: #fff;

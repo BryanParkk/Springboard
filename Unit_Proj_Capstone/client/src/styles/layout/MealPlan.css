@@ -68,6 +68,10 @@
     transition: transform 0.2s ease;
 }
 
+.meal-card p {
+    line-height: 1.6;
+}
+
 .meal-card h3 {
     font-size: 1.1rem;
     margin-top: 0.75rem;

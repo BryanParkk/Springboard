@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import api from '../../api/client';
 import '../../styles/layout/LogWorkout.css';
 import '../../styles/components/Table.css';
+import NumberInputStepper from '../components/NumberInputStepper';
 
 const toKg = (v, unit) =>
   v === '' || v == null ? null : unit === 'lbs' ? Number(v) / 2.2046226218 : Number(v);
@@ -128,7 +129,6 @@ export default function LogWorkout() {
         <div>
           <div>
             <h2>Start Workout</h2>
-
             <ConfirmStartInline
               open={!!confirm.open}
               routine={confirm.routine}
@@ -237,9 +237,13 @@ function SessionRunner({ runner, unit, onRunnerChange, onComplete, onCancel }) {
           <div key={ex.id} className="runner-card">
             <div className="runner-card__head">
               <div className="runner-card__title">{ex.name}</div>
-              <div className="runner-card__meta">{ex.note ? ex.note : ''}</div>
             </div>
-
+              {ex.note && (
+                <div className="field-cell">
+                  <label className="field-label">Note</label>
+                  <div className="field-note">{ex.note}</div>
+                </div>
+              )}
             <div className="sets-table table table--sticky-head table--scroll">
               <div className="sets-row sets-row--head">
                 <div className="sets-col sets-col--no">Set</div>
@@ -253,37 +257,48 @@ function SessionRunner({ runner, unit, onRunnerChange, onComplete, onCancel }) {
                 <div key={s.id} className="sets-row">
                   <div className="sets-col sets-col--no">{s.set_no}</div>
                   <div className="sets-col sets-col--w">
-                    <input
+                    <NumberInputStepper
                       className="set-input"
-                      type="number"
-                      step="1"
-                      value={fromKg(s.weight_kg, unit)}
-                      onChange={(e) => patchSet(s.id, { weight: e.target.value })}
+                      step={1}
+                      value={
+                        s.weight_kg == null || s.weight_kg === ""
+                          ? 0
+                          : fromKg(s.weight_kg, unit)
+                      }
+                      onChange={(e) => {
+                        const val = e.target.value === "" ? 0 : e.target.value;
+                        patchSet(s.id, { weight: val });
+                      }}
+                      min={0}
+                      max={999}
+                      ariaLabel={`Weight (${unit})`}
                     />
                   </div>
                   <div className="sets-col sets-col--reps">
-                    <input
+                    <NumberInputStepper
                       className="set-input"
-                      type="number"
+                      step={1}
+                      min={0}
+                      max={99}
                       value={s.reps ?? ''}
                       onChange={(e) => patchSet(s.id, { reps: Number(e.target.value) || 0 })}
+                      ariaLabel="Reps"
                     />
                   </div>
                   <div className="sets-col sets-col--rpe">
-                    <select
+                    <NumberInputStepper
                       className="set-input"
+                      step={1}
+                      min={1}
+                      max={10}
                       value={s.rpe == null ? 10 : Number(s.rpe)}
                       onChange={(e) => {
                         const n = Math.max(1, Math.min(10, parseInt(e.target.value, 10) || 10));
-                        patchSet(s.id, { rpe: n });         
+                        patchSet(s.id, { rpe: n });
                       }}
-                    >
-                      {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
-                        <option key={n} value={n}>{n}</option>
-                      ))}
-                    </select>                    
+                      ariaLabel="RPE"
+                    />               
                   </div>
-
                   <div className="sets-col sets-col--chk">
                     <input
                       type="checkbox"

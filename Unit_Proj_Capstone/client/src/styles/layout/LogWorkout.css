@@ -15,7 +15,9 @@
     background-attachment: scroll;
 }
 
-.runner-title-input {
+.runner-title-input,
+.routine-title-input {
+
     font-size: 1.1rem;
     font-weight: 700;
     border: 1px solid var(--bd);
@@ -257,7 +259,13 @@
     gap: var(--space-3);
     align-content: start;
     align-self: start;
+    margin-bottom: var(--space-4);
 }
+
+.runner-card:last-child {
+    margin-bottom: 0;
+}
+
 
 .runner-card__head {
     display: flex;
@@ -294,6 +302,14 @@
     text-align: center;
     vertical-align: middle;
 }
+
+.log-history th.cell-name {
+    text-align: center;
+    vertical-align: middle;
+    width: 250px;
+
+}
+
 
 /* 헤더 아이콘(연한 톤) */
 .icon-header-img {

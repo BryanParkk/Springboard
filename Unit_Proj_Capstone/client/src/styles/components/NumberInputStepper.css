@@ -1,0 +1,66 @@
+/* NumberInputStepper */
+.ni {
+    display: inline-grid;
+    grid-template-columns: 36px minmax(56px, 1fr) 36px;
+    /* 테이블 셀 맞춤 기본 사이즈 */
+    align-items: center;
+    height: 36px;
+    border: 1px solid var(--bd, #e5e7eb);
+    border-radius: 10px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.ni[data-disabled] {
+    opacity: .6;
+    pointer-events: none;
+}
+
+.ni__btn {
+    height: 100%;
+    border: 0;
+    background: #f8fafc;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 16px;
+    transition: background .15s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ni__btn:hover {
+    background: #eef2f7;
+}
+
+.ni__btn:active {
+    background: #e5e7ee;
+}
+
+.ni__btn--dec {
+    border-right: 1px solid var(--bd, #e5e7eb);
+}
+
+.ni__btn--inc {
+    border-left: 1px solid var(--bd, #e5e7eb);
+}
+
+.ni__input {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    text-align: center;
+    font-weight: 700;
+    outline: none;
+
+    background: transparent;
+}
+
+/* 다크 테마 예시 (선택) */
+/*
+.dark .ni { background: rgba(255,255,255,.06); border-color: #1f2a44; }
+.dark .ni__btn { background: rgba(255,255,255,.08); }
+.dark .ni__btn:hover { background: rgba(255,255,255,.12); }
+.dark .ni__btn--dec, .dark .ni__btn--inc { border-color: #1f2a44; }
+.dark .ni__input { color: #e5e7eb; }
+*/

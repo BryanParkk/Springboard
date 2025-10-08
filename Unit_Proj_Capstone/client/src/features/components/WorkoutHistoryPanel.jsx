@@ -137,7 +137,7 @@ export default function WorkoutHistoryPanel({ limit = 20, title = 'Workout Histo
                 <thead>
                   <tr>
                     <th className="cell-center">#</th>
-                    <th className="cell-center">Name</th>
+                    <th className="cell-name">Name</th>
                     <th className="cell-center">Exercises / Sets</th>
                     <th className="cell-center">Date</th>
                     <th className="cell-center">Delete</th>
@@ -146,7 +146,7 @@ export default function WorkoutHistoryPanel({ limit = 20, title = 'Workout Histo
                 <tbody>
                   {rows.map((r, i) => (
                     <tr key={r.id}>
-                      <td>{i + 1 + (page - 1) * limit}</td>
+                      <td style={{ textAlign: 'center' }}>{i + 1 + (page - 1) * limit}</td>
                       <td><Link className="link" to={`/log/${r.id}`}>{r.title || 'Workout'}</Link></td>
                       <td style={{ textAlign: 'center' }}>
                         {(r.exercise_count ?? '—')} / {(r.set_count ?? '—')}

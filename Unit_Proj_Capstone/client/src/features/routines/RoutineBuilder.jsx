@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import api from '../../api/client';
 import '../../styles/layout/RoutineBuilder.css';
+import NumberInputStepper from '../components/NumberInputStepper';
+import '../../App.css'
 
 const toKg = (v, unit) => {
   if (v === '' || v == null) return null;
@@ -215,28 +217,33 @@ export default function RoutineBuilder({ mode }) {
                       <div className="sets-col sets-col--no">Set</div>
                       <div className="sets-col sets-col--w">{unit}</div>
                       <div className="sets-col sets-col--reps">Reps</div>
-                      <div className="sets-col sets-col--act">Remove</div>
+                      <div className="sets-col sets-col--act"></div>
                     </div>
                     {it.sets.map((s, j) => (
                       <div key={j} className="sets-row">
                         <div className="sets-col sets-col--no">{s.set_no}</div>
                         <div className="sets-col sets-col--w">
-                          <input
+                          <NumberInputStepper
                             className="set-input"
-                            type="number"
                             step={1}
-                            placeholder={unit}
-                            value={s.weight_val}
-                            onChange={e=>updateSet(idx, j, { weight_val: e.target.value })}
+                            value={s.weight_kg == null ? 0 : fromKg(s.weight_kg, unit)}
+                            placeholder="–"
+                            onChange={(e) => patchSet(s.id, { weight: e.target.value || 0 })}
+                            min={0}
+                            max={999}
+                            ariaLabel={`Weight (${unit})`}
                           />
                         </div>
                         <div className="sets-col sets-col--reps">
-                          <input
+                          <NumberInputStepper
                             className="set-input"
-                            type="number"
+                            step={1}
+                            min={0}
+                            max={99}
                             placeholder="reps"
                             value={s.reps}
-                            onChange={e=>updateSet(idx, j, { reps: e.target.value })}
+                            onChange={(e) => updateSet(idx, j, { reps: e.target.value })}
+                            ariaLabel="Repetitions"
                           />
                         </div>
                         <div className="sets-col sets-col--act">
