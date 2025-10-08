@@ -53,9 +53,13 @@
 }
 
 .log-history thead th {
-    background: #f7f8fb;
+    background: #e1e4ef;
     color: var(--muted);
     font-weight: 700;
+}
+
+.log-history tbody tr:nth-child(even) td {
+    background: #f3f7ff;
 }
 
 .log-history tbody tr:hover {

@@ -1,22 +1,43 @@
 .dashboard-container {
+    position: relative;
     display: flex;
-    padding: 2rem;
     min-height: 100dvh;
-    /* 최신 뷰포트 단위 */
     padding: clamp(16px, 3vw, 32px);
-
+    --dot: rgba(30, 64, 175, .06);
     background:
-        radial-gradient(900px 600px at 110% 0%, rgba(108, 92, 255, 0.12), transparent 60%),
-        radial-gradient(900px 600px at -10% 10%, rgba(22, 199, 154, 0.10), transparent 60%),
-        var(--bg);
+        radial-gradient(circle at 12px 12px, var(--dot) 1px, transparent 1px) 0 0/24px 24px,
+        radial-gradient(800px 520px at 90% 0%, rgba(124, 92, 255, .12), transparent 60%),
+        radial-gradient(800px 520px at 0% 90%, rgba(34, 211, 238, .10), transparent 60%),
+        #f8fbff;
     background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: scroll;
+}
 
-    background-image: url('../../assets/dashboard_img.png');
-    background-position: calc(100% - 100px) calc(100% - 100px);
-    /* 우측 하단 */
-    background-repeat: no-repeat;
-    background-size: 500px auto;
-    /* 크기 조정 (가로 400px) */
+.dashboard-container::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    right: 100px;
+    bottom: 100px;
+    width: min(34vw, 440px);
+    height: min(30vw, 360px);
+    background: url('../../assets/dashboard_img.png') center/contain no-repeat;
+    filter: drop-shadow(0 10px 30px rgba(15, 23, 42, .15));
+    opacity: .95;
+}
+
+/* Small screens: tuck or hide image */
+@media (max-width: 820px) {
+    .dashboard-container::after {
+        right: 40px;
+        bottom: 40px;
+        width: 280px;
+        height: 220px;
+        opacity: .9;
+    }
+}
+
+@media (max-width: 540px) {
+    .dashboard-container::after {
+        display: none;
+    }
 }
