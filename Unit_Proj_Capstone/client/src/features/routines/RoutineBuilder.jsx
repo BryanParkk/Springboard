@@ -11,7 +11,7 @@ const toKg = (v, unit) => {
   const n = Number(v);
   if (Number.isNaN(n)) return null;
   const kg = unit === 'lbs' ? n / 2.2046226218 : n;
-  return Math.round(kg); // always store as integer kg
+  return Math.round(kg * 100) / 100; // store precise kg (2 decimals) to avoid drift when converting back to lbs
 };
 const fromKg = (kg, unit) => {
   if (kg == null) return '';
@@ -130,6 +130,17 @@ export default function RoutineBuilder({ mode }) {
     setSelected(arr => arr.filter((_,i)=> i!==idx));
   };
 
+  // normalize stepper onChange payload (number | string | event)
+  const toNumberFromInput = (val) => {
+    if (typeof val === 'number') return val;
+    if (val == null) return NaN;
+    if (typeof val === 'string') return Number(val);
+    if (typeof val === 'object' && 'target' in val) {
+      return Number(val.target?.value ?? NaN);
+    }
+    return Number(val);
+  };
+
   // 저장
   const handleSave = async () => {
     if (!title.trim()) { alert('Please enter a routine title.'); return; }
@@ -226,9 +237,12 @@ export default function RoutineBuilder({ mode }) {
                           <NumberInputStepper
                             className="set-input"
                             step={1}
-                            value={s.weight_kg == null ? 0 : fromKg(s.weight_kg, unit)}
+                            value={s.weight_val === '' || s.weight_val == null ? 0 : Number(s.weight_val)}
                             placeholder="–"
-                            onChange={(e) => patchSet(s.id, { weight: e.target.value || 0 })}
+                            onChange={(val) => {
+                              const n = toNumberFromInput(val);
+                              updateSet(idx, j, { weight_val: Number.isFinite(n) ? String(n) : '' });
+                            }}
                             min={0}
                             max={999}
                             ariaLabel={`Weight (${unit})`}
@@ -241,8 +255,11 @@ export default function RoutineBuilder({ mode }) {
                             min={0}
                             max={99}
                             placeholder="reps"
-                            value={s.reps}
-                            onChange={(e) => updateSet(idx, j, { reps: e.target.value })}
+                            value={s.reps === '' || s.reps == null ? 0 : Number(s.reps)}
+                            onChange={(val) => {
+                              const n = toNumberFromInput(val);
+                              updateSet(idx, j, { reps: Number.isFinite(n) ? n : '' });
+                            }}
                             ariaLabel="Repetitions"
                           />
                         </div>

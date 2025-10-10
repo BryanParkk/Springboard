@@ -125,14 +125,14 @@ export default function LoginPageFit() {
                 <input type="checkbox" checked={remember} onChange={e=>setRemember(e.target.checked)} />
                 <i/><span>Remember me</span>
               </label>
-              <a className="fit-link" href="#">Forgot password?</a>
+              {/* <a className="fit-link" href="#">Forgot password?</a> */}
             </div>
 
             <button className="fit-btn fit-btn--primary" disabled={loading}>
               {loading ? 'Signing in…' : 'Start Training'}
             </button>
 
-            <div className="fit-or"><span>or</span></div>
+            {/* <div className="fit-or"><span>or</span></div>
 
             <div className="fit-social">
               <button type="button" className="fit-btn fit-btn--ghost" disabled={loading}>
@@ -143,7 +143,7 @@ export default function LoginPageFit() {
                 <img alt="GitHub" src="https://www.svgrepo.com/show/512317/github-142.svg" />
                 Continue with GitHub
               </button>
-            </div>
+            </div> */}
           </form>
 
           <p className="fit-hint">

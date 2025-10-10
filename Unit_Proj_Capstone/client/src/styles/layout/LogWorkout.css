@@ -299,6 +299,10 @@
     font-size: .9rem;
 }
 
+.runner-submeta {
+    padding-bottom: 10px;
+}
+
 /* ==== Dashboard Recent workout history ==== */
 /* 중앙 정렬 보장 */
 .log-history th.cell-center,
