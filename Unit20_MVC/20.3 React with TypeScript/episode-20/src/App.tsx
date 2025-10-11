@@ -26,7 +26,7 @@ type ListProps = {
   items: string[];
   onClick?: (item: string) => void
 }
-
+//
 const List = ({ items, onClick }: ListProps)=> 
   <ul>
     {items.map((item, index) => (
@@ -39,7 +39,7 @@ function App() {
     alert(item)
   }, [])
 
-  // const [checkedState, setCheckedState] = useState(true);
+  const [checkedState, setCheckedState] = useState("hello");
 
 
   return (
