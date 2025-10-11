@@ -26,7 +26,7 @@ type ListProps = {
   items: string[];
   onClick?: (item: string) => void
 }
-//
+
 const List = ({ items, onClick }: ListProps)=> 
   <ul>
     {items.map((item, index) => (
