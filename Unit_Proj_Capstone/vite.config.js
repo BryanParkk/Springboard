@@ -18,7 +18,11 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   root: "client",
-  plugins: [react()],
+  plugins: [
+    react({
+      jsxRuntime: "automatic",
+    }),
+  ],
   server: {
     host: true,
     port: 5173,
