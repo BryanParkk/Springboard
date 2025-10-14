@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import AuthProvider from './context/AuthContext.jsx';
-import ProtectedRoute from '../../server/routes/ProtectedRoute.jsx';
+import ProtectedRoute from '../routes/ProtectedRoute.jsx';
 import AppLayout from './layouts/AppLayout';
 import LogSessionDetail from './features/pages/LogSessionDetail';
 
