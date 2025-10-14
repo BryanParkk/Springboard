@@ -8,11 +8,14 @@
 // });
 // export default api;
 
-// src/api/client.js
+// client/src/api/client.js
 import axios from "axios";
 
-// Vite: import.meta.env.VITE_API_URL 사용 (배포에서 세팅), 없으면 상대경로(로컬 프록시)
-const baseURL = import.meta.env.VITE_API_URL || "/";
+const baseURL =
+  import.meta.env.VITE_API_URL && import.meta.env.VITE_API_URL !== "/"
+    ? import.meta.env.VITE_API_URL
+    : "/";
+
 const api = axios.create({ baseURL });
 
 api.interceptors.request.use((config) => {
