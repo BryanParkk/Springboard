@@ -106,14 +106,6 @@ import axios from 'axios';
 import CategorySelector from './MealCategorySelector';
 import '../../styles/layout/MealPlan.css';
 
-function asArray(data) {
-  if (Array.isArray(data)) return data;
-  if (data && Array.isArray(data.rows)) return data.rows;
-  if (data && Array.isArray(data.data)) return data.data;
-  if (data && Array.isArray(data.items)) return data.items;
-  return [];
-}
-
 export default function MealPlan() {
   const [meals, setMeals] = useState([]);
   const [filteredMeals, setFilteredMeals] = useState([]);
@@ -123,19 +115,14 @@ export default function MealPlan() {
   useEffect(() => {
     axios.get('/api/meals')
       .then(res => {
-        const list = asArray(res.data);
+        const list = Array.isArray(res.data) ? res.data : [];
         setMeals(list);
         setFilteredMeals(list);
       })
-      .catch(err => {
-        console.error('Error fetching meals:', err);
-        setMeals([]);
-        setFilteredMeals([]);
-      });
+      .catch(err => console.error('Error fetching meals:', err));
   }, []);
 
-  // category: 'type' | 'calories' | 'protein' | 'goal'
-  // value: 'All' 이나 '' 면 전체 복원
+  // 카테고리 선택 (All/빈값이면 전체 복원)
   const handleValueSelect = (category, value) => {
     const v = String(value || '').trim();
     if (!v || v.toLowerCase() === 'all') {
@@ -145,54 +132,46 @@ export default function MealPlan() {
     }
 
     let filtered = meals;
+
     if (category === 'type') {
-      filtered = meals.filter(meal => String(meal.type || '').toLowerCase() === v.toLowerCase());
-    } else if (category === 'calories') {
-      filtered = meals.filter(meal => {
-        const c = Number(meal.calories) || 0;
-        if (v === '<300') return c < 300;
-        if (v === '300-500') return c >= 300 && c <= 500;
-        if (v === '500-700') return c > 500 && c <= 700;
-        if (v === '>700') return c > 700;
-        return true;
-      });
-    } else if (category === 'protein') {
-      filtered = meals.filter(meal => {
-        const p = Number(meal.protein) || 0;
-        if (v === '<15g') return p < 15;
-        if (v === '15-30g') return p >= 15 && p <= 30;
-        if (v === '30-45g') return p > 30 && p <= 45;
-        if (v === '>45g') return p > 45;
-        return true;
-      });
+      filtered = meals.filter(m => (m.type || '') === v);
     } else if (category === 'goal') {
-      filtered = meals.filter(meal => String(meal.goal || '').toLowerCase() === v.toLowerCase());
+      filtered = meals.filter(m => (m.goal || '') === v);
+    } else if (category === 'calories') {
+      // 라벨 기준: '<300' | '300-500' | '500-700' | '>700'
+      if (v === '<300') filtered = meals.filter(m => Number(m.calories) < 300);
+      else if (v === '300-500') filtered = meals.filter(m => Number(m.calories) >= 300 && Number(m.calories) <= 500);
+      else if (v === '500-700') filtered = meals.filter(m => Number(m.calories) > 500 && Number(m.calories) <= 700);
+      else if (v === '>700') filtered = meals.filter(m => Number(m.calories) > 700);
+    } else if (category === 'protein') {
+      // 라벨 기준: '<15g' | '15-30g' | '30-45g' | '>45g'
+      if (v === '<15g') filtered = meals.filter(m => Number(m.protein) < 15);
+      else if (v === '15-30g') filtered = meals.filter(m => Number(m.protein) >= 15 && Number(m.protein) <= 30);
+      else if (v === '30-45g') filtered = meals.filter(m => Number(m.protein) > 30 && Number(m.protein) <= 45);
+      else if (v === '>45g') filtered = meals.filter(m => Number(m.protein) > 45);
     }
 
     setFilteredMeals(filtered);
     setCurrentPage(1);
   };
 
+  // 검색 (이름 기준, 필요하면 설명 확장 가능)
   const handleSearch = (searchTerm) => {
     const term = String(searchTerm || '').trim().toLowerCase();
-    if (!term) {
-      setFilteredMeals(meals);
-      setCurrentPage(1);
-      return;
-    }
-    const filtered = meals.filter(meal =>
-      String(meal.name || '').toLowerCase().includes(term)
-    );
+    if (!term) { setFilteredMeals(meals); setCurrentPage(1); return; }
+    const filtered = meals.filter(m => (m.name || '').toLowerCase().includes(term));
     setFilteredMeals(filtered);
     setCurrentPage(1);
   };
 
-  const totalPages = Math.max(1, Math.ceil((filteredMeals || []).length / mealsPerPage));
-  const start = (currentPage - 1) * mealsPerPage;
-  const currentMeals = (filteredMeals || []).slice(start, start + mealsPerPage);
+  // 페이지네이션
+  const totalPages = Math.max(1, Math.ceil(filteredMeals.length / mealsPerPage));
+  const indexOfLastMeal = currentPage * mealsPerPage;
+  const indexOfFirstMeal = indexOfLastMeal - mealsPerPage;
+  const currentMeals = filteredMeals.slice(indexOfFirstMeal, indexOfLastMeal);
 
-  const handlePrevPage = () => currentPage > 1 && setCurrentPage(currentPage - 1);
-  const handleNextPage = () => currentPage < totalPages && setCurrentPage(currentPage + 1);
+  const handlePrevPage = () => currentPage > 1 && setCurrentPage(p => p - 1);
+  const handleNextPage = () => currentPage < totalPages && setCurrentPage(p => p + 1);
 
   return (
     <div className="meal-plan-container">
@@ -206,7 +185,7 @@ export default function MealPlan() {
       />
 
       <div className="meal-cards-grid">
-        {(currentMeals || []).map(meal => (
+        {currentMeals.map(meal => (
           <div key={meal.id} className="meal-card">
             <img src={meal.image_url} alt={meal.name} className="meal-img" />
             <h3>{meal.name}</h3>
@@ -216,16 +195,16 @@ export default function MealPlan() {
             <p><strong>Carbs:</strong> {meal.carbs ?? '-'}g</p>
             <p><strong>Fat:</strong> {meal.fat ?? '-'}g</p>
             <p><strong>Goal:</strong> {meal.goal || '-'}</p>
-            <details>
-              <summary>Recipe</summary>
-              {/* 서버에서 HTML로 내려오는 경우 대비 */}
-              <div dangerouslySetInnerHTML={{ __html: meal.recipe || '' }} />
-            </details>
+            {meal.recipe && (
+              <details>
+                <summary>Recipe</summary>
+                <div dangerouslySetInnerHTML={{ __html: meal.recipe }} />
+              </details>
+            )}
           </div>
         ))}
-
-        {(currentMeals || []).length === 0 && (
-          <div className="no-results">No meals found.</div>
+        {currentMeals.length === 0 && (
+          <div className="empty-state">No meals found.</div>
         )}
       </div>
 
