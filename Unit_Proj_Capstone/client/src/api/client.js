@@ -11,7 +11,7 @@
 // src/api/client.js
 import axios from "axios";
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "/", // Vercel에서 반드시 절대 URL이 들어오게
+  baseURL: import.meta.env.VITE_API_URL || "/",
 });
 
 const K_TOKEN = "flexfit:token";
