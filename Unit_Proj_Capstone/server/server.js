@@ -92,6 +92,7 @@ const corsOptions = {
   origin(origin, cb) {
     if (!origin) return cb(null, true);
     if (ALLOWED.length === 0 || ALLOWED.includes(origin)) return cb(null, true);
+    // if (origin && /\.vercel\.app$/.test(origin)) return cb(null, true);
     return cb(new Error("Not allowed by CORS"));
   },
   credentials: true, // 쿠키를 쓰지 않아도 무방, 써도 안전
