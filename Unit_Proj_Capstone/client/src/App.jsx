@@ -41,7 +41,7 @@ export default function App() {
             <Route path="/meals"     element={<AppLayout><MealPlan /></AppLayout>} />
             <Route path="/settings"  element={<AppLayout><Settings /></AppLayout>} />
           </Route>
-
+          console.log("API URL:", import.meta.env.VITE_API_URL);
           {/* 404 처리 */}
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
