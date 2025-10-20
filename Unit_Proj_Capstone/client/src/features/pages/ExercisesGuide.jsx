@@ -117,7 +117,7 @@ export default function ExercisesGuide() {
       setCurrentPage(1);
       return;
     }
-//
+
     const out = exercises.filter(x => (x?.[col] || '').toLowerCase() === v);
     setFiltered(out);
     setCurrentPage(1);
