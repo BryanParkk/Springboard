@@ -22,7 +22,7 @@ export default function Settings() {
     current_weight: '', goal_weight: '', height_value: '',
     goal_body_type: ''
   });
-
+//
   useEffect(() => {
     (async () => {
       try {
