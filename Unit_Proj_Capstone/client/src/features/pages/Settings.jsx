@@ -51,7 +51,7 @@ export default function Settings() {
       }
     })();
   }, []);
-  
+  //
   const onChange = (k) => (e) => setProfile((p) => ({ ...p, [k]: e.target.value }));
 
   const onSubmit = async (e) => {
