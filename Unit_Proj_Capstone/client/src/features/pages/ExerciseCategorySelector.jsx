@@ -1,3 +1,4 @@
+// ExerciseCategorySelector.jsx
 import { useMemo, useState } from 'react';
 import '../../styles/layout/ExerciseCategorySelector.css';
 
