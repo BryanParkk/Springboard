@@ -1,3 +1,4 @@
+//
 export function asArray(data) {
   if (Array.isArray(data)) return data;
   if (data && Array.isArray(data.rows)) return data.rows;
