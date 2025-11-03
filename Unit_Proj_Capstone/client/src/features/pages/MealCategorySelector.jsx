@@ -1,3 +1,4 @@
+// src/features/pages/MealCategorySelector.jsx
 import { useState } from 'react';
 import '../../styles/layout/MealCategorySelector.css';
 
