@@ -1,4 +1,4 @@
-// src/pages/WorkoutRoutine.jsx  (또는 실제 경로에 맞게)
+// src/pages/WorkoutRoutine.jsx
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api/client';

@@ -1,4 +1,4 @@
-// LogSessionDetail.jsx
+// src/features/pages/LogSessionDetail.jsx
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import api from '../../api/client';

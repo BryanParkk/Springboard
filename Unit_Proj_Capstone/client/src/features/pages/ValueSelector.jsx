@@ -1,3 +1,4 @@
+// src/features/pages/ValueSelector.jsx
 import { useState } from 'react';
 
 export default function CategorySelector({ onCategorySelect, onValueSelect }) {

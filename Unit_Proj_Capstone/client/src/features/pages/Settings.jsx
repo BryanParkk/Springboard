@@ -1,3 +1,4 @@
+// src/features/pages/Settings.jsx
 import { useEffect, useState } from 'react';
 import api from '../../api/client';
 import '../../styles/layout/Settings.css';

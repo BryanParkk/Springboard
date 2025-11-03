@@ -1,4 +1,4 @@
-// Dashboard.jsx
+// src/features/pages/Dashboard.jsx
 import '../../styles/layout/DashboardPage.css';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
