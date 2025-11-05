@@ -1,3 +1,4 @@
+// src/features/auth/SignUpPage.jsx
 import { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import api from '../../api/client';

@@ -1,4 +1,4 @@
-// LoginPageFit.jsx
+// src/features/auth/LoginPage.jsx
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import api from '../../api/client.js';
