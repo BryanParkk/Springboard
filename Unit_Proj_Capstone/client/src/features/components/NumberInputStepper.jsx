@@ -1,9 +1,10 @@
+// src/features/components/NumberInputStepper.jsx
 import React, { useRef } from "react";
 import '../../styles/components/NumberInputStepper.css'
 
 /**
  * Drop-in 대체용 숫자 스테퍼
- * - onChange는 기존 input과 동일하게 e.target.value 형태로 전달합니다.
+ * - onChange는 기존 input과 동일하게 e.target.value 형태로 전달
  * - 직접 타이핑, -, . 등 중간 상태 허용 -> blur 시 보정/클램프
  */
 export default function NumberInputStepper({
