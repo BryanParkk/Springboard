@@ -1,3 +1,4 @@
+// src/features/routines/RoutineDetail.jsx
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import api from "../../api/client";
