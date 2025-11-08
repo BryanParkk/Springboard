@@ -30,7 +30,7 @@ export default function RoutineDetail() {
         setLoading(false);
       }
     })();
-  }, [id]);
+  }, [id]);//
 
   const items = useMemo(() => routine?.items || [], [routine]);
 
