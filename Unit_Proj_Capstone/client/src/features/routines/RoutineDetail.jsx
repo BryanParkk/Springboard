@@ -15,7 +15,7 @@ export default function RoutineDetail() {
   const [routine, setRoutine] = useState(null);
   const [unit, setUnit] = useState("kg"); // 사용자 선호 단위(옵션)
   const [loading, setLoading] = useState(true);
-////
+//
   useEffect(() => {
     (async () => {
       try {
