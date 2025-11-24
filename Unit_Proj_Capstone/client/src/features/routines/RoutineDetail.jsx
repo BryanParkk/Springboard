@@ -31,7 +31,7 @@ export default function RoutineDetail() {
       }
     })();
   }, [id]);
-
+//
   const items = useMemo(() => routine?.items || [], [routine]);
 
   if (loading) return <p>Loading...</p>;
