@@ -8,7 +8,7 @@ const toUnit = (kg, unit) => {
   if (unit === "lbs") return `${(kg * 2.2046226218).toFixed(1)} lbs`;
   return `${Number(kg).toFixed(1)} kg`;
 };
-
+/
 export default function RoutineDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
