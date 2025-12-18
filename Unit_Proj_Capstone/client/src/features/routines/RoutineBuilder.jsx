@@ -21,7 +21,7 @@ const fromKg = (kg, unit) => {
   if (unit === 'lbs') return String(Math.round(n * 2.2046226218)); // integer lbs
   return String(Math.round(n)); // integer kg
 };
-//
+
 export default function RoutineBuilder({ mode }) {
   const params = useParams();
   const isEdit = mode === 'edit' && params?.id;
