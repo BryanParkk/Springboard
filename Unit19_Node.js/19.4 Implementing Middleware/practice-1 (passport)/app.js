@@ -15,7 +15,7 @@ function errorHandler(err, req, res, next) {
     res.send("<h1>There was an error</h1>");
   }
 }
-//
+
 app.use(middleware1);
 app.use(errorHandler);
 
