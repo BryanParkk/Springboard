@@ -18,7 +18,7 @@ const authRoutes = require("./routes/auth");
 const productRoutes = require("./routes/product");
 
 // middleware defitions
-// parse remiquests of content-type - application/json
+// parse requests of content-type - application/json
 app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
   );
   next();
 });
-///
+////
 //connect to the MongoDB using Mongoose ODM
 mongoose
   .connect(process.env.DBHOST, {
