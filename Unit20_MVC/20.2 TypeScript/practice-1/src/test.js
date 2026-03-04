@@ -1,4 +1,3 @@
-// }
 var admin = {
   username: "bryan",
   age: 40,
