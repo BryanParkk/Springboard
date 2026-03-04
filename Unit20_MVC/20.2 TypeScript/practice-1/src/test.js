@@ -1,3 +1,4 @@
+// }
 var admin = {
   username: "bryan",
   age: 40,
@@ -18,4 +19,3 @@ function makeRandoUser(name) {
     age: Math.floor(Math.random() * 100),
   };
 }
-//
