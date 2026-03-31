@@ -3,14 +3,6 @@
 
 // console.log("[DB] Initializing pool...");
 
-// const pool = new Pool({
-//   user: "bryanpark",
-//   host: "localhost",
-//   database: "flexfit",
-//   password: "",
-//   port: 5432,
-// });
-
 // server/db/index.js
 import pkg from "pg";
 const { Pool } = pkg;
