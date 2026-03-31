@@ -13,13 +13,6 @@
 
 // console.log("[DB] Pool created");
 
-// export default {
-//   query: (text, params) => {
-//     console.log("[DB] Query:", text);
-//     return pool.query(text, params);
-//   },
-// };
-
 // server/db/index.js
 import pkg from "pg";
 const { Pool } = pkg;
@@ -59,7 +52,7 @@ if (!isProd) {
       ? "DATABASE_URL"
       : `${process.env.PGUSER || "postgres"}@${
           process.env.PGHOST || "localhost"
-        }/${process.env.PGDATABASE || "flexfit"}`
+        }/${process.env.PGDATABASE || "flexfit"}`,
   );
 }
 
