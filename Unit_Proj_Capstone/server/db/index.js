@@ -11,8 +11,6 @@
 //   port: 5432,
 // });
 
-// console.log("[DB] Pool created");
-
 // server/db/index.js
 import pkg from "pg";
 const { Pool } = pkg;
