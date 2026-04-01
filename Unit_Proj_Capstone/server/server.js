@@ -44,7 +44,7 @@ app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
 
 // 4) 헬스체크
 app.get("/api/health", (req, res) =>
-  res.json({ ok: true, ts: new Date().toISOString() })
+  res.json({ ok: true, ts: new Date().toISOString() }),
 );
 
 // 5) 라우팅
@@ -67,3 +67,4 @@ const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+//
